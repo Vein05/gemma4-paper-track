@@ -1,4 +1,4 @@
-# Gemma 4 Checks Other Agents' Patches Well and Its Own Poorly
+# Rubber Stamp: Gemma 4 Checks Other Agents' Patches Well and Its Own Poorly
 
 **Subtitle.** Nine open models judged 388 SWE-bench patches in a fresh context. Only Gemma 4 31B judges its own
 patches worse than outside judges do: its scores on its own patches pile up at the top of the scale.
@@ -127,7 +127,9 @@ pair accuracy (ties count half).
 Gemma falls behind outside judges only when the two patches belong to different issues. With 47 same-issue pairs we
 cannot claim it matches them within an issue; we detect no deficit there.
 
-The reason is a ceiling. Gemma gives exactly 100 to 110 of its 150 own patches, and 49 of those fail. Its scores
+The reason is rubber-stamping: Gemma gives exactly 100 to 110 of its 150 own patches, and 49 of those fail. We
+call the share of a judge's own failing patches that get the top score its rubber-stamp rate; for Gemma it is 61%
+(49 of 80). Its scores
 therefore carry little information about which issue a patch belongs to. Breaking those ties perfectly would raise
 its AUROC from 0.64 to 0.91.
 
