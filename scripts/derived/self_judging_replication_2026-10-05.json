@@ -1,0 +1,337 @@
+{
+ "qwen3-coder": {
+  "self_auroc_own": 0.691,
+  "self_auroc_rest": 0.786,
+  "self_drop": 0.095,
+  "baseline_drop": 0.127,
+  "gap": -0.032,
+  "self_drop_ci95": [
+   -0.083,
+   0.283
+  ],
+  "baseline_drop_ci95": [
+   -0.004,
+   0.268
+  ],
+  "gap_ci95": [
+   -0.241,
+   0.189
+  ],
+  "lenient_own_failing": 13.552,
+  "lenient_other_failing": 9.486,
+  "lenient_difference": 4.066,
+  "share_ge95_own_failing": 0.267,
+  "share_ge95_other_failing": 0.28,
+  "n": {
+   "own_failing": 15,
+   "own_passing": 11
+  },
+  "outside_judges": [
+   "gemma4-31b",
+   "gpt-oss-20b",
+   "glm47-flash",
+   "gpt-oss-120b",
+   "glm-4.5",
+   "kimi-k2",
+   "llama-4-maverick"
+  ],
+  "spec_role": "primary pair"
+ },
+ "gpt-oss-120b": {
+  "self_auroc_own": 0.86,
+  "self_auroc_rest": 0.701,
+  "self_drop": -0.16,
+  "baseline_drop": -0.114,
+  "gap": -0.046,
+  "self_drop_ci95": [
+   -0.263,
+   -0.041
+  ],
+  "baseline_drop_ci95": [
+   -0.204,
+   -0.021
+  ],
+  "gap_ci95": [
+   -0.133,
+   0.049
+  ],
+  "lenient_own_failing": -0.756,
+  "lenient_other_failing": -2.854,
+  "lenient_difference": 2.098,
+  "share_ge95_own_failing": 0.0,
+  "share_ge95_other_failing": 0.0,
+  "n": {
+   "own_failing": 24,
+   "own_passing": 10
+  },
+  "outside_judges": [
+   "gemma4-31b",
+   "qwen35-9b",
+   "glm47-flash",
+   "qwen3-coder",
+   "glm-4.5",
+   "kimi-k2",
+   "llama-4-maverick"
+  ],
+  "spec_role": "primary pair"
+ },
+ "glm-4.5": {
+  "self_auroc_own": 0.757,
+  "self_auroc_rest": 0.752,
+  "self_drop": -0.005,
+  "baseline_drop": 0.042,
+  "gap": -0.047,
+  "self_drop_ci95": [
+   -0.158,
+   0.2
+  ],
+  "baseline_drop_ci95": [
+   -0.06,
+   0.157
+  ],
+  "gap_ci95": [
+   -0.174,
+   0.116
+  ],
+  "lenient_own_failing": -5.837,
+  "lenient_other_failing": -12.924,
+  "lenient_difference": 7.087,
+  "share_ge95_own_failing": 0.357,
+  "share_ge95_other_failing": 0.349,
+  "n": {
+   "own_failing": 14,
+   "own_passing": 21
+  },
+  "outside_judges": [
+   "gemma4-31b",
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "qwen3-coder",
+   "gpt-oss-120b",
+   "kimi-k2",
+   "llama-4-maverick"
+  ],
+  "spec_role": "primary pair"
+ },
+ "kimi-k2": {
+  "self_auroc_own": 0.881,
+  "self_auroc_rest": 0.805,
+  "self_drop": -0.076,
+  "baseline_drop": -0.041,
+  "gap": -0.036,
+  "self_drop_ci95": [
+   -0.185,
+   0.056
+  ],
+  "baseline_drop_ci95": [
+   -0.147,
+   0.08
+  ],
+  "gap_ci95": [
+   -0.113,
+   0.036
+  ],
+  "lenient_own_failing": 4.295,
+  "lenient_other_failing": 9.728,
+  "lenient_difference": -5.433,
+  "share_ge95_own_failing": 0.214,
+  "share_ge95_other_failing": 0.272,
+  "n": {
+   "own_failing": 14,
+   "own_passing": 12
+  },
+  "outside_judges": [
+   "gemma4-31b",
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "glm47-flash",
+   "qwen3-coder",
+   "gpt-oss-120b",
+   "glm-4.5",
+   "llama-4-maverick"
+  ],
+  "spec_role": "primary pair"
+ },
+ "llama-4-maverick": {
+  "self_auroc_own": 0.786,
+  "self_auroc_rest": 0.657,
+  "self_drop": -0.129,
+  "baseline_drop": -0.11,
+  "gap": -0.019,
+  "self_drop_ci95": [
+   -0.247,
+   -0.007
+  ],
+  "baseline_drop_ci95": [
+   -0.204,
+   -0.014
+  ],
+  "gap_ci95": [
+   -0.133,
+   0.101
+  ],
+  "lenient_own_failing": 50.714,
+  "lenient_other_failing": 33.244,
+  "lenient_difference": 17.471,
+  "share_ge95_own_failing": 0.571,
+  "share_ge95_other_failing": 0.685,
+  "n": {
+   "own_failing": 21,
+   "own_passing": 8
+  },
+  "outside_judges": [
+   "gemma4-31b",
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "glm47-flash",
+   "qwen3-coder",
+   "gpt-oss-120b",
+   "glm-4.5",
+   "kimi-k2"
+  ],
+  "spec_role": "primary pair"
+ },
+ "gemma4-31b": {
+  "self_auroc_own": 0.636,
+  "self_auroc_rest": 0.833,
+  "self_drop": 0.197,
+  "baseline_drop": 0.063,
+  "gap": 0.135,
+  "self_drop_ci95": [
+   0.104,
+   0.287
+  ],
+  "baseline_drop_ci95": [
+   -0.003,
+   0.132
+  ],
+  "gap_ci95": [
+   0.06,
+   0.21
+  ],
+  "lenient_own_failing": 12.794,
+  "lenient_other_failing": -8.1,
+  "lenient_difference": 20.894,
+  "share_ge95_own_failing": 0.662,
+  "share_ge95_other_failing": 0.223,
+  "n": {
+   "own_failing": 80,
+   "own_passing": 70
+  },
+  "outside_judges": [
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "glm47-flash",
+   "qwen3-coder",
+   "gpt-oss-120b",
+   "glm-4.5",
+   "kimi-k2",
+   "llama-4-maverick"
+  ],
+  "spec_role": "exploratory (not counted)"
+ },
+ "pooled": {
+  "gap": -0.036,
+  "gap_ci95": [
+   -0.089,
+   0.016
+  ],
+  "pairs": [
+   "qwen3-coder",
+   "gpt-oss-120b",
+   "glm-4.5",
+   "kimi-k2",
+   "llama-4-maverick"
+  ],
+  "patches_rated_by_all": 333,
+  "patches_left_out": 55,
+  "gap_with_gemma": -0.007,
+  "gap_with_gemma_ci95": [
+   -0.052,
+   0.038
+  ]
+ },
+ "auroc_matrix": {
+  "gemma4-31b": {
+   "gemma-4-31b": 0.636,
+   "qwen3-coder": 0.7,
+   "gpt-oss-120b": 0.89,
+   "glm-4.5": 0.789,
+   "kimi-k2": 0.836,
+   "llama-4-maverick": 0.961,
+   "devstral": 0.754
+  },
+  "gpt-oss-20b": {
+   "gemma-4-31b": 0.668,
+   "qwen3-coder": 0.633,
+   "gpt-oss-120b": 0.796,
+   "glm-4.5": 0.736,
+   "kimi-k2": 0.747,
+   "llama-4-maverick": 0.812,
+   "devstral": 0.785
+  },
+  "qwen35-9b": {
+   "gemma-4-31b": 0.762,
+   "qwen3-coder": 0.676,
+   "gpt-oss-120b": 0.827,
+   "glm-4.5": 0.723,
+   "kimi-k2": 0.714,
+   "llama-4-maverick": 0.723,
+   "devstral": 0.711
+  },
+  "glm47-flash": {
+   "gemma-4-31b": 0.7,
+   "qwen3-coder": 0.615,
+   "gpt-oss-120b": 0.829,
+   "glm-4.5": 0.777,
+   "kimi-k2": 0.699,
+   "llama-4-maverick": 0.667,
+   "devstral": 0.733
+  },
+  "qwen3-coder": {
+   "gemma-4-31b": 0.734,
+   "qwen3-coder": 0.691,
+   "gpt-oss-120b": 0.9,
+   "glm-4.5": 0.663,
+   "kimi-k2": 0.878,
+   "llama-4-maverick": 0.905,
+   "devstral": 0.763
+  },
+  "gpt-oss-120b": {
+   "gemma-4-31b": 0.694,
+   "qwen3-coder": 0.515,
+   "gpt-oss-120b": 0.86,
+   "glm-4.5": 0.646,
+   "kimi-k2": 0.786,
+   "llama-4-maverick": 0.872,
+   "devstral": 0.644
+  },
+  "glm-4.5": {
+   "gemma-4-31b": 0.717,
+   "qwen3-coder": 0.573,
+   "gpt-oss-120b": 0.846,
+   "glm-4.5": 0.757,
+   "kimi-k2": 0.732,
+   "llama-4-maverick": 0.923,
+   "devstral": 0.741
+  },
+  "kimi-k2": {
+   "gemma-4-31b": 0.764,
+   "qwen3-coder": 0.767,
+   "gpt-oss-120b": 0.904,
+   "glm-4.5": 0.781,
+   "kimi-k2": 0.881,
+   "llama-4-maverick": 0.964,
+   "devstral": 0.717
+  },
+  "llama-4-maverick": {
+   "gemma-4-31b": 0.603,
+   "qwen3-coder": 0.579,
+   "gpt-oss-120b": 0.79,
+   "glm-4.5": 0.653,
+   "kimi-k2": 0.83,
+   "llama-4-maverick": 0.786,
+   "devstral": 0.644
+  }
+ }
+}

@@ -1,0 +1,192 @@
+{
+ "dataset_shas": {
+  "alphadiana-sweagent-gemma4-directllm-20260727": "cb3478d1c7d2e86b6cbe21462dbf043195937496",
+  "alphadiana-swe-mini-opencode-gemma4-20260602-818023": "bc170437a93ff50f1912a00141c990d438e562c5",
+  "alphadiana-swe-mini-opencode-gemma4-20260725-v04": "e64402afa90a6047909ded9ed9acda1502390f93",
+  "alphadiana-swe-mini-openclaw-gemma4-20260724-k9q7": "c52c3361ecd4305c1f10a40109c116914965ebce",
+  "alphadiana-swe-mini-zeroclaw-gemma4-20260724-r6m2": "e903a16f1fc685fb2e7d3b90f591826a579bd9c5",
+  "alphadiana-swe-mini-direct-gemma4-20260725-m8v4": "29ad528cf43a17438ed231a726f58d022a853ac2"
+ },
+ "runs": [
+  {
+   "dataset": "n-pelleriti/alphadiana-swe-mini-direct-gemma4-20260725-m8v4",
+   "run": "20260724-swe_bench_verified_mini-direct-noharness-gemma-4-31b-it-h200-v01",
+   "harness": "direct_noharness",
+   "tasks": 50,
+   "usable": 1,
+   "resolved_usable": 0,
+   "status_counts": {
+    "eval_error:patch_apply_failed": 48,
+    "valid_scored": 1,
+    "runtime_error": 1
+   }
+  },
+  {
+   "dataset": "n-pelleriti/alphadiana-swe-mini-openclaw-gemma4-20260724-k9q7",
+   "run": "20260724-swe_bench_verified_mini-openclaw-gemma-4-31b-it-v02",
+   "harness": "openclaw",
+   "tasks": 50,
+   "usable": 48,
+   "resolved_usable": 22,
+   "status_counts": {
+    "valid_scored": 48,
+    "eval_error:patch_apply_failed": 1,
+    "runtime_error": 1
+   }
+  },
+  {
+   "dataset": "n-pelleriti/alphadiana-swe-mini-opencode-gemma4-20260602-818023",
+   "run": "20260602-swe_bench_verified_mini-opencode-gemma-4-31b-it-full-818023",
+   "harness": "opencode",
+   "tasks": 50,
+   "usable": 32,
+   "resolved_usable": 19,
+   "status_counts": {
+    "valid_scored": 32,
+    "provider_error": 14,
+    "runtime_error": 1,
+    "empty_patch": 3
+   }
+  },
+  {
+   "dataset": "n-pelleriti/alphadiana-swe-mini-opencode-gemma4-20260725-v04",
+   "run": "20260725-swe_bench_verified_mini-opencode-gemma-4-31b-it-v04-proxyphase-mt131072",
+   "harness": "opencode",
+   "tasks": 50,
+   "usable": 47,
+   "resolved_usable": 18,
+   "status_counts": {
+    "valid_scored": 47,
+    "runtime_error": 1,
+    "eval_error:patch_apply_failed": 1,
+    "empty_patch": 1
+   }
+  },
+  {
+   "dataset": "n-pelleriti/alphadiana-swe-mini-zeroclaw-gemma4-20260724-r6m2",
+   "run": "20260724-swe_bench_verified_mini-zeroclaw-gemma-4-31b-it-v02",
+   "harness": "zeroclaw",
+   "tasks": 50,
+   "usable": 43,
+   "resolved_usable": 22,
+   "status_counts": {
+    "valid_scored": 43,
+    "eval_error:patch_apply_failed": 3,
+    "runtime_error": 4
+   }
+  },
+  {
+   "dataset": "n-pelleriti/alphadiana-sweagent-gemma4-directllm-20260727",
+   "run": "20260724-swe_bench_verified_mini-directllm-gemma-4-31b-it-sweagent-v02",
+   "harness": "sweagent",
+   "tasks": 50,
+   "usable": 34,
+   "resolved_usable": 23,
+   "status_counts": {
+    "empty_patch": 14,
+    "valid_scored": 34,
+    "eval_error:evaluator_test_timeout_1800s": 2
+   }
+  },
+  {
+   "dataset": "n-pelleriti/alphadiana-sweagent-gemma4-directllm-20260727",
+   "run": "20260727T103555Z-swe-bench-verified-mini-directllm-sweagent-default-gemma-4-31b-it-podman-smoke",
+   "harness": "sweagent",
+   "tasks": 1,
+   "usable": 1,
+   "resolved_usable": 1,
+   "status_counts": {
+    "valid_scored": 1
+   }
+  }
+ ],
+ "cross_run_all": {
+  "excluded_runs": [],
+  "instances_with_usable_attempt": 50,
+  "instances_with_pass_and_fail": 19,
+  "pass_and_fail_ids": [
+   "django__django-11790",
+   "django__django-11815",
+   "django__django-11848",
+   "django__django-11880",
+   "django__django-11964",
+   "django__django-12193",
+   "django__django-12262",
+   "django__django-12276",
+   "django__django-12304",
+   "django__django-12325",
+   "django__django-12774",
+   "sphinx-doc__sphinx-10323",
+   "sphinx-doc__sphinx-10466",
+   "sphinx-doc__sphinx-10673",
+   "sphinx-doc__sphinx-8035",
+   "sphinx-doc__sphinx-8548",
+   "sphinx-doc__sphinx-8551",
+   "sphinx-doc__sphinx-9281",
+   "sphinx-doc__sphinx-9698"
+  ],
+  "identical_patch_labelled_both_ways": [],
+  "usable_attempts_per_instance": {
+   "1": 1,
+   "2": 3,
+   "3": 5,
+   "4": 23,
+   "5": 16,
+   "6": 2
+  },
+  "unique_usable_patches_per_instance": {
+   "1": 4,
+   "2": 8,
+   "3": 9,
+   "4": 18,
+   "5": 10,
+   "6": 1
+  }
+ },
+ "cross_run_excluding_smoke": {
+  "excluded_runs": [
+   "20260727T103555Z-swe-bench-verified-mini-directllm-sweagent-default-gemma-4-31b-it-podman-smoke"
+  ],
+  "instances_with_usable_attempt": 50,
+  "instances_with_pass_and_fail": 19,
+  "pass_and_fail_ids": [
+   "django__django-11790",
+   "django__django-11815",
+   "django__django-11848",
+   "django__django-11880",
+   "django__django-11964",
+   "django__django-12193",
+   "django__django-12262",
+   "django__django-12276",
+   "django__django-12304",
+   "django__django-12325",
+   "django__django-12774",
+   "sphinx-doc__sphinx-10323",
+   "sphinx-doc__sphinx-10466",
+   "sphinx-doc__sphinx-10673",
+   "sphinx-doc__sphinx-8035",
+   "sphinx-doc__sphinx-8548",
+   "sphinx-doc__sphinx-8551",
+   "sphinx-doc__sphinx-9281",
+   "sphinx-doc__sphinx-9698"
+  ],
+  "identical_patch_labelled_both_ways": [],
+  "usable_attempts_per_instance": {
+   "1": 1,
+   "2": 3,
+   "3": 5,
+   "4": 23,
+   "5": 17,
+   "6": 1
+  },
+  "unique_usable_patches_per_instance": {
+   "1": 4,
+   "2": 8,
+   "3": 9,
+   "4": 18,
+   "5": 10,
+   "6": 1
+  }
+ },
+ "warnings": []
+}

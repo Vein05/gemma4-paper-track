@@ -1,0 +1,28 @@
+{
+ "failing": {
+  "gemma_minus_others_own": 19.3,
+  "n_own": 31,
+  "issues_own": 17,
+  "gemma_minus_others_swe_agent": -9.8,
+  "n_swe_agent": 86,
+  "issues_swe_agent": 46,
+  "difference": 29.1,
+  "ci_95": [
+   15.0,
+   45.3
+  ]
+ },
+ "passing": {
+  "gemma_minus_others_own": 17.7,
+  "n_own": 32,
+  "issues_own": 17,
+  "gemma_minus_others_swe_agent": 9.8,
+  "n_swe_agent": 77,
+  "issues_swe_agent": 45,
+  "difference": 7.9,
+  "ci_95": [
+   -2.8,
+   19.5
+  ]
+ }
+}

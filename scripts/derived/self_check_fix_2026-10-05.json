@@ -1,0 +1,123 @@
+{
+ "own_patches": 172,
+ "passing": 80,
+ "failing": 92,
+ "issues": 50,
+ "issues_with_2plus_patches": 46,
+ "signals": {
+  "S0_gemma_off": {
+   "auroc": 0.646,
+   "ci95": [
+    0.575,
+    0.716
+   ],
+   "same_issue_pair_acc": 0.607,
+   "different_issue_pair_acc": 0.647
+  },
+  "S2_gemma_think": {
+   "auroc": 0.645,
+   "ci95": [
+    0.554,
+    0.723
+   ],
+   "same_issue_pair_acc": 0.705,
+   "different_issue_pair_acc": 0.645,
+   "minus_S0": -0.001,
+   "minus_S0_ci95": [
+    -0.056,
+    0.058
+   ]
+  },
+  "S2_mean_off_think": {
+   "auroc": 0.677,
+   "ci95": [
+    0.581,
+    0.755
+   ],
+   "same_issue_pair_acc": 0.643,
+   "different_issue_pair_acc": 0.678,
+   "minus_S0": 0.031,
+   "minus_S0_ci95": [
+    -0.005,
+    0.069
+   ]
+  },
+  "S2_min_off_think": {
+   "auroc": 0.673,
+   "ci95": [
+    0.574,
+    0.754
+   ],
+   "same_issue_pair_acc": 0.643,
+   "different_issue_pair_acc": 0.673,
+   "minus_S0": 0.027,
+   "minus_S0_ci95": [
+    -0.015,
+    0.068
+   ]
+  },
+  "S1_attempt_agreement": {
+   "auroc": 0.665,
+   "ci95": [
+    0.54,
+    0.785
+   ],
+   "same_issue_pair_acc": 0.5,
+   "different_issue_pair_acc": 0.667,
+   "minus_S0": 0.019,
+   "minus_S0_ci95": [
+    -0.119,
+    0.146
+   ]
+  },
+  "S3_within_issue_relative": {
+   "auroc": 0.533,
+   "ci95": [
+    0.454,
+    0.616
+   ],
+   "same_issue_pair_acc": 0.607,
+   "different_issue_pair_acc": 0.533,
+   "minus_S0": -0.113,
+   "minus_S0_ci95": [
+    -0.197,
+    -0.025
+   ]
+  },
+  "C1_S0_plus_S1": {
+   "auroc": 0.72,
+   "ci95": [
+    0.606,
+    0.823
+   ],
+   "same_issue_pair_acc": 0.589,
+   "different_issue_pair_acc": 0.721,
+   "minus_S0": 0.074,
+   "minus_S0_ci95": [
+    -0.014,
+    0.16
+   ]
+  },
+  "C2_meanS2_plus_S1": {
+   "auroc": 0.738,
+   "ci95": [
+    0.62,
+    0.84
+   ],
+   "same_issue_pair_acc": 0.589,
+   "different_issue_pair_acc": 0.739,
+   "minus_S0": 0.092,
+   "minus_S0_ci95": [
+    0.003,
+    0.18
+   ]
+  }
+ },
+ "reference_outside_judges_mean": {
+  "n": 149,
+  "auroc": 0.77,
+  "S0_on_same_subset": 0.638,
+  "C1_on_same_subset": 0.718
+ },
+ "share_of_gap_closed_by_C1": 0.61
+}

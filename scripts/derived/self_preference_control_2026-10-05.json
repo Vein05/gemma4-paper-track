@@ -1,0 +1,113 @@
+{
+ "patches_rated_by_all": 342,
+ "patches_by_writer": {
+  "gemma-4-31b": 151,
+  "kimi-k2": 26,
+  "gpt-oss-120b": 36,
+  "glm-4.5": 35,
+  "qwen3-coder": 28,
+  "llama-4-maverick": 32,
+  "devstral": 34
+ },
+ "unparsed_or_missing": 46,
+ "gemma_failing": {
+  "own": 25.4,
+  "control_writers": 2.4,
+  "difference": 23.0,
+  "ci_95": [
+   12.7,
+   33.6
+  ],
+  "n_own": 81,
+  "n_control": 108
+ },
+ "gemma_passing": {
+  "own": 14.3,
+  "control_writers": 17.1,
+  "difference": -2.8,
+  "ci_95": [
+   -13.3,
+   8.1
+  ],
+  "n_own": 70,
+  "n_control": 83
+ },
+ "family_gpt-oss-20b_on_gpt-oss-120b_failing": {
+  "family": 0.1,
+  "other_control_writers": 4.1,
+  "difference": -4.0,
+  "ci_95": [
+   -15.4,
+   6.5
+  ],
+  "n_family": 26
+ },
+ "family_gpt-oss-20b_on_gpt-oss-120b_passing": {
+  "family": -17.7,
+  "other_control_writers": -7.4,
+  "difference": -10.3,
+  "ci_95": [
+   -38.0,
+   15.7
+  ],
+  "n_family": 10
+ },
+ "family_glm47-flash_on_glm-4.5_failing": {
+  "family": -32.3,
+  "other_control_writers": -13.0,
+  "difference": -19.2,
+  "ci_95": [
+   -40.0,
+   4.7
+  ],
+  "n_family": 14
+ },
+ "family_glm47-flash_on_glm-4.5_passing": {
+  "family": -9.8,
+  "other_control_writers": -18.1,
+  "difference": 8.3,
+  "ci_95": [
+   -11.7,
+   27.3
+  ],
+  "n_family": 21
+ },
+ "family_qwen35-9b_on_qwen3-coder_failing": {
+  "family": 18.6,
+  "other_control_writers": 8.5,
+  "difference": 10.1,
+  "ci_95": [
+   -4.1,
+   25.7
+  ],
+  "n_family": 16
+ },
+ "family_qwen35-9b_on_qwen3-coder_passing": {
+  "family": 16.8,
+  "other_control_writers": 6.0,
+  "difference": 10.8,
+  "ci_95": [
+   -13.7,
+   34.7
+  ],
+  "n_family": 12
+ },
+ "mean_score": {
+  "gemma4-31b|control|0": 36.1,
+  "gemma4-31b|control|1": 89.4,
+  "gemma4-31b|gemma|0": 73.5,
+  "gemma4-31b|gemma|1": 93.3,
+  "glm47-flash|control|0": 22.7,
+  "glm47-flash|control|1": 64.6,
+  "glm47-flash|gemma|0": 38.5,
+  "glm47-flash|gemma|1": 72.3,
+  "gpt-oss-20b|control|0": 36.7,
+  "gpt-oss-20b|control|1": 70.1,
+  "gpt-oss-20b|gemma|0": 53.4,
+  "gpt-oss-20b|gemma|1": 72.1,
+  "qwen35-9b|control|0": 41.9,
+  "qwen35-9b|control|1": 82.2,
+  "qwen35-9b|gemma|0": 52.4,
+  "qwen35-9b|gemma|1": 92.4
+ }
+}

@@ -1,0 +1,326 @@
+{
+ "gemma4-31b": {
+  "pools": 18,
+  "accuracy": {
+   "random": 0.492,
+   "rating_answer_only": 0.65,
+   "rating_reasoning_first": 0.6,
+   "averaged_rating": 0.581,
+   "comparison_answer_only": 0.787,
+   "comparison_reasoning_first": 0.648,
+   "rating_then_comparison": 0.639
+  },
+  "minus_comparison_reasoning_first_ci95": {
+   "random": [
+    -0.321,
+    -0.003
+   ],
+   "rating_answer_only": [
+    -0.185,
+    0.196
+   ],
+   "rating_reasoning_first": [
+    -0.217,
+    0.106
+   ],
+   "averaged_rating": [
+    -0.259,
+    0.135
+   ],
+   "comparison_answer_only": [
+    0.028,
+    0.278
+   ],
+   "comparison_reasoning_first": [
+    0.0,
+    0.0
+   ],
+   "rating_then_comparison": [
+    -0.028,
+    0.0
+   ]
+  },
+  "calls_per_pool": {
+   "random": 0.0,
+   "rating_answer_only": 3.94,
+   "rating_reasoning_first": 3.94,
+   "averaged_rating": 11.83,
+   "comparison_answer_only": 12.67,
+   "comparison_reasoning_first": 12.67,
+   "rating_then_comparison": 11.06
+  },
+  "mean_patches_tied_at_top": {
+   "rating_answer_only": 2.78,
+   "rating_reasoning_first": 2.89,
+   "averaged_rating": 2.78
+  },
+  "cost_usd": 0.1808,
+  "reused_rows": 0,
+  "rows": 811,
+  "pairs": {
+   "n": {
+    "P0": 59,
+    "P1": 59,
+    "C0": 59,
+    "C1": 59
+   },
+   "pair_accuracy": {
+    "P0": 0.636,
+    "P1": 0.602,
+    "C0": 0.737,
+    "C1": 0.729
+   },
+   "tie_rate": {
+    "P0": 0.559,
+    "P1": 0.525
+   },
+   "comparison_minus_rating_reasoning_first_ci95": [
+    -0.016,
+    0.265
+   ]
+  }
+ },
+ "gpt-oss-20b": {
+  "pools": 18,
+  "accuracy": {
+   "random": 0.492,
+   "rating_answer_only": 0.666,
+   "rating_reasoning_first": 0.653,
+   "averaged_rating": 0.75,
+   "comparison_answer_only": 0.639,
+   "comparison_reasoning_first": 0.611,
+   "rating_then_comparison": 0.639
+  },
+  "minus_comparison_reasoning_first_ci95": {
+   "random": [
+    -0.285,
+    0.057
+   ],
+   "rating_answer_only": [
+    -0.148,
+    0.268
+   ],
+   "rating_reasoning_first": [
+    -0.167,
+    0.25
+   ],
+   "averaged_rating": [
+    -0.139,
+    0.389
+   ],
+   "comparison_answer_only": [
+    -0.083,
+    0.167
+   ],
+   "comparison_reasoning_first": [
+    0.0,
+    0.0
+   ],
+   "rating_then_comparison": [
+    -0.194,
+    0.25
+   ]
+  },
+  "calls_per_pool": {
+   "random": 0.0,
+   "rating_answer_only": 3.94,
+   "rating_reasoning_first": 3.94,
+   "averaged_rating": 11.83,
+   "comparison_answer_only": 12.67,
+   "comparison_reasoning_first": 12.67,
+   "rating_then_comparison": 5.72
+  },
+  "mean_patches_tied_at_top": {
+   "rating_answer_only": 2.56,
+   "rating_reasoning_first": 1.61,
+   "averaged_rating": 1.06
+  },
+  "cost_usd": 0.0793,
+  "reused_rows": 0,
+  "rows": 811,
+  "pairs": {
+   "n": {
+    "P0": 59,
+    "P1": 59,
+    "C0": 59,
+    "C1": 57
+   },
+   "pair_accuracy": {
+    "P0": 0.627,
+    "P1": 0.695,
+    "C0": 0.653,
+    "C1": 0.702
+   },
+   "tie_rate": {
+    "P0": 0.441,
+    "P1": 0.136
+   },
+   "comparison_minus_rating_reasoning_first_ci95": [
+    -0.144,
+    0.146
+   ]
+  }
+ },
+ "qwen35-9b": {
+  "pools": 18,
+  "accuracy": {
+   "random": 0.492,
+   "rating_answer_only": 0.567,
+   "rating_reasoning_first": 0.661,
+   "averaged_rating": 0.712,
+   "comparison_answer_only": 0.611,
+   "comparison_reasoning_first": 0.594,
+   "rating_then_comparison": 0.676
+  },
+  "minus_comparison_reasoning_first_ci95": {
+   "random": [
+    -0.259,
+    0.063
+   ],
+   "rating_answer_only": [
+    -0.213,
+    0.191
+   ],
+   "rating_reasoning_first": [
+    -0.15,
+    0.294
+   ],
+   "averaged_rating": [
+    -0.073,
+    0.321
+   ],
+   "comparison_answer_only": [
+    -0.161,
+    0.194
+   ],
+   "comparison_reasoning_first": [
+    0.0,
+    0.0
+   ],
+   "rating_then_comparison": [
+    -0.102,
+    0.283
+   ]
+  },
+  "calls_per_pool": {
+   "random": 0.0,
+   "rating_answer_only": 3.94,
+   "rating_reasoning_first": 3.94,
+   "averaged_rating": 11.83,
+   "comparison_answer_only": 12.67,
+   "comparison_reasoning_first": 12.67,
+   "rating_then_comparison": 7.83
+  },
+  "mean_patches_tied_at_top": {
+   "rating_answer_only": 3.11,
+   "rating_reasoning_first": 2.11,
+   "averaged_rating": 1.94
+  },
+  "cost_usd": 0.1551,
+  "reused_rows": 0,
+  "rows": 811,
+  "pairs": {
+   "n": {
+    "P0": 59,
+    "P1": 59,
+    "C0": 59,
+    "C1": 43
+   },
+   "pair_accuracy": {
+    "P0": 0.542,
+    "P1": 0.619,
+    "C0": 0.669,
+    "C1": 0.686
+   },
+   "tie_rate": {
+    "P0": 0.712,
+    "P1": 0.322
+   },
+   "comparison_minus_rating_reasoning_first_ci95": [
+    -0.103,
+    0.222
+   ]
+  }
+ },
+ "glm47-flash": {
+  "pools": 18,
+  "accuracy": {
+   "random": 0.492,
+   "rating_answer_only": 0.592,
+   "rating_reasoning_first": 0.659,
+   "averaged_rating": 0.755,
+   "comparison_answer_only": 0.519,
+   "comparison_reasoning_first": 0.5,
+   "rating_then_comparison": 0.639
+  },
+  "minus_comparison_reasoning_first_ci95": {
+   "random": [
+    -0.186,
+    0.167
+   ],
+   "rating_answer_only": [
+    -0.087,
+    0.282
+   ],
+   "rating_reasoning_first": [
+    -0.009,
+    0.344
+   ],
+   "averaged_rating": [
+    0.083,
+    0.463
+   ],
+   "comparison_answer_only": [
+    -0.176,
+    0.222
+   ],
+   "comparison_reasoning_first": [
+    0.0,
+    0.0
+   ],
+   "rating_then_comparison": [
+    -0.028,
+    0.333
+   ]
+  },
+  "calls_per_pool": {
+   "random": 0.0,
+   "rating_answer_only": 3.94,
+   "rating_reasoning_first": 3.94,
+   "averaged_rating": 11.83,
+   "comparison_answer_only": 12.67,
+   "comparison_reasoning_first": 12.67,
+   "rating_then_comparison": 8.17
+  },
+  "mean_patches_tied_at_top": {
+   "rating_answer_only": 3.39,
+   "rating_reasoning_first": 2.17,
+   "averaged_rating": 1.28
+  },
+  "cost_usd": 0.1106,
+  "reused_rows": 0,
+  "rows": 811,
+  "pairs": {
+   "n": {
+    "P0": 59,
+    "P1": 59,
+    "C0": 56,
+    "C1": 56
+   },
+   "pair_accuracy": {
+    "P0": 0.61,
+    "P1": 0.653,
+    "C0": 0.527,
+    "C1": 0.571
+   },
+   "tie_rate": {
+    "P0": 0.746,
+    "P1": 0.356
+   },
+   "comparison_minus_rating_reasoning_first_ci95": [
+    -0.265,
+    0.097
+   ]
+  }
+ }
+}
