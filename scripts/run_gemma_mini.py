@@ -8,7 +8,11 @@ SWE-bench image, and the model is Gemma 4 served by vLLM (no API cost, so cost t
   python3 run_gemma_mini.py --issues pilot --out runs/pilot --workers 5
   python3 run_gemma_mini.py --issues order:200 --out runs/main --workers 8
 
-Output: <out>/preds.jsonl (instance_id, model_patch, exit_status, n_calls, seconds) and <out>/trajs/<iid>.json.
+Output (append-only, so a restarted job resumes and skips finished issues):
+  <out>/run.json       one record per job start: job id, host, time, package versions, model revision, config, issues
+  <out>/preds.jsonl    one row per finished issue (instance_id, model_patch, exit_status, n_calls, tokens, seconds)
+  <out>/trajs/<iid>.json  full message history of that issue
+  <out>/progress.json  done / remaining after each issue
 Environment: APPTAINER, WORK (sandbox scratch), HF_HOME, VLLM_BASE (default http://127.0.0.1:18000/v1),
 APPTAINER_EXEC_FLAGS (default "--fakeroot --ignore-subuid", the lab server; "" on MCSR Magnolia, whose fakeroot needs a
 newer glibc than the images), APPTAINER_MOUNT_DIRS (comma-separated host paths the site binds into every container;
@@ -133,8 +137,32 @@ def main():
     insts = {r["instance_id"]: r for r in load_dataset("princeton-nlp/SWE-bench_Verified", split="test")}
     todo = [insts[i] for i in ids if i not in done]
     print(f"{len(todo)} to run ({len(done)} already done)", flush=True)
+    import importlib.metadata as md, socket
+    start = dict(started=time.strftime("%Y-%m-%dT%H:%M:%S%z"), job=os.environ.get("SLURM_JOB_ID"), host=socket.gethostname(),
+                 args=vars(a), issues=ids, already_done=sorted(done), config=cfg,
+                 model=dict(name="google/gemma-4-31B-it-qat-w4a16-ct", revision=os.environ.get("MODEL_REVISION")),
+                 versions={p: md.version(p) for p in ["mini-swe-agent", "litellm", "vllm", "swebench"] if _has(md, p)},
+                 env={k: os.environ.get(k) for k in ["APPTAINER_EXEC_FLAGS", "APPTAINER_MOUNT_DIRS", "VLLM_BASE"]})
+    with open(os.path.join(a.out, "run.json"), "a") as f:
+        f.write(json.dumps(start) + "\n")
+
+    def one(inst):
+        run_one(inst, cfg, a.out)
+        with LOCK:
+            fin = {json.loads(l)["instance_id"] for l in open(os.path.join(a.out, "preds.jsonl"))}
+            json.dump(dict(updated=time.strftime("%Y-%m-%dT%H:%M:%S%z"), done=len(fin & set(ids)), total=len(ids),
+                           remaining=[i for i in ids if i not in fin]), open(os.path.join(a.out, "progress.json"), "w"))
+
     with cf.ThreadPoolExecutor(a.workers) as pool:
-        list(pool.map(lambda i: run_one(i, cfg, a.out), todo))
+        list(pool.map(one, todo))
+
+
+def _has(md, p):
+    try:
+        md.version(p)
+        return True
+    except md.PackageNotFoundError:
+        return False
 
 
 if __name__ == "__main__":

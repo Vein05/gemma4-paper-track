@@ -20,6 +20,7 @@ APPTAINER = os.environ.get("APPTAINER", "apptainer")
 WORK = os.environ.get("WORK", os.path.abspath("work"))
 EXEC_FLAGS = os.environ.get("APPTAINER_EXEC_FLAGS", "--fakeroot --ignore-subuid").split()
 MOUNT_DIRS = [d for d in os.environ.get("APPTAINER_MOUNT_DIRS", "").split(",") if d]
+LOG_DIR = None  # set in main(): <dir of --out>/eval_logs
 BUCKET = "https://swe-bench-submissions.s3.amazonaws.com"
 APPLY = ["git apply --verbose /patch.diff", "git apply --verbose --reject /patch.diff",
          "patch --batch --fuzz=5 -p1 -i /patch.diff"]  # same fallbacks as the SWE-bench harness
@@ -64,6 +65,9 @@ def grade(inst, patch, tag, timeout=1800):
         r = run(ex + ["bash", "-c", "cd /testbed && /bin/bash /eval.sh"], timeout)
         log = os.path.join(d, "test_output.txt")
         open(log, "w").write(r.stdout)
+        if LOG_DIR:  # keep the test log next to the labels (WORK is deleted at the end of a job)
+            os.makedirs(LOG_DIR, exist_ok=True)
+            shutil.copy(log, os.path.join(LOG_DIR, f"{iid}-{tag}.txt"))
         pred = {"instance_id": iid, "model_patch": patch, "model_name_or_path": tag}
         rep = get_eval_report(test_spec=spec, prediction=pred, test_log_path=log, include_tests_status=True)
         return dict(instance_id=iid, resolved=bool(rep[iid]["resolved"]), status="graded", applied_with=applied)
@@ -121,13 +125,18 @@ def main():
     for p in (v, e):
         p.add_argument("--out", required=True); p.add_argument("--workers", type=int, default=6)
     a = ap.parse_args()
+    global LOG_DIR
+    LOG_DIR = os.path.join(os.path.dirname(os.path.abspath(a.out)), "eval_logs")
     os.makedirs(WORK, exist_ok=True)
     insts = {r["instance_id"]: r for r in load_dataset("princeton-nlp/SWE-bench_Verified", split="test")}
     if a.cmd == "validate":
         validate(a, insts)
     else:
         preds = [json.loads(l) for l in open(a.preds)]
-        with cf.ThreadPoolExecutor(a.workers) as pool, open(a.out, "w") as f:
+        done = {json.loads(l)["instance_id"] for l in open(a.out)} if os.path.exists(a.out) else set()
+        preds = [p for p in preds if p["instance_id"] not in done]  # resume: append, skip graded issues
+        print(f"{len(preds)} to grade ({len(done)} already graded)", flush=True)
+        with cf.ThreadPoolExecutor(a.workers) as pool, open(a.out, "a") as f:
             for r in pool.map(lambda p: grade(insts[p["instance_id"]], p["model_patch"], "eval"), preds):
                 f.write(json.dumps(r) + "\n"); f.flush()
 

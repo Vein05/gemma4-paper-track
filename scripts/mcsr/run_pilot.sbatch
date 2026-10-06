@@ -19,6 +19,7 @@ ISSUES=${ISSUES:?ISSUES}; OUT=${OUT:?OUT}; STEPS=${STEPS:-}; WORKERS=${WORKERS:-
 export HF_HOME=$PWD/hf HF_HUB_OFFLINE=1 TMPDIR=$PWD/tmp WORK=$PWD/work/$SLURM_JOB_ID
 export APPTAINER_CACHEDIR=$PWD/apptainer/cache APPTAINER_TMPDIR=$PWD/apptainer/tmp
 export APPTAINER_EXEC_FLAGS="" APPTAINER_MOUNT_DIRS=/ddnlus VLLM_BASE=http://127.0.0.1:18000/v1
+export MODEL_REVISION=52f3f65bc7a02d555763bc923bd1d9094898219d  # Hugging Face snapshot downloaded 2026-10-05
 mkdir -p $TMPDIR $WORK $APPTAINER_CACHEDIR $APPTAINER_TMPDIR $OUT
 # FlashInfer compiles kernels at first use and needs nvcc: load the toolkit that matches torch (CUDA 13.0), and use
 # PyTorch's sampler (temperature 0 is greedy, so the sampler choice does not change outputs)
@@ -45,7 +46,7 @@ sys.exit(0 if rate >= 0.10 and med <= 30 else 1)
 PY
 fi
 
-vllm serve google/gemma-4-31B-it-qat-w4a16-ct --served-model-name gemma4-qat --port 18000 \
+vllm serve google/gemma-4-31B-it-qat-w4a16-ct --revision "$MODEL_REVISION" --served-model-name gemma4-qat --port 18000 \
   --max-model-len "$MAXLEN" --gpu-memory-utilization 0.90 --max-num-seqs 8 --enable-prefix-caching \
   --reasoning-parser gemma4 > "$OUT/vllm.log" 2>&1 &
 VLLM_PID=$!
