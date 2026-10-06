@@ -1,0 +1,102 @@
+{
+ "gemma4-31b": {
+  "gemma_auroc_own": 0.635,
+  "gemma_auroc_control": 0.783,
+  "self_drop": 0.148,
+  "baseline_drop": 0.131,
+  "gap": 0.018,
+  "drop_gpt-oss-120b": 0.19,
+  "drop_qwen35-9b": 0.072,
+  "lenient_raw_failing_own": 21.045,
+  "lenient_raw_failing_control": -1.475,
+  "lenient_raw_failing_difference": 22.521,
+  "lenient_raw_passing_own": 17.445,
+  "lenient_raw_passing_control": 8.997,
+  "lenient_raw_passing_difference": 8.448,
+  "lenient_rank_failing_own": 0.066,
+  "lenient_rank_failing_control": -0.023,
+  "lenient_rank_failing_difference": 0.09,
+  "lenient_rank_passing_own": 0.046,
+  "lenient_rank_passing_control": -0.022,
+  "lenient_rank_passing_difference": 0.069,
+  "self_drop_ci95": [
+   0.052,
+   0.243
+  ],
+  "baseline_drop_ci95": [
+   0.043,
+   0.217
+  ],
+  "gap_ci95": [
+   -0.076,
+   0.112
+  ],
+  "lenient_raw_failing_difference_ci95": [
+   10.068,
+   35.219
+  ],
+  "lenient_raw_passing_difference_ci95": [
+   0.85,
+   15.488
+  ],
+  "lenient_rank_failing_difference_ci95": [
+   0.018,
+   0.167
+  ],
+  "lenient_rank_passing_difference_ci95": [
+   0.019,
+   0.116
+  ],
+  "gemma4-31b_scored100_own_failing": 0.576,
+  "gemma4-31b_scored100_control_failing": 0.29,
+  "gemma4-31b_auroc_by_writer": {
+   "gemma-4-31b": 0.635,
+   "glm-4.5": 0.688,
+   "gpt-oss-120b": 0.817,
+   "kimi-k2": 0.667,
+   "llama-4-maverick": 0.84,
+   "qwen3-coder": 0.731
+  },
+  "gpt-oss-120b_scored100_own_failing": 0.0,
+  "gpt-oss-120b_scored100_control_failing": 0.0,
+  "gpt-oss-120b_auroc_by_writer": {
+   "gemma-4-31b": 0.6,
+   "glm-4.5": 0.665,
+   "gpt-oss-120b": 0.808,
+   "kimi-k2": 0.812,
+   "llama-4-maverick": 0.844,
+   "qwen3-coder": 0.71
+  },
+  "qwen35-9b_scored100_own_failing": 0.182,
+  "qwen35-9b_scored100_control_failing": 0.175,
+  "qwen35-9b_auroc_by_writer": {
+   "gemma-4-31b": 0.696,
+   "glm-4.5": 0.704,
+   "gpt-oss-120b": 0.777,
+   "kimi-k2": 0.778,
+   "llama-4-maverick": 0.877,
+   "qwen3-coder": 0.682
+  },
+  "judges": [
+   "gemma4-31b",
+   "gpt-oss-120b",
+   "qwen35-9b"
+  ],
+  "outside_judges": [
+   "gpt-oss-120b",
+   "qwen35-9b"
+  ],
+  "runs": [
+   "main-a"
+  ],
+  "issues": 96,
+  "patches_rated_by_all": 464,
+  "patches_left_out": 13,
+  "n": {
+   "own_failing": 33,
+   "own_passing": 55,
+   "control_failing": 183,
+   "control_passing": 193
+  }
+ }
+}

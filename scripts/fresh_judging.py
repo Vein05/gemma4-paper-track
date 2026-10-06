@@ -11,6 +11,7 @@ analyze: Gemma's self-judging gap (as in self_judging_replication.py), patch-mat
 Usage:
   python3 fresh_judging.py run --model google/gemma-4-31b-it --tag gemma4-31b --runs main-a [--workers 8]
   python3 fresh_judging.py analyze --judges gemma4-31b,gpt-oss-120b,qwen35-9b --runs main-a > derived/<name>.json
+  [--leave-out-reasked all|<tags>]  (exploratory: leave out patches whose answer needed a re-ask)
 """
 import argparse, collections, concurrent.futures, hashlib, json, os, sys
 
@@ -102,8 +103,8 @@ def labels(runs):
     return lab
 
 
-def analyze(a):
-    judges, runs = a.judges.split(","), a.runs.split(",")
+def load(judges, runs, leave_out_reasked=""):
+    """Patches scored by all the given judges: ids, scores per judge, labels, writers, issues, and the label map."""
     lab = labels(runs)
     S, meta = collections.defaultdict(dict), {}
     for t in judges:
@@ -118,9 +119,20 @@ def analyze(a):
             w = next(k for k in WRITERS if k in c["writer"].lower())
             ctrl[pid_of(c["instance_id"], w, strip_tests(c["patch"] or ""))] = int(c["resolved"])
     pids = sorted(p for p, s in S.items() if len(s) == len(judges))
+    if leave_out_reasked:  # exploratory: patches whose first answer from the named judges had no parsed score
+        named = judges if leave_out_reasked == "all" else leave_out_reasked.split(",")
+        reasked = {r["pid"] for t in named for r in map(json.loads, open(os.path.join(HERE, "derived", f"fresh_{t}.jsonl")))
+                   if r.get("parsed") is None}
+        pids = [p for p in pids if p not in reasked]
     y = np.array([lab[meta[p][0]] if meta[p][1] == "gemma-4-31b" else ctrl[p] for p in pids])
     wr = np.array([meta[p][1] for p in pids]); iss = np.array([meta[p][0] for p in pids])
     X = {t: np.array([S[p][t] for p in pids], float) for t in judges}
+    return pids, X, y, wr, iss, S
+
+
+def analyze(a):
+    judges, runs = a.judges.split(","), a.runs.split(",")
+    pids, X, y, wr, iss, S = load(judges, runs, a.leave_out_reasked)
     j, w = "gemma4-31b", "gemma-4-31b"
     outside = [k for k in judges if k != j and FAMILY[k] != WRITER_FAMILY[w]]
 
@@ -172,7 +184,7 @@ def analyze(a):
         res[f"{t}_scored100_own_failing"] = round(float((X[t][fail & (wr == w)] == 100).mean()), 3)
         res[f"{t}_scored100_control_failing"] = round(float((X[t][fail & (wr != w)] == 100).mean()), 3)
         res[f"{t}_auroc_by_writer"] = {v: round(float(auroc(X[t][wr == v], y[wr == v])), 3) for v in sorted(set(wr))}
-    res.update(judges=judges, outside_judges=outside, runs=runs, issues=len(issues), patches_rated_by_all=len(pids),
+    res.update(judges=judges, outside_judges=outside, runs=runs, left_out_reasked=a.leave_out_reasked or None, issues=len(issues), patches_rated_by_all=len(pids),
                patches_left_out=len(S) - len(pids),
                n=dict(own_failing=int((fail & (wr == w)).sum()), own_passing=int((~fail & (wr == w)).sum()),
                       control_failing=int((fail & (wr != w)).sum()), control_passing=int((~fail & (wr != w)).sum())))
@@ -187,6 +199,7 @@ def main():
     r.add_argument("--redo-unparsed", action="store_true"); r.add_argument("--max-tokens", type=int, default=3000)
     r.add_argument("--limit", type=int, help="test pass only: at most this many new calls")
     z = sp.add_parser("analyze"); z.add_argument("--judges", required=True); z.add_argument("--runs", required=True)
+    z.add_argument("--leave-out-reasked", default="", help="exploratory: 'all' or judge tags; drop patches re-asked")
     a = ap.parse_args()
     run(a) if a.cmd == "run" else analyze(a)
 

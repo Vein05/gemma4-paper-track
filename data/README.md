@@ -17,6 +17,17 @@
   submissions on the same 50 issues (`SWE-bench/experiments` entries; files from the public
   `swe-bench-submissions` S3 bucket, `bash-only/<entry>/logs/<issue>/patch.diff` and `report.json`), downloaded
   2026-10-05; labels agree with each entry's `per_instance_details.json`.
+- `public/swe-bench-verified-control-fresh/`: `attempts.jsonl`, patches and SWE-bench reports of the five
+  mini-SWE-agent control entries (first five in the list below) on SWE-bench Verified issues outside the Mini issues,
+  from the same S3 bucket, downloaded 2026-10-05 by `scripts/fresh_issues.py`; `sample.json`, the fixed random order of
+  the held-out issues (seed 0) and the pilot issues; `mini50_ids.json`, the Mini issue ids.
+- `mcsr-runs/` (added 2026-10-06): Gemma 4 31B (`gemma-4-31B-it-qat-w4a16-ct`, revision `52f3f65b`) in
+  mini-SWE-agent 1.7.0 on MCSR Magnolia, copied with `./ssh.sh get`. One folder per job: `main-a`, `main-b` (the 200
+  held-out issues, positions 0–99 and 100–199 of `sample.json`), `mini50` (the Mini issues), `pilot`, `smoke`;
+  `gold`, `gold-retry`, `gold-redo` (reference patches graded on Magnolia), `validate`, `regrade` (grading checks).
+  Each holds `preds.jsonl`, `labels.jsonl`, `run.json`, `trajs/` and logs. Files named `*.before-*.jsonl` are the
+  copies kept before a re-grade or a second run of one issue (`changelog/2026-10-06.md`). The release copies these with
+  the cluster account name removed (`make_release.sh`).
 
 ## Revisions and licenses (checked 2026-10-05)
 

@@ -1,0 +1,100 @@
+{"instance_id": "pylint-dev__pylint-6903", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "astropy__astropy-7166", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "sympy__sympy-16792", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "pylint-dev__pylint-4604", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "scikit-learn__scikit-learn-13135", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-14315", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "sympy__sympy-20590", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "sphinx-doc__sphinx-9658", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "scikit-learn__scikit-learn-13328", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "scikit-learn__scikit-learn-10297", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "sympy__sympy-19637", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "sympy__sympy-21596", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "sympy__sympy-18763", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "sphinx-doc__sphinx-8595", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "sympy__sympy-22914", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "psf__requests-1921", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "astropy__astropy-12907", "resolved": false, "status": "patch_apply_failed", "detail": ["error: unrecognized input\n", "error: unrecognized input\n", "patch: **** Only garbage was found in the patch input.\n"]}
+{"instance_id": "pydata__xarray-4629", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-16819", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-12741", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "sympy__sympy-24066", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-13195", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-11400", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "scikit-learn__scikit-learn-15100", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-15814", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-11119", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "sphinx-doc__sphinx-8120", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-14376", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-14608", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "matplotlib__matplotlib-20826", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-15128", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "astropy__astropy-14365", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-13513", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "sympy__sympy-23824", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-15382", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "pydata__xarray-6744", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-13033", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "django__django-13821", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "scikit-learn__scikit-learn-25232", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "sympy__sympy-15875", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
+{"instance_id": "sympy__sympy-21379", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 576, "apply": 0, "tests": 46}}
+{"instance_id": "django__django-16667", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 625, "apply": 0, "tests": 31}}
+{"instance_id": "scikit-learn__scikit-learn-25747", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 787, "apply": 1, "tests": 11}}
+{"instance_id": "django__django-14752", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 502, "apply": 0, "tests": 25}}
+{"instance_id": "django__django-16493", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 464, "apply": 0, "tests": 21}}
+{"instance_id": "sympy__sympy-18211", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 362, "apply": 0, "tests": 14}}
+{"instance_id": "scikit-learn__scikit-learn-25973", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 739, "apply": 0, "tests": 15}}
+{"instance_id": "matplotlib__matplotlib-23299", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 1546, "apply": 2, "tests": 45}}
+{"instance_id": "django__django-15277", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 455, "apply": 0, "tests": 20}}
+{"instance_id": "sympy__sympy-17318", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 375, "apply": 0, "tests": 48}}
+{"instance_id": "django__django-11433", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 416, "apply": 0, "tests": 20}}
+{"instance_id": "django__django-11333", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 439, "apply": 0, "tests": 20}}
+{"instance_id": "django__django-16255", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 541, "apply": 0, "tests": 24}}
+{"instance_id": "sphinx-doc__sphinx-9673", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 416, "apply": 0, "tests": 9}}
+{"instance_id": "pytest-dev__pytest-6202", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 373, "apply": 0, "tests": 11}}
+{"instance_id": "django__django-16950", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 461, "apply": 0, "tests": 24}}
+{"instance_id": "sympy__sympy-23413", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 390, "apply": 0, "tests": 7}}
+{"instance_id": "django__django-14017", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 447, "apply": 0, "tests": 28}}
+{"instance_id": "pydata__xarray-4356", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 1132, "apply": 0, "tests": 108}}
+{"instance_id": "django__django-14311", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 444, "apply": 0, "tests": 19}}
+{"instance_id": "django__django-15037", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 443, "apply": 0, "tests": 19}}
+{"instance_id": "sympy__sympy-14711", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 348, "apply": 0, "tests": 7}}
+{"instance_id": "sympy__sympy-15349", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 350, "apply": 0, "tests": 9}}
+{"instance_id": "django__django-14787", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 454, "apply": 0, "tests": 26}}
+{"instance_id": "django__django-11138", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 394, "apply": 0, "tests": 20}}
+{"instance_id": "matplotlib__matplotlib-26208", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 1321, "apply": 0, "tests": 85}}
+{"instance_id": "sympy__sympy-16886", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 343, "apply": 0, "tests": 8}}
+{"instance_id": "django__django-16315", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 429, "apply": 0, "tests": 20}}
+{"instance_id": "astropy__astropy-7606", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 361, "apply": 0, "tests": 10}}
+{"instance_id": "sympy__sympy-13615", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 362, "apply": 0, "tests": 57}}
+{"instance_id": "django__django-15499", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 442, "apply": 0, "tests": 18}}
+{"instance_id": "django__django-14053", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 428, "apply": 0, "tests": 21}}
+{"instance_id": "sympy__sympy-12481", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 409, "apply": 0, "tests": 7}}
+{"instance_id": "sphinx-doc__sphinx-7462", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 666, "apply": 7, "tests": 8}}
+{"instance_id": "django__django-16032", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 741, "apply": 1, "tests": 23}}
+{"instance_id": "django__django-14089", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 635, "apply": 0, "tests": 19}}
+{"instance_id": "django__django-13820", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 444, "apply": 0, "tests": 25}}
+{"instance_id": "django__django-16901", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 478, "apply": 0, "tests": 17}}
+{"instance_id": "matplotlib__matplotlib-25311", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 1693, "apply": 0, "tests": 23}}
+{"instance_id": "scikit-learn__scikit-learn-9288", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 542, "apply": 0, "tests": 14}}
+{"instance_id": "django__django-11276", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 390, "apply": 0, "tests": 25}}
+{"instance_id": "sphinx-doc__sphinx-8593", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 376, "apply": 0, "tests": 7}}
+{"instance_id": "matplotlib__matplotlib-23314", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 1393, "apply": 2, "tests": 107}}
+{"instance_id": "django__django-16595", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 434, "apply": 0, "tests": 20}}
+{"instance_id": "pylint-dev__pylint-4661", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 362, "apply": 0, "tests": 5}}
+{"instance_id": "pydata__xarray-7393", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 733, "apply": 0, "tests": 15}}
+{"instance_id": "django__django-16527", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 416, "apply": 0, "tests": 22}}
+{"instance_id": "astropy__astropy-14508", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 341, "apply": 0, "tests": 10}}
+{"instance_id": "django__django-10999", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 375, "apply": 0, "tests": 17}}
+{"instance_id": "django__django-15252", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 422, "apply": 0, "tests": 23}}
+{"instance_id": "django__django-12754", "resolved": false, "status": "graded", "applied_with": "patch --batch --fuzz=5 -p1 -i", "secs": {"build": 372, "apply": 0, "tests": 19}}
+{"instance_id": "django__django-13512", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 379, "apply": 0, "tests": 20}}
+{"instance_id": "matplotlib__matplotlib-24637", "resolved": false, "status": "graded", "applied_with": "patch --batch --fuzz=5 -p1 -i", "secs": {"build": 1247, "apply": 0, "tests": 30}}
+{"instance_id": "django__django-15957", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 407, "apply": 0, "tests": 17}}
+{"instance_id": "django__django-10973", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 376, "apply": 0, "tests": 19}}
+{"instance_id": "django__django-11555", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 373, "apply": 0, "tests": 17}}
+{"instance_id": "scikit-learn__scikit-learn-25931", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 637, "apply": 0, "tests": 13}}
+{"instance_id": "psf__requests-2931", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 312, "apply": 0, "tests": 5}}
+{"instance_id": "matplotlib__matplotlib-25479", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 1249, "apply": 0, "tests": 20}}
+{"instance_id": "django__django-16082", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 388, "apply": 0, "tests": 17}}

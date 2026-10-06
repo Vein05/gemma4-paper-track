@@ -1,0 +1,182 @@
+{
+ "gemma4-31b": {
+  "gemma_auroc_own": 0.67,
+  "gemma_auroc_control": 0.747,
+  "self_drop": 0.077,
+  "baseline_drop": 0.047,
+  "gap": 0.03,
+  "drop_gpt-oss-20b": 0.03,
+  "drop_qwen35-9b": 0.036,
+  "drop_glm47-flash": 0.084,
+  "drop_qwen3-coder": 0.029,
+  "drop_gpt-oss-120b": 0.073,
+  "drop_glm-4.5": 0.04,
+  "drop_kimi-k2": 0.053,
+  "drop_llama-4-maverick": 0.034,
+  "lenient_raw_failing_own": 8.697,
+  "lenient_raw_failing_control": -2.39,
+  "lenient_raw_failing_difference": 11.088,
+  "lenient_raw_passing_own": 14.69,
+  "lenient_raw_passing_control": 5.414,
+  "lenient_raw_passing_difference": 9.276,
+  "lenient_rank_failing_own": 0.059,
+  "lenient_rank_failing_control": -0.007,
+  "lenient_rank_failing_difference": 0.067,
+  "lenient_rank_passing_own": 0.042,
+  "lenient_rank_passing_control": -0.014,
+  "lenient_rank_passing_difference": 0.056,
+  "self_drop_ci95": [
+   0.007,
+   0.147
+  ],
+  "baseline_drop_ci95": [
+   -0.006,
+   0.098
+  ],
+  "gap_ci95": [
+   -0.024,
+   0.083
+  ],
+  "lenient_raw_failing_difference_ci95": [
+   3.847,
+   18.156
+  ],
+  "lenient_raw_passing_difference_ci95": [
+   4.092,
+   14.576
+  ],
+  "lenient_rank_failing_difference_ci95": [
+   0.027,
+   0.104
+  ],
+  "lenient_rank_passing_difference_ci95": [
+   0.021,
+   0.091
+  ],
+  "gemma4-31b_scored100_own_failing": 0.562,
+  "gemma4-31b_scored100_control_failing": 0.342,
+  "gemma4-31b_auroc_by_writer": {
+   "gemma-4-31b": 0.67,
+   "glm-4.5": 0.609,
+   "gpt-oss-120b": 0.818,
+   "kimi-k2": 0.606,
+   "llama-4-maverick": 0.831,
+   "qwen3-coder": 0.594
+  },
+  "gpt-oss-20b_scored100_own_failing": 0.0,
+  "gpt-oss-20b_scored100_control_failing": 0.0,
+  "gpt-oss-20b_auroc_by_writer": {
+   "gemma-4-31b": 0.686,
+   "glm-4.5": 0.573,
+   "gpt-oss-120b": 0.759,
+   "kimi-k2": 0.662,
+   "llama-4-maverick": 0.811,
+   "qwen3-coder": 0.603
+  },
+  "qwen35-9b_scored100_own_failing": 0.203,
+  "qwen35-9b_scored100_control_failing": 0.257,
+  "qwen35-9b_auroc_by_writer": {
+   "gemma-4-31b": 0.699,
+   "glm-4.5": 0.639,
+   "gpt-oss-120b": 0.801,
+   "kimi-k2": 0.668,
+   "llama-4-maverick": 0.814,
+   "qwen3-coder": 0.634
+  },
+  "glm47-flash_scored100_own_failing": 0.344,
+  "glm47-flash_scored100_control_failing": 0.253,
+  "glm47-flash_auroc_by_writer": {
+   "gemma-4-31b": 0.648,
+   "glm-4.5": 0.647,
+   "gpt-oss-120b": 0.811,
+   "kimi-k2": 0.686,
+   "llama-4-maverick": 0.802,
+   "qwen3-coder": 0.614
+  },
+  "qwen3-coder_scored100_own_failing": 0.0,
+  "qwen3-coder_scored100_control_failing": 0.0,
+  "qwen3-coder_auroc_by_writer": {
+   "gemma-4-31b": 0.714,
+   "glm-4.5": 0.588,
+   "gpt-oss-120b": 0.757,
+   "kimi-k2": 0.607,
+   "llama-4-maverick": 0.844,
+   "qwen3-coder": 0.661
+  },
+  "gpt-oss-120b_scored100_own_failing": 0.0,
+  "gpt-oss-120b_scored100_control_failing": 0.0,
+  "gpt-oss-120b_auroc_by_writer": {
+   "gemma-4-31b": 0.665,
+   "glm-4.5": 0.579,
+   "gpt-oss-120b": 0.781,
+   "kimi-k2": 0.729,
+   "llama-4-maverick": 0.838,
+   "qwen3-coder": 0.644
+  },
+  "glm-4.5_scored100_own_failing": 0.094,
+  "glm-4.5_scored100_control_failing": 0.105,
+  "glm-4.5_auroc_by_writer": {
+   "gemma-4-31b": 0.792,
+   "glm-4.5": 0.718,
+   "gpt-oss-120b": 0.879,
+   "kimi-k2": 0.708,
+   "llama-4-maverick": 0.877,
+   "qwen3-coder": 0.7
+  },
+  "kimi-k2_scored100_own_failing": 0.016,
+  "kimi-k2_scored100_control_failing": 0.016,
+  "kimi-k2_auroc_by_writer": {
+   "gemma-4-31b": 0.771,
+   "glm-4.5": 0.744,
+   "gpt-oss-120b": 0.817,
+   "kimi-k2": 0.71,
+   "llama-4-maverick": 0.884,
+   "qwen3-coder": 0.661
+  },
+  "llama-4-maverick_scored100_own_failing": 0.438,
+  "llama-4-maverick_scored100_control_failing": 0.398,
+  "llama-4-maverick_auroc_by_writer": {
+   "gemma-4-31b": 0.626,
+   "glm-4.5": 0.597,
+   "gpt-oss-120b": 0.707,
+   "kimi-k2": 0.674,
+   "llama-4-maverick": 0.746,
+   "qwen3-coder": 0.635
+  },
+  "judges": [
+   "gemma4-31b",
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "glm47-flash",
+   "qwen3-coder",
+   "gpt-oss-120b",
+   "glm-4.5",
+   "kimi-k2",
+   "llama-4-maverick"
+  ],
+  "outside_judges": [
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "glm47-flash",
+   "qwen3-coder",
+   "gpt-oss-120b",
+   "glm-4.5",
+   "kimi-k2",
+   "llama-4-maverick"
+  ],
+  "runs": [
+   "main-a",
+   "main-b"
+  ],
+  "left_out_reasked": "all",
+  "issues": 191,
+  "patches_rated_by_all": 763,
+  "patches_left_out": 219,
+  "n": {
+   "own_failing": 64,
+   "own_passing": 79,
+   "control_failing": 304,
+   "control_passing": 316
+  }
+ }
+}
