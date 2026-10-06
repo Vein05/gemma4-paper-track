@@ -104,7 +104,7 @@ Unparsed answers are asked once more, then left out. Analyses use patches with a
   interval from 2,000 bootstrap resamples of issues, and the same quantity on passing patches as a reference.
   Reading: a lower bound above 0 on failing patches means Gemma is more lenient on its own failing patches than
   outside judges are, relative to other writers' failing patches. It does not replace the primary measure.
-- Addendum 2026-10-06 15:05 CDT, written during the main judging pass and before any nine-judge result was read:
+- Addendum 2026-10-06 14:55 CDT, written during the main judging pass and before any nine-judge result was read:
   **output-token limit of the re-ask raised; added after the freeze, reported as such.** In the main pass (3,000
   output tokens, as in the original study) reasoning-first answers often ran out of tokens before the score line:
   at 14:55, Qwen3.5-9B 84, Kimi-K2 61, GLM-4.7-Flash 34, gpt-oss-20b 5, Gemma 1, GLM-4.5 1 answers stopped at the
