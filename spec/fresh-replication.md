@@ -92,6 +92,18 @@ Unparsed answers are asked once more, then left out. Analyses use patches with a
   (share scored 100), leniency on failing patches matched by issue, the five-model pooled gap.
 - Decision test (`todo.md` section 3) and token-probability ratings (`todo.md` section 4) get their own specs before
   their data is computed; they use these patches.
+- Addendum 2026-10-06 12:05 CDT, written after the interim judge calls started and before any judged score was
+  read: a second measure, **added after the freeze; every report must say so.** Reason: with one Gemma attempt per
+  issue, Gemma's own pass/fail pairs all come from different issues, so its own-patch AUROC partly tracks issue
+  difficulty; and score saturation (100s) lowers AUROC through ties, so the AUROC gap mixes leniency with
+  discrimination. **Patch-matched leniency:** for each failing patch, Gemma's score minus the mean of the outside
+  judges' scores on the same patch (outside judges exclude Gemma and the writer's family), averaged over Gemma's own
+  failing patches minus the same average over control writers' failing patches. Same patch, different judges, so
+  issue difficulty and patch content cancel. Reported on raw scores and on per-judge rank-normalised scores (each
+  judge's scores turned into mid-ranks over all patches rated by every judge, scaled to 0–1), each with a 95%
+  interval from 2,000 bootstrap resamples of issues, and the same quantity on passing patches as a reference.
+  Reading: a lower bound above 0 on failing patches means Gemma is more lenient on its own failing patches than
+  outside judges are, relative to other writers' failing patches. It does not replace the primary measure.
 
 ## Cost and stopping
 

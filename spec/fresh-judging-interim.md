@@ -31,6 +31,8 @@ Unparsed answers are asked once more, then left out.
   (Gemma's AUROC on control patches − on its own) − mean over outside judges of the same difference (an outside judge
   that wrote control patches has those left out of its control set). 95% interval from 2,000 bootstrap resamples of
   issues.
+- Patch-matched leniency, raw and rank-normalised, as in the 2026-10-06 12:05 addendum to
+  `spec/fresh-replication.md` (added after that spec's freeze; reported as such).
 - Rubber-stamp rate: share of Gemma's own failing patches it scores 100, vs control writers' failing patches.
 - Reading: none is fixed. With two outside judges and about 100 issues the interval will be wide; the result is
   described, not tested. The original gap was +0.135 [0.060, 0.210] against eight outside judges.
