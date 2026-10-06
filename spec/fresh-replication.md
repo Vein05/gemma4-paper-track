@@ -58,6 +58,13 @@ the gap could come from the harness, not the model. This test separates the two.
   (a) passed: the official reference patches of the same 30 issues all resolved, each applied by plain `git apply`.
 - Magnolia grades without fakeroot, so check (b) is repeated there before its labels are used
   (`eval_apptainer.py validate`, same entry and n). Until it agrees, pilot labels come from the lab server.
+- Addendum 2026-10-06 00:45 CDT, before any Gemma label is analysed: Magnolia's check (b) gave 26 of 30; re-grading
+  with logs showed environment failures (a network-dependent timeout test in requests, Ghostscript file access in
+  matplotlib) and image drift (patches applied only with `patch --fuzz`). So check (a) is extended to every issue
+  used (pilot, the 200, and the 50 of `spec/mini50-same-harness.md`): grade each issue's reference patch on Magnolia
+  (`scripts/mcsr/gold_check.sbatch`). Issues whose reference patch does not resolve there are listed, and their Gemma
+  labels come from the lab server (fakeroot) if it resolves the reference patch there; otherwise the issue is dropped
+  from the primary analysis and the drop is reported.
 
 ## Control patches (existing)
 
