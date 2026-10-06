@@ -10,7 +10,7 @@ SWE-bench image, then grade the log with swebench's own grading code (spec/fresh
 Environment: APPTAINER (binary), WORK (scratch dir for sandboxes and logs), HF_HOME, APPTAINER_EXEC_FLAGS and
 APPTAINER_MOUNT_DIRS (as in run_gemma_mini.py).
 """
-import argparse, concurrent.futures as cf, json, os, random, re, shutil, subprocess, urllib.request, uuid
+import argparse, concurrent.futures as cf, json, os, random, re, shutil, subprocess, time, urllib.request, uuid
 
 from datasets import load_dataset
 from swebench.harness.grading import get_eval_report
@@ -22,6 +22,7 @@ EXEC_FLAGS = os.environ.get("APPTAINER_EXEC_FLAGS", "--fakeroot --ignore-subuid"
 MOUNT_DIRS = [d for d in os.environ.get("APPTAINER_MOUNT_DIRS", "").split(",") if d]
 LOG_DIR = None  # set in main(): <dir of --out>/eval_logs
 BUCKET = "https://swe-bench-submissions.s3.amazonaws.com"
+BUILD_TIMEOUT = int(os.environ.get("BUILD_TIMEOUT", 3600))  # matplotlib sandboxes take about 20 min on MCSR's Lustre
 APPLY = ["git apply --verbose /patch.diff", "git apply --verbose --reject /patch.diff",
          "patch --batch --fuzz=5 -p1 -i /patch.diff"]  # same fallbacks as the SWE-bench harness
 
@@ -42,10 +43,17 @@ def grade(inst, patch, tag, timeout=1800):
     d = os.path.join(WORK, f"{iid}-{tag}-{uuid.uuid4().hex[:6]}")
     os.makedirs(d)
     sbx = os.path.join(d, "sbx")
+    step, t0, secs = "build", time.time(), {}  # step and seconds per step, so a timeout says where it happened
     try:
-        b = run([APPTAINER, "build", "--sandbox", sbx, image(iid)], 1200)
+        for attempt in range(3):  # builds from the shared image cache fail now and then when jobs build at once
+            b = run([APPTAINER, "build", "--sandbox", sbx, image(iid)], BUILD_TIMEOUT)
+            if not b.returncode:
+                break
+            shutil.rmtree(sbx, ignore_errors=True)
+            time.sleep(60)
+        secs["build"] = round(time.time() - t0)
         if b.returncode:
-            return dict(instance_id=iid, resolved=None, status="build_error", detail=b.stdout[-500:])
+            return dict(instance_id=iid, resolved=None, status="build_error", detail=b.stdout[-500:], secs=secs)
         for m in MOUNT_DIRS:
             os.makedirs(os.path.join(sbx, m.lstrip("/")), exist_ok=True)
         if not patch.endswith("\n"):
@@ -54,25 +62,31 @@ def grade(inst, patch, tag, timeout=1800):
         open(os.path.join(sbx, "eval.sh"), "w").write(spec.eval_script)
         ex = [APPTAINER, "exec", *EXEC_FLAGS, "--contain", "--cleanenv", "--writable", sbx]
         applied, tries = None, []
+        step, t0 = "apply", time.time()
         for c in APPLY:
             r = run(ex + ["bash", "-c", f"cd /testbed && {c}"], 300)
             tries.append(r.stdout[-400:])
             if r.returncode == 0:
                 applied = c.split(" /")[0]
                 break
+        secs["apply"] = round(time.time() - t0)
         if not applied:
-            return dict(instance_id=iid, resolved=False, status="patch_apply_failed", detail=tries)
+            return dict(instance_id=iid, resolved=False, status="patch_apply_failed", detail=tries, secs=secs)
+        step, t0 = "tests", time.time()
         r = run(ex + ["bash", "-c", "cd /testbed && /bin/bash /eval.sh"], timeout)
         log = os.path.join(d, "test_output.txt")
         open(log, "w").write(r.stdout)
+        secs["tests"] = round(time.time() - t0)
         if LOG_DIR:  # keep the test log next to the labels (WORK is deleted at the end of a job)
             os.makedirs(LOG_DIR, exist_ok=True)
             shutil.copy(log, os.path.join(LOG_DIR, f"{iid}-{tag}.txt"))
         pred = {"instance_id": iid, "model_patch": patch, "model_name_or_path": tag}
         rep = get_eval_report(test_spec=spec, prediction=pred, test_log_path=log, include_tests_status=True)
-        return dict(instance_id=iid, resolved=bool(rep[iid]["resolved"]), status="graded", applied_with=applied)
-    except subprocess.TimeoutExpired:
-        return dict(instance_id=iid, resolved=False, status="timeout")
+        return dict(instance_id=iid, resolved=bool(rep[iid]["resolved"]), status="graded", applied_with=applied,
+                    secs=secs)
+    except subprocess.TimeoutExpired as e:
+        out = e.output.decode(errors="replace") if isinstance(e.output, bytes) else (e.output or "")
+        return dict(instance_id=iid, resolved=False, status="timeout", step=step, secs=secs, detail=out[-2000:])
     finally:
         shutil.rmtree(sbx, ignore_errors=True)
 
@@ -137,8 +151,9 @@ def main():
         preds = [p for p in preds if p["instance_id"] not in done]  # resume: append, skip graded issues
         print(f"{len(preds)} to grade ({len(done)} already graded)", flush=True)
         with cf.ThreadPoolExecutor(a.workers) as pool, open(a.out, "a") as f:
-            for r in pool.map(lambda p: grade(insts[p["instance_id"]], p["model_patch"], "eval"), preds):
-                f.write(json.dumps(r) + "\n"); f.flush()
+            futs = [pool.submit(grade, insts[p["instance_id"]], p["model_patch"], "eval") for p in preds]
+            for fu in cf.as_completed(futs):  # write each label when done, so a cancelled job keeps finished ones
+                f.write(json.dumps(fu.result()) + "\n"); f.flush()
 
 
 if __name__ == "__main__":

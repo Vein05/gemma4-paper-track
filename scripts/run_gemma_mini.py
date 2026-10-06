@@ -50,9 +50,14 @@ class ApptainerSandbox:
     def __init__(self, **kwargs):
         self.config = SandboxConfig(**kwargs)
         self.dir = os.path.join(WORK, f"agent-{uuid.uuid4().hex[:8]}")
-        r = subprocess.run([APPTAINER, "build", "--sandbox", self.dir, self.config.image],
-                           capture_output=True, text=True, timeout=1800)
-        if r.returncode:
+        for attempt in range(3):  # builds from the shared image cache fail now and then when jobs build at once
+            r = subprocess.run([APPTAINER, "build", "--sandbox", self.dir, self.config.image],
+                               capture_output=True, text=True, timeout=1800)
+            if not r.returncode:
+                break
+            shutil.rmtree(self.dir, ignore_errors=True)
+            time.sleep(60)
+        else:
             raise RuntimeError(f"sandbox build failed: {r.stderr[-500:]}")
         for m in MOUNT_DIRS:
             os.makedirs(os.path.join(self.dir, m.lstrip("/")), exist_ok=True)
@@ -104,6 +109,8 @@ def run_one(inst, cfg, out):
             env.cleanup()
     row = dict(instance_id=iid, model_patch=result if status == "Submitted" else "", exit_status=status,
                n_calls=model.n_calls, tokens=getattr(model, "tokens", 0), seconds=round(time.time() - t0))
+    if status != "Submitted":
+        row["error"] = str(result)[-1000:]
     with LOCK:
         json.dump(dict(row, messages=agent.messages if agent else []), open(os.path.join(out, "trajs", f"{iid}.json"), "w"))
         with open(os.path.join(out, "preds.jsonl"), "a") as f:
@@ -115,13 +122,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--issues", required=True,
                     help="'pilot', 'order:N' (first N of the fixed order), 'order:A-B' (positions A..B-1, to split "
-                         "one sample over several jobs) or 'ids:a,b' (smoke tests only)")
+                         "one sample over several jobs), 'ids-file:path' (JSON list of ids) or 'ids:a,b' (smoke tests "
+                         "only; sbatch --export splits on commas, so use ids-file in job variables)")
     ap.add_argument("--step-limit", type=int, help="smoke tests only; the spec's runs keep the config's 250")
     ap.add_argument("--out", required=True)
     ap.add_argument("--workers", type=int, default=6)
     a = ap.parse_args()
     s = json.load(open(SAMPLE))
-    if a.issues.startswith("ids:"):
+    if a.issues.startswith("ids-file:"):
+        ids = json.load(open(a.issues[9:]))
+    elif a.issues.startswith("ids:"):
         ids = a.issues[4:].split(",")
     else:
         rng = a.issues.split(":")[1] if a.issues != "pilot" else ""

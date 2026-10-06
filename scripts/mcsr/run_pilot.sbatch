@@ -13,9 +13,11 @@
 #   sbatch --export=ALL,ISSUES=pilot,OUT=runs/pilot run_pilot.sbatch                                   # pilot
 #   sbatch -d afterok:<pilot job> --export=ALL,ISSUES=order:0-100,OUT=runs/main-a,GATE=runs/pilot run_pilot.sbatch  # main
 #   sbatch -t 00:30:00 --export=ALL,ISSUES=ids:django__django-16569,OUT=runs/smoke,STEPS=20 run_pilot.sbatch  # smoke
+#   sbatch --export=ALL,ISSUES=ids-file:data/mini50_ids.json,OUT=runs/mini50,GRADE=0 run_pilot.sbatch  # no grading here
+# --export splits on commas: pass several ids with ids-file, not ids:a,b. GRADE=0 leaves grading to grade.sbatch (cpuq).
 set -euo pipefail
 cd ~/vein05
-ISSUES=${ISSUES:?ISSUES}; OUT=${OUT:?OUT}; STEPS=${STEPS:-}; WORKERS=${WORKERS:-5}; MAXLEN=${MAXLEN:-131072}
+ISSUES=${ISSUES:?ISSUES}; OUT=${OUT:?OUT}; STEPS=${STEPS:-}; WORKERS=${WORKERS:-5}; MAXLEN=${MAXLEN:-131072}; GRADE=${GRADE:-1}
 export HF_HOME=$PWD/hf HF_HUB_OFFLINE=1 TMPDIR=$PWD/tmp WORK=$PWD/work/$SLURM_JOB_ID
 export APPTAINER_CACHEDIR=$PWD/apptainer/cache APPTAINER_TMPDIR=$PWD/apptainer/tmp
 export APPTAINER_EXEC_FLAGS="" APPTAINER_MOUNT_DIRS=/ddnlus VLLM_BASE=http://127.0.0.1:18000/v1
@@ -61,6 +63,7 @@ echo "vLLM up $(date -Is)"; grep -m2 -E "KV cache|maximum concurrency" "$OUT/vll
 
 python scripts/run_gemma_mini.py --issues "$ISSUES" --out "$OUT" --workers "$WORKERS" ${STEPS:+--step-limit $STEPS}
 echo "agents done $(date -Is)"
+[ "$GRADE" = 0 ] && { echo "grading left to grade.sbatch"; exit 0; }
 python scripts/eval_apptainer.py eval --preds "$OUT/preds.jsonl" --out "$OUT/labels.jsonl" --workers "$WORKERS"
 echo "grading done $(date -Is)"
 python - "$OUT" <<'PY'
