@@ -15,9 +15,9 @@ patches came from four agent harnesses on 50 issues, and from mini-SWE-agent, th
 the same 50 issues and on 193 held-out issues.
 
 In all three sets Gemma gives a score of 100 to 57% to 61% of its own failing patches, against 20% to 35% of other
-writers' failing patches. Outside judges scoring the same patches do not follow it. On the held-out issues, Gemma's score
-exceeds theirs by 16.6 points [10.3, 23.1] more on its own failing patches than on other writers', with no such
-excess on passing patches.
+writers' failing patches. Outside judges scoring the same patches do not follow it. Compared with them, Gemma adds 16.6
+points [10.3, 23.1] more to its own failing held-out patches than to other writers' failing patches, and about nothing
+extra to its passing ones.
 
 Gemma also ranks its own patches less accurately than outside judges do. Once the harness is matched, this gap is
 about half the size we first measured, and on the held-out issues it holds only when judges may write longer answers.
@@ -116,7 +116,7 @@ other writers' failing patches. On passing patches the same difference is +3.4 [
 patches Gemma should reject. The Mini set with matched-harness patches has 21 failing patches, too few for a clear
 interval.
 
-The held-out result does not depend on the re-ask. Leaving out every patch whose answer needed one, Gemma's leniency
+The leniency result on the held-out issues does not depend on the re-ask. Leaving out every patch whose answer needed one, Gemma's leniency
 on its own failing patches is still +11.1 [3.8, 18.2] (exploratory).
 Sources: `derived/fresh_replication_2026-10-06.json`, `derived/mini50_2026-10-06.json`,
 `derived/fresh_replication_reasked-left-out-all_2026-10-06.json`.
@@ -130,8 +130,8 @@ Sources: `derived/fresh_replication_2026-10-06.json`, `derived/mini50_2026-10-06
 | Held-out issues | 0.622 | 0.751 | +0.074 [0.022, 0.126] |
 
 On the same 50 issues, matching the harness raises Gemma's AUROC on its own patches to 0.695. The outside judges'
-drop on Gemma's patches stays the same (0.063 and 0.068). About half of the first gap therefore came from the harness that wrote
-Gemma's patches, not from Gemma as judge. With 41 patches, the matched-harness interval is too wide for our reading rule
+drop on Gemma's patches stays the same (0.063 and 0.068). So about half of the first gap went with the harness that wrote
+Gemma's patches. With 41 patches, the matched-harness interval is too wide for our reading rule
 to call it either way.
 
 On the held-out issues, the gap meets the rule we fixed in advance, a lower bound above zero and an estimate of at
@@ -155,7 +155,7 @@ by construction.
 
 Pooled over the five, the gap is −0.036 [−0.089, 0.016] (`derived/self_judging_replication_2026-10-05.json`).
 
-### 3.4 What the rubber-stamping is not
+### 3.4 What the deficit is not
 
 These checks use the mixed-harness patches on the Mini issues (`derived/own_patch_mechanism_2026-10-05.json`,
 `derived/own_patch_mechanism_think_2026-10-05.json`).
@@ -186,7 +186,7 @@ by 0.144 [0.081, 0.205]. The mean of all eight outside judges does as well. All 
 Bonferroni correction over eight judges. The two judges reach about the accuracy Gemma has on other writers' patches.
 
 A small judge alone is not enough. Qwen3.5-9B beat Gemma by 0.127 on the mixed-harness patches, but its interval on
-the held-out patches includes zero. Its earlier advantage came from the patch set whose harness also inflated the gap.
+the held-out patches includes zero. Its earlier advantage appeared only on the patch set whose harness also inflated the gap.
 Averaging its ranks with Gemma's does help, by 0.081 [0.032, 0.136] on the held-out patches. Llama-4-Maverick is no
 better than Gemma on any set. We cannot tell whether the strong judges help because they come from another family or
 because they judge better in general. Kimi-K2 was also the most accurate judge of all patches on the Mini issues.
