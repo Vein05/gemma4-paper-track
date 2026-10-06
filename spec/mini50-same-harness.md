@@ -25,6 +25,8 @@ gap cannot come from the issues: only the harness (and the agent run) differs fr
 
 - Same nine judges, prompt (`Q_P1`), settings and parser as `spec/self-judging-replication.md`; judging runs later
   from the Mac, together with the fresh-issue patches.
+  The re-ask of unparsed answers uses 8,000 output tokens (addendum 2026-10-06 15:05 to `spec/fresh-replication.md`,
+  added after the freeze). The Mini-50 control patches keep their scores from the original study (3,000 tokens).
 - Primary: Gemma's self-judging gap on its new mini-SWE-agent patches for these 50 issues, defined as in
   `scripts/self_judging_replication.py`, 95% interval from 2,000 bootstrap resamples of issues.
 - Reading rule (50 patches, so the interval will be wide):

@@ -75,7 +75,7 @@ def run(a):
         done = {r["pid"] for r in map(json.loads, open(out))
                 if r.get("err") is None and (r.get("parsed") is not None or not a.redo_unparsed)}
     jobs = [(dict(cond="P1", iid=x["iid"], pid=pid, writer=x["writer"], model=a.model), rating_prompt(x["iid"], x, Q_P1))
-            for pid, x in sorted(P.items()) if pid not in done]
+            for pid, x in sorted(P.items()) if pid not in done][:a.limit]
     print(f"{a.model}: patches {len(P)}, new calls {len(jobs)}", flush=True)
     with open(out, "a") as fh, concurrent.futures.ThreadPoolExecutor(a.workers) as ex:
         futs = {ex.submit(call, a.model, pr, a.max_tokens): meta for meta, pr in jobs}
@@ -185,6 +185,7 @@ def main():
     r = sp.add_parser("run"); r.add_argument("--model", required=True); r.add_argument("--tag", required=True)
     r.add_argument("--runs", required=True); r.add_argument("--workers", type=int, default=8)
     r.add_argument("--redo-unparsed", action="store_true"); r.add_argument("--max-tokens", type=int, default=3000)
+    r.add_argument("--limit", type=int, help="test pass only: at most this many new calls")
     z = sp.add_parser("analyze"); z.add_argument("--judges", required=True); z.add_argument("--runs", required=True)
     a = ap.parse_args()
     run(a) if a.cmd == "run" else analyze(a)

@@ -104,6 +104,20 @@ Unparsed answers are asked once more, then left out. Analyses use patches with a
   interval from 2,000 bootstrap resamples of issues, and the same quantity on passing patches as a reference.
   Reading: a lower bound above 0 on failing patches means Gemma is more lenient on its own failing patches than
   outside judges are, relative to other writers' failing patches. It does not replace the primary measure.
+- Addendum 2026-10-06 15:05 CDT, written during the main judging pass and before any nine-judge result was read:
+  **output-token limit of the re-ask raised; added after the freeze, reported as such.** In the main pass (3,000
+  output tokens, as in the original study) reasoning-first answers often ran out of tokens before the score line:
+  at 14:55, Qwen3.5-9B 84, Kimi-K2 61, GLM-4.7-Flash 34, gpt-oss-20b 5, Gemma 1, GLM-4.5 1 answers stopped at the
+  limit (some in a repetition loop); gpt-oss-120b had 7 unparsed answers below the limit. Left out, they would drop
+  the hardest-to-judge patches from the set scored by all nine judges. Change: the one re-ask of an unparsed answer
+  ("asked once more") uses 8,000 output tokens instead of 3,000 (gpt-oss: 8,000 plus the 3,000 for hidden reasoning,
+  as before), for every judge. Everything else is unchanged (prompt, temperature 0, reasoning settings, routing).
+  At temperature 0 an answer that ended within 3,000 tokens would be the same with a higher limit, so raising the
+  limit only for the answers that ran out is close to running every answer at 8,000 (providers are not fully
+  deterministic). Answers still without a score after this re-ask are left out. Reported: per judge, the answers
+  re-asked, recovered and left out, by writer and outcome. The original study kept 3,000 tokens (Kimi-K2 7 and
+  gpt-oss-120b 3 answers left out) and is not re-run; the interim check (`spec/fresh-judging-interim.md`) used the
+  3,000-token re-ask.
 
 ## Cost and stopping
 
