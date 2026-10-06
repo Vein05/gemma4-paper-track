@@ -77,6 +77,13 @@ error in its reading rule, recorded in the plan before results were reported.
 
 ### 3.1 Only Gemma judges its own patches worse
 
+![Self-judging gap per model and Gemma 4 31B's score distribution](figures/fig-results.png)
+
+**Figure 1.** (a) Self-judging gap of each model that judged its own patches, with 95% intervals from 2,000
+bootstrap resamples of issues; the diamond is the pooled gap of the five other models. (b) Gemma 4 31B's scores on
+its own patches and on other writers' patches, split by the hidden-test outcome; 333 patches rated by all nine judges.
+Gemma gives the top score to 61% of its own failing patches and 20% of other writers' failing patches.
+
 | Model judging its own patches | AUROC, own patches | AUROC, other families' patches | Self-judging gap [95%] |
 |---|---|---|---|
 | Gemma 4 31B | 0.636 | 0.833 | +0.135 [0.060, 0.210] |
@@ -249,10 +256,11 @@ questions cost 9.27; the project total is 12.97. No paid GPU time was used for t
 
 1. Done 2026-10-05: §5 rewritten from `notes/reading-khullar-chae-2026-10-05.md` and
    `notes/reading-self-preference-2026-10-05.md`; Singh et al. dropped.
-2. Add `citations.md` rows for SWE-bench Verified Mini, the AlphaDiana datasets, SWE-bench, mini-SWE-agent and
-   SWE-bench experiments, then build `references.bib`.
+2. Done 2026-10-05: `citations.md` rows for the data sources; `references.bib` built by `scripts/build_bib.py`
+   (28 entries, titles and authors checked against the arXiv API).
 3. Decide whether to test the issue-difficulty signal (one Gemma call per issue, about $0.05) before writing
    Section 3.5 in final form.
 4. Calibrated scorer: run on this draft on 2026-10-05 (4.02 ± 0.19, `scorer/runs/2026-10-05-writeup/`); run it again on
    the final version.
-5. Word count, figures (`../figures/` pipeline), and a public notebook or repository link.
+5. Word count and a public notebook or repository link. Figure 1 done 2026-10-05
+   (`../figures/gemma4-rubber-stamp/`, copied to `paper/figures/` by `make export`).

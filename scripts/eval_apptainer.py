@@ -7,7 +7,8 @@ SWE-bench image, then grade the log with swebench's own grading code (spec/fresh
   eval: grade predictions (JSONL with instance_id, model_patch).
     python3 eval_apptainer.py eval --preds preds.jsonl --out labels.jsonl
 
-Environment: APPTAINER (binary), WORK (scratch dir for sandboxes and logs), HF_HOME.
+Environment: APPTAINER (binary), WORK (scratch dir for sandboxes and logs), HF_HOME, APPTAINER_EXEC_FLAGS and
+APPTAINER_MOUNT_DIRS (as in run_gemma_mini.py).
 """
 import argparse, concurrent.futures as cf, json, os, random, re, shutil, subprocess, urllib.request, uuid
 
@@ -17,6 +18,8 @@ from swebench.harness.test_spec.test_spec import make_test_spec
 
 APPTAINER = os.environ.get("APPTAINER", "apptainer")
 WORK = os.environ.get("WORK", os.path.abspath("work"))
+EXEC_FLAGS = os.environ.get("APPTAINER_EXEC_FLAGS", "--fakeroot --ignore-subuid").split()
+MOUNT_DIRS = [d for d in os.environ.get("APPTAINER_MOUNT_DIRS", "").split(",") if d]
 BUCKET = "https://swe-bench-submissions.s3.amazonaws.com"
 APPLY = ["git apply --verbose /patch.diff", "git apply --verbose --reject /patch.diff",
          "patch --batch --fuzz=5 -p1 -i /patch.diff"]  # same fallbacks as the SWE-bench harness
@@ -41,12 +44,14 @@ def grade(inst, patch, tag, timeout=1800):
     try:
         b = run([APPTAINER, "build", "--sandbox", sbx, image(iid)], 1200)
         if b.returncode:
-            return dict(instance_id=iid, resolved=None, status="build_error", detail=b.stderr[-500:])
+            return dict(instance_id=iid, resolved=None, status="build_error", detail=b.stdout[-500:])
+        for m in MOUNT_DIRS:
+            os.makedirs(os.path.join(sbx, m.lstrip("/")), exist_ok=True)
         if not patch.endswith("\n"):
             patch += "\n"  # git apply rejects a last line without newline ("corrupt patch")
         open(os.path.join(sbx, "patch.diff"), "w").write(patch)  # not /tmp: --contain hides it
         open(os.path.join(sbx, "eval.sh"), "w").write(spec.eval_script)
-        ex = [APPTAINER, "exec", "--fakeroot", "--ignore-subuid", "--contain", "--cleanenv", "--writable", sbx]
+        ex = [APPTAINER, "exec", *EXEC_FLAGS, "--contain", "--cleanenv", "--writable", sbx]
         applied, tries = None, []
         for c in APPLY:
             r = run(ex + ["bash", "-c", f"cd /testbed && {c}"], 300)
