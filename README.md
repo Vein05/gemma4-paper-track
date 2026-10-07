@@ -16,8 +16,9 @@ sets, against 20–35% of other writers' failing patches; outside judges scoring
 | 193 held-out issues | ours, mini-SWE-agent | 61% | +0.074 [0.022, 0.126] |
 
 The ranking gap halves once Gemma's patches come from the same harness as the other writers', and on the held-out
-issues it holds only with an 8,000-token re-ask added after the plan was fixed. Five other models show no gap. As a
-check of Gemma's patches, GLM-4.5 and Kimi-K2 beat Gemma by 0.16 and 0.14 AUROC.
+issues it holds only with an 8,000-token re-ask added after the plan was fixed. Five other models show no gap. If an
+agent submits without review the quarter of its held-out patches that its check trusts most, 61% pass with Gemma as
+the check, 76% with Gemma's and Qwen3.5-9B's ranks averaged, and 84% with GLM-4.5.
 
 ## Layout
 
@@ -50,10 +51,21 @@ python3 fresh_judging.py analyze --runs main-a,main-b \
                                          # held-out issues (Sections 3.1, 3.2); add --leave-out-reasked all
 python3 mini50_analysis.py --drop django__django-11848   # matched-harness patches on the Mini issues
 python3 outside_judge_check.py           # Section 3.5, Figure 2
+python3 accept_decision.py               # Section 3.5, the submit-without-review table
 ```
 
 Judging again calls models through OpenRouter (`scripts/self_preference.py`, `scripts/fresh_judging.py run`, needs
-`OPENROUTER_API_KEY`); the study's API cost was $12.36. The agent runs need one 46 GB GPU, vLLM and Apptainer
+`OPENROUTER_API_KEY`). API cost as reported by OpenRouter per call (sums of the `cost` field in `scripts/derived/`):
+
+| Run | Calls | Cost (USD) |
+|---|---|---|
+| Four judges on Gemma's own attempts (ratings reused) | 3,244 | 0.53 |
+| Nine judges on the Mini issues, mixed-harness patches, reasoning off | 3,292 | 2.66 |
+| Gemma 4 31B with thinking on, Mini issues | 401 | 0.51 |
+| Nine judges on the held-out and matched-harness patches | 9,857 | 8.66 |
+| Total | 16,794 | 12.36 |
+
+gpt-oss-120b calls were reported at zero cost by their provider. The agent runs need one 46 GB GPU, vLLM and Apptainer
 (`scripts/run_gemma_mini.py`, `scripts/mcsr/run_pilot.sbatch`); grading uses `scripts/eval_apptainer.py`.
 
 ## Data
