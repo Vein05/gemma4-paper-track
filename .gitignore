@@ -2,3 +2,7 @@ __pycache__/
 .DS_Store
 .env
 .env.*
+paper/latex/supplement/*.aux
+paper/latex/supplement/*.log
+paper/latex/supplement/*.out
+paper/latex/supplement/supplement.pdf

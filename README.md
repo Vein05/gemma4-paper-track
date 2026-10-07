@@ -1,7 +1,18 @@
 # Rubber Stamp: Gemma 4 Scores Its Own Failing Patches as Sure to Pass
 
 Code, data and outputs for a submission to the paper track of the Gemma 4 Developer Agent competition on Kaggle.
-Draft writeup: `paper/writeup.md`.
+
+## The paper
+
+| File | What it is |
+|---|---|
+| **[`paper/rubber-stamp.pdf`](paper/rubber-stamp.pdf)** | **The main submission.** The paper (2,766 words including tables and references; the limit is 3,000). |
+| [`paper/writeup.md`](paper/writeup.md) | The same paper as Markdown, the text of the Kaggle Writeup. It is the source of the PDF, so the two never differ. |
+| [`paper/rubber-stamp-supplement.pdf`](paper/rubber-stamp-supplement.pdf) | Supplement, not part of the paper: setup details and the exact judge prompt, grading checks, re-asks and sensitivity analyses, the mechanism checks, the five-model table, per-judge tables, all submit-without-review rates, cost. |
+
+`cd paper && make` rebuilds both PDFs (needs pandoc and pdflatex): it fills the reference list from
+`references.bib`, checks the word count, and renders `writeup.md` through `latex/writeup.lua` and `latex/header.tex`.
+The PDFs borrow the ICLR 2027 style file for their layout only; this is a preprint, not an ICLR submission.
 
 ## Finding
 
@@ -24,7 +35,7 @@ the check, 76% with Gemma's and Qwen3.5-9B's ranks averaged, and 84% with GLM-4.
 
 | Path | Contents |
 |---|---|
-| `paper/` | draft writeup, bibliography, figures |
+| `paper/` | the paper (`rubber-stamp.pdf`), its Markdown source (`writeup.md`), the supplement, bibliography, figures (`figures/*.png` for the Writeup, `figures/pdf/` for the PDFs), build files (`latex/`, `Makefile`) |
 | `spec/` | analysis plans, each committed before its data was computed (see the git history) |
 | `scripts/` | agent runner, grading, judging and analysis code |
 | `scripts/mcsr/` | Slurm jobs for the agent runs and grading |
@@ -43,15 +54,15 @@ Analyses need no API calls and read only files in this repository:
 ```bash
 pip install numpy scipy
 cd scripts
-python3 self_judging_replication.py      # five-model comparison, mixed-harness patches (Section 3.3)
-python3 own_patch_mechanism.py           # Section 3.4
-python3 self_check_fix.py                # Gemma-only signals (Section 3.5)
+python3 self_judging_replication.py      # five-model comparison (Section 3.3; Supplement E)
+python3 own_patch_mechanism.py           # mechanism checks (Supplement D)
+python3 self_check_fix.py                # Gemma-only signals (Supplement I)
 python3 fresh_judging.py analyze --runs main-a,main-b \
   --judges gemma4-31b,gpt-oss-20b,qwen35-9b,glm47-flash,qwen3-coder,gpt-oss-120b,glm-4.5,kimi-k2,llama-4-maverick
                                          # held-out issues (Sections 3.1, 3.2); add --leave-out-reasked all
 python3 mini50_analysis.py --drop django__django-11848   # matched-harness patches on the Mini issues
-python3 outside_judge_check.py           # Section 3.5, Figure 2
-python3 accept_decision.py               # Section 3.5, the submit-without-review table
+python3 outside_judge_check.py           # Section 3.4, Figure 2
+python3 accept_decision.py               # Section 3.4, the submit-without-review table
 ```
 
 Judging again calls models through OpenRouter (`scripts/self_preference.py`, `scripts/fresh_judging.py run`, needs
