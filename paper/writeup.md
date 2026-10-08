@@ -50,7 +50,7 @@ Qwen3-Coder and, on the Mini issues, Devstral, with their official labels. Test 
 | Patch set | Issues | Gemma's patches | Scored by all nine judges (Gemma's / others') |
 |---------------------------|-------------------|--------------------------|-------------------------|
 | Mini issues, mixed harness | 50 (django, sphinx) | public runs in four harnesses | 150 / 183 |
-| Mini issues, matched harness | the same 50 | ours, mini-SWE-agent | 41 / 183 |
+| Mini issues, matched harness | the same 50 | ours, mini-SWE-agent | 42 / 183 |
 | Held-out issues | 193, from 11 repositories | ours, mini-SWE-agent | 180 / 777 |
 
 The Mini issues are SWE-bench Verified Mini (MariusHobbhahn). Their mixed-harness Gemma patches come from public
@@ -113,7 +113,7 @@ missing reasoning and unsolvable issues as explanations (Supplement, Section D).
 | Patch set | Gemma's AUROC, own patches | Gemma's AUROC, others' | Self-judging gap [95%] |
 |-------------------------------|------------------|------------------|-------------------------|
 | Mini issues, mixed harness | 0.636 | 0.833 | +0.135 [0.060, 0.210] |
-| Mini issues, matched harness | 0.695 | 0.833 | +0.070 [−0.024, 0.168] |
+| Mini issues, matched harness | 0.696 | 0.833 | +0.066 [−0.025, 0.161] |
 | Held-out issues | 0.622 | 0.751 | +0.074 [0.022, 0.126] |
 
 Ties at 100 hide which of Gemma's patches fail, so rubber-stamping should also hurt its ranking of its own patches.
@@ -210,7 +210,7 @@ et al. tested.
   ourselves. On 30 issues, 26 other-writer patches got their official label in our environment; the misses came from
   rebuilt images and environment faults.
 - **Changes after the plan.** The held-out ranking gap depends on the larger re-ask limit; the leniency does not.
-- **Size.** One attempt per issue in our own runs, and only 41 matched-harness patches on the Mini issues.
+- **Size.** One attempt per issue in our own runs, and only 42 matched-harness patches on the Mini issues.
 
 ## 7. Data, code and supplement
 

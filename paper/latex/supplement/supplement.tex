@@ -65,8 +65,8 @@ from 0 to 100 that the hidden tests pass.
 \paragraph{Agent runs.} The 200 held-out issues ran as two jobs of 100. In the first, 98 runs submitted a patch, one
 ran out of the 131,072-token context and one stopped after repeated model-call timeouts; three patches were empty. In the second, one submitted patch was empty. On the Mini issues, 49 runs
 submitted and one stopped after repeated timeouts. Empty patches and runs that stopped count as unresolved, as in
-SWE-bench. One Mini issue (\texttt{django\_\_django-11848}) failed to start its sandbox and was run again; its second
-patch has not been graded, so the Mini analyses leave it out.
+SWE-bench. One Mini issue (\texttt{django\_\_django-11848}) failed to start its sandbox and was run again; the Mini
+analyses use the second run's patch.
 
 \paragraph{Reference-patch check.} We graded the official reference patch of every issue we ran (5 pilot, 200
 held-out, 50 Mini). 248 of 255 resolve in our environment. The first pass labelled 16 matplotlib and xarray issues as
@@ -81,9 +81,9 @@ network-dependent test, Ghostscript file access) and patches that apply only wit
 images. Other writers' patches therefore keep their official labels.
 
 \paragraph{Resolve rates.} Gemma resolved 56 and 42 of the two held-out batches of 100, 98 of the 193 kept issues in
-all, and 21 of the 49 Mini issues with a valid label. On the Mini issues two sphinx patches ran past the 1,800-second test limit;
-counting them as failing, as SWE-bench does, changes the matched-harness gap from $+0.070$ to $+0.084$ [$-0.008$,
-0.184].
+all, and 22 of the 50 Mini issues. On the Mini issues two sphinx patches ran past the 1,800-second test limit;
+counting them as failing, as SWE-bench does, changes the matched-harness gap from $+0.066$ to $+0.081$ [$-0.010$,
+0.178].
 
 \section{Re-asks and sensitivity}
 \label{app:reask}
@@ -258,19 +258,19 @@ judges) intervals. Exploratory.}
 \toprule
 Check & Held-out [95\%] & Held-out [Bonferroni] & Mini, mixed / matched \\
 \midrule
-GLM-4.5 & $+0.156$ [0.083, 0.228] & [0.054, 0.256] & $+0.082$ / $+0.110$ \\
+GLM-4.5 & $+0.156$ [0.083, 0.228] & [0.054, 0.256] & $+0.082$ / $+0.103$ \\
 Kimi-K2 & $+0.144$ [0.081, 0.205] & [0.061, 0.230] & $+0.129$ / $+0.037$ \\
-Mean of 8 outside judges & $+0.129$ [0.067, 0.194] & [0.039, 0.216] & $+0.130$ / $+0.090$ \\
-Qwen3-Coder & $+0.095$ [0.025, 0.163] & [$-0.004$, 0.187] & $+0.098$ / $-0.052$ \\
-Qwen3.5-9B & $+0.063$ [$-0.007$, 0.138] & [$-0.038$, 0.163] & $+0.127$ / $+0.010$ \\
-gpt-oss-20b & $+0.043$ [$-0.035$, 0.128] & [$-0.067$, 0.156] & $+0.032$ / $-0.020$ \\
-gpt-oss-120b & $+0.034$ [$-0.036$, 0.106] & [$-0.064$, 0.131] & $+0.059$ / $+0.117$ \\
-GLM-4.7-Flash & $+0.014$ [$-0.066$, 0.090] & [$-0.099$, 0.118] & $+0.064$ / $-0.105$ \\
-Llama-4-Maverick & $-0.011$ [$-0.083$, 0.060] & [$-0.116$, 0.092] & $-0.032$ / $-0.055$ \\
-Gemma + GLM-4.5 & $+0.146$ [0.094, 0.197] & [0.074, 0.213] & $+0.083$ / $+0.102$ \\
-Gemma + Kimi-K2 & $+0.134$ [0.088, 0.181] & [0.070, 0.196] & $+0.114$ / $+0.033$ \\
-Gemma + Qwen3-Coder & $+0.101$ [0.053, 0.151] & [0.030, 0.169] & $+0.114$ / $+0.048$ \\
-Gemma + Qwen3.5-9B & $+0.081$ [0.032, 0.136] & [0.011, 0.154] & $+0.119$ / $+0.051$ \\
+Mean of 8 outside judges & $+0.129$ [0.067, 0.194] & [0.039, 0.216] & $+0.130$ / $+0.078$ \\
+Qwen3-Coder & $+0.095$ [0.025, 0.163] & [$-0.004$, 0.187] & $+0.098$ / $-0.045$ \\
+Qwen3.5-9B & $+0.063$ [$-0.007$, 0.138] & [$-0.038$, 0.163] & $+0.127$ / $-0.007$ \\
+gpt-oss-20b & $+0.043$ [$-0.035$, 0.128] & [$-0.067$, 0.156] & $+0.032$ / $-0.006$ \\
+gpt-oss-120b & $+0.034$ [$-0.036$, 0.106] & [$-0.064$, 0.131] & $+0.059$ / $+0.101$ \\
+GLM-4.7-Flash & $+0.014$ [$-0.066$, 0.090] & [$-0.099$, 0.118] & $+0.064$ / $-0.125$ \\
+Llama-4-Maverick & $-0.011$ [$-0.083$, 0.060] & [$-0.116$, 0.092] & $-0.032$ / $-0.050$ \\
+Gemma + GLM-4.5 & $+0.146$ [0.094, 0.197] & [0.074, 0.213] & $+0.083$ / $+0.098$ \\
+Gemma + Kimi-K2 & $+0.134$ [0.088, 0.181] & [0.070, 0.196] & $+0.114$ / $+0.034$ \\
+Gemma + Qwen3-Coder & $+0.101$ [0.053, 0.151] & [0.030, 0.169] & $+0.114$ / $+0.053$ \\
+Gemma + Qwen3.5-9B & $+0.081$ [0.032, 0.136] & [0.011, 0.154] & $+0.119$ / $+0.037$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -282,8 +282,8 @@ Gemma + Qwen3.5-9B & $+0.081$ [0.032, 0.136] & [0.011, 0.154] & $+0.119$ / $+0.0
 \centering
 \small
 \caption{Share of submitted patches that pass, by acceptance rate and check. Gemma's own cut (every patch it scores
-100) accepts 73.9\% of held-out patches, 75.6\% of matched Mini patches and 73.3\% of mixed Mini patches, with 60.9\%,
-61.3\% and 55.5\% passing. Base rates: 52.8\%, 48.8\%, 46.7\%.}
+100) accepts 73.9\% of held-out patches, 76.2\% of matched Mini patches and 73.3\% of mixed Mini patches, with 60.9\%,
+62.5\% and 55.5\% passing. Base rates: 52.8\%, 50.0\%, 46.7\%.}
 \begin{tabular}{@{}llccc@{}}
 \toprule
 Patch set & Check & Top 25\% & Top 50\% & Top 75\% \\
@@ -293,10 +293,10 @@ Held-out (180) & Gemma & 60.9\% & 60.9\% & 61.0\% \\
 & Kimi-K2 & 77.0\% & 72.4\% & 63.7\% \\
 & GLM-4.5 & 83.6\% & 73.5\% & 63.0\% \\
 \midrule
-Mini, matched (41) & Gemma & 61.3\% & 61.3\% & 61.3\% \\
-& Gemma + Qwen3.5-9B & 70.0\% & 69.2\% & 61.0\% \\
-& Kimi-K2 & 64.5\% & 66.2\% & 60.0\% \\
-& GLM-4.5 & 70.6\% & 71.0\% & 65.0\% \\
+Mini, matched (42) & Gemma & 62.5\% & 62.5\% & 62.5\% \\
+& Gemma + Qwen3.5-9B & 70.0\% & 68.5\% & 61.9\% \\
+& Kimi-K2 & 65.6\% & 67.4\% & 61.5\% \\
+& GLM-4.5 & 70.6\% & 71.4\% & 66.7\% \\
 \midrule
 Mini, mixed (150) & Gemma & 55.5\% & 55.5\% & 54.7\% \\
 & Gemma + Qwen3.5-9B & 71.2\% & 64.7\% & 56.6\% \\

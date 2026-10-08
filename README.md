@@ -23,7 +23,7 @@ sets, against 20–35% of other writers' failing patches; outside judges scoring
 | Patch set | Gemma's patches | Own failing patches scored 100 | Self-judging gap [95%] |
 |---|---|---|---|
 | 50 Mini issues | public runs in four other harnesses | 61% | +0.135 [0.060, 0.210] |
-| the same 50 issues | ours, mini-SWE-agent (the other writers' harness) | 57% | +0.070 [−0.024, 0.168] |
+| the same 50 issues | ours, mini-SWE-agent (the other writers' harness) | 57% | +0.066 [−0.025, 0.161] |
 | 193 held-out issues | ours, mini-SWE-agent | 61% | +0.074 [0.022, 0.126] |
 
 The ranking gap halves once Gemma's patches come from the same harness as the other writers', and on the held-out
@@ -44,8 +44,8 @@ the check, 76% with Gemma's and Qwen3.5-9B's ranks averaged, and 84% with GLM-4.
 | `data/public/` | other writers' patches with their SWE-bench labels, and the public Gemma 4 patches (sources in `data/README.md`) |
 | `citations.md` | cited works, copied from primary sources |
 
-In `data/mcsr-runs/`, cluster paths are replaced by `<workdir>` and `<user>`. `mini50/labels.jsonl` holds an outdated
-label for `django__django-11848` (its first run failed to start); the analyses leave that issue out.
+In `data/mcsr-runs/`, cluster paths are replaced by `<workdir>` and `<user>`. `django__django-11848` on the Mini
+issues was run twice (the first run failed to start); `mini50/` holds the second run's patch and label.
 
 ## Reproduce
 
@@ -60,7 +60,7 @@ python3 self_check_fix.py                # Gemma-only signals (Supplement I)
 python3 fresh_judging.py analyze --runs main-a,main-b \
   --judges gemma4-31b,gpt-oss-20b,qwen35-9b,glm47-flash,qwen3-coder,gpt-oss-120b,glm-4.5,kimi-k2,llama-4-maverick
                                          # held-out issues (Sections 3.1, 3.2); add --leave-out-reasked all
-python3 mini50_analysis.py --drop django__django-11848   # matched-harness patches on the Mini issues
+python3 mini50_analysis.py              # matched-harness patches on the Mini issues
 python3 outside_judge_check.py           # Section 3.4, Figure 2
 python3 accept_decision.py               # Section 3.4, the submit-without-review table
 ```

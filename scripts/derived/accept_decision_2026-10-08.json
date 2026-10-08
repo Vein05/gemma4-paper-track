@@ -1,0 +1,394 @@
+{
+ "gemma4-31b": {
+  "held_out_issues": {
+   "n": {
+    "patches": 180,
+    "passing": 95,
+    "failing": 85,
+    "issues": 180
+   },
+   "base_rate": 0.528,
+   "gemma_scores_100": {
+    "acceptance_rate": 0.739,
+    "precision": 0.609,
+    "failing_accepted": 0.612
+   },
+   "gemma": {
+    "accept_25": {
+     "precision": 0.609,
+     "failing_accepted": 0.207,
+     "precision_minus_gemma": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accept_50": {
+     "precision": 0.609,
+     "failing_accepted": 0.414,
+     "precision_minus_gemma": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accept_75": {
+     "precision": 0.61,
+     "failing_accepted": 0.62,
+     "precision_minus_gemma": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "gemma_plus_qwen35-9b": {
+    "accept_25": {
+     "precision": 0.758,
+     "failing_accepted": 0.128,
+     "precision_minus_gemma": 0.149,
+     "ci95": [
+      0.067,
+      0.233
+     ]
+    },
+    "accept_50": {
+     "precision": 0.675,
+     "failing_accepted": 0.344,
+     "precision_minus_gemma": 0.066,
+     "ci95": [
+      0.015,
+      0.12
+     ]
+    },
+    "accept_75": {
+     "precision": 0.611,
+     "failing_accepted": 0.618,
+     "precision_minus_gemma": 0.001,
+     "ci95": [
+      -0.02,
+      0.028
+     ]
+    }
+   },
+   "glm-4.5": {
+    "accept_25": {
+     "precision": 0.836,
+     "failing_accepted": 0.087,
+     "precision_minus_gemma": 0.227,
+     "ci95": [
+      0.127,
+      0.32
+     ]
+    },
+    "accept_50": {
+     "precision": 0.735,
+     "failing_accepted": 0.28,
+     "precision_minus_gemma": 0.126,
+     "ci95": [
+      0.068,
+      0.183
+     ]
+    },
+    "accept_75": {
+     "precision": 0.63,
+     "failing_accepted": 0.588,
+     "precision_minus_gemma": 0.02,
+     "ci95": [
+      -0.018,
+      0.07
+     ]
+    }
+   },
+   "kimi-k2": {
+    "accept_25": {
+     "precision": 0.77,
+     "failing_accepted": 0.122,
+     "precision_minus_gemma": 0.161,
+     "ci95": [
+      0.096,
+      0.225
+     ]
+    },
+    "accept_50": {
+     "precision": 0.724,
+     "failing_accepted": 0.292,
+     "precision_minus_gemma": 0.115,
+     "ci95": [
+      0.059,
+      0.176
+     ]
+    },
+    "accept_75": {
+     "precision": 0.637,
+     "failing_accepted": 0.576,
+     "precision_minus_gemma": 0.027,
+     "ci95": [
+      -0.007,
+      0.07
+     ]
+    }
+   }
+  },
+  "mini_issues_matched_harness": {
+   "n": {
+    "patches": 42,
+    "passing": 21,
+    "failing": 21,
+    "issues": 42
+   },
+   "base_rate": 0.5,
+   "gemma_scores_100": {
+    "acceptance_rate": 0.762,
+    "precision": 0.625,
+    "failing_accepted": 0.571
+   },
+   "gemma": {
+    "accept_25": {
+     "precision": 0.625,
+     "failing_accepted": 0.188,
+     "precision_minus_gemma": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accept_50": {
+     "precision": 0.625,
+     "failing_accepted": 0.375,
+     "precision_minus_gemma": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accept_75": {
+     "precision": 0.625,
+     "failing_accepted": 0.562,
+     "precision_minus_gemma": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "gemma_plus_qwen35-9b": {
+    "accept_25": {
+     "precision": 0.7,
+     "failing_accepted": 0.15,
+     "precision_minus_gemma": 0.075,
+     "ci95": [
+      -0.057,
+      0.216
+     ]
+    },
+    "accept_50": {
+     "precision": 0.685,
+     "failing_accepted": 0.315,
+     "precision_minus_gemma": 0.06,
+     "ci95": [
+      -0.072,
+      0.163
+     ]
+    },
+    "accept_75": {
+     "precision": 0.619,
+     "failing_accepted": 0.571,
+     "precision_minus_gemma": -0.006,
+     "ci95": [
+      -0.048,
+      0.032
+     ]
+    }
+   },
+   "glm-4.5": {
+    "accept_25": {
+     "precision": 0.706,
+     "failing_accepted": 0.147,
+     "precision_minus_gemma": 0.081,
+     "ci95": [
+      -0.076,
+      0.252
+     ]
+    },
+    "accept_50": {
+     "precision": 0.714,
+     "failing_accepted": 0.286,
+     "precision_minus_gemma": 0.089,
+     "ci95": [
+      -0.031,
+      0.211
+     ]
+    },
+    "accept_75": {
+     "precision": 0.667,
+     "failing_accepted": 0.5,
+     "precision_minus_gemma": 0.042,
+     "ci95": [
+      0.0,
+      0.125
+     ]
+    }
+   },
+   "kimi-k2": {
+    "accept_25": {
+     "precision": 0.656,
+     "failing_accepted": 0.172,
+     "precision_minus_gemma": 0.031,
+     "ci95": [
+      -0.098,
+      0.149
+     ]
+    },
+    "accept_50": {
+     "precision": 0.674,
+     "failing_accepted": 0.326,
+     "precision_minus_gemma": 0.049,
+     "ci95": [
+      -0.029,
+      0.142
+     ]
+    },
+    "accept_75": {
+     "precision": 0.615,
+     "failing_accepted": 0.577,
+     "precision_minus_gemma": -0.01,
+     "ci95": [
+      -0.063,
+      0.08
+     ]
+    }
+   }
+  },
+  "mini_issues_four_harnesses": {
+   "n": {
+    "patches": 150,
+    "passing": 70,
+    "failing": 80,
+    "issues": 50
+   },
+   "base_rate": 0.467,
+   "gemma_scores_100": {
+    "acceptance_rate": 0.733,
+    "precision": 0.555,
+    "failing_accepted": 0.613
+   },
+   "gemma": {
+    "accept_25": {
+     "precision": 0.555,
+     "failing_accepted": 0.209,
+     "precision_minus_gemma": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accept_50": {
+     "precision": 0.555,
+     "failing_accepted": 0.418,
+     "precision_minus_gemma": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "accept_75": {
+     "precision": 0.547,
+     "failing_accepted": 0.637,
+     "precision_minus_gemma": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "gemma_plus_qwen35-9b": {
+    "accept_25": {
+     "precision": 0.712,
+     "failing_accepted": 0.135,
+     "precision_minus_gemma": 0.157,
+     "ci95": [
+      0.029,
+      0.284
+     ]
+    },
+    "accept_50": {
+     "precision": 0.647,
+     "failing_accepted": 0.331,
+     "precision_minus_gemma": 0.092,
+     "ci95": [
+      0.032,
+      0.151
+     ]
+    },
+    "accept_75": {
+     "precision": 0.566,
+     "failing_accepted": 0.61,
+     "precision_minus_gemma": 0.02,
+     "ci95": [
+      -0.007,
+      0.067
+     ]
+    }
+   },
+   "glm-4.5": {
+    "accept_25": {
+     "precision": 0.683,
+     "failing_accepted": 0.148,
+     "precision_minus_gemma": 0.129,
+     "ci95": [
+      0.021,
+      0.239
+     ]
+    },
+    "accept_50": {
+     "precision": 0.624,
+     "failing_accepted": 0.352,
+     "precision_minus_gemma": 0.07,
+     "ci95": [
+      -0.021,
+      0.158
+     ]
+    },
+    "accept_75": {
+     "precision": 0.569,
+     "failing_accepted": 0.606,
+     "precision_minus_gemma": 0.022,
+     "ci95": [
+      -0.036,
+      0.081
+     ]
+    }
+   },
+   "kimi-k2": {
+    "accept_25": {
+     "precision": 0.688,
+     "failing_accepted": 0.146,
+     "precision_minus_gemma": 0.133,
+     "ci95": [
+      0.044,
+      0.23
+     ]
+    },
+    "accept_50": {
+     "precision": 0.679,
+     "failing_accepted": 0.3,
+     "precision_minus_gemma": 0.125,
+     "ci95": [
+      0.048,
+      0.2
+     ]
+    },
+    "accept_75": {
+     "precision": 0.578,
+     "failing_accepted": 0.594,
+     "precision_minus_gemma": 0.031,
+     "ci95": [
+      -0.014,
+      0.084
+     ]
+    }
+   }
+  }
+ }
+}

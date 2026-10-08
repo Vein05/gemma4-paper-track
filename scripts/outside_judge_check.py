@@ -17,7 +17,7 @@ from self_judging_replication import JUDGES, auroc
 
 W, J = "gemma-4-31b", "gemma4-31b"
 OUT = [t for t in JUDGES if t != J]
-STALE = {"django__django-11848"}  # label predates the graded patch (changelog 2026-10-06 17:20)
+STALE = set()  # django__django-11848 was left out until its second patch was graded (changelog 2026-10-08)
 
 
 def rows(path):

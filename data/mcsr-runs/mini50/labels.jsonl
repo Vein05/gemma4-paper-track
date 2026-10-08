@@ -1,5 +1,4 @@
 {"instance_id": "django__django-11951", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 379, "apply": 0, "tests": 18}}
-{"instance_id": "django__django-11848", "resolved": false, "status": "patch_apply_failed", "detail": ["error: unrecognized input\n", "error: unrecognized input\n", "patch: **** Only garbage was found in the patch input.\n"], "secs": {"build": 393, "apply": 0}}
 {"instance_id": "django__django-11880", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 380, "apply": 0, "tests": 17}}
 {"instance_id": "django__django-11790", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 380, "apply": 0, "tests": 17}}
 {"instance_id": "django__django-12050", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 373, "apply": 0, "tests": 17}}
@@ -48,3 +47,4 @@
 {"instance_id": "sphinx-doc__sphinx-9367", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 348, "apply": 0, "tests": 7}}
 {"instance_id": "sphinx-doc__sphinx-9461", "resolved": false, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 351, "apply": 0, "tests": 11}}
 {"instance_id": "sphinx-doc__sphinx-11510", "resolved": false, "status": "patch_apply_failed", "detail": ["error: unrecognized input\n", "error: unrecognized input\n", "patch: **** Only garbage was found in the patch input.\n"], "secs": {"build": 359, "apply": 0}}
+{"instance_id": "django__django-11848", "resolved": true, "status": "graded", "applied_with": "git apply --verbose", "secs": {"build": 370, "apply": 0, "tests": 22}}
