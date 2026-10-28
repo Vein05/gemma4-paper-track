@@ -4,8 +4,8 @@ Gemma 4 gives most of its own failing patches the top score when asked to rank t
 them). We find this happens far more often in Gemma 4 compared to other judges. A second judge lets an agent built on
 Gemma pick out the patches it can submit without review.
 
-**[Read the paper (PDF)](paper/rubber-stamp.pdf)** · [Supplement (PDF)](paper/rubber-stamp-supplement.pdf) ·
-Kaggle paper track, Gemma 4 Developer Agent
+**[Read the paper (PDF)](paper/rubber-stamp.pdf)** and the [supplement (PDF)](paper/rubber-stamp-supplement.pdf).
+Kaggle paper track, Gemma 4 Developer Agent.
 
 ![Gemma 4 31B's self-judging gap and its scores on failing patches](paper/figures/fig-results.png)
 
