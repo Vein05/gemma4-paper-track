@@ -1,7 +1,7 @@
 Kaggle Writeup for "Google - The Gemma 4 Developer Agent Paper Track"
 (https://www.kaggle.com/competitions/gemma-4-developer-agent-paper). Deadline: 2026-11-12, 23:59 UTC.
 Built from paper/writeup.md by paper/latex/submission.py; edit writeup.md and run make, not this file.
-Word count (paper/latex/wordcount.py): 2981 words counted, without the reference list, which does not count (3267 with its 286); limit 3,000. The subtitle adds 37 words.
+Word count (paper/latex/wordcount.py): 2963 words counted, without the reference list, which does not count (3249 with its 286); limit 3,000. The subtitle adds 42 words.
 
 Before submitting: make the GitHub repository public (the PDF links and the two figure images in the body point at
 it), check that both figures show in the Writeup preview, and press Submit (a saved draft is not judged).
@@ -10,7 +10,7 @@ it), check that both figures show in the Writeup preview, and press Submit (a sa
 Gemma 4 Rubber-Stamps Its Own Failing Patches
 
 == Subtitle ==
-Gemma 4 gives most of its own failing patches the top score when asked to rank them (without being told who wrote them). We find this happens far more often in Gemma 4 compared to other judges.
+Gemma 4 gives most of its own failing patches the top score when asked to judge them (without being told who wrote them). We find this happens far more often in Gemma 4 than in five other models judging their own patches.
 
 == Track (if the form asks) ==
 Overall Best Paper
@@ -30,9 +30,9 @@ paper/rubber-stamp-supplement.pdf
 == Body (paste into the Writeup editor) ==
 ## Abstract
 
-To determine when a patch is complete, many coding agents ask the model that authored the patch. Self-evaluation of a patch can only be beneficial if the model evaluates its own patches as accurately as it evaluates others' patches. We evaluate how well Gemma 4 31B self-evaluates its patches using the SWE-bench Verified dataset. Nine open models evaluate each patch from 0 to 100, representing the likelihood that the patch will pass hidden tests. The judges are not informed as to which model authored the patch and are compared to outside judges from other model families on the same patch.
+To determine when a patch is complete, many coding agents ask the model that authored the patch. Self-evaluation of a patch works best if the model evaluates its own patches as accurately as it evaluates others' patches. We evaluate how well Gemma 4 31B self-evaluates its patches using the SWE-bench Verified dataset. Nine open models evaluate each patch from 0 to 100, representing the likelihood that the patch will pass hidden tests. The judges are not informed as to which model authored the patch and are compared to outside judges from other model families on the same patch.
 
-We find that Gemma places the highest score on 52 of 85 of its own failing patches, while outside judges place the same patches lower. We also find that Gemma gives little additional trust to its passing patches or to the failing patches of other models. Five other models do not exhibit this behavior on their own failing patches. Gemma ties many patches at 100, so a stricter cutoff on its score does not raise the share of patches that pass. The quarter of patches Gemma trusts most passes 61% of the time, compared to 53% without any check. When we use the GLM-4.5 score, this increases to 84%. When we break ties in Gemma's score by the length of its agent run, this increases to 78% without a second model. We find that Gemma 4 rubber-stamps its own mistakes, so the agent built on it needs a second signal to determine which patches to submit.
+We find that Gemma places the highest score on 52 of 85 of its own failing patches, while outside judges place the same patches lower. We also find that Gemma gives little additional trust to its passing patches or to the failing patches of other models. We detect no comparable effect in five other models on their own failing patches. The quarter of patches Gemma trusts most passes 61% of the time, compared to 53% without any check. Gemma ties many patches at 100, so a stricter cutoff on its score cannot raise this above 61%. When we use the GLM-4.5 score, this increases to 84%. When we break ties in Gemma's score by the length of its agent run, this increases to 78% without a second model. We find that Gemma 4 rubber-stamps its own mistakes, so the agent built on it needs a second signal to determine which patches to submit.
 
 ## 1. Introduction
 
@@ -123,7 +123,7 @@ On the held-out issues, the gap meets the rule we fixed in advance for a replica
 
 ### 3.4 Five other models show no ranking gap and little leniency
 
-On the held-out issues, all nine judges also scored the five other writers' patches, so each of these models judged its own patches, written in the same harness as Gemma's. Each wrote 46 to 123 failing patches. Their pooled gap is −0.001 [−0.031, 0.029] (Figure 1b), and their pooled leniency is +0.4 [−2.5, 3.4]. Gemma's leniency of +16.6 exceeds theirs by 16.3 [8.9, 23.4] points. No single model shows a gap or leniency once we correct for testing five models. This analysis is exploratory (Supplement, Section E, which also gives the Mini issues).
+On the held-out issues, all nine judges also scored the five other writers' patches, so each of these models judged its own patches, written in the same harness as Gemma's. Each wrote 46 to 123 failing patches. Each gives 100 to at most 33% of its own failing patches, and at most 3 points more often than to other writers' failing patches. Their pooled gap is −0.001 [−0.031, 0.029] (Figure 1b), and their pooled leniency is +0.4 [−2.5, 3.4]. Gemma's leniency of +16.6 exceeds theirs by 16.3 [8.9, 23.4] points. No single model shows a gap or leniency once we correct for testing five models. This analysis is exploratory (Supplement, Section E, which also gives the Mini issues).
 
 ## 4. Auditing an agent's self-check
 
@@ -141,9 +141,9 @@ SWE-Gym (Pan et al., 2024) and R2E-Gym (Jain et al., 2025) fine-tune a verifier 
 
 ## 6. Limitations
 
-Our finding is about Gemma 4 31B on SWE-bench Verified. We do not know what causes rubber-stamping, or whether Gemma recognizes its own patches or shares the mistakes in them. Our checks on the mixed-harness patches find no support for two simple explanations, Gemma's smaller patches and the issues it cannot solve (Supplement, Section D). Our Gemma patches come from the 4-bit competition checkpoint. Gemma as judge is the hosted model, and OpenRouter sent most of its calls to providers that serve 4-bit or 8-bit weights. We did not record the precision of each call. We repeated the held-out judging with the competition checkpoint served locally. Its leniency on its own failing patches minus other writers' is +13.4 [6.9, 20.0], and we detect no difference from the hosted model (Supplement, Section A).
+Our finding is about Gemma 4 31B on SWE-bench Verified. We do not know what causes rubber-stamping, or whether Gemma recognizes its own patches or shares the mistakes in them. On the mixed-harness patches, neither patch size nor unsolved issues explain it. Among size-matched single-file patches, Gemma's extra leniency is +24.1 [12.7, 39.9], and it scores 95 or above on 66% of failing patches where another attempt solved the issue and 67% where none did (Supplement, Section D). Gemma as judge is the hosted model, served at a precision we did not record. With the 4-bit competition checkpoint that wrote the patches as judge, its leniency on its own failing patches minus other writers' is +13.4 [6.9, 20.0], and we detect no difference from the hosted model (Supplement, Section A).
 
-Other writers' patches keep SWE-bench's official labels, and we graded our Gemma patches ourselves. On 30 issues, 26 other-writer patches got their official label in our environment. All four misses were official passes graded as failures, caused by environment faults and by patches that no longer apply to rebuilt images. If our grading made the same error on Gemma's patches, some of its failing patches would really pass, and a high score on them would look like rubber-stamping. We guarded against both causes: each issue we kept has a reference patch that passes in our environment, and Gemma wrote its patches on the same images. Our own runs made one attempt per issue, and the Mini issues give only 42 matched-harness patches, so the matched-harness rubber-stamp rate rests on 21 failing patches.
+We graded Gemma's patches ourselves, and other writers' patches keep their official labels. In our environment, 26 of 30 other-writer patches got their official label. All four misses were passes graded as failures, from environment faults or patches that no longer apply. The same error on Gemma's patches would put real passes among its failing patches and inflate the rubber-stamp rate. We guarded against both causes: each issue we kept has a reference patch that passes in our environment, and Gemma wrote its patches on the same images. Our own runs made one attempt per issue.
 
 ## 7. Data, code and supplement
 

@@ -1,7 +1,7 @@
 # Gemma 4 Rubber-Stamps Its Own Failing Patches
 
-Gemma 4 gives most of its own failing patches the top score when asked to rank them (without being told who wrote
-them). We find this happens far more often in Gemma 4 compared to other judges. A second judge lets an agent built on
+Gemma 4 gives most of its own failing patches the top score when asked to judge them (without being told who wrote
+them). We find this happens far more often in Gemma 4 than in five other models judging their own patches. A second judge lets an agent built on
 Gemma pick out the patches it can submit without review.
 
 **[Read the paper (PDF)](paper/rubber-stamp.pdf)** and the [supplement (PDF)](paper/rubber-stamp-supplement.pdf).
