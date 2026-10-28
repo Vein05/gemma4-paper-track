@@ -1,0 +1,116 @@
+{
+ "gemma4-31b_lenient_failing_own": 14.065,
+ "gemma4-31b_lenient_failing_control": -2.579,
+ "gemma4-31b_lenient_failing_difference": 16.643,
+ "gemma4-31b_lenient_passing_own": 10.355,
+ "gemma4-31b_lenient_passing_control": 6.991,
+ "gemma4-31b_lenient_passing_difference": 3.365,
+ "gemma4-31b_auroc_own": 0.622,
+ "gemma4-31b_auroc_control": 0.751,
+ "gemma4-31b-local_lenient_failing_own": 10.359,
+ "gemma4-31b-local_lenient_failing_control": -3.087,
+ "gemma4-31b-local_lenient_failing_difference": 13.446,
+ "gemma4-31b-local_lenient_passing_own": 11.566,
+ "gemma4-31b-local_lenient_passing_control": 6.6,
+ "gemma4-31b-local_lenient_passing_difference": 4.966,
+ "gemma4-31b-local_auroc_own": 0.658,
+ "gemma4-31b-local_auroc_control": 0.762,
+ "31b_minus_gemma4-31b-local_lenient_failing_difference": 3.197,
+ "gemma4-31b_lenient_failing_difference_ci95": [
+  10.343,
+  23.065
+ ],
+ "gemma4-31b_lenient_passing_difference_ci95": [
+  -1.978,
+  7.971
+ ],
+ "gemma4-31b_auroc_own_ci95": [
+  0.558,
+  0.687
+ ],
+ "gemma4-31b_auroc_control_ci95": [
+  0.714,
+  0.784
+ ],
+ "gemma4-31b-local_lenient_failing_difference_ci95": [
+  6.859,
+  20.012
+ ],
+ "gemma4-31b-local_lenient_passing_difference_ci95": [
+  0.796,
+  9.043
+ ],
+ "gemma4-31b-local_auroc_own_ci95": [
+  0.59,
+  0.726
+ ],
+ "gemma4-31b-local_auroc_control_ci95": [
+  0.722,
+  0.798
+ ],
+ "31b_minus_gemma4-31b-local_lenient_failing_difference_ci95": [
+  -0.548,
+  7.228
+ ],
+ "gemma4-31b_scored100_own_failing": [
+  52,
+  85
+ ],
+ "gemma4-31b_scored100_control_failing": [
+  136,
+  393
+ ],
+ "gemma4-31b_scored100_own_passing": [
+  81,
+  95
+ ],
+ "gemma4-31b_scored100_control_passing": [
+  304,
+  384
+ ],
+ "gemma4-31b-local_scored100_own_failing": [
+  46,
+  85
+ ],
+ "gemma4-31b-local_scored100_control_failing": [
+  126,
+  393
+ ],
+ "gemma4-31b-local_scored100_own_passing": [
+  81,
+  95
+ ],
+ "gemma4-31b-local_scored100_control_passing": [
+  299,
+  384
+ ],
+ "judges": [
+  "gemma4-31b",
+  "gpt-oss-20b",
+  "qwen35-9b",
+  "glm47-flash",
+  "qwen3-coder",
+  "gpt-oss-120b",
+  "glm-4.5",
+  "kimi-k2",
+  "llama-4-maverick",
+  "gemma4-31b-local"
+ ],
+ "outside_judges": [
+  "gpt-oss-20b",
+  "qwen35-9b",
+  "glm47-flash",
+  "qwen3-coder",
+  "gpt-oss-120b",
+  "glm-4.5",
+  "kimi-k2",
+  "llama-4-maverick"
+ ],
+ "runs": [
+  "main-a",
+  "main-b"
+ ],
+ "issues": 193,
+ "patches_rated_by_all": 957,
+ "patches_left_out": 25
+}
