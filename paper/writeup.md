@@ -37,17 +37,25 @@ different agent programs (harnesses). For other models, we use a single harness 
 different only for Gemma. To remove this difference, we run Gemma 4 31B in mini-SWE-agent ourselves for the same 50
 issues, and also for 193 held-out issues. We randomly sample 200 issues and drop 7 (Section 2).
 
-In Gemma, we find that it tends to assign the highest score to most of its own failing patches, and that outside judges
-score these patches lower. We refer to this as rubber-stamping (Section 3.1). Previous work has shown that neither
-Gemma 3 12B nor Gemma 3 27B exhibit self-preference when judging code (Pombal et al., 2026). Pombal et al. (2026) also
-compare the frequency with which the judge incorrectly indicates that a program passes a unit test when considering its
-own programs versus other families. They find no difference for either model (Section 5). Gemma ties so many patches at
-the top that even a stricter cutoff on Gemma's score does not increase the proportion of patches that pass. However, a
-cutoff on the score of a second model does increase this proportion, and breaking ties based on the length of Gemma's
-agent run also increases the proportion that pass (Section 3.2). Further, we find that Gemma ranks its own patches less
-accurately than outside judges, and that this gap is smaller than in our first look. We argue that this is weaker
-evidence than rubber-stamping (Section 3.3). Finally, we find that five other models do not exhibit extra trust or
-this gap on their own patches (Section 3.4). Section 4 describes the steps to run this audit on another agent.
+We find that Gemma gives the highest score to most of its own failing patches, while outside judges score the same
+patches lower. We call this rubber-stamping. Previous work has shown that neither Gemma 3 12B nor Gemma 3 27B shows
+self-preference when judging code (Pombal et al., 2026). They also find no difference in how often either model wrongly
+says its own program passes a unit test (Section 5). Gemma ranks its own patches a little less accurately than outside
+judges do, but this gap shrinks when Gemma's patches come from the same harness as the other models', so we treat it as
+weaker evidence (Section 3.3). Five other models show no ranking gap and little leniency on their own patches
+(Section 3.4, exploratory).
+
+We make the following contributions:
+
+- **Gemma 4 31B rubber-stamps its own failing patches.** On the held-out issues, Gemma gives 100 to 52 of its 85
+  failing patches, and outside judges score the same patches lower. This share stays near 60% on every patch set we
+  test (Section 3.1).
+- **Gemma's own run tells its patches apart.** Gemma gives 100 to most of its patches, so its score cannot tell which
+  ones to submit. Its agent run can. Among the tied patches, those whose run took fewer model calls pass more often.
+  Submitting the top quarter by this rule raises the share that pass from 61% to 78%, at no extra cost. A second judge,
+  GLM-4.5, raises it to 84% (Section 3.2).
+
+Section 4 describes the steps to run this audit on another agent.
 
 ## 2. Setup
 
