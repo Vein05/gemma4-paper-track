@@ -33,6 +33,19 @@ gave the same answer in 331 of 344 calls. The re-ask limit was 8,000 output toke
 patch sets and 3,000 for the mixed-harness set; other writers' patches on the Mini issues keep their mixed-harness
 scores.
 
+\paragraph{Gemma as judge, served locally.} We repeated the held-out judging with the competition checkpoint itself,
+served by vLLM 0.30.0 on one NVIDIA A100 at temperature 0 with thinking off, under a plan fixed before any score
+(\path{spec/gemma-31b-local-judge.md}). It gave a score to all 1,063 prompts on the first ask (rows:
+\path{scripts/derived/fresh_gemma4-31b-local.jsonl}).
+
+On the paper's patches, the local judge gives 100 to 54\% of Gemma's failing patches and to 32\% of other writers'. % prose-ok: number-dense-paragraph
+The hosted model gives 61\% and 35\%. On failing patches, the local judge's leniency difference is $+13.4$
+[6.9, 20.0]. For the hosted model it is $+16.6$ [10.3, 23.1]. The paired difference, hosted minus local, is $+3.2$
+[$-0.5$, 7.2]. We detect no difference between the two judges, but the interval allows the hosted model to be up to
+7.2 points more lenient. On passing patches, the local judge's leniency difference is $+5.0$ [0.8, 9.0]. For the
+hosted model it is $+3.4$ [$-2.0$, 8.0]. The local judge's AUROC is 0.658 on Gemma's patches and 0.762 on other
+writers'. For the hosted model they are 0.622 and 0.751.
+
 \paragraph{Prompt.} Every judge received the same system and user messages at temperature 0
 (\path{scripts/selfjudge_matrix.py}, \path{scripts/selection_test.py}). Braces mark the parts filled in per patch.
 \begin{promptbox}\ttfamily

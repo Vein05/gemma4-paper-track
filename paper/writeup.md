@@ -13,7 +13,7 @@ not informed as to which model authored the patch and are compared to outside ju
 same patch.
 
 We find that Gemma places the highest score on 52 of 85 of its own failing patches, while outside judges place the
-same patches lower. We also find that Gemma gives no additional trust to its passing patches or to the failing patches
+same patches lower. We also find that Gemma gives little additional trust to its passing patches or to the failing patches
 of other models. Five other models do not exhibit this behavior on their own failing patches. Gemma ties many patches
 at 100, so a stricter cutoff on its score does not raise the share of patches that pass. The quarter of patches Gemma
 trusts most passes 61% of the time, compared to 53% without any check. When we use the GLM-4.5 score, this increases
@@ -123,14 +123,8 @@ answers on the 31 own failing held-out patches that it scored 100 and at least t
 (exploratory). Two coders, both Claude models working apart, agree that Gemma never mentions those judges' main defect
 in 23 of them and names it in 3. They disagree on the other 5 (Supplement, Section D).
 
-Thinking does not stop the rubber-stamping. Chen et al. (2025) find that reasoning before a verdict substantially
-reduces how often a judge prefers its own wrong answer to another model's correct one, in pairwise comparisons on math
-and knowledge questions. Our main runs switch thinking off, although every judge writes a short explanation before
-scoring. We scored the mixed-harness Mini patches again with Gemma's thinking on. Gemma still gives 100 to 62% of its
-own failing patches (61% with thinking off), and its AUROC on its own patches stays at 0.64. Thinking does lower
-its scores on the rest of its own failing patches, from a mean of 34 to 14. Its leniency therefore falls to +11.7
-[1.1, 22.3] points, about half the mixed-harness value in the table above. A self-preference measure that averages
-scores can fall while the self-check gets no better.
+Thinking does not stop the rubber-stamping. On the mixed-harness Mini patches, with thinking on, Gemma still gives
+100 to 62% of its own failing patches, against 61% with thinking off (Supplement, Section D).
 
 ### 3.2 Breaking the tie at 100 picks better patches to submit
 
@@ -208,8 +202,7 @@ whether a second judge also helps choose among attempts at one issue (Supplement
 ## 5. Related work
 
 Judges that favor their own outputs have been studied mostly on text and short programs. Panickssery et al. (2024) link
-the strength of this self-preference to how well a model recognizes its own summaries, and Wataoka et al. (2024) relate
-it to the perplexity of the preferred response. Roytburg et al. (2026) compare a judge's own failing answers with other
+the strength of this self-preference to how well a model recognizes its own summaries. Roytburg et al. (2026) compare a judge's own failing answers with other
 models' failing answers to the same question, and much of the measured self-preference goes away. Our leniency measure
 also compares judges on the same patch. Chen et al. (2025) find that stronger judges more often prefer their own wrong
 answer to a correct one.
@@ -217,15 +210,13 @@ answer to a correct one.
 Two studies are closest to ours. Pombal et al. (2026) check programs from twelve models against unit-test rubrics and
 find that judges favor their own outputs even with objective rubrics. On LiveCodeBench, Gemma 3 12B and 27B do not:
 their ratios are 0.97 and 1.03, where 1 means no self-preference. Khullar et al. (2026) find that a model rates a
-SWE-bench patch as more correct when it is framed as the model's own earlier answer. Ratings separate passing from failing patches with AUROC 0.99 when the patch is
-shown in a user turn instead. They report this for one unnamed model and
+SWE-bench patch as more correct when it is framed as the model's own earlier answer. They report this for one unnamed model and
 do not compare it with other writers' patches. In our setting, the patches come from full agent runs, the judge sees no
 authorship or framing cue, and we measure ranking accuracy against hidden tests with outside judges as the control.
 
-A second model that checks patches is already part of some SWE-bench agents. SWE-Gym (Pan et al., 2024) and R2E-Gym
-(Jain et al., 2025) fine-tune a verifier that reads an agent's run and patch and scores the chance that it passes, and
-they use it to choose one of several attempts at an issue. Our second judge is an off-the-shelf model, and we use it to
-decide which of an agent's patches go out without review.
+SWE-Gym (Pan et al., 2024) and R2E-Gym (Jain et al., 2025) fine-tune a verifier that reads an agent's run and patch,
+and use it to choose one of several attempts at an issue. Our second judge is an off-the-shelf model that decides which
+patches go out without review.
 
 ## 6. Limitations
 
@@ -233,7 +224,9 @@ Our finding is about Gemma 4 31B on SWE-bench Verified. We do not know what caus
 recognizes its own patches or shares the mistakes in them. Our checks on the mixed-harness patches find no support for
 two simple explanations, Gemma's smaller patches and the issues it cannot solve (Supplement, Section D). Our Gemma
 patches come from the 4-bit competition checkpoint. Gemma as judge is the hosted model, and OpenRouter sent most of its
-calls to providers that serve 4-bit or 8-bit weights. We did not record the precision of each call.
+calls to providers that serve 4-bit or 8-bit weights. We did not record the precision of each call. We repeated the
+held-out judging with the competition checkpoint served locally. Its leniency on its own failing patches minus other
+writers' is +13.4 [6.9, 20.0], and we detect no difference from the hosted model (Supplement, Section A).
 
 Other writers' patches keep SWE-bench's official labels, and we graded our Gemma patches ourselves. On 30 issues, 26 other-writer patches got their official label in our environment. All four misses were
 official passes graded as failures, caused by environment faults and by patches that no longer apply to rebuilt images.
@@ -245,14 +238,11 @@ patches.
 
 ## 7. Data, code and supplement
 
-All data are public, and no competition data was sent to an outside service. The repository
-(<https://github.com/Vein05/gemma4-paper-track>) holds Gemma's agent runs, every judge answer and the script behind
-every number. The supplement (`rubber-stamp-supplement.pdf`) holds the exact prompt, per-judge tables and the cost of
-each run (12.36 US dollars of API calls in all).
+<https://github.com/Vein05/gemma4-paper-track>
 
 ## References
 
-<!-- cite: panickssery2024recognize wataoka2024selfpref roytburg2026narcissists chen2025harmful pombal2026rubric khullar2026selfattribution pan2024swegym jain2025r2egym jimenez2023swebench swebenchverifiedmini miniswe swebenchexperiments alphadiana yang2024sweagent -->
+<!-- cite: panickssery2024recognize roytburg2026narcissists chen2025harmful pombal2026rubric khullar2026selfattribution pan2024swegym jain2025r2egym jimenez2023swebench swebenchverifiedmini miniswe swebenchexperiments alphadiana yang2024sweagent -->
 <!-- refs:start -->
 - Wei-Lin Chen, Zhepei Wei, Xinyu Zhu, Shi Feng and Yu Meng. 2025. *Do LLM Evaluators Prefer Themselves for a Reason?* <https://arxiv.org/abs/2504.03846>.
 - Naman Jain, Jaskirat Singh, Manish Shetty, Liang Zheng, Koushik Sen and Ion Stoica. 2025. *R2E-Gym: Procedural Environments and Hybrid Verifiers for Scaling Open-Weights SWE Agents*. <https://arxiv.org/abs/2504.07164>.
@@ -266,6 +256,5 @@ each run (12.36 US dollars of API calls in all).
 - Dani Roytburg, Matthew Bozoukov, Matthew Nguyen, Jou Barzdukas, Mackenzie Puig-Hall and Narmeen Oozeer. 2026. *Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations*. <https://arxiv.org/abs/2601.22548>. ICML 2026 Main.
 - SWE-agent. *mini-SWE-agent*. <https://github.com/SWE-agent/mini-swe-agent>. GitHub repository; accessed 2026-10-05.
 - SWE-bench. *SWE-bench experiments*. <https://github.com/SWE-bench/experiments>. GitHub repository, patches from the swe-bench-submissions bucket, revision 40f164d5, accessed 2026-10-05.
-- Koki Wataoka, Tsubasa Takahashi and Ryokan Ri. 2024. *Self-Preference Bias in LLM-as-a-Judge*. <https://arxiv.org/abs/2410.21819>. Accepted at NeurIPS 2024 Safe Generative AI Workshop.
 - John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan and Ofir Press. 2024. *SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering*. <https://arxiv.org/abs/2405.15793>.
 <!-- refs:end -->
