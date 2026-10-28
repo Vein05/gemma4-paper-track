@@ -26,6 +26,10 @@ checked against its text before they appear in the writeup.
 | yang2026spb | Quantifying and Mitigating Self-Preference Bias of LLM Judges | Jinming Yang; Zheng Hu; Chuxian Qiu; Zhenyu Deng; Xinshan Jiao; Tao Zhou | arXiv preprint 2026 | https://arxiv.org/abs/2604.22891 | 2026-10-05 (arXiv API) |
 | jimenez2023swebench | SWE-bench: Can Language Models Resolve Real-World GitHub Issues? | Carlos E. Jimenez; John Yang; Alexander Wettig; Shunyu Yao; Kexin Pei; Ofir Press; Karthik Narasimhan | ICLR 2024 (arXiv comment, https://openreview.net/forum?id=VTF8yNQM66); arXiv preprint 2023 | https://arxiv.org/abs/2310.06770 | 2026-10-05 (arXiv API) |
 | pombal2026rubric | Self-Preference Bias in Rubric-Based Evaluation of Large Language Models | José Pombal; Ricardo Rei; André F. T. Martins | arXiv preprint 2026 | https://arxiv.org/abs/2604.06996 | 2026-10-05 (arXiv API) |
+| lu2025verification | When Does Verification Pay Off? A Closer Look at LLMs as Solution Verifiers | Jack Lu; Ryan Teehan; Jinran Jin; Mengye Ren | ICLR 2026 AI with Recursive Self-Improvement workshop (arXiv comment); arXiv preprint 2025 | https://arxiv.org/abs/2512.02304 | 2026-10-22 (arXiv API and abs page; text read in arXiv HTML v2) |
+| li2026retrace | Independent Patch Verification for Coding Agents with a Bidirectional Reconstruct-and-Verify Framework | Chenglin Li; Yisen Xu; Zehao Wang; Shin Hwei Tan; Tse-Hsun (Peter) Chen | arXiv preprint 2026 | https://arxiv.org/abs/2608.08950 | 2026-10-22 (arXiv API; last author from the paper's own author line, see note) |
+| pan2024swegym | Training Software Engineering Agents and Verifiers with SWE-Gym | Jiayi Pan; Xingyao Wang; Graham Neubig; Navdeep Jaitly; Heng Ji; Alane Suhr; Yizhe Zhang | ICML 2025 (arXiv comment); arXiv preprint 2024 | https://arxiv.org/abs/2412.21139 | 2026-10-22 (arXiv API; Section 5.1 read in arXiv HTML v2) |
+| jain2025r2egym | R2E-Gym: Procedural Environments and Hybrid Verifiers for Scaling Open-Weights SWE Agents | Naman Jain; Jaskirat Singh; Manish Shetty; Liang Zheng; Koushik Sen; Ion Stoica | arXiv preprint 2025 | https://arxiv.org/abs/2504.07164 | 2026-10-22 (arXiv API; Section 4 read in arXiv HTML v1) |
 | chae2026labels | Self- and Other-Labels Induce Bidirectional Bias in LLM Judges | Songeun Chae; Min Kim; Donghoon Jung; Seojin Choi; Seohyon Jung | EMNLP Findings 2026; arXiv preprint 2026 | https://arxiv.org/abs/2608.18091 | 2026-10-05 (arXiv API) |
 | roytburg2026narcissists | Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations | Dani Roytburg; Matthew Bozoukov; Matthew Nguyen; Jou Barzdukas; Mackenzie Puig-Hall; Narmeen Oozeer | ICML 2026 Main; arXiv preprint 2026 | https://arxiv.org/abs/2601.22548 | 2026-10-05 (arXiv API) |
 | chen2025harmful | Do LLM Evaluators Prefer Themselves for a Reason? | Wei-Lin Chen; Zhepei Wei; Xinyu Zhu; Shi Feng; Yu Meng | arXiv preprint 2025 | https://arxiv.org/abs/2504.03846 | 2026-10-05 (arXiv API) |
@@ -43,3 +47,17 @@ checked against its text before they appear in the writeup.
 
 Notes: Singh et al. (singh2026v1) is no longer needed by the writeup (`notes/reading-self-preference-2026-10-05.md`).
 Pombal et al.'s PDF header says COLM 2026; the arXiv comment does not, so the row says preprint.
+li2026retrace: arXiv's metadata splits the last author into two entries, "Tse-Hsun" and "Chen"; the paper's own author
+line (arXiv HTML v1) reads "Tse-Hsun (Peter) Chen", used above. What it measured (read 2026-10-22, Table 1 and Table 3):
+on SWE-bench Verified in mini-SWE-agent, Self-Refine lowered Pass@1 by 1.4 (GPT-5 mini) and 1.8 (MiniMax M2.5) points;
+on a 120-issue subset in OpenHands it raised Pass@1 by 15.8 and 1.7. RETRACE itself uses the same backbone model as the
+agent and raised Pass@1 by 7.0 and 3.6 points on all 500 issues; its Limitations name a heterogeneous verifier as a
+natural extension. lu2025verification (read 2026-10-22): 37 models, 9 benchmarks (logical reasoning, puzzles, symbolic
+computation, mathematics, commonsense, factual recall, domain knowledge; no code); verification across model families
+is more effective than self-verification or verification within a family, and the benefit falls as solver and
+verifier become more similar.
+pan2024swegym (read 2026-10-22, Section 5.1): trains an outcome-supervised reward model that takes the problem
+statement, the agent trajectory and the current git diff and scores the run's chance of success; Best@K picks the
+highest-scored of K sampled runs per task. jain2025r2egym (read 2026-10-22, Section 4): execution-free verifier =
+Qwen2.5-Coder-14B fine-tuned to predict YES/NO from task description, trajectory and output patch (following Pan et
+al.), combined with execution-based testing agents for inference-time scaling.

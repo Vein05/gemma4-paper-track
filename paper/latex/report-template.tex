@@ -1,0 +1,20 @@
+% Report layout for rubber-stamp.pdf (pandoc template). Text comes from writeup.md through latex/report.lua and
+% latex/postprocess.py; the design is in latex/rubberstamp.sty (shared with the supplement).
+\documentclass[10pt,letterpaper]{article}
+\usepackage{rubberstamp}
+\setcounter{secnumdepth}{0}
+\hypersetup{pdftitle={$title-meta$}}
+\rsfooter{$title-meta$}
+
+\begin{document}
+
+\rstitle{$title$}{$subtitle$}{Supplement: \texttt{rubber-stamp-supplement.pdf}}
+
+\begin{abstractbox}
+{\sffamily\bfseries\normalsize\color{gemma}Abstract}\par\vspace{4pt}
+$abstract$
+\end{abstractbox}
+
+$body$
+
+\end{document}

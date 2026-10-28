@@ -1,0 +1,117 @@
+% Shared design of rubber-stamp.pdf and rubber-stamp-supplement.pdf. Colors follow ../../figures/figure-style.md and
+% the figures: Gemma in its logo blue (#2E96FF; #1A73E8 for text), outside judges green, other models slate,
+% score-100 amber. Citation links violet, URLs teal. Both PDFs compile from paper/ (icons in figures/icons/).
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{rubberstamp}[2026/10/22 Rubber-stamp report design]
+\RequirePackage[T1]{fontenc}
+\RequirePackage[type1,proportional,scale=0.95]{inter}
+\RequirePackage[lining]{sourceserifpro}
+\renewcommand{\familydefault}{\rmdefault}
+\RequirePackage{textcomp}
+\RequirePackage[letterpaper,margin=1in,top=0.9in,bottom=1in,footskip=0.45in]{geometry}
+\RequirePackage{microtype}
+\RequirePackage[table]{xcolor}
+\RequirePackage{graphicx,booktabs,array,calc,float,tabularx,amsmath}
+\RequirePackage[skip=4pt]{caption}
+\RequirePackage{titlesec,enumitem,fancyhdr}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{needspace}
+\RequirePackage{hyperref}
+
+% Colors (palette of figure-style.md)
+\definecolor{ink}{HTML}{111827}
+\definecolor{muted}{HTML}{4B5563}
+\definecolor{faint}{HTML}{9CA3AF}
+\definecolor{rule}{HTML}{E5E7EB}
+\definecolor{panel}{HTML}{F8FAFC}
+\definecolor{headbg}{HTML}{F3F4F6}
+\definecolor{gemma}{HTML}{1A73E8}
+\definecolor{gemmasoft}{HTML}{E8F0FE}
+\definecolor{outside}{HTML}{188038}
+\definecolor{others}{HTML}{475569}
+\definecolor{stamp}{HTML}{B45309}
+\definecolor{citecol}{HTML}{7E22CE}
+\definecolor{linkcol}{HTML}{0E7490}
+\hypersetup{colorlinks=true,linkcolor=ink,urlcolor=linkcol,citecolor=citecol,pdfauthor={Sugam Panthi}}
+\urlstyle{same}
+\AtBeginDocument{\color{ink}}
+
+% Text
+\linespread{1.08}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em plus 0.1em}
+\setlength{\emergencystretch}{2em}
+\raggedbottom
+\setlist{itemsep=0.25em,topsep=0.3em,leftmargin=1.4em}
+\DeclareUnicodeCharacter{2212}{\textminus}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Inline marks (added at build time by postprocess.py and style_supplement.py)
+\newcommand{\icon}[2][1em]{\raisebox{-0.15em}{\includegraphics[height=#1]{figures/icons/#2.pdf}}}
+\newcommand{\gemma}[1]{\textcolor{gemma}{#1}}
+\newcommand{\outside}[1]{\textcolor{outside}{#1}}
+\newcommand{\citelink}[2]{\hyperlink{ref:#1}{\textcolor{citecol}{#2}}}
+
+% Headings: sans; numbers (letters in the supplement) in Gemma blue
+\titleformat{\section}{\sffamily\bfseries\Large\color{ink}}{\textcolor{gemma}{\thesection}}{0.55em}{}
+\titlespacing*{\section}{0pt}{1.4em}{0.5em}
+\titleformat{\subsection}{\sffamily\bfseries\large\color{ink}}{\textcolor{gemma}{\thesubsection}}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{1.1em}{0.35em}
+\titleformat{\paragraph}[runin]{\sffamily\bfseries\small\color{ink}}{}{0pt}{}
+\titlespacing*{\paragraph}{0pt}{0.6em}{0.6em}
+\newcommand{\rsection}[2]{\section[#2]{\ifx&#1&\else\textcolor{gemma}{#1}\hspace{0.5em}\fi#2}}
+\newcommand{\rsubsection}[2]{\subsection[#2]{\textcolor{gemma}{#1}\hspace{0.5em}#2}}
+
+% Figures and tables
+\captionsetup{font={small,sf},labelfont={bf,color=gemma},textfont={color=muted},labelsep=period,justification=raggedright,singlelinecheck=false}
+\floatplacement{figure}{htbp}
+\setlength{\textfloatsep}{14pt plus 4pt}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\floatpagefraction}{0.8}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newenvironment{rtable}{\par\smallskip\begin{center}\sffamily\footnotesize\arrayrulecolor{faint}\renewcommand{\arraystretch}{1.35}}{\end{center}\smallskip}
+% Hand-written tables (supplement) get the same table face; set in the float reset, which runs after the
+% environment's begin hook and would otherwise switch back to the serif default
+\makeatletter
+\def\rs@table{table}
+\g@addto@macro\@floatboxreset{\ifx\@captype\rs@table\sffamily\footnotesize\arrayrulecolor{faint}\renewcommand{\arraystretch}{1.3}\fi}
+\makeatother
+
+% Soft tinted card, no side bar (figure-style.md): abstract, prompt
+\newtcolorbox{abstractbox}{enhanced,colback=panel,colframe=rule,boxrule=0.6pt,arc=6pt,
+  left=12pt,right=12pt,top=9pt,bottom=9pt,fontupper=\small,before skip=14pt,after skip=10pt,
+  before upper={\setlength{\parskip}{0.5em}}}
+\newtcolorbox{promptbox}{enhanced,breakable,colback=panel,colframe=rule,boxrule=0.6pt,arc=6pt,
+  left=10pt,right=10pt,top=7pt,bottom=7pt,fontupper=\footnotesize\raggedright,before skip=8pt,after skip=8pt}
+
+% Title block: \rstitle{title}{subtitle}{companion file text}
+\newcommand{\rstitle}[3]{%
+  \begin{flushleft}
+  {\sffamily\bfseries\fontsize{23}{28}\selectfont #1\par}
+  \if\relax\detokenize{#2}\relax\else
+  \vspace{8pt}
+  {\large\itshape\color{muted}#2\par}
+  \fi
+  \vspace{12pt}
+  {\sffamily\small\textbf{Sugam Panthi}\hspace{0.7em}\textcolor{muted}{\icon[1.05em]{school}\hspace{0.3em}University of Southern Mississippi}\par}
+  \vspace{5pt}
+  {\sffamily\footnotesize\color{muted}\icon[1em]{github}\hspace{0.3em}\href{https://github.com/Vein05/gemma4-paper-track}{github.com/Vein05/gemma4-paper-track}\hspace{1.2em}\icon[1em]{supplement}\hspace{0.3em}#3\hspace{1.2em}\icon[1em]{kaggle}\hspace{0.3em}\href{https://www.kaggle.com/competitions/gemma-4-developer-agent-paper}{Kaggle paper track}\par}
+  \vspace{4pt}
+  {\color{gemma}\rule{\linewidth}{1.2pt}}
+  \end{flushleft}}
+
+% Footer: \rsfooter{left text}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{{\color{rule}\hrule width\headwidth height\footrulewidth}\vskip 4pt}
+\newcommand{\rsfooter}[1]{\fancyfoot[L]{\sffamily\scriptsize\color{muted}#1}}
+\fancyfoot[R]{\sffamily\scriptsize\color{muted}\thepage}
+\fancypagestyle{plain}{}
+\endinput

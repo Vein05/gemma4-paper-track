@@ -1,26 +1,13 @@
-\documentclass{article}
-% Supplement to "Rubber Stamp". Preprint layout: borrows the ICLR 2027 style file for its format only.
-\usepackage{iclr2027_conference,times}
-\iclrfinalcopy
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{microtype}
-\usepackage{hyperref}
-\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black}
-\usepackage{graphicx}
-\usepackage{booktabs}
-\usepackage{float}
-\usepackage{amsmath}
-\usepackage{xcolor}
-\usepackage{tcolorbox}
-\tcbuselibrary{breakable}
+\documentclass[10pt,letterpaper]{article}
+% Supplement to "Gemma 4 Rubber-Stamps Its Own Failing Patches". Design: ../rubberstamp.sty (shared with the paper).
+% Built from paper/ by the Makefile through latex/style_supplement.py (header-row tints, color marks).
+\usepackage{rubberstamp}
 \renewcommand{\thesection}{\Alph{section}}
-\title{Rubber Stamp: Supplement}
-\author{Sugam Panthi \\ University of Southern Mississippi}
+\hypersetup{pdftitle={Gemma 4 Rubber-Stamps Its Own Failing Patches: Supplement}}
+\rsfooter{Gemma 4 Rubber-Stamps Its Own Failing Patches: Supplement}
 \begin{document}
-\maketitle
-\lhead{Preprint, supplement}
-\noindent This supplement accompanies \emph{Rubber Stamp: Gemma~4 Scores Its Own Failing Patches as Sure to Pass}
+\rstitle{Supplement}{Gemma 4 Rubber-Stamps Its Own Failing Patches}{Paper: \texttt{rubber-stamp.pdf}}
+\noindent This supplement accompanies \emph{Gemma~4 Rubber-Stamps Its Own Failing Patches}
 (\texttt{rubber-stamp.pdf}). Terms, patch sets and measures are defined there (Section~2). Every number traces to a
 file in \texttt{scripts/derived/} of the repository, \url{https://github.com/Vein05/gemma4-paper-track}.
 
@@ -37,15 +24,18 @@ in mini-SWE-agent v1.7.0 with its SWE-bench configuration unchanged (250 steps, 
 timeout), served by vLLM with a 131,072-token context on one NVIDIA L40S. Docker was replaced by Apptainer sandboxes
 of the same SWE-bench images; grading used SWE-bench 4.1.0's grading code in the same kind of sandbox.
 
-\paragraph{Judges.} Outside judges for a model exclude its own family and, for each patch, the family of the patch's
-writer. Gemma as judge is the hosted full-precision model; in an earlier one-word check on 173 other patches, it and
-the 4-bit checkpoint gave the same answer in 331 of 344 calls. The re-ask limit was 8,000 output tokens for our own
+\paragraph{Judges.} Outside judges for a model exclude its own family and, for each patch, the family of the patch's % prose-ok: number-dense-paragraph
+writer. Gemma as judge is the hosted model. OpenRouter routed its 1,064 held-out calls to nine providers. Most of them
+(983) went to providers that listed 4-bit or 8-bit weights on 2026-10-05. Of the rest, 79 went to providers that listed
+no precision and 2 to a provider that served bf16. We did not record the precision of each call (provider per call: \path{scripts/derived/fresh_gemma4-31b.jsonl}).
+In an earlier one-word check on 173 other patches, the hosted model pinned to a bf16 provider and the 4-bit checkpoint
+gave the same answer in 331 of 344 calls. The re-ask limit was 8,000 output tokens for our own
 patch sets and 3,000 for the mixed-harness set; other writers' patches on the Mini issues keep their mixed-harness
 scores.
 
 \paragraph{Prompt.} Every judge received the same system and user messages at temperature 0
-(\texttt{scripts/selfjudge\_matrix.py}, \texttt{scripts/selection\_test.py}). Braces mark the parts filled in per patch.
-\begin{tcolorbox}[colback=gray!4,colframe=gray!50,boxrule=0.5pt,arc=1pt,breakable,fontupper=\small\ttfamily]
+(\path{scripts/selfjudge_matrix.py}, \path{scripts/selection_test.py}). Braces mark the parts filled in per patch.
+\begin{promptbox}\ttfamily
 \textbf{System:} You are an expert Python maintainer. You review a proposed fix for a reported issue. You cannot run
 code; judge from the material given.\par\medskip
 \textbf{User:} A user reported the issue below for the repository \{owner/repo\}.\par
@@ -56,7 +46,7 @@ Question: after this patch is applied, will the maintainers' hidden tests for th
 written for the upstream fix. They check the behaviour the issue asks for, and tests that passed before must still
 pass. Explain briefly, then end your reply with a final line that is exactly SCORE: <n>, where n is your probability
 from 0 to 100 that the hidden tests pass.
-\end{tcolorbox}
+\end{promptbox}
 
 
 \section{Agent runs and grading}
@@ -131,23 +121,37 @@ average). Among single-file failing patches, matched by size in four bins, Gemma
 24.1 points [12.7, 39.9] above its leniency on other writers' patches (Table~\ref{tab:size}).
 
 \paragraph{Missing reasoning.} We rated every Mini patch again with Gemma's thinking switched on
-(Table~\ref{tab:think}). Its AUROC on its own patches does not move. The gap shrinks only because thinking makes
-Gemma less accurate on other writers' patches.
+(Table~\ref{tab:think}). Its AUROC on its own patches does not move. It also gives 100 to the same share of its own
+failing patches: 48 of 79 with thinking off and 49 with it on, 40 of them in both. Thinking makes its other scores
+more extreme. The own failing patches it does not score 100 drop from a mean of 34 to 14 ($-19.7$ [$-34.0$, $-4.5$]).
+Its mean leniency on its own failing patches therefore falls from $+12.9$ to $+6.2$ points. On other writers' failing
+patches it rises from $-8.1$ to $-5.5$. The self-judging gap shrinks because thinking makes Gemma less accurate on
+other writers' patches.
+
+Chen et al.\ (2025, cited in the paper) count how often a judge prefers its own wrong answer to another model's
+correct one. Our closest measure pairs Gemma's failing patch with another writer's passing patch on the same issue.
+There are only 52 such pairs. Gemma scores its own patch higher in 17\% of them with thinking off and in 12\% with it
+on, and the two tie in 42\% and 46\%.
 
 \begin{table}[H]
 \centering
 \small
-\caption{Gemma~4 31B with reasoning off and with thinking on, Mini issues, mixed-harness patches.}
+\caption{Gemma~4 31B with reasoning off and with thinking on, Mini issues, mixed-harness patches: the 331 patches that
+all nine judges scored and Gemma scored in both modes (two patches have no thinking score). Leniency is own minus
+other writers' failing patches, as in Section 3.1 of the paper. \texttt{derived/thinking\_mode\_2026-10-22.json}.}
 \label{tab:think}
 \begin{tabular}{@{}lcc@{}}
 \toprule
 & Reasoning off & Thinking on \\
 \midrule
-AUROC, own patches & 0.636 & 0.638 \\
-AUROC, other writers' patches & 0.833 & 0.795 \\
-Own failing patches scored 95 or above & 65\% & 64\% \\
+AUROC, own patches & 0.638 & 0.638 \\
+AUROC, other writers' patches & 0.836 & 0.795 \\
+Own failing patches scored 100 & 61\% & 62\% \\
+Own failing patches scored 95 or above & 66\% & 66\% \\
+Own failing patches below 100, mean score & 34 & 14 \\
 Other writers' failing patches scored 95 or above & 22\% & 35\% \\
-Self-judging gap [95\%] & $+0.135$ [0.060, 0.210] & $+0.097$ [0.010, 0.192] \\
+Leniency [95\%] & $+21.0$ [11.5, 30.3] & $+11.7$ [1.1, 22.3] \\
+Self-judging gap [95\%] & $+0.138$ [0.063, 0.214] & $+0.097$ [0.010, 0.192] \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -156,6 +160,23 @@ Self-judging gap [95\%] & $+0.135$ [0.060, 0.210] & $+0.097$ [0.010, 0.192] \\
 attempts solved (29 patches) and 67\% on issues none solved (51). On other writers' failing patches for the unsolved
 issues, it is slightly stricter than outside judges ($-5.8$ points). So ``a model cannot verify what it cannot solve''
 does not fit.
+
+\paragraph{What Gemma writes when it rubber-stamps (exploratory).} Gemma scored 52 of its own failing held-out patches
+100. At least two outside judges scored 31 of these at 50 or less. We set this rule after a first look at the answers. For each
+case, a coder found the main defect, the reason the low-scoring outside judges give for their low score, and asked
+whether Gemma's answer names it (\texttt{data/hand-codes/}, with the codebook). Two coders coded every case on their own.
+Both were Claude models: Sonnet, then Opus without access to the first coder's codes. The first coded 5 cases as
+naming the defect and the second 6. They agree on 26 of 31 (Cohen's $\kappa = 0.45$): both find the defect never
+mentioned in 23 and named in 3. Two of the five split cases come from choosing the main defect when the outside
+judges name several. The other three turn on whether Gemma describing the flagged change, with no doubt about it,
+counts as naming the defect.
+
+The codebook also asked whether Gemma states the opposite of the outside judges' claim. The two coders
+agree on this in only 13 of 31 cases ($\kappa = 0.03$), so we do not report it. One split case is django-15037. There Gemma
+calls \texttt{to\_fields=[target\_field]} ``the correct way to specify a non-PK reference'', and GLM-4.5 (score 15)
+answers that Django's keyword is \texttt{to\_field}. Two other low-scoring judges give a leftover script in the patch
+as their reason, and Gemma mentions that script.
+\texttt{derived/rubber\_stamp\_reasons\_2026-10-22.json}.
 
 \paragraph{Choosing among attempts.} We split the pass/fail pairs of Gemma's own patches into pairs from the same issue
 and pairs from different issues and computed pair accuracy, with ties counted as half. On 47 same-issue pairs Gemma
@@ -193,11 +214,30 @@ Changed lines & Own failing (n) & Others' failing (n) & Leniency, own & Leniency
 
 
 On the Mini issues, five of the other writers judged their own mini-SWE-agent patches, so the harness is matched for
-them by construction. None shows a gap (Table~\ref{tab:five}); pooled over the five, the gap is $-0.036$ [$-0.089$,
-0.016]. Their leniency on their own failing patches is less clear, because each wrote only 14 to 24 failing patches.
-The point estimates range from $-5.4$ to $+17.5$ points, without intervals. Llama-4-Maverick's ($+17.5$) is close to
-Gemma's, but Maverick also scores other writers' failing patches 95 or above more often than its own (69\% against
-57\%), so it does not single out its own patches the way Gemma does.
+them by construction. None shows a gap (Table~\ref{tab:five}). The pooled gap over the five is $-0.036$ [$-0.089$,
+0.016].
+
+We also measured their leniency on their own failing patches (Table~\ref{tab:fivelen}). The intervals come from the % prose-ok: number-dense-paragraph
+same issue resamples as the gap. We computed them on 2026-10-22, after the point estimates had been seen, under a
+plan that counts a model as lenient only if its interval stays above zero after a Bonferroni correction for five
+models. Each model wrote only 14 to 24 failing patches, so the intervals are wide. The pooled leniency difference
+over the five is $+5.1$ [$-0.8$, 11.0] points. Gemma's is $+20.9$ [11.5, 30.2] on the same issues. That is 15.8 [4.0, 27.7]
+points above the pooled five. By the planned rule, none of the five is shown to be lenient.
+
+Llama-4-Maverick comes closest. Its leniency difference is $+17.5$ [0.6, 32.9], and its Bonferroni interval [$-3.5$, % prose-ok: number-dense-sentence
+38.4] includes zero. Maverick gives high scores to most failing patches, whoever wrote them. It scores 95 or above on
+69\% of other writers' failing patches and on 57\% of its own. So it does not single out its own patches the way Gemma
+does.
+
+On the held-out issues, all nine judges also scored the five writers' own patches, which all come from mini-SWE-agent % prose-ok: number-dense-paragraph
+(Table~\ref{tab:fiveheld}). Each writer has 46 to 123 failing patches there, three to six times as many as on the Mini
+issues. We chose this analysis on 2026-10-22, after the Mini results above and a review of the paper
+(\texttt{spec/other-models-heldout.md}). The code is the Mini code unchanged, and it reproduces Gemma's held-out gap
+and leniency in the paper (Sections 3.1 and 3.3). The pooled gap over the five is $-0.001$ [$-0.031$, 0.029], and the
+pooled leniency difference is $+0.4$ [$-2.5$, 3.4] points. Gemma exceeds the pooled five by 0.075 [0.015, 0.133] in gap
+and by 16.3 [8.9, 23.4] points in leniency. By the same Bonferroni rule, none of the five is shown to have a gap or
+leniency. Llama-4-Maverick's leniency difference falls to $+2.8$ [$-5.0$, 10.8], and it gives 100 to fewer of its own
+failing patches than of other writers' (33\% against 42\%).
 
 \begin{table}[H]
 \centering
@@ -213,6 +253,54 @@ gpt-oss-120b & 0.860 & 0.701 & $-0.046$ [$-0.133$, 0.049] \\
 GLM-4.5 & 0.757 & 0.752 & $-0.047$ [$-0.174$, 0.116] \\
 Kimi-K2 & 0.881 & 0.805 & $-0.036$ [$-0.113$, 0.036] \\
 Llama-4-Maverick & 0.786 & 0.657 & $-0.019$ [$-0.133$, 0.101] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Leniency difference of models judging their own patches on the Mini issues, in points: mean leniency on
+own patches minus mean leniency on other writers' patches. Gemma's patches come from four harnesses, the others' from mini-SWE-agent.}
+\label{tab:fivelen}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+ & Own & \multicolumn{2}{c}{Failing patches} & Passing patches & Failing scored \\
+Model & failing & [95\%] & [Bonferroni 99\%] & [95\%] & 100: own / others' \\
+\midrule
+Qwen3-Coder & 15 & $+4.1$ [$-6.1$, 14.6] & [$-8.2$, 18.3] & $+3.5$ [$-15.5$, 20.8] & 7\% / 0\% \\
+gpt-oss-120b & 24 & $+2.1$ [$-9.1$, 13.0] & [$-11.3$, 15.6] & $+12.1$ [5.1, 19.9] & 0\% / 0\% \\
+GLM-4.5 & 14 & $+7.1$ [$-10.5$, 26.3] & [$-17.7$, 31.6] & $+4.4$ [$-11.4$, 17.5] & 7\% / 16\% \\
+Kimi-K2 & 14 & $-5.4$ [$-17.6$, 7.2] & [$-22.1$, 11.6] & $+4.9$ [$-2.7$, 12.4] & 0\% / 2\% \\
+Llama-4-Maverick & 21 & $+17.5$ [0.6, 32.9] & [$-3.5$, 38.4] & $+7.9$ [$-3.7$, 19.6] & 43\% / 40\% \\
+\midrule
+Pooled, five models & & $+5.1$ [$-0.8$, 11.0] & & & \\
+Gemma 4 31B & 80 & $+20.9$ [11.5, 30.2] & [8.4, 32.6] & $+0.2$ [$-7.6$, 8.7] & 61\% / 20\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Models judging their own patches on the held-out issues (all patches from mini-SWE-agent; exploratory).
+Leniency is the difference on failing patches, in points.}
+\label{tab:fiveheld}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+ & Own & Self-judging gap & \multicolumn{2}{c}{Leniency, failing patches} & Failing scored \\
+Model & failing & [95\%] & [95\%] & [Bonferroni 99\%] & 100: own / others' \\
+\midrule
+Qwen3-Coder & 46 & $-0.040$ [$-0.100$, 0.023] & $-8.1$ [$-15.4$, $-0.5$] & [$-17.3$, 1.9] & 0\% / 0\% \\
+gpt-oss-120b & 109 & $+0.001$ [$-0.066$, 0.073] & $+2.9$ [$-3.3$, 8.8] & [$-5.0$, 10.8] & 0\% / 0\% \\
+GLM-4.5 & 61 & $-0.048$ [$-0.113$, 0.019] & $+0.8$ [$-8.8$, 9.7] & [$-11.8$, 12.3] & 12\% / 9\% \\
+Kimi-K2 & 54 & $+0.035$ [$-0.035$, 0.103] & $+3.5$ [$-3.9$, 10.6] & [$-6.2$, 13.2] & 4\% / 1\% \\
+Llama-4-Maverick & 123 & $+0.048$ [$-0.021$, 0.117] & $+2.8$ [$-5.0$, 10.8] & [$-7.7$, 12.5] & 33\% / 42\% \\
+\midrule
+Pooled, five models & & $-0.001$ [$-0.031$, 0.029] & $+0.4$ [$-2.5$, 3.4] & & \\
+Gemma 4 31B & 85 & $+0.074$ [0.022, 0.126] & $+16.6$ [10.3, 23.1] & [7.6, 24.5] & 61\% / 35\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -306,8 +394,74 @@ Mini, mixed (150) & Gemma & 55.5\% & 55.5\% & 54.7\% \\
 \end{tabular}
 \end{table}
 
+The paper's table shows three second-judge checks, chosen after their AUROCs were seen. Table~\ref{tab:all16} gives
+all 16 checks we ran on the held-out patches. In the top quarter, the median gain over Gemma is $+11.7$ points, and 11
+of the 16 intervals lie above zero. In the top half, the median is $+6.2$ points, with 8 of 16 above zero.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Every second-judge check on Gemma's 180 held-out patches: share passing in the submitted top quarter and top
+half minus Gemma's, in points, with 95\% intervals from 2,000 resamples of issues. ``Gemma + X'' averages the two
+judges' ranks. \texttt{derived/tie\_break\_2026-10-22.json}.}
+\label{tab:all16}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Check & Top quarter & Top half \\
+\midrule
+Gemma + GLM-4.5 & $+25.1$ [14.8, 33.8] & $+11.6$ [6.0, 16.6] \\
+GLM-4.5 & $+22.7$ [12.7, 32.0] & $+12.6$ [6.8, 18.3] \\
+Gemma + Kimi-K2 & $+16.7$ [10.7, 22.9] & $+12.2$ [6.9, 17.7] \\
+Kimi-K2 & $+16.1$ [9.6, 22.5] & $+11.5$ [5.9, 17.6] \\
+Gemma + Qwen3.5-9B & $+14.9$ [6.7, 23.3] & $+6.6$ [1.5, 12.0] \\
+Qwen3.5-9B & $+13.7$ [5.7, 22.2] & $+7.3$ [1.6, 13.5] \\
+Gemma + Qwen3-Coder & $+13.3$ [6.4, 20.6] & $+9.9$ [4.2, 15.6] \\
+Qwen3-Coder & $+12.6$ [5.5, 20.0] & $+11.1$ [4.1, 17.0] \\
+Gemma + gpt-oss-20b & $+10.8$ [3.0, 18.3] & $+3.9$ [$-2.3$, 9.7] \\
+gpt-oss-20b & $+9.6$ [1.6, 17.5] & $+4.3$ [$-2.5$, 11.4] \\
+Gemma + GLM-4.7-Flash & $+9.0$ [2.9, 16.0] & $+4.7$ [$-0.7$, 12.0] \\
+gpt-oss-120b & $+8.1$ [$-1.6$, 17.3] & $+3.5$ [$-2.1$, 10.8] \\
+Gemma + gpt-oss-120b & $+7.5$ [$-2.2$, 17.0] & $+3.5$ [$-2.1$, 9.8] \\
+GLM-4.7-Flash & $+5.8$ [$-1.3$, 13.0] & $+5.8$ [$-2.0$, 12.1] \\
+Gemma + Llama-4-Maverick & $+3.5$ [$-2.4$, 9.6] & $+3.0$ [$-2.7$, 8.5] \\
+Llama-4-Maverick & $+0.1$ [$-6.2$, 6.6] & $+0.1$ [$-6.2$, 6.6] \\
+\midrule
+Median of the 16 & $+11.7$ & $+6.2$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \section{Gemma's own signals}
 \label{app:selffix}
+
+\paragraph{Breaking the tie at 100.} We fixed three tie-breaks on the Mini issues before computing any held-out
+value (Table~\ref{tab:tiebreak}; \texttt{spec/tie-break.md}). Inside Gemma's score, each ranks one kind of patch
+higher: fewer concern words in Gemma's answer, a shorter answer, or fewer model calls in Gemma's agent run. Only our
+own runs record model calls, so that tie-break was chosen on the 32 matched-harness Mini patches Gemma scored 100. On
+the held-out issues, concern words do not help, a shorter answer helps a little, and fewer model calls help most. The
+rule ``Gemma scores 100 and the run used at most 9 model calls'' submits 41 held-out patches (22.8\%). Of these,
+78.0\% pass. Inside the tie, the number of model calls correlates with the outside judges' mean score (Spearman
+$-0.57$), so run length may partly stand for how hard the issue is. Against this tie-break (exploratory), GLM-4.5's
+top quarter passes $+5.9$ points more [$-3.6$, 16.4] and its top half $+1.9$ [$-5.2$, 10.4]. Kimi-K2's differ by
+$-0.8$ [$-10.7$, 10.7] and $+0.7$ [$-6.6$, 9.1].
+
+\begin{table}[H]
+\centering
+\small
+\caption{Tie-breaks inside Gemma's score, fixed on the Mini issues before the held-out test. AUROC inside the tie
+separates passing from failing patches among those Gemma scored 100. Gains are share passing minus Gemma's, in
+points, with 95\% intervals. \texttt{derived/tie\_break\_2026-10-22.json}.}
+\label{tab:tiebreak}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Tie-break & AUROC in tie, Mini & AUROC in tie, held-out & Top quarter & Top half \\
+\midrule
+Fewer concern words & 0.527 (142) & 0.533 [0.438, 0.630] & $+6.1$ [$-4.2$, 16.8] & $0.0$ [$-5.0$, 5.5] \\
+Shorter answer & 0.621 (142) & 0.626 [0.529, 0.717] & $+10.9$ [0.3, 21.7] & $+4.1$ [$-1.4$, 10.5] \\
+Fewer model calls & 0.731 (32) & 0.679 [0.578, 0.769] & $+16.9$ [5.7, 26.8] & $+10.8$ [4.2, 16.5] \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{table}[H]
 \centering

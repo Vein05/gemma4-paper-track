@@ -1,0 +1,59 @@
+# prose-check config for the Gemma 4 paper-track writeup. Rules: writing.md; terms: ../GLOSSARY.md.
+# Tool and rule docs: ../../prose-check/README.md.
+# The agent-style warning on writeup.md comes from "its own" (29 of 32 markers on 2026-10-22), the paper's subject;
+# the other markers are about 1.3 per 1k words. Cut "its own" only where the referent is unclear.
+
+argument_files = ["*.md", "*.tex"]
+
+[thresholds]
+sentence_words_warn = 35
+numbers_per_sentence_warn = 4
+numbers_per_paragraph_warn = 9
+
+[[banned]]
+pattern = '\b(?:additionally|bolstered|crucial|delv(?:e|ing)|diverse array|emphasizing|encompassing|enhancing|evolving landscape|fostering|furthermore|groundbreaking|highlighting|interplay|it is worth noting|leveraging|meticulous(?:ly)?|moreover|notably|pivotal|profound(?:ly)?|serves as|showcasing|stands as|testament|underscores|valuable insights|vital role)\b'
+message = "writing.md: banned word or phrase"
+
+[[banned]]
+pattern = '\b(?:rerun|first-pass|hardened|focal|v2)\b'
+message = "writing.md: names a thing by its history"
+
+[[banned]]
+pattern = '(?i)knows? which,? not whether|knowing[–-]doing|\blane\b|\battack\b|interface tax|tie-free|\bheadroom\b|free parallel attempts'
+message = "GLOSSARY.md: retired label"
+
+[[banned]]
+pattern = '(?i)\b(?:forced choice|AFC|within-issue concordance|concordance|discrimination|resolution|position bias|rollouts?)\b'
+severity = "warn"
+message = "GLOSSARY.md: use the preferred term (comparison, pair accuracy, accuracy on untied pairs, tie rate, order effect, attempt)"
+
+[[banned]]
+pattern = '\b[PC][01]\b'
+severity = "warn"
+message = "writing.md: code label in prose; use the glossary term"
+
+[[banned]]
+pattern = '\bnot just\b.*\bbut also\b'
+message = "writing.md: not just X, but also Y"
+
+[[banned]]
+pattern = '(?i)\bmini50\b|\bmini 50\b|\bfresh[- ]issues?\b|\bmain-[ab]\b|\bsame-harness run\b'
+message = "GLOSSARY.md: internal name for an issue or patch set; use Mini issues, held-out issues, matched-harness patches"
+
+[[banned]]
+pattern = '(?i)\bceiling (?:collapse|effect)\b|\bsaturat(?:ed|es|ion)\b|\bpile-?ups?\b'
+message = "GLOSSARY.md: the name is rubber-stamping; or say how often Gemma gives its own patches 100"
+
+[[banned]]
+pattern = '(?i)\bblind spots?\b|\bself[- ]patches\b|\bself-generated\b|\bcross-judges?\b|\bexternal judges?\b|\bscaffold(?:s|ing)?\b|\bgold tests?\b|\btrajector(?:y|ies)\b|\bself-leniency\b|\bbest-of-n\b'
+severity = "warn"
+message = "GLOSSARY.md: use the preferred term (self-judging gap, own patches, outside judge, harness, hidden tests, attempt, leniency, selection)"
+
+[[banned]]
+pattern = '(?i)as well as any (?:other )?judge|cannot rank its own|\b(?:different|another|other) (?:model )?family (?:fixes|solves|removes|cures)\b'
+message = "not supported by the data (handoff/2026-10-22.md, story review): GLM-4.5 and Kimi-K2 rank others' patches better than Gemma; Gemma's AUROC on its own patches is 0.622; family and judge quality are not separated"
+
+[[banned]]
+pattern = '(?m)(?:^|(?<=[.?!:])\s)(?![^\n]*&)(?-i:(?!(?:Coding|During|Hugging|Nothing|Everything|Something)\b)(?:[A-Z][a-z]+(?:ed|ing)\b[^.?!\n]{0,60},|To [a-z]+\b[^.?!\n]{0,60},|(?:Consider|Suppose|Imagine|Note)\b))'
+severity = "warn"
+message = "user, 2026-10-22: start the sentence with its subject, not a verb or participle ('Pooled, the gap is' -> 'The pooled gap is')"
