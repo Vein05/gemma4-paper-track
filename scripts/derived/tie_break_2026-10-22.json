@@ -1,0 +1,388 @@
+{
+ "heldout": {
+  "patches": 180,
+  "passing": 95,
+  "gemma_100": 133,
+  "passing_at_100": 81
+ },
+ "tie_breaks": {
+  "concern_words": {
+   "mini_tied_patches": 142,
+   "mini_auroc_inside_tie": 0.527,
+   "heldout_auroc_inside_tie": 0.533,
+   "heldout_auroc_inside_tie_ci95": [
+    0.438,
+    0.63
+   ],
+   "heldout_mean_passing_failing_at_100": [
+    2.7,
+    2.8
+   ],
+   "accept_25": {
+    "precision": 0.67,
+    "precision_minus_gemma": 0.061,
+    "ci95": [
+     -0.042,
+     0.168
+    ]
+   },
+   "accept_50": {
+    "precision": 0.609,
+    "precision_minus_gemma": -0.0,
+    "ci95": [
+     -0.05,
+     0.055
+    ]
+   }
+  },
+  "answer_words": {
+   "mini_tied_patches": 142,
+   "mini_auroc_inside_tie": 0.621,
+   "heldout_auroc_inside_tie": 0.626,
+   "heldout_auroc_inside_tie_ci95": [
+    0.529,
+    0.717
+   ],
+   "heldout_mean_passing_failing_at_100": [
+    178.9,
+    192.9
+   ],
+   "accept_25": {
+    "precision": 0.719,
+    "precision_minus_gemma": 0.109,
+    "ci95": [
+     0.003,
+     0.217
+    ]
+   },
+   "accept_50": {
+    "precision": 0.65,
+    "precision_minus_gemma": 0.041,
+    "ci95": [
+     -0.014,
+     0.105
+    ]
+   }
+  },
+  "model_calls": {
+   "mini_tied_patches": 32,
+   "mini_auroc_inside_tie": 0.731,
+   "heldout_auroc_inside_tie": 0.679,
+   "heldout_auroc_inside_tie_ci95": [
+    0.578,
+    0.769
+   ],
+   "heldout_mean_passing_failing_at_100": [
+    13.3,
+    17.9
+   ],
+   "accept_25": {
+    "precision": 0.778,
+    "precision_minus_gemma": 0.169,
+    "ci95": [
+     0.057,
+     0.268
+    ]
+   },
+   "accept_50": {
+    "precision": 0.717,
+    "precision_minus_gemma": 0.108,
+    "ci95": [
+     0.042,
+     0.165
+    ]
+   }
+  }
+ },
+ "model_call_rule": {
+  "at_most_8": {
+   "accepted": 34,
+   "share": 0.189,
+   "precision": 0.794
+  },
+  "at_most_9": {
+   "accepted": 41,
+   "share": 0.228,
+   "precision": 0.78
+  },
+  "at_most_10": {
+   "accepted": 45,
+   "share": 0.25,
+   "precision": 0.778
+  },
+  "at_most_11": {
+   "accepted": 49,
+   "share": 0.272,
+   "precision": 0.776
+  }
+ },
+ "model_calls_spearman_with_outside_mean_inside_tie": -0.574,
+ "judge_minus_model_call_tie_break": {
+  "glm-4.5_accept_25": {
+   "difference": 0.059,
+   "ci95": [
+    -0.036,
+    0.164
+   ]
+  },
+  "glm-4.5_accept_50": {
+   "difference": 0.019,
+   "ci95": [
+    -0.052,
+    0.104
+   ]
+  },
+  "kimi-k2_accept_25": {
+   "difference": -0.008,
+   "ci95": [
+    -0.107,
+    0.107
+   ]
+  },
+  "kimi-k2_accept_50": {
+   "difference": 0.007,
+   "ci95": [
+    -0.066,
+    0.091
+   ]
+  }
+ },
+ "all_checks": {
+  "accept_25": {
+   "median_gain": 0.117,
+   "checks_with_lower_bound_above_zero": 11,
+   "checks": {
+    "gpt-oss-20b": {
+     "gain": 0.096,
+     "ci95": [
+      0.016,
+      0.175
+     ]
+    },
+    "qwen35-9b": {
+     "gain": 0.137,
+     "ci95": [
+      0.057,
+      0.222
+     ]
+    },
+    "glm47-flash": {
+     "gain": 0.058,
+     "ci95": [
+      -0.013,
+      0.13
+     ]
+    },
+    "qwen3-coder": {
+     "gain": 0.126,
+     "ci95": [
+      0.055,
+      0.2
+     ]
+    },
+    "gpt-oss-120b": {
+     "gain": 0.081,
+     "ci95": [
+      -0.016,
+      0.173
+     ]
+    },
+    "glm-4.5": {
+     "gain": 0.227,
+     "ci95": [
+      0.127,
+      0.32
+     ]
+    },
+    "kimi-k2": {
+     "gain": 0.161,
+     "ci95": [
+      0.096,
+      0.225
+     ]
+    },
+    "llama-4-maverick": {
+     "gain": 0.001,
+     "ci95": [
+      -0.062,
+      0.066
+     ]
+    },
+    "gemma_plus_gpt-oss-20b": {
+     "gain": 0.108,
+     "ci95": [
+      0.03,
+      0.183
+     ]
+    },
+    "gemma_plus_qwen35-9b": {
+     "gain": 0.149,
+     "ci95": [
+      0.067,
+      0.233
+     ]
+    },
+    "gemma_plus_glm47-flash": {
+     "gain": 0.09,
+     "ci95": [
+      0.029,
+      0.16
+     ]
+    },
+    "gemma_plus_qwen3-coder": {
+     "gain": 0.133,
+     "ci95": [
+      0.064,
+      0.206
+     ]
+    },
+    "gemma_plus_gpt-oss-120b": {
+     "gain": 0.075,
+     "ci95": [
+      -0.022,
+      0.17
+     ]
+    },
+    "gemma_plus_glm-4.5": {
+     "gain": 0.251,
+     "ci95": [
+      0.148,
+      0.338
+     ]
+    },
+    "gemma_plus_kimi-k2": {
+     "gain": 0.167,
+     "ci95": [
+      0.107,
+      0.229
+     ]
+    },
+    "gemma_plus_llama-4-maverick": {
+     "gain": 0.035,
+     "ci95": [
+      -0.024,
+      0.096
+     ]
+    }
+   }
+  },
+  "accept_50": {
+   "median_gain": 0.062,
+   "checks_with_lower_bound_above_zero": 8,
+   "checks": {
+    "gpt-oss-20b": {
+     "gain": 0.043,
+     "ci95": [
+      -0.025,
+      0.114
+     ]
+    },
+    "qwen35-9b": {
+     "gain": 0.073,
+     "ci95": [
+      0.016,
+      0.135
+     ]
+    },
+    "glm47-flash": {
+     "gain": 0.058,
+     "ci95": [
+      -0.02,
+      0.121
+     ]
+    },
+    "qwen3-coder": {
+     "gain": 0.111,
+     "ci95": [
+      0.041,
+      0.17
+     ]
+    },
+    "gpt-oss-120b": {
+     "gain": 0.035,
+     "ci95": [
+      -0.021,
+      0.108
+     ]
+    },
+    "glm-4.5": {
+     "gain": 0.126,
+     "ci95": [
+      0.068,
+      0.183
+     ]
+    },
+    "kimi-k2": {
+     "gain": 0.115,
+     "ci95": [
+      0.059,
+      0.176
+     ]
+    },
+    "llama-4-maverick": {
+     "gain": 0.001,
+     "ci95": [
+      -0.062,
+      0.066
+     ]
+    },
+    "gemma_plus_gpt-oss-20b": {
+     "gain": 0.039,
+     "ci95": [
+      -0.023,
+      0.097
+     ]
+    },
+    "gemma_plus_qwen35-9b": {
+     "gain": 0.066,
+     "ci95": [
+      0.015,
+      0.12
+     ]
+    },
+    "gemma_plus_glm47-flash": {
+     "gain": 0.047,
+     "ci95": [
+      -0.007,
+      0.12
+     ]
+    },
+    "gemma_plus_qwen3-coder": {
+     "gain": 0.099,
+     "ci95": [
+      0.042,
+      0.156
+     ]
+    },
+    "gemma_plus_gpt-oss-120b": {
+     "gain": 0.035,
+     "ci95": [
+      -0.021,
+      0.098
+     ]
+    },
+    "gemma_plus_glm-4.5": {
+     "gain": 0.116,
+     "ci95": [
+      0.06,
+      0.166
+     ]
+    },
+    "gemma_plus_kimi-k2": {
+     "gain": 0.122,
+     "ci95": [
+      0.069,
+      0.177
+     ]
+    },
+    "gemma_plus_llama-4-maverick": {
+     "gain": 0.03,
+     "ci95": [
+      -0.027,
+      0.085
+     ]
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,338 @@
+{
+ "qwen3-coder": {
+  "self_auroc_own": 0.672,
+  "self_auroc_rest": 0.733,
+  "self_drop": 0.061,
+  "baseline_drop": 0.101,
+  "gap": -0.04,
+  "lenient_difference_failing": -8.088,
+  "stamp100_own_failing": 0.0,
+  "stamp100_other_failing": 0.0,
+  "lenient_difference_passing": 2.677,
+  "gap_ci95": [
+   -0.1,
+   0.023
+  ],
+  "gap_ci99_bonferroni": [
+   -0.118,
+   0.039
+  ],
+  "lenient_difference_failing_ci95": [
+   -15.4,
+   -0.5
+  ],
+  "lenient_difference_failing_ci99_bonferroni": [
+   -17.3,
+   1.9
+  ],
+  "lenient_difference_passing_ci95": [
+   -1.6,
+   6.9
+  ],
+  "lenient_difference_passing_ci99_bonferroni": [
+   -2.6,
+   8.5
+  ],
+  "n": {
+   "own_failing": 46,
+   "own_passing": 108,
+   "other_failing": 432
+  },
+  "outside_judges": [
+   "gemma4-31b",
+   "gpt-oss-20b",
+   "glm47-flash",
+   "gpt-oss-120b",
+   "glm-4.5",
+   "kimi-k2",
+   "llama-4-maverick"
+  ],
+  "spec_role": "tested writer"
+ },
+ "gpt-oss-120b": {
+  "self_auroc_own": 0.778,
+  "self_auroc_rest": 0.712,
+  "self_drop": -0.066,
+  "baseline_drop": -0.067,
+  "gap": 0.001,
+  "lenient_difference_failing": 2.859,
+  "stamp100_own_failing": 0.0,
+  "stamp100_other_failing": 0.0,
+  "lenient_difference_passing": 0.811,
+  "gap_ci95": [
+   -0.066,
+   0.073
+  ],
+  "gap_ci99_bonferroni": [
+   -0.088,
+   0.097
+  ],
+  "lenient_difference_failing_ci95": [
+   -3.3,
+   8.8
+  ],
+  "lenient_difference_failing_ci99_bonferroni": [
+   -5.0,
+   10.8
+  ],
+  "lenient_difference_passing_ci95": [
+   -6.5,
+   7.7
+  ],
+  "lenient_difference_passing_ci99_bonferroni": [
+   -8.6,
+   10.0
+  ],
+  "n": {
+   "own_failing": 109,
+   "own_passing": 47,
+   "other_failing": 369
+  },
+  "outside_judges": [
+   "gemma4-31b",
+   "qwen35-9b",
+   "glm47-flash",
+   "qwen3-coder",
+   "glm-4.5",
+   "kimi-k2",
+   "llama-4-maverick"
+  ],
+  "spec_role": "tested writer"
+ },
+ "glm-4.5": {
+  "self_auroc_own": 0.77,
+  "self_auroc_rest": 0.819,
+  "self_drop": 0.049,
+  "baseline_drop": 0.097,
+  "gap": -0.048,
+  "lenient_difference_failing": 0.83,
+  "stamp100_own_failing": 0.115,
+  "stamp100_other_failing": 0.091,
+  "lenient_difference_passing": 5.552,
+  "gap_ci95": [
+   -0.113,
+   0.019
+  ],
+  "gap_ci99_bonferroni": [
+   -0.129,
+   0.034
+  ],
+  "lenient_difference_failing_ci95": [
+   -8.8,
+   9.7
+  ],
+  "lenient_difference_failing_ci99_bonferroni": [
+   -11.8,
+   12.3
+  ],
+  "lenient_difference_passing_ci95": [
+   1.1,
+   10.3
+  ],
+  "lenient_difference_passing_ci99_bonferroni": [
+   -0.1,
+   11.7
+  ],
+  "n": {
+   "own_failing": 61,
+   "own_passing": 99,
+   "other_failing": 417
+  },
+  "outside_judges": [
+   "gemma4-31b",
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "qwen3-coder",
+   "gpt-oss-120b",
+   "kimi-k2",
+   "llama-4-maverick"
+  ],
+  "spec_role": "tested writer"
+ },
+ "kimi-k2": {
+  "self_auroc_own": 0.713,
+  "self_auroc_rest": 0.809,
+  "self_drop": 0.096,
+  "baseline_drop": 0.061,
+  "gap": 0.035,
+  "lenient_difference_failing": 3.474,
+  "stamp100_own_failing": 0.037,
+  "stamp100_other_failing": 0.014,
+  "lenient_difference_passing": 0.531,
+  "gap_ci95": [
+   -0.035,
+   0.103
+  ],
+  "gap_ci99_bonferroni": [
+   -0.052,
+   0.125
+  ],
+  "lenient_difference_failing_ci95": [
+   -3.9,
+   10.6
+  ],
+  "lenient_difference_failing_ci99_bonferroni": [
+   -6.2,
+   13.2
+  ],
+  "lenient_difference_passing_ci95": [
+   -3.0,
+   4.4
+  ],
+  "lenient_difference_passing_ci99_bonferroni": [
+   -4.2,
+   5.5
+  ],
+  "n": {
+   "own_failing": 54,
+   "own_passing": 84,
+   "other_failing": 424
+  },
+  "outside_judges": [
+   "gemma4-31b",
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "glm47-flash",
+   "qwen3-coder",
+   "gpt-oss-120b",
+   "glm-4.5",
+   "llama-4-maverick"
+  ],
+  "spec_role": "tested writer"
+ },
+ "llama-4-maverick": {
+  "self_auroc_own": 0.735,
+  "self_auroc_rest": 0.657,
+  "self_drop": -0.079,
+  "baseline_drop": -0.126,
+  "gap": 0.048,
+  "lenient_difference_failing": 2.835,
+  "stamp100_own_failing": 0.333,
+  "stamp100_other_failing": 0.423,
+  "lenient_difference_passing": -2.89,
+  "gap_ci95": [
+   -0.021,
+   0.117
+  ],
+  "gap_ci99_bonferroni": [
+   -0.042,
+   0.139
+  ],
+  "lenient_difference_failing_ci95": [
+   -5.0,
+   10.8
+  ],
+  "lenient_difference_failing_ci99_bonferroni": [
+   -7.7,
+   12.5
+  ],
+  "lenient_difference_passing_ci95": [
+   -8.5,
+   2.9
+  ],
+  "lenient_difference_passing_ci99_bonferroni": [
+   -10.6,
+   5.3
+  ],
+  "n": {
+   "own_failing": 123,
+   "own_passing": 46,
+   "other_failing": 355
+  },
+  "outside_judges": [
+   "gemma4-31b",
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "glm47-flash",
+   "qwen3-coder",
+   "gpt-oss-120b",
+   "glm-4.5",
+   "kimi-k2"
+  ],
+  "spec_role": "tested writer"
+ },
+ "gemma4-31b": {
+  "self_auroc_own": 0.622,
+  "self_auroc_rest": 0.751,
+  "self_drop": 0.129,
+  "baseline_drop": 0.055,
+  "gap": 0.074,
+  "lenient_difference_failing": 16.643,
+  "stamp100_own_failing": 0.612,
+  "stamp100_other_failing": 0.346,
+  "lenient_difference_passing": 3.365,
+  "gap_ci95": [
+   0.022,
+   0.126
+  ],
+  "gap_ci99_bonferroni": [
+   0.007,
+   0.143
+  ],
+  "lenient_difference_failing_ci95": [
+   10.3,
+   23.1
+  ],
+  "lenient_difference_failing_ci99_bonferroni": [
+   7.6,
+   24.5
+  ],
+  "lenient_difference_passing_ci95": [
+   -2.0,
+   8.0
+  ],
+  "lenient_difference_passing_ci99_bonferroni": [
+   -3.6,
+   9.9
+  ],
+  "n": {
+   "own_failing": 85,
+   "own_passing": 95,
+   "other_failing": 393
+  },
+  "outside_judges": [
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "glm47-flash",
+   "qwen3-coder",
+   "gpt-oss-120b",
+   "glm-4.5",
+   "kimi-k2",
+   "llama-4-maverick"
+  ],
+  "spec_role": "validity check (published: gap 0.074, leniency 16.6)"
+ },
+ "pooled": {
+  "gap": -0.001,
+  "gap_ci95": [
+   -0.031,
+   0.029
+  ],
+  "lenient_difference_failing": 0.4,
+  "lenient_difference_failing_ci95": [
+   -2.5,
+   3.4
+  ],
+  "writers": [
+   "qwen3-coder",
+   "gpt-oss-120b",
+   "glm-4.5",
+   "kimi-k2",
+   "llama-4-maverick"
+  ],
+  "issues": 193,
+  "patches_rated_by_all": 957,
+  "resamples": 2000,
+  "seed": 0,
+  "gemma_minus_pooled_gap": 0.075,
+  "gemma_minus_pooled_gap_ci95": [
+   0.015,
+   0.133
+  ],
+  "gemma_minus_pooled_lenient_difference_failing": 16.3,
+  "gemma_minus_pooled_lenient_difference_failing_ci95": [
+   8.9,
+   23.4
+  ]
+ }
+}

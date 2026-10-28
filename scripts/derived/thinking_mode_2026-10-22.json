@@ -1,0 +1,235 @@
+{
+ "patches": 331,
+ "left_out_no_thinking_score": 2,
+ "issues": 50,
+ "own": {
+  "passing": 70,
+  "failing": 79
+ },
+ "others": {
+  "passing": 79,
+  "failing": 103
+ },
+ "auroc_own": {
+  "off": 0.638,
+  "off_ci95": [
+   0.559,
+   0.713
+  ],
+  "on": 0.638,
+  "on_ci95": [
+   0.543,
+   0.724
+  ],
+  "on_minus_off": -0.0,
+  "on_minus_off_ci95": [
+   -0.058,
+   0.063
+  ]
+ },
+ "auroc_others": {
+  "off": 0.836,
+  "off_ci95": [
+   0.761,
+   0.899
+  ],
+  "on": 0.795,
+  "on_ci95": [
+   0.717,
+   0.864
+  ],
+  "on_minus_off": -0.041,
+  "on_minus_off_ci95": [
+   -0.093,
+   0.014
+  ]
+ },
+ "self_judging_gap": {
+  "off": 0.138,
+  "off_ci95": [
+   0.063,
+   0.214
+  ],
+  "on": 0.097,
+  "on_ci95": [
+   0.01,
+   0.192
+  ],
+  "on_minus_off": -0.041,
+  "on_minus_off_ci95": [
+   -0.123,
+   0.037
+  ]
+ },
+ "own_failing_ge95": {
+  "off": 0.658,
+  "off_ci95": [
+   0.531,
+   0.78
+  ],
+  "on": 0.658,
+  "on_ci95": [
+   0.532,
+   0.778
+  ],
+  "on_minus_off": 0.0,
+  "on_minus_off_ci95": [
+   -0.103,
+   0.094
+  ]
+ },
+ "own_failing_100": {
+  "off": 0.608,
+  "off_ci95": [
+   0.493,
+   0.722
+  ],
+  "on": 0.62,
+  "on_ci95": [
+   0.484,
+   0.75
+  ],
+  "on_minus_off": 0.013,
+  "on_minus_off_ci95": [
+   -0.092,
+   0.102
+  ]
+ },
+ "own_failing_below_100_mean": {
+  "off": 33.548,
+  "off_ci95": [
+   20.499,
+   46.459
+  ],
+  "on": 13.833,
+  "on_ci95": [
+   5.0,
+   23.705
+  ],
+  "on_minus_off": -19.715,
+  "on_minus_off_ci95": [
+   -34.019,
+   -4.509
+  ]
+ },
+ "others_failing_ge95": {
+  "off": 0.223,
+  "off_ci95": [
+   0.124,
+   0.328
+  ],
+  "on": 0.35,
+  "on_ci95": [
+   0.25,
+   0.451
+  ],
+  "on_minus_off": 0.126,
+  "on_minus_off_ci95": [
+   0.043,
+   0.209
+  ]
+ },
+ "others_failing_100": {
+  "off": 0.204,
+  "off_ci95": [
+   0.108,
+   0.307
+  ],
+  "on": 0.262,
+  "on_ci95": [
+   0.159,
+   0.378
+  ],
+  "on_minus_off": 0.058,
+  "on_minus_off_ci95": [
+   -0.022,
+   0.134
+  ]
+ },
+ "leniency_own_failing": {
+  "off": 12.864,
+  "off_ci95": [
+   5.317,
+   19.828
+  ],
+  "on": 6.218,
+  "on_ci95": [
+   -3.452,
+   15.324
+  ],
+  "on_minus_off": -6.646,
+  "on_minus_off_ci95": [
+   -14.877,
+   0.79
+  ]
+ },
+ "leniency_others_failing": {
+  "off": -8.1,
+  "off_ci95": [
+   -13.929,
+   -2.207
+  ],
+  "on": -5.527,
+  "on_ci95": [
+   -12.489,
+   1.747
+  ],
+  "on_minus_off": 2.573,
+  "on_minus_off_ci95": [
+   -4.714,
+   9.307
+  ]
+ },
+ "leniency_own_minus_others_failing": {
+  "off": 20.964,
+  "off_ci95": [
+   11.453,
+   30.303
+  ],
+  "on": 11.745,
+  "on_ci95": [
+   1.079,
+   22.302
+  ],
+  "on_minus_off": -9.218,
+  "on_minus_off_ci95": [
+   -19.18,
+   0.328
+  ]
+ },
+ "pairs_own_failing_above_other_passing": {
+  "off": 0.173,
+  "off_ci95": [
+   0.018,
+   0.352
+  ],
+  "on": 0.115,
+  "on_ci95": [
+   0.0,
+   0.254
+  ],
+  "on_minus_off": -0.058,
+  "on_minus_off_ci95": [
+   -0.221,
+   0.087
+  ]
+ },
+ "pairs_tied": {
+  "off": 0.423,
+  "off_ci95": [
+   0.1,
+   0.793
+  ],
+  "on": 0.462,
+  "on_ci95": [
+   0.125,
+   0.819
+  ],
+  "on_minus_off": 0.038,
+  "on_minus_off_ci95": [
+   -0.1,
+   0.2
+  ]
+ },
+ "n_pairs": 52
+}

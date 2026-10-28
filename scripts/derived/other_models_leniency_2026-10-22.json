@@ -1,0 +1,205 @@
+{
+ "qwen3-coder": {
+  "lenient_difference_failing": 4.1,
+  "stamp100_own_failing": 0.067,
+  "stamp100_other_failing": 0.0,
+  "lenient_difference_passing": 3.5,
+  "lenient_difference_failing_ci95": [
+   -6.1,
+   14.6
+  ],
+  "lenient_difference_failing_ci99_bonferroni": [
+   -8.2,
+   18.3
+  ],
+  "lenient_difference_failing_resamples_dropped": 0,
+  "lenient_difference_passing_ci95": [
+   -15.5,
+   20.8
+  ],
+  "lenient_difference_passing_ci99_bonferroni": [
+   -25.5,
+   27.1
+  ],
+  "lenient_difference_passing_resamples_dropped": 0,
+  "n": {
+   "own_failing": 15,
+   "own_passing": 11,
+   "other_failing": 168
+  },
+  "spec_role": "tested pair"
+ },
+ "gpt-oss-120b": {
+  "lenient_difference_failing": 2.1,
+  "stamp100_own_failing": 0.0,
+  "stamp100_other_failing": 0.0,
+  "lenient_difference_passing": 12.1,
+  "lenient_difference_failing_ci95": [
+   -9.1,
+   13.0
+  ],
+  "lenient_difference_failing_ci99_bonferroni": [
+   -11.3,
+   15.6
+  ],
+  "lenient_difference_failing_resamples_dropped": 0,
+  "lenient_difference_passing_ci95": [
+   5.1,
+   19.9
+  ],
+  "lenient_difference_passing_ci99_bonferroni": [
+   3.0,
+   22.8
+  ],
+  "lenient_difference_passing_resamples_dropped": 0,
+  "n": {
+   "own_failing": 24,
+   "own_passing": 10,
+   "other_failing": 159
+  },
+  "spec_role": "tested pair"
+ },
+ "glm-4.5": {
+  "lenient_difference_failing": 7.1,
+  "stamp100_own_failing": 0.071,
+  "stamp100_other_failing": 0.16,
+  "lenient_difference_passing": 4.4,
+  "lenient_difference_failing_ci95": [
+   -10.5,
+   26.3
+  ],
+  "lenient_difference_failing_ci99_bonferroni": [
+   -17.7,
+   31.6
+  ],
+  "lenient_difference_failing_resamples_dropped": 0,
+  "lenient_difference_passing_ci95": [
+   -11.4,
+   17.5
+  ],
+  "lenient_difference_passing_ci99_bonferroni": [
+   -16.6,
+   20.7
+  ],
+  "lenient_difference_passing_resamples_dropped": 0,
+  "n": {
+   "own_failing": 14,
+   "own_passing": 21,
+   "other_failing": 169
+  },
+  "spec_role": "tested pair"
+ },
+ "kimi-k2": {
+  "lenient_difference_failing": -5.4,
+  "stamp100_own_failing": 0.0,
+  "stamp100_other_failing": 0.024,
+  "lenient_difference_passing": 4.9,
+  "lenient_difference_failing_ci95": [
+   -17.6,
+   7.2
+  ],
+  "lenient_difference_failing_ci99_bonferroni": [
+   -22.1,
+   11.6
+  ],
+  "lenient_difference_failing_resamples_dropped": 0,
+  "lenient_difference_passing_ci95": [
+   -2.7,
+   12.4
+  ],
+  "lenient_difference_passing_ci99_bonferroni": [
+   -5.4,
+   14.7
+  ],
+  "lenient_difference_passing_resamples_dropped": 0,
+  "n": {
+   "own_failing": 14,
+   "own_passing": 12,
+   "other_failing": 169
+  },
+  "spec_role": "tested pair"
+ },
+ "llama-4-maverick": {
+  "lenient_difference_failing": 17.5,
+  "stamp100_own_failing": 0.429,
+  "stamp100_other_failing": 0.401,
+  "lenient_difference_passing": 7.9,
+  "lenient_difference_failing_ci95": [
+   0.6,
+   32.9
+  ],
+  "lenient_difference_failing_ci99_bonferroni": [
+   -3.5,
+   38.4
+  ],
+  "lenient_difference_failing_resamples_dropped": 0,
+  "lenient_difference_passing_ci95": [
+   -3.7,
+   19.6
+  ],
+  "lenient_difference_passing_ci99_bonferroni": [
+   -8.7,
+   22.4
+  ],
+  "lenient_difference_passing_resamples_dropped": 1,
+  "n": {
+   "own_failing": 21,
+   "own_passing": 8,
+   "other_failing": 162
+  },
+  "spec_role": "tested pair"
+ },
+ "gemma4-31b": {
+  "lenient_difference_failing": 20.9,
+  "stamp100_own_failing": 0.613,
+  "stamp100_other_failing": 0.204,
+  "lenient_difference_passing": 0.2,
+  "lenient_difference_failing_ci95": [
+   11.5,
+   30.2
+  ],
+  "lenient_difference_failing_ci99_bonferroni": [
+   8.4,
+   32.6
+  ],
+  "lenient_difference_failing_resamples_dropped": 0,
+  "lenient_difference_passing_ci95": [
+   -7.6,
+   8.7
+  ],
+  "lenient_difference_passing_ci99_bonferroni": [
+   -9.5,
+   11.2
+  ],
+  "lenient_difference_passing_resamples_dropped": 0,
+  "n": {
+   "own_failing": 80,
+   "own_passing": 70,
+   "other_failing": 103
+  },
+  "spec_role": "reference (not counted)"
+ },
+ "pooled": {
+  "lenient_difference_failing": 5.1,
+  "lenient_difference_failing_ci95": [
+   -0.8,
+   11.0
+  ],
+  "gemma_minus_pooled": 15.8,
+  "gemma_minus_pooled_ci95": [
+   4.0,
+   27.7
+  ],
+  "pairs": [
+   "qwen3-coder",
+   "gpt-oss-120b",
+   "glm-4.5",
+   "kimi-k2",
+   "llama-4-maverick"
+  ],
+  "patches_rated_by_all": 333,
+  "patches_left_out": 55,
+  "resamples": 2000,
+  "seed": 0
+ }
+}

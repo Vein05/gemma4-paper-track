@@ -1,0 +1,42 @@
+{
+ "rule": "own failing held-out patch, Gemma 100, at least two outside judges <= 50",
+ "own_failing_scored_100": 52,
+ "cases": 31,
+ "code": {
+  "agreement": 0.839,
+  "kappa": 0.448
+ },
+ "opposite": {
+  "agreement": 0.419,
+  "kappa": 0.028
+ },
+ "coder_a": {
+  "named": 5,
+  "not_named": 26,
+  "opposite": 7,
+  "named_share": 0.161,
+  "named_share_ci95": [
+   0.032,
+   0.29
+  ]
+ },
+ "coder_b": {
+  "named": 6,
+  "not_named": 25,
+  "opposite": 21,
+  "named_share": 0.194,
+  "named_share_ci95": [
+   0.065,
+   0.355
+  ]
+ },
+ "named_by_both": 3,
+ "named_by_either": 8,
+ "disagreements": [
+  "django__django-15037|gemma-4-31b|8f277655",
+  "django__django-16950|gemma-4-31b|0e837181",
+  "pylint-dev__pylint-7080|gemma-4-31b|383e04ac",
+  "pylint-dev__pylint-8898|gemma-4-31b|7e48b0b1",
+  "sympy__sympy-23413|gemma-4-31b|b314fc72"
+ ]
+}

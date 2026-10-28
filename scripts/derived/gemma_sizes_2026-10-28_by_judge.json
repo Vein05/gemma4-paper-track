@@ -1,0 +1,147 @@
+{
+ "gemma4-31b": {
+  "lenient_failing_own": 14.065,
+  "lenient_failing_control": -2.579,
+  "lenient_failing_difference": 16.643,
+  "lenient_passing_own": 10.355,
+  "lenient_passing_control": 6.915,
+  "lenient_passing_difference": 3.441,
+  "auroc_own": 0.622,
+  "auroc_control": 0.75,
+  "lenient_failing_difference_ci95": [
+   10.343,
+   23.065
+  ],
+  "lenient_passing_difference_ci95": [
+   -1.882,
+   8.032
+  ],
+  "auroc_own_ci95": [
+   0.558,
+   0.687
+  ],
+  "auroc_control_ci95": [
+   0.713,
+   0.783
+  ],
+  "scored100_own_failing": [
+   52,
+   85
+  ],
+  "scored100_control_failing": [
+   136,
+   393
+  ],
+  "scored100_own_passing": [
+   81,
+   95
+  ],
+  "scored100_control_passing": [
+   301,
+   381
+  ],
+  "issues": 193,
+  "patches_rated_by_all": 954,
+  "patches_left_out": 28
+ },
+ "gemma4-12b": {
+  "lenient_failing_own": -9.641,
+  "lenient_failing_control": -10.047,
+  "lenient_failing_difference": 0.406,
+  "lenient_passing_own": -3.75,
+  "lenient_passing_control": -5.316,
+  "lenient_passing_difference": 1.566,
+  "auroc_own": 0.665,
+  "auroc_control": 0.722,
+  "lenient_failing_difference_ci95": [
+   -6.824,
+   7.409
+  ],
+  "lenient_passing_difference_ci95": [
+   -5.194,
+   8.201
+  ],
+  "auroc_own_ci95": [
+   0.587,
+   0.74
+  ],
+  "auroc_control_ci95": [
+   0.675,
+   0.765
+  ],
+  "scored100_own_failing": [
+   27,
+   85
+  ],
+  "scored100_control_failing": [
+   95,
+   393
+  ],
+  "scored100_own_passing": [
+   60,
+   95
+  ],
+  "scored100_control_passing": [
+   226,
+   381
+  ],
+  "31b_minus_size_lenient_failing_difference": 16.238,
+  "31b_minus_size_lenient_failing_difference_ci95": [
+   6.242,
+   26.071
+  ],
+  "issues": 193,
+  "patches_rated_by_all": 954,
+  "patches_left_out": 28
+ },
+ "gemma4-26b-a4b": {
+  "lenient_failing_own": 4.182,
+  "lenient_failing_control": 0.259,
+  "lenient_failing_difference": 3.924,
+  "lenient_passing_own": 3.882,
+  "lenient_passing_control": 4.946,
+  "lenient_passing_difference": -1.065,
+  "auroc_own": 0.663,
+  "auroc_control": 0.729,
+  "lenient_failing_difference_ci95": [
+   -4.051,
+   11.768
+  ],
+  "lenient_passing_difference_ci95": [
+   -7.202,
+   5.098
+  ],
+  "auroc_own_ci95": [
+   0.592,
+   0.735
+  ],
+  "auroc_control_ci95": [
+   0.69,
+   0.767
+  ],
+  "scored100_own_failing": [
+   34,
+   85
+  ],
+  "scored100_control_failing": [
+   130,
+   393
+  ],
+  "scored100_own_passing": [
+   69,
+   95
+  ],
+  "scored100_control_passing": [
+   271,
+   381
+  ],
+  "31b_minus_size_lenient_failing_difference": 12.72,
+  "31b_minus_size_lenient_failing_difference_ci95": [
+   5.063,
+   20.777
+  ],
+  "issues": 193,
+  "patches_rated_by_all": 954,
+  "patches_left_out": 28
+ }
+}

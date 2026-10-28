@@ -1,0 +1,162 @@
+{
+ "gemma4-31b_lenient_failing_own": 14.065,
+ "gemma4-31b_lenient_failing_control": -2.579,
+ "gemma4-31b_lenient_failing_difference": 16.643,
+ "gemma4-31b_lenient_passing_own": 10.355,
+ "gemma4-31b_lenient_passing_control": 6.915,
+ "gemma4-31b_lenient_passing_difference": 3.441,
+ "gemma4-31b_auroc_own": 0.622,
+ "gemma4-31b_auroc_control": 0.75,
+ "gemma4-12b_lenient_failing_own": -9.641,
+ "gemma4-12b_lenient_failing_control": -10.047,
+ "gemma4-12b_lenient_failing_difference": 0.406,
+ "gemma4-12b_lenient_passing_own": -3.75,
+ "gemma4-12b_lenient_passing_control": -5.316,
+ "gemma4-12b_lenient_passing_difference": 1.566,
+ "gemma4-12b_auroc_own": 0.665,
+ "gemma4-12b_auroc_control": 0.722,
+ "gemma4-26b-a4b_lenient_failing_own": 4.182,
+ "gemma4-26b-a4b_lenient_failing_control": 0.259,
+ "gemma4-26b-a4b_lenient_failing_difference": 3.924,
+ "gemma4-26b-a4b_lenient_passing_own": 3.882,
+ "gemma4-26b-a4b_lenient_passing_control": 4.946,
+ "gemma4-26b-a4b_lenient_passing_difference": -1.065,
+ "gemma4-26b-a4b_auroc_own": 0.663,
+ "gemma4-26b-a4b_auroc_control": 0.729,
+ "31b_minus_gemma4-12b_lenient_failing_difference": 16.238,
+ "31b_minus_gemma4-26b-a4b_lenient_failing_difference": 12.72,
+ "gemma4-31b_lenient_failing_difference_ci95": [
+  10.343,
+  23.065
+ ],
+ "gemma4-31b_lenient_passing_difference_ci95": [
+  -1.882,
+  8.032
+ ],
+ "gemma4-31b_auroc_own_ci95": [
+  0.558,
+  0.687
+ ],
+ "gemma4-31b_auroc_control_ci95": [
+  0.713,
+  0.783
+ ],
+ "gemma4-12b_lenient_failing_difference_ci95": [
+  -6.824,
+  7.409
+ ],
+ "gemma4-12b_lenient_passing_difference_ci95": [
+  -5.194,
+  8.201
+ ],
+ "gemma4-12b_auroc_own_ci95": [
+  0.587,
+  0.74
+ ],
+ "gemma4-12b_auroc_control_ci95": [
+  0.675,
+  0.765
+ ],
+ "gemma4-26b-a4b_lenient_failing_difference_ci95": [
+  -4.051,
+  11.768
+ ],
+ "gemma4-26b-a4b_lenient_passing_difference_ci95": [
+  -7.202,
+  5.098
+ ],
+ "gemma4-26b-a4b_auroc_own_ci95": [
+  0.592,
+  0.735
+ ],
+ "gemma4-26b-a4b_auroc_control_ci95": [
+  0.69,
+  0.767
+ ],
+ "31b_minus_gemma4-12b_lenient_failing_difference_ci95": [
+  6.242,
+  26.071
+ ],
+ "31b_minus_gemma4-26b-a4b_lenient_failing_difference_ci95": [
+  5.063,
+  20.777
+ ],
+ "gemma4-31b_scored100_own_failing": [
+  52,
+  85
+ ],
+ "gemma4-31b_scored100_control_failing": [
+  136,
+  393
+ ],
+ "gemma4-31b_scored100_own_passing": [
+  81,
+  95
+ ],
+ "gemma4-31b_scored100_control_passing": [
+  301,
+  381
+ ],
+ "gemma4-12b_scored100_own_failing": [
+  27,
+  85
+ ],
+ "gemma4-12b_scored100_control_failing": [
+  95,
+  393
+ ],
+ "gemma4-12b_scored100_own_passing": [
+  60,
+  95
+ ],
+ "gemma4-12b_scored100_control_passing": [
+  226,
+  381
+ ],
+ "gemma4-26b-a4b_scored100_own_failing": [
+  34,
+  85
+ ],
+ "gemma4-26b-a4b_scored100_control_failing": [
+  130,
+  393
+ ],
+ "gemma4-26b-a4b_scored100_own_passing": [
+  69,
+  95
+ ],
+ "gemma4-26b-a4b_scored100_control_passing": [
+  271,
+  381
+ ],
+ "judges": [
+  "gemma4-31b",
+  "gpt-oss-20b",
+  "qwen35-9b",
+  "glm47-flash",
+  "qwen3-coder",
+  "gpt-oss-120b",
+  "glm-4.5",
+  "kimi-k2",
+  "llama-4-maverick",
+  "gemma4-12b",
+  "gemma4-26b-a4b"
+ ],
+ "outside_judges": [
+  "gpt-oss-20b",
+  "qwen35-9b",
+  "glm47-flash",
+  "qwen3-coder",
+  "gpt-oss-120b",
+  "glm-4.5",
+  "kimi-k2",
+  "llama-4-maverick"
+ ],
+ "runs": [
+  "main-a",
+  "main-b"
+ ],
+ "issues": 193,
+ "patches_rated_by_all": 954,
+ "patches_left_out": 28
+}

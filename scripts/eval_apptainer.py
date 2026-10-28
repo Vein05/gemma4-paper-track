@@ -6,11 +6,12 @@ SWE-bench image, then grade the log with swebench's own grading code (spec/fresh
     python3 eval_apptainer.py validate --entry 20250807_mini-v1.7.0_gpt-oss-120b --n 30 --out val.jsonl
   eval: grade predictions (JSONL with instance_id, model_patch).
     python3 eval_apptainer.py eval --preds preds.jsonl --out labels.jsonl
+  Other datasets (spec/multilingual-replication.md): --dataset <local parquet file> --bucket-dir multilingual
 
 Environment: APPTAINER (binary), WORK (scratch dir for sandboxes and logs), HF_HOME, APPTAINER_EXEC_FLAGS and
-APPTAINER_MOUNT_DIRS (as in run_gemma_mini.py).
+APPTAINER_MOUNT_DIRS (as in run_gemma_mini.py), SIF_DIR (optional: pull each image once into this folder).
 """
-import argparse, concurrent.futures as cf, json, os, random, re, shutil, subprocess, time, urllib.request, uuid
+import argparse, concurrent.futures as cf, fcntl, json, os, random, re, shutil, subprocess, time, urllib.request, uuid
 
 from datasets import load_dataset
 from swebench.harness.grading import get_eval_report
@@ -20,6 +21,7 @@ APPTAINER = os.environ.get("APPTAINER", "apptainer")
 WORK = os.environ.get("WORK", os.path.abspath("work"))
 EXEC_FLAGS = os.environ.get("APPTAINER_EXEC_FLAGS", "--fakeroot --ignore-subuid").split()
 MOUNT_DIRS = [d for d in os.environ.get("APPTAINER_MOUNT_DIRS", "").split(",") if d]
+SIF_DIR = os.environ.get("SIF_DIR")  # local copies of the images (local_image)
 LOG_DIR = None  # set in main(): <dir of --out>/eval_logs
 BUCKET = "https://swe-bench-submissions.s3.amazonaws.com"
 BUILD_TIMEOUT = int(os.environ.get("BUILD_TIMEOUT", 3600))  # matplotlib sandboxes take about 20 min on MCSR's Lustre
@@ -28,7 +30,39 @@ APPLY = ["git apply --verbose /patch.diff", "git apply --verbose --reject /patch
 
 
 def image(iid):
-    return f"docker://swebench/sweb.eval.x86_64.{iid.replace('__', '_1776_')}:latest"
+    return local_image(f"docker://swebench/sweb.eval.x86_64.{iid.replace('__', '_1776_').lower()}:latest")
+
+
+def local_image(ref):
+    """With SIF_DIR set, pull a docker:// image once into SIF_DIR and return the file, so later sandboxes need no pull.
+    Docker Hub allows the lab server 100 pulls an hour (2026-10-23): a TOOMANYREQUESTS answer waits instead of failing."""
+    if not SIF_DIR or not ref.startswith("docker://"):
+        return ref
+    os.makedirs(SIF_DIR, exist_ok=True)
+    path = os.path.join(SIF_DIR, ref.rsplit("/", 1)[-1].split(":")[0] + ".sif")
+    with open(path + ".lock", "w") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)  # one pull per image across processes
+        for attempt in range(40):
+            if os.path.exists(path):
+                return path
+            tmp = f"{path[:-4]}.tmp{os.getpid()}.sif"
+            r = subprocess.run([APPTAINER, "pull", "--disable-cache", tmp, ref], capture_output=True, text=True)
+            if r.returncode == 0:
+                os.rename(tmp, path)
+                return path
+            if os.path.exists(tmp):
+                os.remove(tmp)
+            limited = "TOOMANYREQUESTS" in r.stdout + r.stderr
+            if not limited and attempt >= 2:
+                break
+            time.sleep(600 if limited else 60)
+    raise RuntimeError(f"pull failed: {ref}: {(r.stdout + r.stderr)[-500:]}")
+
+
+def remove(path):
+    """Delete a sandbox. Go's module cache is read-only, so make everything writable first (2026-10-23)."""
+    subprocess.run(["chmod", "-R", "u+rwX", path], capture_output=True)  # rwX: some folders lack u+x (caddy)
+    shutil.rmtree(path, ignore_errors=True)
 
 
 def run(cmd, timeout):
@@ -49,7 +83,7 @@ def grade(inst, patch, tag, timeout=1800):
             b = run([APPTAINER, "build", "--sandbox", sbx, image(iid)], BUILD_TIMEOUT)
             if not b.returncode:
                 break
-            shutil.rmtree(sbx, ignore_errors=True)
+            remove(sbx)
             time.sleep(60)
         secs["build"] = round(time.time() - t0)
         if b.returncode:
@@ -87,13 +121,15 @@ def grade(inst, patch, tag, timeout=1800):
     except subprocess.TimeoutExpired as e:
         out = e.output.decode(errors="replace") if isinstance(e.output, bytes) else (e.output or "")
         return dict(instance_id=iid, resolved=False, status="timeout", step=step, secs=secs, detail=out[-2000:])
+    except RuntimeError as e:  # local_image could not pull the image
+        return dict(instance_id=iid, resolved=None, status="build_error", detail=str(e)[-500:], secs=secs)
     finally:
-        shutil.rmtree(sbx, ignore_errors=True)
+        remove(sbx)
 
 
-def fetch(entry, iid, name):
+def fetch(entry, iid, name, bucket_dir="bash-only"):
     try:
-        return urllib.request.urlopen(f"{BUCKET}/bash-only/{entry}/logs/{iid}/{name}", timeout=60).read().decode()
+        return urllib.request.urlopen(f"{BUCKET}/{bucket_dir}/{entry}/logs/{iid}/{name}", timeout=60).read().decode()
     except Exception:
         return None
 
@@ -111,10 +147,11 @@ def validate(a, insts):
         repo = sorted(by_repo)[i % len(by_repo)]; i += 1
         while by_repo[repo]:
             iid = by_repo[repo].pop()
-            rep, patch = fetch(a.entry, iid, "report.json"), fetch(a.entry, iid, "patch.diff")
+            rep, patch = fetch(a.entry, iid, "report.json", a.bucket_dir), fetch(a.entry, iid, "patch.diff", a.bucket_dir)
             if not rep or not patch or not patch.strip():
                 continue
-            res = json.loads(rep)[iid]["resolved"]
+            r = json.loads(rep)
+            res = r.get(iid, r)["resolved"]  # most reports are keyed by issue id; GLM-4.5's are not
             if res == want:
                 cands.append((iid, patch, res)); want = not want
                 break
@@ -138,11 +175,15 @@ def main():
     e = sub.add_parser("eval"); e.add_argument("--preds", required=True)
     for p in (v, e):
         p.add_argument("--out", required=True); p.add_argument("--workers", type=int, default=6)
+        p.add_argument("--dataset", default="princeton-nlp/SWE-bench_Verified", help="Hugging Face name or local parquet")
+    v.add_argument("--bucket-dir", default="bash-only", help="folder of the entry in the submissions bucket")
     a = ap.parse_args()
     global LOG_DIR
     LOG_DIR = os.path.join(os.path.dirname(os.path.abspath(a.out)), "eval_logs")
     os.makedirs(WORK, exist_ok=True)
-    insts = {r["instance_id"]: r for r in load_dataset("princeton-nlp/SWE-bench_Verified", split="test")}
+    ds = (load_dataset("parquet", data_files=a.dataset, split="train") if a.dataset.endswith(".parquet")
+          else load_dataset(a.dataset, split="test"))
+    insts = {r["instance_id"]: r for r in ds}
     if a.cmd == "validate":
         validate(a, insts)
     else:
