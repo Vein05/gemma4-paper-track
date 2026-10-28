@@ -32,3 +32,7 @@ and one patch, never the author.
 | [`data/`](data/) | Gemma 4 31B's agent runs (patches, labels, trajectories) and the public patches we judged; sources in `data/README.md`. |
 | [`scripts/`](scripts/) | Agent runner, grading, judging and analysis code; `scripts/derived/` holds every judge answer and the summaries behind each number. |
 | [`spec/`](spec/) | Analysis plans, each committed before its data was computed. |
+
+## AI disclosure
+
+Claude Opus 5.5 was used in this project.
