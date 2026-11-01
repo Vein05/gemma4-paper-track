@@ -9,17 +9,13 @@ patches. -->
 To determine when a patch is complete, many coding agents ask the model that authored the patch. Self-evaluation of a
 patch works best if the model evaluates its own patches as accurately as it evaluates others' patches. We
 evaluate how well Gemma 4 31B self-evaluates its patches using the SWE-bench Verified dataset. Nine open models
-evaluate each patch from 0 to 100, representing the likelihood that the patch will pass hidden tests. The judges are
-not informed as to which model authored the patch and are compared to outside judges from other model families on the
-same patch.
+rate the likelihood that each patch will pass hidden tests. The judges are not informed as to which model authored the
+patch and are compared to outside judges from other model families on the same patch.
 
 We find that Gemma places the highest score on 52 of 85 of its own failing patches, while outside judges place the
 same patches lower. We also find that Gemma gives little additional trust to its passing patches or to the failing patches
-of other models. We detect no comparable effect in five other models on their own failing patches. The quarter of patches
-Gemma trusts most passes 61% of the time, compared to 53% without any check. Gemma ties many patches at 100, so a
-stricter cutoff on its score cannot raise this above 61%. When we use the GLM-4.5 score, this increases
-to 84%. When we break ties in Gemma's score by the length of its agent run, this increases to 78% without a second
-model. We find that Gemma 4 rubber-stamps its own mistakes, so the agent built on it needs a second signal to determine
+of other models. We detect no comparable effect in five other models on their own failing patches. Gemma ties many
+patches at the top score, so its score cannot select which patches to submit. In all, Gemma 4 rubber-stamps its own mistakes, so the agent built on it needs a second signal to determine
 which patches to submit.
 
 ## 1. Introduction
