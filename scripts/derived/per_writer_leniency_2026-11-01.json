@@ -1,0 +1,389 @@
+{
+ "held-out": {
+  "items": 957,
+  "per_writer": {
+   "gemma-4-31b": {
+    "failing": 85,
+    "pass_rate": 0.528,
+    "gemma_leniency_failing": 14.1,
+    "gemma_scored100_failing": 52,
+    "gemma_scored100_failing_share": 0.612
+   },
+   "glm-4.5": {
+    "failing": 61,
+    "pass_rate": 0.619,
+    "gemma_leniency_failing": 4.1,
+    "gemma_scored100_failing": 34,
+    "gemma_scored100_failing_share": 0.557,
+    "own_minus_this_writer": 10.0,
+    "own_minus_this_writer_ci95": [
+     0.9,
+     19.0
+    ]
+   },
+   "gpt-oss-120b": {
+    "failing": 109,
+    "pass_rate": 0.301,
+    "gemma_leniency_failing": -8.1,
+    "gemma_scored100_failing": 27,
+    "gemma_scored100_failing_share": 0.248,
+    "own_minus_this_writer": 22.2,
+    "own_minus_this_writer_ci95": [
+     13.8,
+     30.6
+    ]
+   },
+   "kimi-k2": {
+    "failing": 54,
+    "pass_rate": 0.609,
+    "gemma_leniency_failing": 8.4,
+    "gemma_scored100_failing": 33,
+    "gemma_scored100_failing_share": 0.611,
+    "own_minus_this_writer": 5.6,
+    "own_minus_this_writer_ci95": [
+     -5.1,
+     16.3
+    ]
+   },
+   "llama-4-maverick": {
+    "failing": 123,
+    "pass_rate": 0.272,
+    "gemma_leniency_failing": -6.9,
+    "gemma_scored100_failing": 20,
+    "gemma_scored100_failing_share": 0.163,
+    "own_minus_this_writer": 21.0,
+    "own_minus_this_writer_ci95": [
+     13.5,
+     28.0
+    ]
+   },
+   "qwen3-coder": {
+    "failing": 46,
+    "pass_rate": 0.701,
+    "gemma_leniency_failing": 0.4,
+    "gemma_scored100_failing": 22,
+    "gemma_scored100_failing_share": 0.478,
+    "own_minus_this_writer": 13.7,
+    "own_minus_this_writer_ci95": [
+     3.5,
+     24.9
+    ]
+   }
+  },
+  "placebo": {
+   "gemma4-31b": {
+    "value": 16.6,
+    "ci95": [
+     10.3,
+     23.1
+    ],
+    "scored100_gemma_failing": 0.612,
+    "scored100_other_failing": 0.346
+   },
+   "gpt-oss-20b": {
+    "value": -5.5,
+    "ci95": [
+     -13.8,
+     3.0
+    ],
+    "scored100_gemma_failing": 0.0,
+    "scored100_other_failing": 0.0
+   },
+   "qwen35-9b": {
+    "value": -2.3,
+    "ci95": [
+     -10.2,
+     4.9
+    ],
+    "scored100_gemma_failing": 0.212,
+    "scored100_other_failing": 0.234
+   },
+   "glm47-flash": {
+    "value": 7.4,
+    "ci95": [
+     -1.3,
+     15.7
+    ],
+    "scored100_gemma_failing": 0.365,
+    "scored100_other_failing": 0.249
+   },
+   "qwen3-coder": {
+    "value": -13.1,
+    "ci95": [
+     -19.5,
+     -6.4
+    ],
+    "scored100_gemma_failing": 0.0,
+    "scored100_other_failing": 0.0
+   },
+   "gpt-oss-120b": {
+    "value": -1.1,
+    "ci95": [
+     -6.6,
+     4.8
+    ],
+    "scored100_gemma_failing": 0.0,
+    "scored100_other_failing": 0.0
+   },
+   "glm-4.5": {
+    "value": 5.5,
+    "ci95": [
+     -2.6,
+     13.0
+    ],
+    "scored100_gemma_failing": 0.106,
+    "scored100_other_failing": 0.092
+   },
+   "kimi-k2": {
+    "value": 10.0,
+    "ci95": [
+     5.0,
+     14.9
+    ],
+    "scored100_gemma_failing": 0.012,
+    "scored100_other_failing": 0.018
+   },
+   "llama-4-maverick": {
+    "value": -1.7,
+    "ci95": [
+     -7.8,
+     4.6
+    ],
+    "scored100_gemma_failing": 0.459,
+    "scored100_other_failing": 0.387
+   }
+  },
+  "gemma_minus_max_other": 6.7,
+  "gemma_minus_max_other_ci95": [
+   -2.7,
+   12.2
+  ]
+ },
+ "swe-bench-lite": {
+  "items": 1455,
+  "per_writer": {
+   "claude-4-sonnet": {
+    "failing": 126,
+    "pass_rate": 0.571,
+    "gemma_leniency_failing": 11.2,
+    "gemma_scored100_failing": 86,
+    "gemma_scored100_failing_share": 0.683,
+    "own_minus_this_writer": 1.7,
+    "own_minus_this_writer_ci95": [
+     -5.3,
+     8.7
+    ]
+   },
+   "deepseek-v3": {
+    "failing": 192,
+    "pass_rate": 0.324,
+    "gemma_leniency_failing": -15.5,
+    "gemma_scored100_failing": 61,
+    "gemma_scored100_failing_share": 0.318,
+    "own_minus_this_writer": 28.4,
+    "own_minus_this_writer_ci95": [
+     21.5,
+     34.9
+    ]
+   },
+   "entropo-qwen3-coder-30b": {
+    "failing": 158,
+    "pass_rate": 0.457,
+    "gemma_leniency_failing": -3.2,
+    "gemma_scored100_failing": 57,
+    "gemma_scored100_failing_share": 0.361,
+    "own_minus_this_writer": 16.1,
+    "own_minus_this_writer_ci95": [
+     9.2,
+     23.1
+    ]
+   },
+   "gemma-4-31b": {
+    "failing": 130,
+    "pass_rate": 0.556,
+    "gemma_leniency_failing": 12.9,
+    "gemma_scored100_failing": 82,
+    "gemma_scored100_failing_share": 0.631
+   },
+   "swe-fixer-qwen2.5-72b": {
+    "failing": 219,
+    "pass_rate": 0.253,
+    "gemma_leniency_failing": -6.1,
+    "gemma_scored100_failing": 77,
+    "gemma_scored100_failing_share": 0.352,
+    "own_minus_this_writer": 19.0,
+    "own_minus_this_writer_ci95": [
+     11.7,
+     26.9
+    ]
+   }
+  },
+  "placebo": {
+   "gemma4-31b": {
+    "value": 17.8,
+    "ci95": [
+     12.1,
+     23.5
+    ],
+    "scored100_gemma_failing": 0.631,
+    "scored100_other_failing": 0.404
+   },
+   "gpt-oss-20b": {
+    "value": 0.6,
+    "ci95": [
+     -5.4,
+     7.1
+    ],
+    "scored100_gemma_failing": 0.0,
+    "scored100_other_failing": 0.0
+   },
+   "qwen35-9b": {
+    "value": 3.4,
+    "ci95": [
+     -3.2,
+     9.9
+    ],
+    "scored100_gemma_failing": 0.3,
+    "scored100_other_failing": 0.194
+   },
+   "glm47-flash": {
+    "value": -4.7,
+    "ci95": [
+     -11.3,
+     2.4
+    ],
+    "scored100_gemma_failing": 0.323,
+    "scored100_other_failing": 0.298
+   },
+   "qwen3-coder": {
+    "value": 5.0,
+    "ci95": [
+     0.4,
+     9.6
+    ],
+    "scored100_gemma_failing": 0.0,
+    "scored100_other_failing": 0.003
+   },
+   "gpt-oss-120b": {
+    "value": 4.7,
+    "ci95": [
+     -0.6,
+     9.7
+    ],
+    "scored100_gemma_failing": 0.0,
+    "scored100_other_failing": 0.0
+   },
+   "llama-4-maverick": {
+    "value": -5.4,
+    "ci95": [
+     -10.1,
+     -0.7
+    ],
+    "scored100_gemma_failing": 0.654,
+    "scored100_other_failing": 0.429
+   }
+  },
+  "gemma_minus_max_other": 12.8,
+  "gemma_minus_max_other_ci95": [
+   4.3,
+   16.8
+  ]
+ },
+ "livecodebench": {
+  "items": 761,
+  "per_writer": {
+   "claude-3.5-sonnet": {
+    "failing": 225,
+    "pass_rate": 0.185,
+    "gemma_leniency_failing": -10.6,
+    "gemma_scored100_failing": 11,
+    "gemma_scored100_failing_share": 0.049,
+    "own_minus_this_writer": 21.1,
+    "own_minus_this_writer_ci95": [
+     14.3,
+     28.3
+    ]
+   },
+   "deepseek-v3": {
+    "failing": 178,
+    "pass_rate": 0.243,
+    "gemma_leniency_failing": -15.0,
+    "gemma_scored100_failing": 21,
+    "gemma_scored100_failing_share": 0.118,
+    "own_minus_this_writer": 25.5,
+    "own_minus_this_writer_ci95": [
+     18.3,
+     32.7
+    ]
+   },
+   "gemma-4-31b": {
+    "failing": 124,
+    "pass_rate": 0.504,
+    "gemma_leniency_failing": 10.5,
+    "gemma_scored100_failing": 62,
+    "gemma_scored100_failing_share": 0.5
+   }
+  },
+  "placebo": {
+   "gemma4-31b": {
+    "value": 23.0,
+    "ci95": [
+     16.5,
+     29.9
+    ],
+    "scored100_gemma_failing": 0.5,
+    "scored100_other_failing": 0.079
+   },
+   "gpt-oss-20b": {
+    "value": 5.0,
+    "ci95": [
+     -0.9,
+     11.7
+    ],
+    "scored100_gemma_failing": 0.016,
+    "scored100_other_failing": 0.01
+   },
+   "qwen35-9b": {
+    "value": -9.8,
+    "ci95": [
+     -17.0,
+     -2.6
+    ],
+    "scored100_gemma_failing": 0.266,
+    "scored100_other_failing": 0.092
+   },
+   "glm47-flash": {
+    "value": -7.1,
+    "ci95": [
+     -14.9,
+     0.5
+    ],
+    "scored100_gemma_failing": 0.363,
+    "scored100_other_failing": 0.166
+   },
+   "gpt-oss-120b": {
+    "value": 3.0,
+    "ci95": [
+     -2.3,
+     8.5
+    ],
+    "scored100_gemma_failing": 0.0,
+    "scored100_other_failing": 0.0
+   },
+   "llama-4-maverick": {
+    "value": 8.9,
+    "ci95": [
+     0.7,
+     16.5
+    ],
+    "scored100_gemma_failing": 0.081,
+    "scored100_other_failing": 0.067
+   }
+  },
+  "gemma_minus_max_other": 14.2,
+  "gemma_minus_max_other_ci95": [
+   3.3,
+   22.2
+  ]
+ }
+}

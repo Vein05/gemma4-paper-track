@@ -1,0 +1,4 @@
+{"gemma4-31b-8k": {"problems": 1055, "pass_merged": 873, "pass_rate_merged": 0.827, "rerun_problems": 133,
+ "rerun_pass": 45, "rerun_still_cut_at_8000": 36, "fails_merged": 182, "failing_programs_that_ran": 146,
+ "failing_ran_by_difficulty": {"easy": 5, "medium": 43, "hard": 98}, "rerun_median_output_tokens_ended": 2854,
+ "pass_rate_at_2000_tokens": 0.785}}

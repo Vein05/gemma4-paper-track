@@ -1,0 +1,128 @@
+{
+ "gemma4-31b": {
+  "gemma_auroc_own": 0.662,
+  "gemma_auroc_control": 0.898,
+  "self_drop": 0.235,
+  "baseline_drop": 0.174,
+  "gap": 0.061,
+  "lenient_raw_failing_own": 10.51,
+  "lenient_raw_failing_control": -12.513,
+  "lenient_raw_failing_difference": 23.023,
+  "lenient_raw_passing_own": 13.262,
+  "lenient_raw_passing_control": 8.152,
+  "lenient_raw_passing_difference": 5.11,
+  "lenient_rank_failing_own": 0.064,
+  "lenient_rank_failing_control": -0.047,
+  "lenient_rank_failing_difference": 0.112,
+  "lenient_rank_passing_own": 0.065,
+  "lenient_rank_passing_control": 0.026,
+  "lenient_rank_passing_difference": 0.04,
+  "gemma_scored100_own_failing": 0.5,
+  "gemma_scored100_control_failing": 0.079,
+  "outside_scored100_own_failing": 0.145,
+  "gemma_scored100_own_minus_control_failing": 0.421,
+  "gemma_minus_outside_scored100_own_failing": 0.355,
+  "self_drop_ci95": [
+   0.176,
+   0.294
+  ],
+  "baseline_drop_ci95": [
+   0.124,
+   0.227
+  ],
+  "gap_ci95": [
+   0.012,
+   0.114
+  ],
+  "gemma_scored100_own_minus_control_failing_ci95": [
+   0.339,
+   0.51
+  ],
+  "gemma_minus_outside_scored100_own_failing_ci95": [
+   0.282,
+   0.434
+  ],
+  "lenient_raw_failing_difference_ci95": [
+   16.55,
+   29.908
+  ],
+  "lenient_raw_passing_difference_ci95": [
+   -1.975,
+   12.173
+  ],
+  "lenient_rank_failing_difference_ci95": [
+   0.076,
+   0.149
+  ],
+  "lenient_rank_passing_difference_ci95": [
+   0.004,
+   0.074
+  ],
+  "gemma4-31b_scored100_own_failing": 0.5,
+  "gemma4-31b_scored100_control_failing": 0.079,
+  "gemma4-31b_auroc_by_writer": {
+   "claude-3.5-sonnet": 0.886,
+   "deepseek-v3": 0.901,
+   "gemma-4-31b": 0.662
+  },
+  "gpt-oss-20b_scored100_own_failing": 0.016,
+  "gpt-oss-20b_scored100_control_failing": 0.01,
+  "gpt-oss-20b_auroc_by_writer": {
+   "claude-3.5-sonnet": 0.887,
+   "deepseek-v3": 0.851,
+   "gemma-4-31b": 0.646
+  },
+  "qwen35-9b_scored100_own_failing": 0.266,
+  "qwen35-9b_scored100_control_failing": 0.092,
+  "qwen35-9b_auroc_by_writer": {
+   "claude-3.5-sonnet": 0.849,
+   "deepseek-v3": 0.847,
+   "gemma-4-31b": 0.695
+  },
+  "glm47-flash_scored100_own_failing": 0.363,
+  "glm47-flash_scored100_control_failing": 0.166,
+  "glm47-flash_auroc_by_writer": {
+   "claude-3.5-sonnet": 0.74,
+   "deepseek-v3": 0.728,
+   "gemma-4-31b": 0.637
+  },
+  "gpt-oss-120b_scored100_own_failing": 0.0,
+  "gpt-oss-120b_scored100_control_failing": 0.0,
+  "gpt-oss-120b_auroc_by_writer": {
+   "claude-3.5-sonnet": 0.886,
+   "deepseek-v3": 0.881,
+   "gemma-4-31b": 0.698
+  },
+  "llama-4-maverick_scored100_own_failing": 0.081,
+  "llama-4-maverick_scored100_control_failing": 0.067,
+  "llama-4-maverick_auroc_by_writer": {
+   "claude-3.5-sonnet": 0.785,
+   "deepseek-v3": 0.722,
+   "gemma-4-31b": 0.57
+  },
+  "judges": [
+   "gemma4-31b",
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "glm47-flash",
+   "gpt-oss-120b",
+   "llama-4-maverick"
+  ],
+  "outside_judges": [
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "glm47-flash",
+   "gpt-oss-120b",
+   "llama-4-maverick"
+  ],
+  "issues": 292,
+  "patches_rated_by_all": 761,
+  "patches_left_out": 78,
+  "n": {
+   "own_failing": 124,
+   "own_passing": 126,
+   "control_failing": 403,
+   "control_passing": 108
+  }
+ }
+}

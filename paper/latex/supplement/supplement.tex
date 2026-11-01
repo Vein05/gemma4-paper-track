@@ -5,6 +5,7 @@
 \renewcommand{\thesection}{\Alph{section}}
 \hypersetup{pdftitle={Gemma 4 Rubber-Stamps Its Own Failing Patches: Supplement}}
 \rsfooter{Gemma 4 Rubber-Stamps Its Own Failing Patches: Supplement}
+\makeatletter\g@addto@macro{\UrlBreaks}{\do\-}\makeatother % long dataset names break at hyphens
 \begin{document}
 \rstitle{Supplement}{Gemma 4 Rubber-Stamps Its Own Failing Patches}{Paper: \texttt{rubber-stamp.pdf}}
 \noindent This supplement accompanies \emph{Gemma~4 Rubber-Stamps Its Own Failing Patches}
@@ -505,7 +506,8 @@ Score relative to its other attempts & 0.533 & $-0.113$ [$-0.197$, $-0.025$] \\
 \centering
 \small
 \caption{API cost as reported by OpenRouter per call. gpt-oss-120b calls were reported at zero cost by their
-provider. Gemma's 250 agent runs took 49 agent-hours on one NVIDIA L40S of a university cluster, at no charge.}
+provider. Gemma's 250 agent runs took 49 agent-hours on one NVIDIA L40S of a university cluster, at no charge. Gemma's
+LiveCodeBench programs were written on one NVIDIA A100 of our lab, at no charge.}
 \begin{tabular}{@{}lrr@{}}
 \toprule
 Run & Calls & Cost (USD) \\
@@ -514,10 +516,135 @@ Four judges on Gemma's own attempts (ratings reused) & 3,244 & 0.53 \\
 Nine judges, Mini issues, mixed-harness patches & 3,292 & 2.66 \\
 Gemma~4 31B with thinking on, Mini issues & 401 & 0.51 \\
 Nine judges, held-out and matched-harness patches & 9,857 & 8.66 \\
+Seven judges, SWE-bench Lite (Appendix~\ref{app:more}) & 10,526 & 2.44 \\
+Six judges, LiveCodeBench, with an 8-call cost test & 5,319 & 0.98 \\
 \midrule
-Total & 16,794 & 12.36 \\
+Total & 32,639 & 15.78 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\section{Two more data sets}
+\label{app:more}
+
+We ran the paper's measures on two data sets outside SWE-bench Verified. Each had a written plan before any judge call
+(\texttt{spec/third-party-lite.md}, \texttt{spec/livecodebench-judging.md}). The rule in both plans was the same. The
+result holds if Gemma gives 100 to a larger share of its own failing items than of other writers' failing items, and
+the leniency difference on failing items has a 95\% interval above zero. Both results hold (Table~\ref{tab:more}).
+
+\paragraph{SWE-bench Lite, another team's run.} Gemma 4 31B's patches for the 300 SWE-bench Lite issues come from a
+run that another team published on Hugging Face (\path{dougalldeepmind/2026-10-10-swebench-gemma4-lite-gemma-v2}, % prose-ok: banned
+revision \texttt{1c5f3d3b}). We had no part in that run. It used the full-precision model with thinking on, sampled at
+temperature 1.0 (top-p 0.95), and ran mini-SWE-agent 2.2.1 with one attempt per issue. That team graded the patches,
+and 166 of 300 resolved their issue. We used their labels. The other writers are four entries of the SWE-bench Lite
+leaderboard (\texttt{SWE-bench/experiments}): DeepSeek-V3 in Moatless, SWE-Fixer with Qwen2.5-72B, entroPO with
+Qwen3-Coder-30B, and Claude 4 Sonnet in SWE-agent. We prepared all patches as in the paper. Of the 300 issues, 37 are
+also held-out issues and 7 are Mini issues, with different patches. We kept them.
+
+\paragraph{LiveCodeBench, no agent.} We generated Gemma's programs ourselves with vLLM, from the 4-bit competition
+checkpoint, at temperature 0 with thinking off, using LiveCodeBench's own prompt (release\_v6, 1,055 problems;
+\texttt{spec/livecodebench-pilot.md}). Answers cut off at the default 2,000-token limit got a second try at 8,000
+tokens. Gemma then passes 873 of the 1,055 problems (82.7\%). We judged all 146 problems where Gemma's program ran and
+failed, and 146 problems where it passed, drawn within difficulty. The other writers are DeepSeek-V3 and Claude 3.5
+Sonnet, with the programs they released on LiveCodeBench. We removed comments and docstrings from every program,
+because Gemma's long docstrings would tell a judge who wrote it. The prompt is the paper's, with a contest problem in
+place of the issue, a program in place of the patch, and a competitive programmer in place of the Python maintainer in
+the system prompt.
+
+\paragraph{Judges.} Our remaining OpenRouter credit did not cover nine judges. Before any score was read, we left out
+GLM-4.5 and Kimi-K2 on SWE-bench Lite, which leaves seven judges. On LiveCodeBench we also left out Qwen3-Coder as a
+judge and GPT-4o as a writer, which leaves six judges. Of 1,478 Lite patches, 1,455 were scored by all seven judges.
+Of 839 programs, 761 were scored by all six. Intervals resample issues or problems.
+
+\begin{table}[H]
+\centering
+\small
+\caption{The paper's measures on the two data sets. Rates of 100 are on failing items. ``Outside'' is the mean rate
+of the outside judges on Gemma's own failing items. Leniency is own minus other writers' items, in points.
+\texttt{derived/third\_party\_lite\_2026-11-01.json}, \texttt{derived/lcb\_judging\_2026-11-01.json} and their
+\texttt{reasked-left-out} versions.}
+\label{tab:more}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & SWE-bench Lite & LiveCodeBench \\
+\midrule
+Gemma's own items: failing / passing & 130 / 163 & 124 / 126 \\
+Other writers' items: failing / passing & 695 / 467 & 403 / 108 \\
+Gemma gives 100: own / other writers' & 63\% / 40\% & 50\% / 8\% \\
+Outside judges give 100 to Gemma's failing items & 21\% & 15\% \\
+Leniency, failing items & $+17.8$ [12.1, 23.5] & $+23.0$ [16.6, 29.9] \\
+Leniency, passing items & $+2.5$ [$-1.2$, 6.2] & $+5.1$ [$-2.0$, 12.2] \\
+Self-judging gap & $+0.078$ [0.031, 0.123] & $+0.061$ [0.012, 0.114] \\
+\midrule
+Without re-asked items: leniency, failing & $+18.8$ [12.5, 24.8] & $+26.5$ [18.3, 35.0] \\
+Without re-asked items: self-judging gap & $+0.080$ [0.030, 0.128] & $+0.097$ [0.039, 0.160] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Unlike the held-out gap, neither new gap depends on the re-ask (exploratory). On LiveCodeBench, the outside judges also
+rank Gemma's programs much worse than other writers' programs (a drop of 0.174 in AUROC), so every judge shares most of
+Gemma's own drop there.
+
+\paragraph{Limits of the LiveCodeBench data.} A Claude model read and ran 20 of Gemma's failing programs
+(\path{data/livecodebench-pilot/hand-check/}). It found 14 real bugs. Three were grading errors: two float outputs
+within the stated tolerance and one valid answer among several. Three were correct algorithms that run too slowly in
+Python.
+
+All LiveCodeBench problems predate 2025-04-07. DeepSeek-V3's pass rate falls from 77\% on problems from the
+first half of 2023 to 16\% on the first half of 2025. Gemma's stays at 86 to 99\% in every half-year (answers cut off
+at 2,000 tokens left out), so we cannot rule out that Gemma saw the problems in training. The
+two other writers pass far fewer of the judged problems than Gemma (18\% and 24\%, against 50\%). Gemma's failing
+programs are mostly on hard problems, and other writers' failing programs include problems Gemma solved. On the 146
+problems Gemma failed, its leniency is still $+20.3$ [13.5, 27.1], and it gives 100 to 50\% of its own failing
+programs against 12\% of the other writers' (exploratory, \path{scripts/lcb_matched_check.py}).
+
+\paragraph{Per-writer leniency (exploratory).} We chose this analysis on 2026-11-01, after the results above
+(\path{scripts/per_writer_leniency.py}, \path{derived/per_writer_leniency_2026-11-01.json}).
+Table~\ref{tab:perwriter} splits ``other writers'' by writer. Gemma's own failing items get the most leniency in each
+data set. One other writer comes close in each SWE-bench set. On the held-out issues, Gemma gives 100 to 61\% of
+Kimi-K2's failing patches, and its leniency on its own is only 5.6 [$-5.1$, 16.3] points higher than on Kimi-K2's. On
+SWE-bench Lite, the gap to Claude 4 Sonnet is 1.7 [$-5.3$, 8.7] points. In both SWE-bench sets, Gemma is lenient
+toward writers that pass more than half their issues and harsh toward writers that pass under a third. Qwen3-Coder,
+which passes 70\%, gets neither.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Gemma as judge, per writer, on failing items: its leniency against the outside judges (points) and the
+share it scores 100. Pass rate is over the writer's judged items.}
+\label{tab:perwriter}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Data set & Writer & Pass rate & Leniency, failing & Scored 100, failing \\
+\midrule
+Held-out & Gemma 4 31B (own) & 53\% & $+14.1$ & 61\% (52 of 85) \\
+ & Kimi-K2 & 61\% & $+8.4$ & 61\% (33 of 54) \\
+ & GLM-4.5 & 62\% & $+4.1$ & 56\% (34 of 61) \\
+ & Qwen3-Coder & 70\% & $+0.4$ & 48\% (22 of 46) \\
+ & Llama-4-Maverick & 27\% & $-6.9$ & 16\% (20 of 123) \\
+ & gpt-oss-120b & 30\% & $-8.1$ & 25\% (27 of 109) \\
+\midrule
+SWE-bench Lite & Gemma 4 31B (own) & 56\% & $+12.9$ & 63\% (82 of 130) \\
+ & Claude 4 Sonnet & 57\% & $+11.2$ & 68\% (86 of 126) \\
+ & entroPO, Qwen3-Coder-30B & 46\% & $-3.2$ & 36\% (57 of 158) \\
+ & SWE-Fixer, Qwen2.5-72B & 25\% & $-6.1$ & 35\% (77 of 219) \\
+ & DeepSeek-V3 & 32\% & $-15.5$ & 32\% (61 of 192) \\
+\midrule
+LiveCodeBench & Gemma 4 31B (own) & 50\% & $+10.5$ & 50\% (62 of 124) \\
+ & Claude 3.5 Sonnet & 18\% & $-10.6$ & 5\% (11 of 225) \\
+ & DeepSeek-V3 & 24\% & $-15.0$ & 12\% (21 of 178) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Placebo check (exploratory).} Some outside judges also give Gemma's failing items 100 more often than other
+writers'. On SWE-bench Lite, Llama-4-Maverick gives 100 to 65\% of Gemma's failing patches and 43\% of other writers'.
+We tested whether such judges are also lenient on Gemma's items. We treated each outside judge as if it had written
+them and computed its leniency the same way, against the other judges except Gemma. Maverick's value is $-5.4$
+[$-10.1$, $-0.7$]. It gives high scores to many patches, but not more to Gemma's than the other judges do. On SWE-bench
+Lite and LiveCodeBench, Gemma's leniency exceeds the largest of the outside judges' by 12.8 [4.3, 16.8] and 14.2 [3.3,
+22.2] points. On the held-out issues, Kimi-K2 as judge is also lenient on Gemma's failing patches, at $+10.0$ [5.0,
+14.9] against Gemma's $+16.6$. There Gemma exceeds the largest outside judge by 6.7 [$-2.7$, 12.2] points.
 
 \end{document}

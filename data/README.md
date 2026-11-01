@@ -66,3 +66,27 @@ Control entries in `public/swe-bench-verified-mini-control/attempts.jsonl` (`wri
 `20250720_mini-v0.0.0-Llama-4-Maverick-17B-Instruct`, `20251209_mini-v1.17.2_devstral-small-2512`. The first five
 entries also hold patches for 495–499 of the 500 SWE-bench Verified issues (12 repositories), which the fresh
 replication in `todo.md` can use as controls.
+
+## Added 2026-11-01 (`handoff/2026-11-01.md`)
+
+- `public/third-party-lite/gemma/`: Gemma 4 31B's SWE-bench Lite run published by another team
+  (`dougalldeepmind/2026-10-10-swebench-gemma4-lite-gemma-v2`, sha `1c5f3d3be50e4ca6ceb17654987fd34e6cf23f96`, no
+  license declared): each issue's `preds.json`, `results/` (their grading: 166 of 300 resolved) and run metadata; not
+  the transcripts. Downloaded by `scripts/lab/pull_third_party_lite.py`.
+- `public/third-party-lite/patches.jsonl`: the 1,478 patches judged in `spec/third-party-lite.md` (Gemma's and four
+  Lite leaderboard entries' from the public `swe-bench-submissions` bucket, test hunks removed), built by
+  `scripts/third_party_lite.py build`.
+- `public/livecodebench-submissions/`: released LiveCodeBench programs and grades of DeepSeek-V3, GPT-4o (2024-08-06),
+  Claude 3.5 Sonnet (2024-10-22) and Qwen2.5-Coder-32B (`LiveCodeBench/submissions`, commit `6ca212e9`,
+  `Scenario.codegeneration_10_0.2_eval_all.json` per model).
+- `livecodebench-pilot/`: Gemma 4 31B's LiveCodeBench programs and grades from the lab A100 (`spec/livecodebench-pilot.md`),
+  the 8,000-token rerun, the hand check (`hand-check/`) and the judged programs (`judging/programs.jsonl`,
+  `spec/livecodebench-judging.md`).
+- In the public repository (`make_release.sh`): `livecodebench-pilot/gemma4-31b.jsonl`, `gemma4-31b-8k.jsonl`, the two
+  `summary_*.json` files and `hand-check/coding.csv`. `public/third-party-lite/patches.jsonl` and
+  `livecodebench-pilot/judging/programs.jsonl` are there without third-party text: no Gemma patch text from the Lite
+  run (no license declared), no Lite issue text and no LiveCodeBench problem statement (CC, version not given). Ids,
+  writers and labels stay, which is all the analyses read; `scripts/lab/pull_third_party_lite.py` with
+  `scripts/third_party_lite.py build`, and `scripts/lcb_judging.py build`, restore the text. Not there: the Lite run
+  folder, `public/livecodebench-submissions/` (MIT, `LiveCodeBench/submissions`), the `*_eval_all.json` grades and
+  `hand-check/packet.md`, which hold problem statements.

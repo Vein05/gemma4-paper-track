@@ -12,11 +12,14 @@ Kaggle paper track, Gemma 4 Developer Agent.
 ## What we found
 
 Nine open models scored the chance that a SWE-bench Verified patch passes its hidden tests. Each judge saw the issue
-and one patch, never the author.
+and one patch, never the author. We repeated the test on SWE-bench Lite and LiveCodeBench with seven and six judges.
 
 - **Gemma rubber-stamps its own patches.** On 193 held-out issues, Gemma 4 31B gives a score of 100 to 61% of its own
-  failing patches and to 35% of other models' failing patches. Judges from other model families do not share this
-  extra trust.
+  failing patches and to 35% of other models' failing patches (pooled; the rate varies by writer). Judges from other
+  model families do not share this extra trust.
+- **It holds outside our own runs.** In another team's Gemma run on SWE-bench Lite, Gemma gives 100 to 63% of its own
+  failing patches. On LiveCodeBench programs it wrote without an agent, it gives 100 to 50% of its own failing
+  programs and to 8% of other models'.
 - **Only Gemma shows it.** Five other models judging their own patches show no ranking gap and little leniency.
 - **A second judge picks better.** If an agent submits without review the quarter of its patches that its check
   trusts most, 61% pass when Gemma checks itself and 84% when GLM-4.5 does.
@@ -29,7 +32,7 @@ and one patch, never the author.
 | [`paper/rubber-stamp-supplement.pdf`](paper/rubber-stamp-supplement.pdf) | Setup details, the judge prompt, grading checks, per-judge tables and cost. |
 | [`paper/writeup.md`](paper/writeup.md) | The paper as Markdown (the PDF's source; `cd paper && make` rebuilds both PDFs and `submission.txt`). |
 | [`paper/submission.txt`](paper/submission.txt) | Every field of the Kaggle Writeup form, built from `writeup.md`. |
-| [`data/`](data/) | Gemma 4 31B's agent runs (patches, labels, trajectories) and the public patches we judged; sources in `data/README.md`. |
+| [`data/`](data/) | Gemma 4 31B's agent runs (patches, labels, trajectories), its LiveCodeBench programs, and the public patches we judged; sources and what is left out in `data/README.md`. |
 | [`scripts/`](scripts/) | Agent runner, grading, judging and analysis code; `scripts/derived/` holds every judge answer and the summaries behind each number. |
 | [`spec/`](spec/) | Analysis plans, each committed before its data was computed. |
 

@@ -1,0 +1,17 @@
+{
+ "google/gemma-4-31B-it-qat-w4a16-ct": {
+  "problems": 1055,
+  "pass": 828,
+  "pass_rate": 0.7848341232227488,
+  "truncated_no_code": 133,
+  "pass_rate_without_truncated": 0.8980477223427332,
+  "fails": 227,
+  "fails_not_truncated": 94
+ },
+ "deepseek-v3-released-first": {
+  "problems": 1055,
+  "pass": 527,
+  "pass_rate": 0.4995260663507109,
+  "released_pass_rate": 0.4976303317535545
+ }
+}
