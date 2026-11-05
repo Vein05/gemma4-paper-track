@@ -29,6 +29,11 @@ def rows():
     return papers, software
 
 
+def noted():
+    """Keys with a line in citations.md's Notes that starts '<key>:' and explains a disagreement with the arXiv API."""
+    return set(re.findall(r"^(\w+): .*?(?:arXiv's metadata|API)", open(CIT).read(), flags=re.M))
+
+
 def fetch(ids):
     url = "http://export.arxiv.org/api/query?max_results=100&id_list=" + ",".join(ids)
     for attempt in range(5):
@@ -60,7 +65,11 @@ def main():
         title = norm(e.find("a:title", NS).text)
         authors = [norm(a.find("a:name", NS).text) for a in e.findall("a:author", NS)]
         if title != norm(t_tab) or authors != [norm(a) for a in a_tab.split(";")]:
-            bad.append(key)
+            if key in noted():  # a documented metadata fault (citations.md Notes, "<key>: ..."): the table's list stands
+                print(f"{key}: table and API disagree; using the table's author list (see citations.md Notes)", file=sys.stderr)
+                authors = [norm(a) for a in a_tab.split(";")]
+            else:
+                bad.append(key)
         jref = e.find("x:journal_ref", NS)
         note = norm(jref.text) if jref is not None else (venue.split(";")[0].strip()
                                                         if not venue.startswith("arXiv preprint") else "")

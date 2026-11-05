@@ -1,0 +1,92 @@
+{
+ "heldout_for_reference": {
+  "own": {
+   "n_100": 133,
+   "n_below": 36,
+   "share_below": 0.271,
+   "pass_below": 0.25,
+   "pass_above": 0.742,
+   "diff": 0.492,
+   "diff_ci95": [
+    0.32,
+    0.662
+   ]
+  },
+  "other": {
+   "n_100": 440,
+   "n_below": 97,
+   "share_below": 0.22,
+   "pass_below": 0.464,
+   "pass_above": 0.755,
+   "diff": 0.291,
+   "diff_ci95": [
+    0.184,
+    0.401
+   ]
+  }
+ },
+ "lite": {
+  "own": {
+   "n_100": 229,
+   "n_below": 56,
+   "share_below": 0.245,
+   "pass_below": 0.482,
+   "pass_above": 0.694,
+   "diff": 0.211,
+   "diff_ci95": [
+    0.066,
+    0.366
+   ]
+  },
+  "other": {
+   "n_100": 643,
+   "n_below": 177,
+   "share_below": 0.275,
+   "pass_below": 0.395,
+   "pass_above": 0.627,
+   "diff": 0.231,
+   "diff_ci95": [
+    0.142,
+    0.318
+   ]
+  },
+  "own_unseen": {
+   "n_100": 200,
+   "n_below": 51,
+   "share_below": 0.255,
+   "pass_below": 0.471,
+   "pass_above": 0.664,
+   "diff": 0.194,
+   "diff_ci95": [
+    0.038,
+    0.341
+   ]
+  }
+ },
+ "livecodebench": {
+  "own": {
+   "n_100": 165,
+   "n_below": 25,
+   "share_below": 0.152,
+   "pass_below": 0.6,
+   "pass_above": 0.629,
+   "diff": 0.029,
+   "diff_ci95": [
+    -0.17,
+    0.245
+   ]
+  },
+  "other": {
+   "n_100": 119,
+   "n_below": 10,
+   "share_below": 0.084,
+   "pass_below": 0.7,
+   "pass_above": 0.734,
+   "diff": 0.034,
+   "diff_ci95": [
+    -0.265,
+    0.356
+   ]
+  }
+ }
+}

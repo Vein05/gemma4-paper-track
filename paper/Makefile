@@ -46,5 +46,5 @@ rubber-stamp-supplement.pdf: latex/supplement/*.tex latex/rubberstamp.sty latex/
 	cp latex/build/supplement.pdf $@
 
 clean:
-	rm -f latex/supplement/*.aux latex/supplement/*.log latex/supplement/*.out
+	rm -f latex/supplement/*.aux latex/supplement/*.log latex/supplement/*.out latex/supplement/supplement.pdf
 	rm -rf latex/build

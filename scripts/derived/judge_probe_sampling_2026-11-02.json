@@ -1,0 +1,28 @@
+{
+ "n_sampled": 957,
+ "n_stamped": 133,
+ "n_stamped_failing": 52,
+ "mean_parsed_per_patch": 8.0,
+ "stamped_all8_are_100": 0.722,
+ "mean_sampled": 0.661,
+ "logp100": 0.756,
+ "mean_sampled_ci95": [
+  0.582,
+  0.739
+ ],
+ "logp100_ci95": [
+  0.669,
+  0.839
+ ],
+ "logp100_minus_mean_sampled": 0.095,
+ "logp100_minus_mean_sampled_ci95": [
+  0.02,
+  0.175
+ ],
+ "own_written": 0.622,
+ "own_mean_sampled": 0.721,
+ "other_written": 0.751,
+ "other_mean_sampled": 0.791,
+ "top_quarter_written": 0.609,
+ "top_quarter_mean_sampled": 0.722
+}

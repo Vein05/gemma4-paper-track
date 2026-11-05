@@ -30,17 +30,27 @@ MODEL = "gemma4-qat"
 MAX_TOKENS = 2000
 
 
+EXTRA = None  # --extra: JSON replacing the default chat_template_kwargs (model sweep, spec/lcb-model-sweep.md)
+
+
+TIMEOUT = 900  # --timeout (model sweep: slow models need longer; a call that still fails is skipped, rerun resumes it)
+
+
 def call(messages, max_tokens=MAX_TOKENS):
     body = {"model": MODEL, "messages": messages, "temperature": 0, "max_tokens": max_tokens,
             "chat_template_kwargs": {"enable_thinking": False}}
+    if EXTRA is not None:
+        body.pop("chat_template_kwargs")
+        body.update(EXTRA)
     req = urllib.request.Request(URL, json.dumps(body).encode(), {"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=900) as r:
+    with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
         d = json.load(r)
     c = d["choices"][0]
     return c["message"]["content"] or "", c.get("finish_reason"), d.get("usage", {})
 
 
 def main():
+    global URL, MODEL, EXTRA, TIMEOUT
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True)
     ap.add_argument("--workers", type=int, default=16)
@@ -49,7 +59,14 @@ def main():
     ap.add_argument("--max-tokens", type=int, default=MAX_TOKENS)
     ap.add_argument("--redo-from")
     ap.add_argument("--merge")
+    ap.add_argument("--url", default=URL); ap.add_argument("--model", default=MODEL)
+    ap.add_argument("--ids", help="JSON list of question ids: generate only these")
+    ap.add_argument("--extra", help="JSON body fields replacing the default chat_template_kwargs")
+    ap.add_argument("--fill-empty", action="store_true", help="export: empty program for problems not generated")
+    ap.add_argument("--timeout", type=int, default=900, help="seconds per call")
     a = ap.parse_args()
+    URL, MODEL, TIMEOUT = a.url, a.model, a.timeout
+    EXTRA = json.loads(a.extra) if a.extra else None
 
     problems = sorted(load_code_generation_dataset("release_v6"), key=lambda p: str(p.question_id))
     done = {}
@@ -64,13 +81,17 @@ def main():
             print(f"replacing {len(redo)} rows with the rerun's")
             done.update(redo)
         missing = [p.question_id for p in problems if p.question_id not in done]
-        assert not missing, f"{len(missing)} problems have no program, e.g. {missing[:5]}"
-        out = [{"question_id": p.question_id, "code_list": [done[p.question_id]["code"]]} for p in problems]
+        assert a.fill_empty or not missing, f"{len(missing)} problems have no program, e.g. {missing[:5]}"
+        out = [{"question_id": p.question_id, "code_list": [done[p.question_id]["code"] if p.question_id in done else ""]}
+               for p in problems]
         json.dump(out, open(a.export, "w"))
         print(f"exported {len(out)} programs to {a.export}")
         return
 
     todo = [p for p in problems if p.question_id not in done]
+    if a.ids:
+        keep = set(json.load(open(a.ids)))
+        todo = [p for p in todo if p.question_id in keep]
     if a.redo_from:
         cut = {json.loads(l)["question_id"] for l in open(a.redo_from) if json.loads(l)["finish_reason"] == "length"}
         todo = [p for p in todo if p.question_id in cut]
@@ -88,7 +109,12 @@ def main():
     with open(a.out, "a") as f, ThreadPoolExecutor(a.workers) as ex:
         futs = [ex.submit(one, p) for p in todo]
         for i, fut in enumerate(as_completed(futs), 1):
-            f.write(json.dumps(fut.result()) + "\n")
+            try:
+                row = fut.result()
+            except Exception as e:  # skip; a rerun generates it again
+                print(f"call failed: {type(e).__name__}: {str(e)[:200]}", flush=True)
+                continue
+            f.write(json.dumps(row) + "\n")
             f.flush()
             if i % 50 == 0:
                 print(f"{i}/{len(todo)}", flush=True)

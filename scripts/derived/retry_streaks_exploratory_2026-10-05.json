@@ -1,0 +1,101 @@
+{
+ "G1/competition": {
+  "runs": 76,
+  "unresolved_with_nonparser_error_streak": "1/56",
+  "resolved_with_nonparser_error_streak": "0/20",
+  "streak_causes": {
+   "parser_merge": 9,
+   "flagged_other": 1
+  },
+  "after_edit_target_error": {
+   "same_tool_retry": 7,
+   "other_tool": 12,
+   "same_tool_fails_again": 2
+  }
+ },
+ "G2/sweagent": {
+  "runs": 50,
+  "unresolved_with_nonparser_error_streak": "0/25",
+  "resolved_with_nonparser_error_streak": "1/23",
+  "streak_causes": {
+   "edit_target": 1
+  },
+  "after_edit_target_error": {
+   "other_tool": 3,
+   "same_tool_retry": 13,
+   "same_tool_fails_again": 7
+  }
+ },
+ "G3/sweagent": {
+  "runs": 49,
+  "unresolved_with_nonparser_error_streak": "0/21",
+  "resolved_with_nonparser_error_streak": "0/24",
+  "streak_causes": {},
+  "after_edit_target_error": {
+   "other_tool": 1
+  }
+ },
+ "G4/openclaw": {
+  "runs": 50,
+  "unresolved_with_nonparser_error_streak": "0/28",
+  "resolved_with_nonparser_error_streak": "1/22",
+  "streak_causes": {
+   "file_not_found": 1
+  },
+  "after_edit_target_error": {
+   "other_tool": 3,
+   "same_tool_retry": 3
+  }
+ },
+ "G4/opencode-25-v04": {
+  "runs": 49,
+  "unresolved_with_nonparser_error_streak": "10/31",
+  "resolved_with_nonparser_error_streak": "6/18",
+  "streak_causes": {
+   "flagged_other": 16,
+   "file_not_found": 3
+  },
+  "after_edit_target_error": {
+   "same_tool_retry": 2,
+   "same_tool_fails_again": 2,
+   "other_tool": 3
+  }
+ },
+ "G4/opencode-818023": {
+  "runs": 12,
+  "unresolved_with_nonparser_error_streak": "0/2",
+  "resolved_with_nonparser_error_streak": "1/10",
+  "streak_causes": {
+   "flagged_other": 1
+  },
+  "after_edit_target_error": {
+   "other_tool": 2
+  }
+ },
+ "G4/zeroclaw": {
+  "runs": 49,
+  "unresolved_with_nonparser_error_streak": "8/27",
+  "resolved_with_nonparser_error_streak": "1/22",
+  "streak_causes": {
+   "policy_block": 4,
+   "file_not_found": 1,
+   "flagged_other": 1,
+   "edit_target": 12
+  },
+  "after_edit_target_error": {
+   "other_tool": 32,
+   "same_tool_retry": 52,
+   "same_tool_fails_again": 49
+  }
+ },
+ "G5/openclaw": {
+  "runs": 50,
+  "unresolved_with_nonparser_error_streak": "0/27",
+  "resolved_with_nonparser_error_streak": "0/23",
+  "streak_causes": {},
+  "after_edit_target_error": {
+   "other_tool": 1,
+   "same_tool_retry": 1
+  }
+ }
+}

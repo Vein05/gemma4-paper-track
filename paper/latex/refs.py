@@ -8,7 +8,7 @@ between `<!-- refs:start -->` and `<!-- refs:end -->`. Every field is copied fro
 import os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-MD = os.path.join(HERE, "..", "writeup.md")
+MD = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "..", "writeup.md")  # optional: another markdown file
 BIB = os.path.join(HERE, "..", "references.bib")
 
 

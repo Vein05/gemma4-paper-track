@@ -1,0 +1,147 @@
+{
+ "issues": 193,
+ "patches": 1150,
+ "issues_run": 193,
+ "issue_status": {
+  "done": 193
+ },
+ "primary": {
+  "stamped_failing": {
+   "blocked": 15,
+   "of": 52,
+   "share": 0.288,
+   "ci95": [
+    0.17,
+    0.419
+   ]
+  },
+  "stamped_passing": {
+   "blocked": 7,
+   "of": 81,
+   "share": 0.086,
+   "ci95": [
+    0.033,
+    0.151
+   ]
+  },
+  "all_passing_gemma": {
+   "blocked": 9,
+   "of": 95,
+   "share": 0.095,
+   "ci95": [
+    0.042,
+    0.157
+   ]
+  },
+  "reference": {
+   "blocked": 18,
+   "of": 193,
+   "share": 0.093,
+   "ci95": [
+    0.052,
+    0.135
+   ]
+  }
+ },
+ "all_failing_gemma": {
+  "blocked": 26,
+  "of": 85,
+  "share": 0.306,
+  "ci95": [
+   0.211,
+   0.41
+  ]
+ },
+ "others_stamped_failing": {
+  "blocked": 34,
+  "of": 136,
+  "share": 0.25,
+  "ci95": [
+   0.169,
+   0.344
+  ]
+ },
+ "others_passing": {
+  "blocked": 46,
+  "of": 384,
+  "share": 0.12,
+  "ci95": [
+   0.068,
+   0.18
+  ]
+ },
+ "coverage": {
+  "gemma-4-31b": {
+   "checked": 161,
+   "of": 180
+  },
+  "glm-4.5": {
+   "checked": 152,
+   "of": 160
+  },
+  "gold": {
+   "checked": 184,
+   "of": 193
+  },
+  "gpt-oss-120b": {
+   "checked": 131,
+   "of": 156
+  },
+  "kimi-k2": {
+   "checked": 127,
+   "of": 138
+  },
+  "llama-4-maverick": {
+   "checked": 152,
+   "of": 169
+  },
+  "qwen3-coder": {
+   "checked": 148,
+   "of": 154
+  }
+ },
+ "no_check_reasons": {
+  "no test stable at base": 8,
+  "patch does not apply": 2,
+  "no tests selected": 59,
+  "base run timed out or not run": 26
+ },
+ "block_reasons": {
+  "missing only": 95,
+  "failed": 152
+ },
+ "overlap_label_assisted": {
+  "label_flagged": 17,
+  "gate_blocked_of_those": 12,
+  "gate_blocked_outside": 3
+ },
+ "witness": {
+  "failing | a broken test passes with the reference": 159,
+  "failing | broken tests also fail with the reference": 15,
+  "passing | a broken test passes with the reference": 25,
+  "passing | broken tests also fail with the reference": 30,
+  "passing reference | broken tests also fail with the reference": 18
+ },
+ "gate_or_glm45_le50": {
+  "stamped_failing": {
+   "caught": 27,
+   "of": 52,
+   "glm_alone": 18
+  },
+  "stamped_passing": {
+   "caught": 14,
+   "of": 81,
+   "glm_alone": 8
+  }
+ },
+ "top_quarter": {
+  "gate_then_score_then_calls": 0.828,
+  "paper_tie_break": 0.778,
+  "gain": 0.05,
+  "gain_ci95": [
+   -0.019,
+   0.133
+  ]
+ },
+ "reading": "too many false blocks"
+}

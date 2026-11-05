@@ -1,0 +1,1132 @@
+{
+ "patches": 180,
+ "passing": 95,
+ "unparsed": 7,
+ "unparsed_ids": [
+  "django__django-14915",
+  "django__django-16819",
+  "scikit-learn__scikit-learn-13142",
+  "scikit-learn__scikit-learn-14629",
+  "sphinx-doc__sphinx-7910",
+  "sphinx-doc__sphinx-8593",
+  "sympy__sympy-12419"
+ ],
+ "flag_on_passing": 0,
+ "flag_on_failing": 24,
+ "failing": 85,
+ "failing_100": 52,
+ "a_share_failing_100_breaking_existing_test": 0.3269230769230769,
+ "a_among_parsed": 0.3269230769230769,
+ "b_top_quarter": {
+  "gemma": {
+   "point": 0.609,
+   "ci": [
+    0.527,
+    0.689
+   ]
+  },
+  "gemma_then_fewer_calls": {
+   "point": 0.778,
+   "ci": [
+    0.644,
+    0.889
+   ]
+  },
+  "gemma_then_no_broken_test_then_fewer_calls": {
+   "point": 0.794,
+   "ci": [
+    0.674,
+    0.911
+   ]
+  }
+ },
+ "b_flag_minus_calls_only": {
+  "point": 0.017,
+  "ci": [
+   0.0,
+   0.089
+  ]
+ },
+ "per_patch": {
+  "astropy__astropy-13236": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "astropy__astropy-13579": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 95.0
+  },
+  "astropy__astropy-14365": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "astropy__astropy-14508": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "astropy__astropy-7166": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "astropy__astropy-7671": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "astropy__astropy-8707": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-10999": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-11066": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-11119": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-11138": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-11163": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-11206": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 0.0
+  },
+  "django__django-11211": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 95.0
+  },
+  "django__django-11265": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-11276": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-11299": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 0.0
+  },
+  "django__django-11333": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-11400": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-11433": {
+   "flag": 1,
+   "coverage": 0.993,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-11551": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-11555": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-11603": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-11728": {
+   "flag": 0,
+   "coverage": 0.977,
+   "resolved": 0,
+   "gemma": 95.0
+  },
+  "django__django-12741": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-12754": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-13033": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-13089": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-13128": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 0.0
+  },
+  "django__django-13195": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-13344": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-13346": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 0.0
+  },
+  "django__django-13363": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-13410": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-13449": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-13512": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-13513": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "django__django-13516": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-13658": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-13670": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-13820": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-13821": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-13925": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 90.0
+  },
+  "django__django-13964": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-14017": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-14053": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 90.0
+  },
+  "django__django-14089": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "django__django-14140": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-14311": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-14315": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-14351": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 20.0
+  },
+  "django__django-14376": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-14534": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 90.0
+  },
+  "django__django-14580": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-14608": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 0.0
+  },
+  "django__django-14752": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-14765": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-14787": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-14792": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-14915": {
+   "flag": 0,
+   "coverage": 0.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-14999": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-15037": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-15104": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-15128": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-15252": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "django__django-15277": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-15278": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-15280": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-15315": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-15375": {
+   "flag": 1,
+   "coverage": 0.989,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-15382": {
+   "flag": 1,
+   "coverage": 0.981,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "django__django-15499": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 90.0
+  },
+  "django__django-15814": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-15957": {
+   "flag": 1,
+   "coverage": 0.989,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "django__django-16032": {
+   "flag": 1,
+   "coverage": 0.974,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-16082": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "django__django-16145": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-16255": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-16263": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 10.0
+  },
+  "django__django-16315": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-16333": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-16429": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-16454": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-16485": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-16493": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-16502": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "django__django-16527": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-16595": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 0.0
+  },
+  "django__django-16667": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-16819": {
+   "flag": 0,
+   "coverage": 0.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "django__django-16938": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-16950": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "django__django-17029": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "django__django-17084": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "matplotlib__matplotlib-13989": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "matplotlib__matplotlib-20488": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "matplotlib__matplotlib-22719": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "matplotlib__matplotlib-23299": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 10.0
+  },
+  "matplotlib__matplotlib-24570": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "matplotlib__matplotlib-24637": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "matplotlib__matplotlib-25122": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "matplotlib__matplotlib-25311": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "matplotlib__matplotlib-25960": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "matplotlib__matplotlib-26291": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "mwaskom__seaborn-3187": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 10.0
+  },
+  "psf__requests-1724": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "psf__requests-1921": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "pydata__xarray-2905": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "pydata__xarray-3305": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "pydata__xarray-4356": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "pydata__xarray-4629": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "pydata__xarray-6721": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "pydata__xarray-6744": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "pydata__xarray-7393": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "pylint-dev__pylint-4551": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 70.0
+  },
+  "pylint-dev__pylint-4604": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 20.0
+  },
+  "pylint-dev__pylint-4661": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 90.0
+  },
+  "pylint-dev__pylint-6903": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "pylint-dev__pylint-7080": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "pylint-dev__pylint-8898": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "pytest-dev__pytest-10356": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "pytest-dev__pytest-5631": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "pytest-dev__pytest-6197": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "pytest-dev__pytest-6202": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "pytest-dev__pytest-7236": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "pytest-dev__pytest-7324": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "scikit-learn__scikit-learn-10297": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "scikit-learn__scikit-learn-10844": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "scikit-learn__scikit-learn-11578": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "scikit-learn__scikit-learn-13124": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 0.0
+  },
+  "scikit-learn__scikit-learn-13135": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "scikit-learn__scikit-learn-13142": {
+   "flag": 0,
+   "coverage": 0.0,
+   "resolved": 0,
+   "gemma": 90.0
+  },
+  "scikit-learn__scikit-learn-13328": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "scikit-learn__scikit-learn-14087": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 10.0
+  },
+  "scikit-learn__scikit-learn-14141": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "scikit-learn__scikit-learn-14496": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "scikit-learn__scikit-learn-14629": {
+   "flag": 0,
+   "coverage": 0.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "scikit-learn__scikit-learn-14710": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "scikit-learn__scikit-learn-15100": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "scikit-learn__scikit-learn-25232": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "scikit-learn__scikit-learn-25747": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 90.0
+  },
+  "scikit-learn__scikit-learn-25931": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "scikit-learn__scikit-learn-25973": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "scikit-learn__scikit-learn-9288": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sphinx-doc__sphinx-7462": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "sphinx-doc__sphinx-7889": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "sphinx-doc__sphinx-7910": {
+   "flag": 0,
+   "coverage": 0.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sphinx-doc__sphinx-8120": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sphinx-doc__sphinx-8593": {
+   "flag": 0,
+   "coverage": 0.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "sphinx-doc__sphinx-8595": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sphinx-doc__sphinx-9658": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "sphinx-doc__sphinx-9673": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-12419": {
+   "flag": 0,
+   "coverage": 0.0,
+   "resolved": 0,
+   "gemma": 0.0
+  },
+  "sympy__sympy-12481": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "sympy__sympy-13615": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-13647": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-13974": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "sympy__sympy-14248": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 90.0
+  },
+  "sympy__sympy-14711": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "sympy__sympy-14976": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-15349": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-15809": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-15875": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 90.0
+  },
+  "sympy__sympy-15976": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "sympy__sympy-16766": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-16792": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-16886": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-17139": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-17318": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "sympy__sympy-18211": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "sympy__sympy-19637": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 0.0
+  },
+  "sympy__sympy-20590": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-21379": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 10.0
+  },
+  "sympy__sympy-21596": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "sympy__sympy-22456": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-22914": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-23413": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "sympy__sympy-23824": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  },
+  "sympy__sympy-24066": {
+   "flag": 1,
+   "coverage": 1.0,
+   "resolved": 0,
+   "gemma": 100.0
+  },
+  "sympy__sympy-24562": {
+   "flag": 0,
+   "coverage": 1.0,
+   "resolved": 1,
+   "gemma": 100.0
+  }
+ }
+}

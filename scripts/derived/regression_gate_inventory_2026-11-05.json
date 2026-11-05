@@ -1,0 +1,89 @@
+{
+  "created_utc_date": "2026-11-05",
+  "provenance": {
+    "type": "read-only inventory of existing local artifacts; no new evaluation",
+    "source_result": "scripts/derived/test_flag_2026-11-02.json",
+    "source_analysis": "scripts/precheck/test_flag.py",
+    "source_sha256": {
+      "scripts/derived/test_flag_2026-11-02.json": "a9eac1bfeb6fb733232aa9854549e60b30e5cba49164bc8593bcf518bfdb2498",
+      "scripts/precheck/test_flag.py": "365f21ed9f5a8b9068c9ed4fadad531189688e2640196db12065241022b9152a"
+    },
+    "inventory_script": "scripts/regression_gate_inventory_2026_11_05.py",
+    "source_discussion": "notes/fix-debate-2026-11-02.md",
+    "source_spec": "spec/bug-token-precheck.md",
+    "dataset_or_public_availability_assumed": false,
+    "model_calls_or_test_execution": false
+  },
+  "existing_result": {
+    "patches": 180,
+    "passing_by_official_label": 95,
+    "failing": 85,
+    "Gemma_100_on_failing": 52,
+    "failing_100_flagged_for_PASS_TO_PASS_failure": 17,
+    "all_failing_patches_flagged_for_PASS_TO_PASS_failure": 24,
+    "flagged_share": 0.3269230769230769,
+    "unparsed_instances": 7,
+    "unparsed_ids": [
+      "django__django-14915",
+      "django__django-16819",
+      "scikit-learn__scikit-learn-13142",
+      "scikit-learn__scikit-learn-14629",
+      "sphinx-doc__sphinx-7910",
+      "sphinx-doc__sphinx-8593",
+      "sympy__sympy-12419"
+    ],
+    "passing_patches_flagged": 0,
+    "top_quarter_precision": {
+      "gemma": {
+        "point": 0.609,
+        "ci": [
+          0.527,
+          0.689
+        ]
+      },
+      "gemma_then_fewer_calls": {
+        "point": 0.778,
+        "ci": [
+          0.644,
+          0.889
+        ]
+      },
+      "gemma_then_no_broken_test_then_fewer_calls": {
+        "point": 0.794,
+        "ci": [
+          0.674,
+          0.911
+        ]
+      }
+    },
+    "increment_over_fewer_calls": {
+      "point": 0.017,
+      "ci": [
+        0.0,
+        0.089
+      ]
+    },
+    "coverage_below_90pct_count": 7,
+    "coverage_between_90pct_and_100pct_count": 6
+  },
+  "local_eval_log_counts": {
+    "main-a": 95,
+    "main-b": 99,
+    "regrade": 3
+  },
+  "base_vs_test_patch_presence": {
+    "status": "unknown_from_local_artifacts",
+    "reason": "The files this inventory consumes store parsed PASS_TO_PASS outcomes and coverage, not base checkout trees or test_patch diffs; dataset presence outside those consumed files is not established.",
+    "minimal_cpu_check": "For diagnosis, replay the selected 17 flagged cases against exact pinned dataset rows and base snapshots, and inspect whether each test existed at base or was introduced/changed by test_patch. Treat this selected-case replay as diagnostic only. A deployable test-selection rule must never consume PASS_TO_PASS IDs or gold test_patch and must be evaluated on all frozen issues, with untouched-base and resolved-patch controls."
+  },
+  "interpretation": {
+    "17_of_52": "label-assisted opportunity/upper bound, not demonstrated deployable detection: the flag uses PASS_TO_PASS membership from the benchmark label and parser statuses from existing grading logs.",
+    "zero_flagged_passing": "parser/grader consistency check only; it is not an independent false-positive estimate because PASS_TO_PASS is benchmark-label machinery.",
+    "engineering_bottlenecks": [
+      "resolve exact test identities and prove each existed at the base revision rather than being introduced by test_patch",
+      "missing/unparsed results remain unresolved and are never counted as defect detections; operational deferral is reported separately",
+      "measure false positives and test runtime on resolved patches plus untouched-base controls",
+      "evaluate caught failing 100s on held-out instances before claiming a 20-30% reduction in false approvals"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+ "n": 957,
+ "o_pre": {
+  "leniency": -4.265,
+  "n_issues": 80,
+  "auroc_own": 0.675,
+  "auroc_others": 0.668,
+  "gap": -0.008,
+  "share_p100_above_half_own_failing": 0.365,
+  "share_p100_above_half_other_failing": 0.422,
+  "leniency_ci": [
+   -8.347,
+   -0.369
+  ]
+ },
+ "o_it": {
+  "leniency": -1.996,
+  "n_issues": 80,
+  "auroc_own": 0.627,
+  "auroc_others": 0.632,
+  "gap": 0.005,
+  "share_p100_above_half_own_failing": 0.482,
+  "share_p100_above_half_other_failing": 0.494,
+  "leniency_ci": [
+   -6.343,
+   2.215
+  ]
+ },
+ "D_gemma": 9.797,
+ "D_olmo": 2.27,
+ "D_gemma_minus_olmo": 7.527,
+ "D_gemma_ci": [
+  5.4,
+  13.833
+ ],
+ "D_olmo_ci": [
+  -1.383,
+  5.741
+ ],
+ "D_gemma_minus_olmo_ci": [
+  2.215,
+  12.822
+ ],
+ "reading": "specific to Gemma's post-training",
+ "olmo_median_G_own_failing": -0.207,
+ "olmo_median_G_other_failing": -0.226
+}

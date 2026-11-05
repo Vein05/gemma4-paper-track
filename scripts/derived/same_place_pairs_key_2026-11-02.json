@@ -1,0 +1,350 @@
+[
+ {
+  "pair": 1,
+  "own_pid": "astropy__astropy-14508|gemma-4-31b|fe42eec4",
+  "other_pid": "astropy__astropy-14508|llama-4-maverick|56ed2473",
+  "a_is_own": false
+ },
+ {
+  "pair": 2,
+  "own_pid": "django__django-10999|gemma-4-31b|efcf86db",
+  "other_pid": "django__django-10999|glm-4.5|a7bde083",
+  "a_is_own": false
+ },
+ {
+  "pair": 3,
+  "own_pid": "django__django-10999|gemma-4-31b|efcf86db",
+  "other_pid": "django__django-10999|llama-4-maverick|a7bde083",
+  "a_is_own": true
+ },
+ {
+  "pair": 4,
+  "own_pid": "django__django-11138|gemma-4-31b|5402a395",
+  "other_pid": "django__django-11138|glm-4.5|67c0d51b",
+  "a_is_own": true
+ },
+ {
+  "pair": 5,
+  "own_pid": "django__django-11138|gemma-4-31b|5402a395",
+  "other_pid": "django__django-11138|kimi-k2|f9b4232d",
+  "a_is_own": false
+ },
+ {
+  "pair": 6,
+  "own_pid": "django__django-11265|gemma-4-31b|64297339",
+  "other_pid": "django__django-11265|glm-4.5|936f32a4",
+  "a_is_own": true
+ },
+ {
+  "pair": 7,
+  "own_pid": "django__django-11265|gemma-4-31b|64297339",
+  "other_pid": "django__django-11265|gpt-oss-120b|7aeebedf",
+  "a_is_own": false
+ },
+ {
+  "pair": 8,
+  "own_pid": "django__django-11265|gemma-4-31b|64297339",
+  "other_pid": "django__django-11265|kimi-k2|a1eff0bf",
+  "a_is_own": true
+ },
+ {
+  "pair": 9,
+  "own_pid": "django__django-11265|gemma-4-31b|64297339",
+  "other_pid": "django__django-11265|qwen3-coder|e1657915",
+  "a_is_own": true
+ },
+ {
+  "pair": 10,
+  "own_pid": "django__django-11333|gemma-4-31b|eccd3f76",
+  "other_pid": "django__django-11333|glm-4.5|855bec1c",
+  "a_is_own": false
+ },
+ {
+  "pair": 11,
+  "own_pid": "django__django-11333|gemma-4-31b|eccd3f76",
+  "other_pid": "django__django-11333|kimi-k2|05ccb01a",
+  "a_is_own": false
+ },
+ {
+  "pair": 12,
+  "own_pid": "django__django-11333|gemma-4-31b|eccd3f76",
+  "other_pid": "django__django-11333|qwen3-coder|d809eb07",
+  "a_is_own": false
+ },
+ {
+  "pair": 13,
+  "own_pid": "django__django-11400|gemma-4-31b|ee91b3c1",
+  "other_pid": "django__django-11400|glm-4.5|0a44e97b",
+  "a_is_own": true
+ },
+ {
+  "pair": 14,
+  "own_pid": "django__django-11400|gemma-4-31b|ee91b3c1",
+  "other_pid": "django__django-11400|kimi-k2|f22d3f51",
+  "a_is_own": false
+ },
+ {
+  "pair": 15,
+  "own_pid": "django__django-11400|gemma-4-31b|ee91b3c1",
+  "other_pid": "django__django-11400|llama-4-maverick|7bb3b2df",
+  "a_is_own": false
+ },
+ {
+  "pair": 16,
+  "own_pid": "django__django-11433|gemma-4-31b|8b9db385",
+  "other_pid": "django__django-11433|gpt-oss-120b|67538c4f",
+  "a_is_own": true
+ },
+ {
+  "pair": 17,
+  "own_pid": "django__django-11433|gemma-4-31b|8b9db385",
+  "other_pid": "django__django-11433|llama-4-maverick|686af985",
+  "a_is_own": false
+ },
+ {
+  "pair": 18,
+  "own_pid": "django__django-11433|gemma-4-31b|8b9db385",
+  "other_pid": "django__django-11433|qwen3-coder|0dfc7ef4",
+  "a_is_own": false
+ },
+ {
+  "pair": 19,
+  "own_pid": "django__django-11728|gemma-4-31b|edffe56c",
+  "other_pid": "django__django-11728|gpt-oss-120b|cbebe96b",
+  "a_is_own": false
+ },
+ {
+  "pair": 20,
+  "own_pid": "django__django-11728|gemma-4-31b|edffe56c",
+  "other_pid": "django__django-11728|llama-4-maverick|0547c070",
+  "a_is_own": false
+ },
+ {
+  "pair": 21,
+  "own_pid": "django__django-13195|gemma-4-31b|80bc3d0c",
+  "other_pid": "django__django-13195|glm-4.5|73ac9ec3",
+  "a_is_own": true
+ },
+ {
+  "pair": 22,
+  "own_pid": "django__django-13195|gemma-4-31b|80bc3d0c",
+  "other_pid": "django__django-13195|kimi-k2|e64a8316",
+  "a_is_own": false
+ },
+ {
+  "pair": 23,
+  "own_pid": "django__django-13512|gemma-4-31b|5c36886e",
+  "other_pid": "django__django-13512|glm-4.5|5c36886e",
+  "a_is_own": false
+ },
+ {
+  "pair": 24,
+  "own_pid": "django__django-13512|gemma-4-31b|5c36886e",
+  "other_pid": "django__django-13512|gpt-oss-120b|33fdac92",
+  "a_is_own": false
+ },
+ {
+  "pair": 25,
+  "own_pid": "django__django-13512|gemma-4-31b|5c36886e",
+  "other_pid": "django__django-13512|kimi-k2|2758e97f",
+  "a_is_own": true
+ },
+ {
+  "pair": 26,
+  "own_pid": "django__django-13925|gemma-4-31b|1fe2435a",
+  "other_pid": "django__django-13925|gpt-oss-120b|41f85401",
+  "a_is_own": true
+ },
+ {
+  "pair": 27,
+  "own_pid": "django__django-14311|gemma-4-31b|67a401df",
+  "other_pid": "django__django-14311|llama-4-maverick|bb4bf04c",
+  "a_is_own": true
+ },
+ {
+  "pair": 28,
+  "own_pid": "django__django-14315|gemma-4-31b|32946608",
+  "other_pid": "django__django-14315|glm-4.5|385ce341",
+  "a_is_own": false
+ },
+ {
+  "pair": 29,
+  "own_pid": "django__django-14315|gemma-4-31b|32946608",
+  "other_pid": "django__django-14315|kimi-k2|4dd8a18e",
+  "a_is_own": false
+ },
+ {
+  "pair": 30,
+  "own_pid": "django__django-14315|gemma-4-31b|32946608",
+  "other_pid": "django__django-14315|llama-4-maverick|1bf77749",
+  "a_is_own": false
+ },
+ {
+  "pair": 31,
+  "own_pid": "django__django-14315|gemma-4-31b|32946608",
+  "other_pid": "django__django-14315|qwen3-coder|32946608",
+  "a_is_own": true
+ },
+ {
+  "pair": 32,
+  "own_pid": "django__django-14376|gemma-4-31b|ff73166b",
+  "other_pid": "django__django-14376|gpt-oss-120b|ff73166b",
+  "a_is_own": false
+ },
+ {
+  "pair": 33,
+  "own_pid": "django__django-14376|gemma-4-31b|ff73166b",
+  "other_pid": "django__django-14376|kimi-k2|ff73166b",
+  "a_is_own": true
+ },
+ {
+  "pair": 34,
+  "own_pid": "django__django-14376|gemma-4-31b|ff73166b",
+  "other_pid": "django__django-14376|llama-4-maverick|ff73166b",
+  "a_is_own": false
+ },
+ {
+  "pair": 35,
+  "own_pid": "django__django-14534|gemma-4-31b|1adb30a5",
+  "other_pid": "django__django-14534|kimi-k2|a3242f70",
+  "a_is_own": false
+ },
+ {
+  "pair": 36,
+  "own_pid": "django__django-14534|gemma-4-31b|1adb30a5",
+  "other_pid": "django__django-14534|llama-4-maverick|c7acbaab",
+  "a_is_own": true
+ },
+ {
+  "pair": 37,
+  "own_pid": "django__django-14534|gemma-4-31b|1adb30a5",
+  "other_pid": "django__django-14534|qwen3-coder|2dd7626f",
+  "a_is_own": false
+ },
+ {
+  "pair": 38,
+  "own_pid": "django__django-16032|gemma-4-31b|740b6120",
+  "other_pid": "django__django-16032|glm-4.5|3f7a9ad8",
+  "a_is_own": true
+ },
+ {
+  "pair": 39,
+  "own_pid": "django__django-16032|gemma-4-31b|740b6120",
+  "other_pid": "django__django-16032|llama-4-maverick|2a860125",
+  "a_is_own": false
+ },
+ {
+  "pair": 40,
+  "own_pid": "django__django-16667|gemma-4-31b|1f9a145b",
+  "other_pid": "django__django-16667|glm-4.5|136eb36a",
+  "a_is_own": false
+ },
+ {
+  "pair": 41,
+  "own_pid": "django__django-16667|gemma-4-31b|1f9a145b",
+  "other_pid": "django__django-16667|gpt-oss-120b|58510987",
+  "a_is_own": true
+ },
+ {
+  "pair": 42,
+  "own_pid": "django__django-16667|gemma-4-31b|1f9a145b",
+  "other_pid": "django__django-16667|qwen3-coder|136eb36a",
+  "a_is_own": true
+ },
+ {
+  "pair": 43,
+  "own_pid": "django__django-16938|gemma-4-31b|07254d57",
+  "other_pid": "django__django-16938|glm-4.5|b9012eab",
+  "a_is_own": false
+ },
+ {
+  "pair": 44,
+  "own_pid": "matplotlib__matplotlib-23299|gemma-4-31b|555f613b",
+  "other_pid": "matplotlib__matplotlib-23299|glm-4.5|481dfdc9",
+  "a_is_own": true
+ },
+ {
+  "pair": 45,
+  "own_pid": "matplotlib__matplotlib-25960|gemma-4-31b|9a68fdaf",
+  "other_pid": "matplotlib__matplotlib-25960|glm-4.5|d7f43766",
+  "a_is_own": true
+ },
+ {
+  "pair": 46,
+  "own_pid": "matplotlib__matplotlib-25960|gemma-4-31b|9a68fdaf",
+  "other_pid": "matplotlib__matplotlib-25960|kimi-k2|8b49bd08",
+  "a_is_own": false
+ },
+ {
+  "pair": 47,
+  "own_pid": "matplotlib__matplotlib-26291|gemma-4-31b|8c1301fa",
+  "other_pid": "matplotlib__matplotlib-26291|llama-4-maverick|2830ad93",
+  "a_is_own": true
+ },
+ {
+  "pair": 48,
+  "own_pid": "matplotlib__matplotlib-26291|gemma-4-31b|8c1301fa",
+  "other_pid": "matplotlib__matplotlib-26291|qwen3-coder|26cc2f5c",
+  "a_is_own": false
+ },
+ {
+  "pair": 49,
+  "own_pid": "mwaskom__seaborn-3187|gemma-4-31b|fbf6e222",
+  "other_pid": "mwaskom__seaborn-3187|glm-4.5|e32b0a6a",
+  "a_is_own": true
+ },
+ {
+  "pair": 50,
+  "own_pid": "pylint-dev__pylint-4661|gemma-4-31b|a5f232a8",
+  "other_pid": "pylint-dev__pylint-4661|glm-4.5|5434300f",
+  "a_is_own": false
+ },
+ {
+  "pair": 51,
+  "own_pid": "pylint-dev__pylint-4661|gemma-4-31b|a5f232a8",
+  "other_pid": "pylint-dev__pylint-4661|gpt-oss-120b|cd91168c",
+  "a_is_own": false
+ },
+ {
+  "pair": 52,
+  "own_pid": "pylint-dev__pylint-4661|gemma-4-31b|a5f232a8",
+  "other_pid": "pylint-dev__pylint-4661|kimi-k2|e25a8cd0",
+  "a_is_own": true
+ },
+ {
+  "pair": 53,
+  "own_pid": "pylint-dev__pylint-8898|gemma-4-31b|7e48b0b1",
+  "other_pid": "pylint-dev__pylint-8898|llama-4-maverick|94c6c191",
+  "a_is_own": true
+ },
+ {
+  "pair": 54,
+  "own_pid": "pytest-dev__pytest-10356|gemma-4-31b|4a56fd74",
+  "other_pid": "pytest-dev__pytest-10356|kimi-k2|1370f16d",
+  "a_is_own": true
+ },
+ {
+  "pair": 55,
+  "own_pid": "sphinx-doc__sphinx-7462|gemma-4-31b|0cf88c11",
+  "other_pid": "sphinx-doc__sphinx-7462|llama-4-maverick|a2d1727e",
+  "a_is_own": false
+ },
+ {
+  "pair": 56,
+  "own_pid": "sympy__sympy-17318|gemma-4-31b|fd0e824f",
+  "other_pid": "sympy__sympy-17318|qwen3-coder|2f576169",
+  "a_is_own": false
+ },
+ {
+  "pair": 57,
+  "own_pid": "sympy__sympy-18211|gemma-4-31b|26debe44",
+  "other_pid": "sympy__sympy-18211|qwen3-coder|c6b94bd4",
+  "a_is_own": true
+ },
+ {
+  "pair": 58,
+  "own_pid": "sympy__sympy-21596|gemma-4-31b|60a4bf17",
+  "other_pid": "sympy__sympy-21596|qwen3-coder|b07443da",
+  "a_is_own": false
+ }
+]

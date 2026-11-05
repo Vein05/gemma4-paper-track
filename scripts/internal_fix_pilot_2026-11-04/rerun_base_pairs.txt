@@ -1,0 +1,8 @@
+== heldout
+  pretrained, plain    stamped pairs 0.596 [0.42, 0.76] pairs=47   own stamped AUROC 0.760
+  chat bf16, plain     stamped pairs 0.638 [0.48, 0.78] pairs=47   own stamped AUROC 0.722
+  OLMo pretrained      stamped pairs 0.511 [0.36, 0.66] pairs=47   own stamped AUROC 0.688
+  OLMo instruct        stamped pairs 0.362 [0.21, 0.52] pairs=47   own stamped AUROC 0.560
+== lite
+  pretrained, plain    stamped pairs 0.542 [0.44, 0.64] pairs=107   own stamped AUROC 0.625
+  chat bf16, plain     stamped pairs 0.523 [0.42, 0.64] pairs=107   own stamped AUROC 0.618

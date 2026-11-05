@@ -1,0 +1,352 @@
+{
+ "model": "score_J = a + b*(panel_J - mean) + c*own_J on failing patches; values are [estimate, lo95, hi95]",
+ "boot": 2000,
+ "seed": 0,
+ "held-out": {
+  "failing_patches": 478,
+  "writer_pass_rate": {
+   "llama-4-maverick": 0.272,
+   "gemma-4-31b": 0.528,
+   "gpt-oss-120b": 0.301,
+   "kimi-k2": 0.609,
+   "qwen3-coder": 0.701,
+   "glm-4.5": 0.619
+  },
+  "judges": {
+   "gemma4-31b": {
+    "own_failing": 85,
+    "other_failing": 393,
+    "general_leniency": [
+     -2.58,
+     -5.55,
+     0.36
+    ],
+    "slope": [
+     1.2,
+     1.15,
+     1.26
+    ],
+    "own_term": [
+     14.53,
+     8.31,
+     20.83
+    ],
+    "own_term_with_strength": [
+     13.19,
+     6.95,
+     19.42
+    ],
+    "strength_term": [
+     18.11,
+     0.08,
+     36.93
+    ],
+    "share100_own_minus_others_at_mean_panel": [
+     25.43,
+     11.94,
+     39.36
+    ],
+    "own_odds_ratio_100": [
+     3.07,
+     1.76,
+     5.59
+    ]
+   },
+   "qwen3-coder": {
+    "own_failing": 46,
+    "other_failing": 432,
+    "general_leniency": [
+     10.72,
+     8.21,
+     13.41
+    ],
+    "slope": [
+     0.74,
+     0.68,
+     0.8
+    ],
+    "own_term": [
+     -4.67,
+     -11.48,
+     2.66
+    ],
+    "own_term_with_strength": [
+     -5.62,
+     -13.55,
+     2.4
+    ],
+    "strength_term": [
+     3.77,
+     -12.31,
+     20.6
+    ],
+    "share100_own_minus_others_at_mean_panel": [
+     NaN,
+     NaN,
+     NaN
+    ],
+    "own_odds_ratio_100": [
+     NaN,
+     NaN,
+     NaN
+    ]
+   },
+   "gpt-oss-120b": {
+    "own_failing": 109,
+    "other_failing": 369,
+    "general_leniency": [
+     -3.84,
+     -6.75,
+     -0.83
+    ],
+    "slope": [
+     0.76,
+     0.69,
+     0.82
+    ],
+    "own_term": [
+     -1.04,
+     -6.69,
+     4.39
+    ],
+    "own_term_with_strength": [
+     -2.08,
+     -8.38,
+     3.88
+    ],
+    "strength_term": [
+     -5.84,
+     -26.59,
+     13.51
+    ],
+    "share100_own_minus_others_at_mean_panel": [
+     NaN,
+     NaN,
+     NaN
+    ],
+    "own_odds_ratio_100": [
+     NaN,
+     NaN,
+     NaN
+    ]
+   },
+   "glm-4.5": {
+    "own_failing": 61,
+    "other_failing": 417,
+    "general_leniency": [
+     -13.29,
+     -16.52,
+     -10.3
+    ],
+    "slope": [
+     0.94,
+     0.84,
+     1.02
+    ],
+    "own_term": [
+     1.48,
+     -8.55,
+     11.41
+    ],
+    "own_term_with_strength": [
+     -4.23,
+     -14.97,
+     5.72
+    ],
+    "strength_term": [
+     37.04,
+     15.01,
+     58.84
+    ],
+    "share100_own_minus_others_at_mean_panel": [
+     -0.86,
+     -2.1,
+     0.78
+    ],
+    "own_odds_ratio_100": [
+     0.59,
+     0.21,
+     1.35
+    ]
+   },
+   "kimi-k2": {
+    "own_failing": 54,
+    "other_failing": 424,
+    "general_leniency": [
+     5.29,
+     2.78,
+     7.81
+    ],
+    "slope": [
+     0.97,
+     0.91,
+     1.02
+    ],
+    "own_term": [
+     5.44,
+     -2.37,
+     12.78
+    ],
+    "own_term_with_strength": [
+     -0.65,
+     -9.22,
+     7.35
+    ],
+    "strength_term": [
+     39.8,
+     24.47,
+     55.85
+    ],
+    "share100_own_minus_others_at_mean_panel": [
+     0.59,
+     -1.22,
+     2.66
+    ],
+    "own_odds_ratio_100": [
+     2.1,
+     0.0,
+     21.21
+    ]
+   },
+   "llama-4-maverick": {
+    "own_failing": 123,
+    "other_failing": 355,
+    "general_leniency": [
+     28.56,
+     25.1,
+     32.17
+    ],
+    "slope": [
+     0.68,
+     0.58,
+     0.79
+    ],
+    "own_term": [
+     -6.7,
+     -15.0,
+     1.82
+    ],
+    "own_term_with_strength": [
+     -3.89,
+     -14.0,
+     6.26
+    ],
+    "strength_term": [
+     13.48,
+     -10.36,
+     36.47
+    ],
+    "share100_own_minus_others_at_mean_panel": [
+     9.3,
+     -3.17,
+     21.85
+    ],
+    "own_odds_ratio_100": [
+     1.47,
+     0.88,
+     2.49
+    ]
+   }
+  }
+ },
+ "swe-bench-lite": {
+  "failing_patches": 825,
+  "writer_pass_rate": {
+   "entropo-qwen3-coder-30b": 0.457,
+   "gemma-4-31b": 0.556,
+   "claude-4-sonnet": 0.571,
+   "deepseek-v3": 0.324,
+   "swe-fixer-qwen2.5-72b": 0.253
+  },
+  "judges": {
+   "gemma4-31b": {
+    "own_failing": 130,
+    "other_failing": 695,
+    "general_leniency": [
+     -4.92,
+     -7.89,
+     -2.15
+    ],
+    "slope": [
+     1.08,
+     0.99,
+     1.16
+    ],
+    "own_term": [
+     17.27,
+     11.15,
+     23.07
+    ],
+    "own_term_with_strength": [
+     7.52,
+     1.19,
+     13.6
+    ],
+    "strength_term": [
+     56.14,
+     33.23,
+     79.73
+    ],
+    "share100_own_minus_others_at_mean_panel": [
+     22.1,
+     11.77,
+     32.33
+    ],
+    "own_odds_ratio_100": [
+     2.46,
+     1.63,
+     3.85
+    ]
+   }
+  }
+ },
+ "livecodebench": {
+  "failing_patches": 527,
+  "writer_pass_rate": {
+   "deepseek-v3": 0.243,
+   "gemma-4-31b": 0.504,
+   "claude-3.5-sonnet": 0.185
+  },
+  "judges": {
+   "gemma4-31b": {
+    "own_failing": 124,
+    "other_failing": 403,
+    "general_leniency": [
+     -12.51,
+     -15.04,
+     -9.86
+    ],
+    "slope": [
+     0.78,
+     0.64,
+     0.9
+    ],
+    "own_term": [
+     28.56,
+     20.42,
+     37.31
+    ],
+    "own_term_with_strength": [
+     38.05,
+     19.23,
+     56.28
+    ],
+    "strength_term": [
+     -32.87,
+     -94.6,
+     31.03
+    ],
+    "share100_own_minus_others_at_mean_panel": [
+     21.59,
+     12.33,
+     32.28
+    ],
+    "own_odds_ratio_100": [
+     9.04,
+     4.99,
+     19.05
+    ]
+   }
+  }
+ }
+}

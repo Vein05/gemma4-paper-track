@@ -1,0 +1,899 @@
+{
+  "activation_fix": "scripts/judge_actor.py ACTIVATE prefixes commands with testbed conda activation because --contain hid /root/.bashrc; documented in code comments and applied to actor runs. This reduces one known import-error source but does not validate every saved test.",
+  "actor_run_counts": {
+    "gemma": {
+      "rows": 133,
+      "scored": 132,
+      "statuses": {
+        "LimitsExceeded": 1,
+        "Submitted": 132
+      }
+    },
+    "gptoss": {
+      "rows": 133,
+      "scored": 92,
+      "statuses": {
+        "BadRequestError": 4,
+        "InternalServerError": 4,
+        "LimitsExceeded": 33,
+        "Submitted": 92
+      }
+    },
+    "gptoss-final": {
+      "rows": 33,
+      "scored": 28,
+      "statuses": {
+        "Finalized": 28,
+        "NoScore": 5
+      }
+    },
+    "gptoss-rerun": {
+      "rows": 8,
+      "scored": 5,
+      "statuses": {
+        "InternalServerError": 1,
+        "LimitsExceeded": 2,
+        "Submitted": 5
+      }
+    }
+  },
+  "cohort": {
+    "failing": 52,
+    "passing": 81,
+    "stamped_own_patches": 133
+  },
+  "command_and_asset_gaps": {
+    "command_without_saved_files_pids": [
+      "django__django-13363|gemma-4-31b|cf700d0a",
+      "django__django-15280|gemma-4-31b|2f7cceb2",
+      "matplotlib__matplotlib-20488|gemma-4-31b|9a8ef15b",
+      "matplotlib__matplotlib-25960|gemma-4-31b|9a68fdaf",
+      "scikit-learn__scikit-learn-14141|gemma-4-31b|53ca000f",
+      "sympy__sympy-16792|gemma-4-31b|c7f7b78d"
+    ],
+    "missing_test_command_pids": [
+      "sphinx-doc__sphinx-9658|gemma-4-31b|72b574d8"
+    ],
+    "note": "Saved file text is embedded in runs.jsonl. This inventory does not claim those files exist in a replay workspace.",
+    "recorded_supporting_assets_to_reconstruct": [
+      {
+        "files": [
+          "settings.py"
+        ],
+        "pid": "django__django-11066|gemma-4-31b|fc5a8bf7"
+      },
+      {
+        "files": [
+          "repro.py"
+        ],
+        "pid": "django__django-11551|gemma-4-31b|a2c48a63"
+      },
+      {
+        "files": [
+          "repro_app/__init__.py",
+          "repro_app/models.py",
+          "run_repro.py",
+          "settings.py"
+        ],
+        "pid": "django__django-11555|gemma-4-31b|a7e22fac"
+      },
+      {
+        "files": [
+          "judge_app/__init__.py"
+        ],
+        "pid": "django__django-11603|gemma-4-31b|98f20ea7"
+      },
+      {
+        "files": [
+          "django/db/migrations/autodetector.py",
+          "patch.diff",
+          "repro_test/db.sqlite3",
+          "repro_test/manage.py",
+          "repro_test/myapp/__init__.py",
+          "repro_test/myapp/migrations/0001_initial.py",
+          "repro_test/myapp/migrations/0002_auto_20261103_2241.py",
+          "repro_test/myapp/migrations/__init__.py",
+          "repro_test/myapp/models.py",
+          "repro_test/repro_project/__init__.py",
+          "repro_test/repro_project/settings.py",
+          "repro_test/repro_project/urls.py"
+        ],
+        "pid": "django__django-12754|gemma-4-31b|3952ca5d"
+      },
+      {
+        "files": [
+          "settings.py"
+        ],
+        "pid": "django__django-13089|gemma-4-31b|b61ba66f"
+      },
+      {
+        "files": [
+          "test_lock_file"
+        ],
+        "pid": "django__django-13410|gemma-4-31b|2ef03114"
+      },
+      {
+        "files": [
+          "judge_test_float.py"
+        ],
+        "pid": "django__django-13449|gemma-4-31b|82db2d68"
+      },
+      {
+        "files": [
+          "repro.py"
+        ],
+        "pid": "django__django-14017|gemma-4-31b|00879f6b"
+      },
+      {
+        "files": [
+          "fix.patch"
+        ],
+        "pid": "django__django-14787|gemma-4-31b|7d387c5d"
+      },
+      {
+        "files": [
+          "basic_or_test.py"
+        ],
+        "pid": "django__django-15128|gemma-4-31b|4fc904ca"
+      },
+      {
+        "files": [
+          "patch.diff"
+        ],
+        "pid": "django__django-15315|gemma-4-31b|f5ceb89b"
+      },
+      {
+        "files": [
+          "judge_app/__init__.py",
+          "judge_app/models.py"
+        ],
+        "pid": "django__django-16333|gemma-4-31b|820d3719"
+      },
+      {
+        "files": [
+          "judge_test_extended.py"
+        ],
+        "pid": "django__django-16429|gemma-4-31b|f7090e0e"
+      },
+      {
+        "files": [
+          "repro.py",
+          "repro_msg.py"
+        ],
+        "pid": "django__django-16454|gemma-4-31b|13f3d8e8"
+      },
+      {
+        "files": [
+          "repro_django.py"
+        ],
+        "pid": "django__django-16667|gemma-4-31b|1f9a145b"
+      },
+      {
+        "files": [
+          "judge_test/__init__.py",
+          "judge_test/settings.py"
+        ],
+        "pid": "django__django-17029|gemma-4-31b|7c632360"
+      },
+      {
+        "files": [
+          "judge_vpacker_test.py"
+        ],
+        "pid": "matplotlib__matplotlib-24570|gemma-4-31b|f2cbabfa"
+      },
+      {
+        "files": [
+          "issue_patch.diff",
+          "lib/matplotlib/offsetbox.py"
+        ],
+        "pid": "matplotlib__matplotlib-24637|gemma-4-31b|3fadea62"
+      },
+      {
+        "files": [
+          "final_test.py"
+        ],
+        "pid": "matplotlib__matplotlib-25122|gemma-4-31b|1c57d77f"
+      },
+      {
+        "files": [
+          "fix.patch",
+          "lib/mpl_toolkits/axes_grid1/inset_locator.py",
+          "output_normal.png"
+        ],
+        "pid": "matplotlib__matplotlib-26291|gemma-4-31b|8c1301fa"
+      },
+      {
+        "files": [
+          "judge_test_bug.py",
+          "judge_test_complex.py"
+        ],
+        "pid": "psf__requests-1921|gemma-4-31b|96f941b1"
+      },
+      {
+        "files": [
+          "pyproject.toml",
+          "src/gen/about.py",
+          "src/region_selection.py"
+        ],
+        "pid": "pylint-dev__pylint-7080|gemma-4-31b|383e04ac"
+      },
+      {
+        "files": [
+          "duplicate_test.py"
+        ],
+        "pid": "pytest-dev__pytest-10356|gemma-4-31b|4a56fd74"
+      },
+      {
+        "files": [
+          "repro.py"
+        ],
+        "pid": "pytest-dev__pytest-5631|gemma-4-31b|e8957ec7"
+      },
+      {
+        "files": [
+          "repro_dir/__init__.py",
+          "repro_dir_config/__init__.py"
+        ],
+        "pid": "pytest-dev__pytest-6197|gemma-4-31b|8dd6ba7c"
+      },
+      {
+        "files": [
+          "output.txt",
+          "output_patched.txt"
+        ],
+        "pid": "pytest-dev__pytest-7236|gemma-4-31b|36491694"
+      },
+      {
+        "files": [
+          "ast_check.py"
+        ],
+        "pid": "pytest-dev__pytest-7324|gemma-4-31b|86c707a7"
+      },
+      {
+        "files": [
+          "extra_test.py"
+        ],
+        "pid": "scikit-learn__scikit-learn-15100|gemma-4-31b|745e8615"
+      },
+      {
+        "files": [
+          "final_check.py",
+          "judge_test_debug.py"
+        ],
+        "pid": "scikit-learn__scikit-learn-25931|gemma-4-31b|26ef2d23"
+      },
+      {
+        "files": [
+          "judge_test_generic.py"
+        ],
+        "pid": "sphinx-doc__sphinx-7889|gemma-4-31b|6581abe2"
+      },
+      {
+        "files": [
+          "judge_test_non_decorated.py"
+        ],
+        "pid": "sphinx-doc__sphinx-7910|gemma-4-31b|14193276"
+      },
+      {
+        "files": [
+          "test_project/_build/.buildinfo",
+          "test_project/_build/.doctrees/environment.pickle",
+          "test_project/_build/.doctrees/index.doctree",
+          "test_project/_build/_images/image.png",
+          "test_project/_build/_sources/index.rst.txt",
+          "test_project/_build/_static/_stemmer.js",
+          "test_project/_build/_static/alabaster.css",
+          "test_project/_build/_static/basic.css",
+          "test_project/_build/_static/custom.css",
+          "test_project/_build/_static/doctools.js",
+          "test_project/_build/_static/documentation_options.js",
+          "test_project/_build/_static/file.png",
+          "test_project/_build/_static/jquery-3.5.1.js",
+          "test_project/_build/_static/jquery.js",
+          "test_project/_build/_static/language_data.js",
+          "test_project/_build/_static/minus.png",
+          "test_project/_build/_static/plus.png",
+          "test_project/_build/_static/pygments.css",
+          "test_project/_build/_static/searchtools.js",
+          "test_project/_build/_static/translations.js",
+          "test_project/_build/_static/underscore-1.3.1.js",
+          "test_project/_build/_static/underscore.js",
+          "test_project/_build/genindex.html",
+          "test_project/_build/index.html",
+          "test_project/_build/objects.inv",
+          "test_project/_build/search.html",
+          "test_project/_build/searchindex.js",
+          "test_project/image.png",
+          "test_project/index.rst",
+          "test_project/locale/da/LC_MESSAGES/sphinx.mo",
+          "test_project/locale/da/LC_MESSAGES/sphinx.po"
+        ],
+        "pid": "sphinx-doc__sphinx-8120|gemma-4-31b|f5a015f9"
+      },
+      {
+        "files": [
+          "extra_test.py"
+        ],
+        "pid": "sympy__sympy-18211|gemma-4-31b|26debe44"
+      },
+      {
+        "files": [
+          "debug_hnf.py"
+        ],
+        "pid": "sympy__sympy-23413|gemma-4-31b|b314fc72"
+      },
+      {
+        "files": [
+          "debug_kahane.py",
+          "debug_type.py",
+          "judge_test_final.py",
+          "judge_test_simple.py"
+        ],
+        "pid": "sympy__sympy-23824|gemma-4-31b|808dad8b"
+      }
+    ]
+  },
+  "diagnostic_classification": {
+    "file_backed_candidate_tests_with_applied_failure": 18,
+    "rule": "heuristic triage of candidate test_applied output only; error markers can arise from real defects, and no listed marker does not validate semantics. Neither group is replay adjudication.",
+    "with_import_environment_or_other_error_markers": [
+      "django__django-11138|gemma-4-31b|5402a395",
+      "pylint-dev__pylint-8898|gemma-4-31b|7e48b0b1",
+      "sympy__sympy-23413|gemma-4-31b|b314fc72"
+    ],
+    "without_listed_error_markers": [
+      "django__django-11400|gemma-4-31b|ee91b3c1",
+      "django__django-13344|gemma-4-31b|811b2eab",
+      "django__django-13658|gemma-4-31b|2360010f",
+      "django__django-14017|gemma-4-31b|00879f6b",
+      "django__django-14765|gemma-4-31b|9d05cdac",
+      "django__django-15375|gemma-4-31b|6c814659",
+      "matplotlib__matplotlib-24570|gemma-4-31b|f2cbabfa",
+      "psf__requests-1921|gemma-4-31b|96f941b1",
+      "pydata__xarray-4356|gemma-4-31b|b929c33c",
+      "pydata__xarray-6721|gemma-4-31b|f610642b",
+      "pydata__xarray-6744|gemma-4-31b|fce4bcb8",
+      "pytest-dev__pytest-6197|gemma-4-31b|8dd6ba7c",
+      "pytest-dev__pytest-7236|gemma-4-31b|36491694",
+      "scikit-learn__scikit-learn-25232|gemma-4-31b|68d80697",
+      "sympy__sympy-22914|gemma-4-31b|e7ba1066"
+    ]
+  },
+  "gemma_saved_tests_by_hidden_label": {
+    "failing": {
+      "actor_row": 52,
+      "applied_fail": 11,
+      "applied_pass": 40,
+      "applied_unavailable": 1,
+      "cmd_without_saved_files": 3,
+      "command_present": 51,
+      "no_test_cmd": 1,
+      "reverted_fail_applied_fail": 11,
+      "reverted_fail_applied_pass": 31,
+      "reverted_pass_applied_pass": 9,
+      "reverted_unavailable": 1,
+      "saved_files_applied_fail": 11,
+      "saved_files_applied_pass": 37,
+      "saved_files_applied_unavailable": 1,
+      "saved_source_count": 84,
+      "total": 52,
+      "with_saved_files": 49
+    },
+    "passing": {
+      "actor_row": 81,
+      "applied_fail": 8,
+      "applied_pass": 73,
+      "applied_unavailable": 0,
+      "cmd_without_saved_files": 3,
+      "command_present": 81,
+      "no_test_cmd": 0,
+      "reverted_fail_applied_fail": 6,
+      "reverted_fail_applied_pass": 63,
+      "reverted_pass_applied_pass": 10,
+      "reverted_unavailable": 0,
+      "saved_files_applied_fail": 7,
+      "saved_files_applied_pass": 71,
+      "saved_files_applied_unavailable": 0,
+      "saved_source_count": 140,
+      "total": 81,
+      "with_saved_files": 78
+    }
+  },
+  "generated_on": "2026-11-05",
+  "inputs": {
+    "sha256": {
+      "data/lab-runs/judge-as-actor/gemma/runs.jsonl": "76855c2aef36d6a75581f06e360140ba0e8bb6e10678c2b3fda15af1621a07d7",
+      "data/lab-runs/judge-as-actor/gptoss-final/runs.jsonl": "f26318d9801309b0a0b0fd6c83bfc211d7119989b8c7096c5296ee8e4dde58a1",
+      "data/lab-runs/judge-as-actor/gptoss-rerun/runs.jsonl": "e39f239f90ef9f523ae475c3ee335db0055e3b280907ac81c78495b5bb1eb26d",
+      "data/lab-runs/judge-as-actor/gptoss/runs.jsonl": "2b4d33547d3b08bcb218c029d7305cd689843dfdb85b36ec919438985dbb41d9",
+      "data/lab-runs/judge-as-actor/jobs.jsonl": "07b5ed10f353060f501cc080686aa555afbbc3b5b03f0fdd571299334e3a2094",
+      "scripts/actor_saved_test_inventory_2026_11_05.py": "a2f3a91bbf89fde17abd0e1d3dd8c7be769cdbe339dac9d0a2576d9437cccb05"
+    }
+  },
+  "interface_coupling_risks": [
+    "Most saved test commands target judge_test.py; relative paths and repo imports presume /testbed cwd and the actor's environment prefix.",
+    "Tests may depend on modules, migrations, fixtures, generated files, environment settings, or DB initialization saved alongside the main test; a command alone is insufficient.",
+    "Tests can assert implementation details or reproduce issue text without covering intended behavior; candidate-pass is only a diagnostic.",
+    "The actor harness applies patches and runs tests under SWE-bench image-specific dependencies; test results may not transfer to other versions or a clean CI runner."
+  ],
+  "limitations": [
+    "No saved test was executed for this inventory.",
+    "Gold/pass-reference replay is pending.",
+    "Error-marker triage does not establish infrastructure cause or semantic correctness; markers can occur alongside real defects, and their absence is not validation.",
+    "The manifest carries patch IDs and commands only, no gold labels."
+  ],
+  "reproducible_commands": [
+    "python3 scripts/actor_saved_test_inventory_2026_11_05.py"
+  ],
+  "saved_files": {
+    "all_actor_runs": {
+      "gemma": {
+        "contents_at_or_over_20000_chars": 8,
+        "contents_exactly_20000_chars": [
+          {
+            "length": 20000,
+            "name": "django/db/migrations/autodetector.py",
+            "pid": "django__django-12754|gemma-4-31b|3952ca5d"
+          },
+          {
+            "length": 20000,
+            "name": "repro_test/db.sqlite3",
+            "pid": "django__django-12754|gemma-4-31b|3952ca5d"
+          },
+          {
+            "length": 20000,
+            "name": "lib/matplotlib/offsetbox.py",
+            "pid": "matplotlib__matplotlib-24637|gemma-4-31b|3fadea62"
+          },
+          {
+            "length": 20000,
+            "name": "lib/mpl_toolkits/axes_grid1/inset_locator.py",
+            "pid": "matplotlib__matplotlib-26291|gemma-4-31b|8c1301fa"
+          },
+          {
+            "length": 20000,
+            "name": "test_project/_build/_static/_stemmer.js",
+            "pid": "sphinx-doc__sphinx-8120|gemma-4-31b|f5a015f9"
+          },
+          {
+            "length": 20000,
+            "name": "test_project/_build/_static/jquery-3.5.1.js",
+            "pid": "sphinx-doc__sphinx-8120|gemma-4-31b|f5a015f9"
+          },
+          {
+            "length": 20000,
+            "name": "test_project/_build/_static/jquery.js",
+            "pid": "sphinx-doc__sphinx-8120|gemma-4-31b|f5a015f9"
+          },
+          {
+            "length": 20000,
+            "name": "test_project/_build/_static/underscore-1.3.1.js",
+            "pid": "sphinx-doc__sphinx-8120|gemma-4-31b|f5a015f9"
+          }
+        ],
+        "rows_with_saved_files": 127,
+        "source_file_occurrences": 224,
+        "unique_name_and_content_pairs": 222,
+        "unique_names": 112
+      },
+      "gptoss": {
+        "contents_at_or_over_20000_chars": 0,
+        "contents_exactly_20000_chars": [],
+        "rows_with_saved_files": 115,
+        "source_file_occurrences": 169,
+        "unique_name_and_content_pairs": 166,
+        "unique_names": 50
+      },
+      "gptoss-final": {
+        "contents_at_or_over_20000_chars": 0,
+        "contents_exactly_20000_chars": [],
+        "rows_with_saved_files": 31,
+        "source_file_occurrences": 63,
+        "unique_name_and_content_pairs": 63,
+        "unique_names": 30
+      },
+      "gptoss-rerun": {
+        "contents_at_or_over_20000_chars": 0,
+        "contents_exactly_20000_chars": [],
+        "rows_with_saved_files": 7,
+        "source_file_occurrences": 14,
+        "unique_name_and_content_pairs": 14,
+        "unique_names": 6
+      }
+    },
+    "gemma_stamped_cohort_content_files_at_least_20000_chars": [
+      {
+        "length": 20000,
+        "name": "django/db/migrations/autodetector.py",
+        "pid": "django__django-12754|gemma-4-31b|3952ca5d"
+      },
+      {
+        "length": 20000,
+        "name": "repro_test/db.sqlite3",
+        "pid": "django__django-12754|gemma-4-31b|3952ca5d"
+      },
+      {
+        "length": 20000,
+        "name": "lib/matplotlib/offsetbox.py",
+        "pid": "matplotlib__matplotlib-24637|gemma-4-31b|3fadea62"
+      },
+      {
+        "length": 20000,
+        "name": "lib/mpl_toolkits/axes_grid1/inset_locator.py",
+        "pid": "matplotlib__matplotlib-26291|gemma-4-31b|8c1301fa"
+      },
+      {
+        "length": 20000,
+        "name": "test_project/_build/_static/_stemmer.js",
+        "pid": "sphinx-doc__sphinx-8120|gemma-4-31b|f5a015f9"
+      },
+      {
+        "length": 20000,
+        "name": "test_project/_build/_static/jquery-3.5.1.js",
+        "pid": "sphinx-doc__sphinx-8120|gemma-4-31b|f5a015f9"
+      },
+      {
+        "length": 20000,
+        "name": "test_project/_build/_static/jquery.js",
+        "pid": "sphinx-doc__sphinx-8120|gemma-4-31b|f5a015f9"
+      },
+      {
+        "length": 20000,
+        "name": "test_project/_build/_static/underscore-1.3.1.js",
+        "pid": "sphinx-doc__sphinx-8120|gemma-4-31b|f5a015f9"
+      }
+    ],
+    "gemma_stamped_cohort_content_files_at_or_over_20000_chars": 8,
+    "gemma_stamped_cohort_content_files_exactly_20000_chars_potentially_truncated": [
+      {
+        "name": "django/db/migrations/autodetector.py",
+        "pid": "django__django-12754|gemma-4-31b|3952ca5d"
+      },
+      {
+        "name": "repro_test/db.sqlite3",
+        "pid": "django__django-12754|gemma-4-31b|3952ca5d"
+      },
+      {
+        "name": "lib/matplotlib/offsetbox.py",
+        "pid": "matplotlib__matplotlib-24637|gemma-4-31b|3fadea62"
+      },
+      {
+        "name": "lib/mpl_toolkits/axes_grid1/inset_locator.py",
+        "pid": "matplotlib__matplotlib-26291|gemma-4-31b|8c1301fa"
+      },
+      {
+        "name": "test_project/_build/_static/_stemmer.js",
+        "pid": "sphinx-doc__sphinx-8120|gemma-4-31b|f5a015f9"
+      },
+      {
+        "name": "test_project/_build/_static/jquery-3.5.1.js",
+        "pid": "sphinx-doc__sphinx-8120|gemma-4-31b|f5a015f9"
+      },
+      {
+        "name": "test_project/_build/_static/jquery.js",
+        "pid": "sphinx-doc__sphinx-8120|gemma-4-31b|f5a015f9"
+      },
+      {
+        "name": "test_project/_build/_static/underscore-1.3.1.js",
+        "pid": "sphinx-doc__sphinx-8120|gemma-4-31b|f5a015f9"
+      }
+    ],
+    "gemma_stamped_cohort_source_file_occurrences": {
+      "ast_check.py": 1,
+      "basic_or_test.py": 1,
+      "debug_hnf.py": 1,
+      "debug_kahane.py": 1,
+      "debug_type.py": 1,
+      "django/db/migrations/autodetector.py": 1,
+      "duplicate_test.py": 1,
+      "extra_test.py": 2,
+      "final_check.py": 1,
+      "final_test.py": 1,
+      "fix.patch": 2,
+      "issue_patch.diff": 1,
+      "judge_app/__init__.py": 2,
+      "judge_app/models.py": 1,
+      "judge_test.py": 103,
+      "judge_test/__init__.py": 1,
+      "judge_test/settings.py": 1,
+      "judge_test_bug.py": 1,
+      "judge_test_complex.py": 1,
+      "judge_test_debug.py": 1,
+      "judge_test_extended.py": 1,
+      "judge_test_final.py": 1,
+      "judge_test_float.py": 1,
+      "judge_test_generic.py": 1,
+      "judge_test_non_decorated.py": 1,
+      "judge_test_simple.py": 1,
+      "judge_vpacker_test.py": 1,
+      "lib/matplotlib/offsetbox.py": 1,
+      "lib/mpl_toolkits/axes_grid1/inset_locator.py": 1,
+      "output.txt": 1,
+      "output_normal.png": 1,
+      "output_patched.txt": 1,
+      "patch.diff": 2,
+      "pyproject.toml": 1,
+      "repro.py": 4,
+      "repro_app/__init__.py": 1,
+      "repro_app/models.py": 1,
+      "repro_dir/__init__.py": 1,
+      "repro_dir_config/__init__.py": 1,
+      "repro_django.py": 1,
+      "repro_msg.py": 1,
+      "repro_test/db.sqlite3": 1,
+      "repro_test/manage.py": 1,
+      "repro_test/myapp/__init__.py": 1,
+      "repro_test/myapp/migrations/0001_initial.py": 1,
+      "repro_test/myapp/migrations/0002_auto_20261103_2241.py": 1,
+      "repro_test/myapp/migrations/__init__.py": 1,
+      "repro_test/myapp/models.py": 1,
+      "repro_test/repro_project/__init__.py": 1,
+      "repro_test/repro_project/settings.py": 1,
+      "repro_test/repro_project/urls.py": 1,
+      "reproduce_bug.py": 1,
+      "reproduce_issue.py": 1,
+      "run_repro.py": 1,
+      "settings.py": 3,
+      "src/gen/about.py": 1,
+      "src/region_selection.py": 1,
+      "test_app/__init__.py": 2,
+      "test_app/models.py": 1,
+      "test_attribute.py": 1,
+      "test_coercion.py": 1,
+      "test_default_preserved.py": 1,
+      "test_direct_converter.py": 1,
+      "test_inheritance.py": 1,
+      "test_lock_file": 1,
+      "test_mod/__init__.py": 1,
+      "test_non_integer_pow.py": 1,
+      "test_non_picklable_canvas.py": 1,
+      "test_normal.py": 1,
+      "test_numeric_pk.py": 1,
+      "test_project/_build/.buildinfo": 1,
+      "test_project/_build/.doctrees/environment.pickle": 1,
+      "test_project/_build/.doctrees/index.doctree": 1,
+      "test_project/_build/_images/image.png": 1,
+      "test_project/_build/_sources/index.rst.txt": 1,
+      "test_project/_build/_static/_stemmer.js": 1,
+      "test_project/_build/_static/alabaster.css": 1,
+      "test_project/_build/_static/basic.css": 1,
+      "test_project/_build/_static/custom.css": 1,
+      "test_project/_build/_static/doctools.js": 1,
+      "test_project/_build/_static/documentation_options.js": 1,
+      "test_project/_build/_static/file.png": 1,
+      "test_project/_build/_static/jquery-3.5.1.js": 1,
+      "test_project/_build/_static/jquery.js": 1,
+      "test_project/_build/_static/language_data.js": 1,
+      "test_project/_build/_static/minus.png": 1,
+      "test_project/_build/_static/plus.png": 1,
+      "test_project/_build/_static/pygments.css": 1,
+      "test_project/_build/_static/searchtools.js": 1,
+      "test_project/_build/_static/translations.js": 1,
+      "test_project/_build/_static/underscore-1.3.1.js": 1,
+      "test_project/_build/_static/underscore.js": 1,
+      "test_project/_build/genindex.html": 1,
+      "test_project/_build/index.html": 1,
+      "test_project/_build/objects.inv": 1,
+      "test_project/_build/search.html": 1,
+      "test_project/_build/searchindex.js": 1,
+      "test_project/conf.py": 1,
+      "test_project/image.png": 1,
+      "test_project/index.rst": 1,
+      "test_project/locale/da/LC_MESSAGES/sphinx.mo": 1,
+      "test_project/locale/da/LC_MESSAGES/sphinx.po": 1,
+      "test_reconstruction.py": 1,
+      "test_regression.py": 1,
+      "test_repro.py": 1,
+      "test_sep.py": 1,
+      "test_split_gcd.py": 1,
+      "test_sync_to_async.py": 1,
+      "test_warning_still_exists.py": 1,
+      "trigger_patch.py": 1,
+      "verify_db.py": 1,
+      "verify_offset.py": 1
+    },
+    "gemma_stamped_cohort_unique_name_and_content_pairs": 222
+  },
+  "scope": "local saved-artifact inventory; no model calls, sandbox replay, or remote execution",
+  "selection_threshold_check": {
+    "failing_catch_rate": 0.211538,
+    "failing_catches": 11,
+    "failing_denominator": 52,
+    "interpretation": "Catch target is at least 20%; there is no upper bound. False rejects must be at most 5%. Outcomes are recorded prior runs, not fresh execution or validated deployable behavior. Missing tests count as not caught; unknown is not treated as pass/fail.",
+    "meets_at_least_20_percent_catch_target": true,
+    "meets_at_most_5_percent_false_reject_target": false,
+    "meets_both_targets": false,
+    "passing_denominator": 81,
+    "passing_false_reject_rate": 0.098765,
+    "passing_false_rejects": 8,
+    "score100_test_applied_crosstab": {
+      "failing": {
+        "score_100__applied_test_fail": 5,
+        "score_100__applied_test_pass": 36,
+        "score_below_100__applied_test_fail": 6,
+        "score_below_100__applied_test_pass": 4,
+        "score_unavailable__applied_test_unavailable": 1
+      },
+      "passing": {
+        "score_100__applied_test_fail": 5,
+        "score_100__applied_test_pass": 72,
+        "score_below_100__applied_test_fail": 3,
+        "score_below_100__applied_test_pass": 1
+      }
+    }
+  },
+  "tentative_replay_manifest": [
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "judge_test.py"
+      ],
+      "iid": "django__django-11138",
+      "pid": "django__django-11138|gemma-4-31b|5402a395",
+      "test_cmd": "python judge_test.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "judge_test.py",
+        "test_app/__init__.py",
+        "test_app/models.py"
+      ],
+      "iid": "django__django-11400",
+      "pid": "django__django-11400|gemma-4-31b|ee91b3c1",
+      "test_cmd": "python judge_test.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "test_sync_to_async.py"
+      ],
+      "iid": "django__django-13344",
+      "pid": "django__django-13344|gemma-4-31b|811b2eab",
+      "test_cmd": "python reproduce_issue.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "judge_test.py"
+      ],
+      "iid": "django__django-13658",
+      "pid": "django__django-13658|gemma-4-31b|2360010f",
+      "test_cmd": "python judge_test.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "repro.py"
+      ],
+      "iid": "django__django-14017",
+      "pid": "django__django-14017|gemma-4-31b|00879f6b",
+      "test_cmd": "python repro.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "judge_test.py"
+      ],
+      "iid": "django__django-14765",
+      "pid": "django__django-14765|gemma-4-31b|9d05cdac",
+      "test_cmd": "python judge_test.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "judge_test.py"
+      ],
+      "iid": "django__django-15375",
+      "pid": "django__django-15375|gemma-4-31b|6c814659",
+      "test_cmd": "python judge_test.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "judge_test.py",
+        "judge_vpacker_test.py"
+      ],
+      "iid": "matplotlib__matplotlib-24570",
+      "pid": "matplotlib__matplotlib-24570|gemma-4-31b|f2cbabfa",
+      "test_cmd": "python judge_test.py && python judge_vpacker_test.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "judge_test.py",
+        "judge_test_bug.py",
+        "judge_test_complex.py"
+      ],
+      "iid": "psf__requests-1921",
+      "pid": "psf__requests-1921|gemma-4-31b|96f941b1",
+      "test_cmd": "python judge_test_bug.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "judge_test.py"
+      ],
+      "iid": "pydata__xarray-4356",
+      "pid": "pydata__xarray-4356|gemma-4-31b|b929c33c",
+      "test_cmd": "python judge_test.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "judge_test.py"
+      ],
+      "iid": "pydata__xarray-6721",
+      "pid": "pydata__xarray-6721|gemma-4-31b|f610642b",
+      "test_cmd": "python judge_test.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "judge_test.py"
+      ],
+      "iid": "pydata__xarray-6744",
+      "pid": "pydata__xarray-6744|gemma-4-31b|fce4bcb8",
+      "test_cmd": "python judge_test.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "judge_test.py"
+      ],
+      "iid": "pylint-dev__pylint-8898",
+      "pid": "pylint-dev__pylint-8898|gemma-4-31b|7e48b0b1",
+      "test_cmd": "python3 judge_test.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "repro_dir/__init__.py",
+        "repro_dir_config/__init__.py"
+      ],
+      "iid": "pytest-dev__pytest-6197",
+      "pid": "pytest-dev__pytest-6197|gemma-4-31b|8dd6ba7c",
+      "test_cmd": "mkdir -p repro_dir && echo 'assert False' > repro_dir/__init__.py && pytest repro_dir"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "output.txt",
+        "output_patched.txt",
+        "test_repro.py"
+      ],
+      "iid": "pytest-dev__pytest-7236",
+      "pid": "pytest-dev__pytest-7236|gemma-4-31b|36491694",
+      "test_cmd": "timeout 10s pytest --pdb test_repro.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "judge_test.py"
+      ],
+      "iid": "scikit-learn__scikit-learn-25232",
+      "pid": "scikit-learn__scikit-learn-25232|gemma-4-31b|68d80697",
+      "test_cmd": "python judge_test.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "judge_test.py"
+      ],
+      "iid": "sympy__sympy-22914",
+      "pid": "sympy__sympy-22914|gemma-4-31b|e7ba1066",
+      "test_cmd": "python judge_test.py"
+    },
+    {
+      "actor_run": "gemma",
+      "candidate_test_files": [
+        "debug_hnf.py",
+        "test_regression.py"
+      ],
+      "iid": "sympy__sympy-23413",
+      "pid": "sympy__sympy-23413|gemma-4-31b|b314fc72",
+      "test_cmd": "python reproduce_bug.py"
+    }
+  ],
+  "usable_commands_note": "The inventory command reads saved local artifacts only. To execute a prospective replay later, use the saved environment and an explicitly reviewed allowlist; no replay command is issued here."
+}

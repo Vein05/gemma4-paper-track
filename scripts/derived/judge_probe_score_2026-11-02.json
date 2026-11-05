@@ -1,0 +1,112 @@
+{
+ "hosted": {
+  "n_stamped": 133,
+  "n_stamped_failing": 52,
+  "logp100_own_auroc": 0.755,
+  "logp100_stamped_auroc": 0.756,
+  "logp100_stamped_auroc_ci95": [
+   0.668,
+   0.841
+  ],
+  "prompt_end_probe_own_auroc": 0.741,
+  "prompt_end_probe_stamped_auroc": 0.748,
+  "prompt_end_probe_stamped_auroc_ci95": [
+   0.666,
+   0.832
+  ],
+  "probe_minus_logp100_stamped_ci95": [
+   -0.099,
+   0.08
+  ],
+  "probe_minus_logp100_stamped": -0.008,
+  "score_position_probe_own_auroc": 0.763,
+  "score_position_probe_stamped_auroc": 0.764,
+  "score_position_probe_stamped_auroc_ci95": [
+   0.675,
+   0.842
+  ],
+  "score_position_probe_folds": [
+   {
+    "layer": 36,
+    "C": 0.001,
+    "inner_auroc": 0.819
+   },
+   {
+    "layer": 60,
+    "C": 0.001,
+    "inner_auroc": 0.814
+   },
+   {
+    "layer": 60,
+    "C": 0.001,
+    "inner_auroc": 0.804
+   },
+   {
+    "layer": 48,
+    "C": 0.001,
+    "inner_auroc": 0.839
+   },
+   {
+    "layer": 60,
+    "C": 0.001,
+    "inner_auroc": 0.817
+   }
+  ],
+  "rank_sum_probe_logp100_stamped_auroc": 0.785
+ },
+ "local": {
+  "n_stamped": 127,
+  "n_stamped_failing": 46,
+  "logp100_own_auroc": 0.775,
+  "logp100_stamped_auroc": 0.748,
+  "logp100_stamped_auroc_ci95": [
+   0.656,
+   0.834
+  ],
+  "prompt_end_probe_own_auroc": 0.741,
+  "prompt_end_probe_stamped_auroc": 0.729,
+  "prompt_end_probe_stamped_auroc_ci95": [
+   0.639,
+   0.816
+  ],
+  "probe_minus_logp100_stamped_ci95": [
+   -0.111,
+   0.07
+  ],
+  "probe_minus_logp100_stamped": -0.019,
+  "score_position_probe_own_auroc": 0.766,
+  "score_position_probe_stamped_auroc": 0.754,
+  "score_position_probe_stamped_auroc_ci95": [
+   0.668,
+   0.838
+  ],
+  "score_position_probe_folds": [
+   {
+    "layer": 36,
+    "C": 0.001,
+    "inner_auroc": 0.818
+   },
+   {
+    "layer": 44,
+    "C": 0.001,
+    "inner_auroc": 0.824
+   },
+   {
+    "layer": 48,
+    "C": 0.001,
+    "inner_auroc": 0.82
+   },
+   {
+    "layer": 48,
+    "C": 0.001,
+    "inner_auroc": 0.843
+   },
+   {
+    "layer": 40,
+    "C": 0.001,
+    "inner_auroc": 0.806
+   }
+  ],
+  "rank_sum_probe_logp100_stamped_auroc": 0.77
+ }
+}

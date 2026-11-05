@@ -1,0 +1,179 @@
+{
+ "google/gemma-4-31b-it": {
+  "issues": 46,
+  "pairs": 82,
+  "acc": {
+   "P0": 0.649,
+   "P1": 0.769,
+   "C0": 0.76,
+   "C1": 0.794,
+   "P0_untied": 0.78,
+   "P1_untied": 0.841,
+   "C0_both": 0.701,
+   "C1_both": 0.725,
+   "C0_flip": 0.117,
+   "C1_flip": 0.138
+  },
+  "tie_rate": {
+   "P0": 0.439,
+   "P1": 0.207
+  },
+  "unparsed": {
+   "P0": 5,
+   "C0": 5,
+   "P1": 2,
+   "C1": 2
+  },
+  "ci_95": {
+   "gap_noreason": [
+    0.023,
+    0.194
+   ],
+   "gap_reason": [
+    -0.046,
+    0.101
+   ],
+   "reason_effect_pointwise": [
+    0.061,
+    0.181
+   ],
+   "reason_effect_pairwise": [
+    -0.016,
+    0.088
+   ]
+  },
+  "cost": 1.3017
+ },
+ "openai/gpt-oss-20b": {
+  "issues": 45,
+  "pairs": 81,
+  "acc": {
+   "P0": 0.667,
+   "P1": 0.772,
+   "C0": 0.722,
+   "C1": 0.719,
+   "P0_untied": 0.825,
+   "P1_untied": 0.821,
+   "C0_both": 0.593,
+   "C1_both": 0.613,
+   "C0_flip": 0.259,
+   "C1_flip": 0.212
+  },
+  "tie_rate": {
+   "P0": 0.469,
+   "P1": 0.148
+  },
+  "unparsed": {
+   "P1": 2,
+   "C1": 1,
+   "P0": 3
+  },
+  "ci_95": {
+   "gap_noreason": [
+    -0.038,
+    0.15
+   ],
+   "gap_reason": [
+    -0.139,
+    0.044
+   ],
+   "reason_effect_pointwise": [
+    0.013,
+    0.2
+   ],
+   "reason_effect_pairwise": [
+    -0.071,
+    0.061
+   ]
+  },
+  "cost": 0.0552
+ },
+ "qwen/qwen3.5-9b": {
+  "issues": 46,
+  "pairs": 82,
+  "acc": {
+   "P0": 0.646,
+   "P1": 0.741,
+   "C0": 0.628,
+   "C1": 0.708,
+   "P0_untied": 0.75,
+   "P1_untied": 0.828,
+   "C0_both": 0.402,
+   "C1_both": 0.61,
+   "C0_flip": 0.451,
+   "C1_flip": 0.195
+  },
+  "tie_rate": {
+   "P0": 0.415,
+   "P1": 0.256
+  },
+  "unparsed": {
+   "C1": 5,
+   "P1": 3
+  },
+  "ci_95": {
+   "gap_noreason": [
+    -0.093,
+    0.063
+   ],
+   "gap_reason": [
+    -0.134,
+    0.076
+   ],
+   "reason_effect_pointwise": [
+    0.012,
+    0.175
+   ],
+   "reason_effect_pairwise": [
+    0.006,
+    0.155
+   ]
+  },
+  "cost": 0.2725
+ },
+ "z-ai/glm-4.7-flash": {
+  "issues": 46,
+  "pairs": 82,
+  "acc": {
+   "P0": 0.642,
+   "P1": 0.617,
+   "C0": 0.583,
+   "C1": 0.691,
+   "P0_untied": 0.769,
+   "P1_untied": 0.673,
+   "C0_both": 0.194,
+   "C1_both": 0.543,
+   "C0_flip": 0.778,
+   "C1_flip": 0.296
+  },
+  "tie_rate": {
+   "P0": 0.427,
+   "P1": 0.317
+  },
+  "unparsed": {
+   "P0": 8,
+   "C0": 10,
+   "P1": 1,
+   "C1": 1
+  },
+  "ci_95": {
+   "gap_noreason": [
+    -0.129,
+    0.01
+   ],
+   "gap_reason": [
+    -0.013,
+    0.162
+   ],
+   "reason_effect_pointwise": [
+    -0.102,
+    0.047
+   ],
+   "reason_effect_pairwise": [
+    0.022,
+    0.195
+   ]
+  },
+  "cost": 0.1369
+ }
+}

@@ -1,0 +1,163 @@
+{
+ "gemma-4-31b": {
+  "other_failing_on_own_failed": 249,
+  "other_failing_on_own_passed": 180,
+  "own_split": 5.4,
+  "blind_spot_effect": {
+   "value": 2.8,
+   "ci95": [
+    -4.0,
+    9.4
+   ]
+  },
+  "own_vs_other_wrong_same_problem": {
+   "value": 39.0,
+   "ci95": [
+    30.7,
+    47.7
+   ],
+   "problems": 136
+  }
+ },
+ "gemma-4-12b": {
+  "other_failing_on_own_failed": 288,
+  "other_failing_on_own_passed": 140,
+  "own_split": 1.9,
+  "blind_spot_effect": {
+   "value": 2.0,
+   "ci95": [
+    -4.5,
+    8.5
+   ]
+  },
+  "own_vs_other_wrong_same_problem": {
+   "value": 28.4,
+   "ci95": [
+    18.3,
+    38.7
+   ],
+   "problems": 80
+  }
+ },
+ "gemma-4-26b-a4b": {
+  "other_failing_on_own_failed": 218,
+  "other_failing_on_own_passed": 211,
+  "own_split": 4.0,
+  "blind_spot_effect": {
+   "value": -1.6,
+   "ci95": [
+    -5.9,
+    2.4
+   ]
+  },
+  "own_vs_other_wrong_same_problem": {
+   "value": 23.6,
+   "ci95": [
+    11.0,
+    36.6
+   ],
+   "problems": 71
+  }
+ },
+ "gpt-oss-20b": {
+  "other_failing_on_own_failed": 434,
+  "other_failing_on_own_passed": 137,
+  "own_split": 6.6,
+  "blind_spot_effect": {
+   "value": -2.2,
+   "ci95": [
+    -10.0,
+    5.4
+   ]
+  },
+  "own_vs_other_wrong_same_problem": {
+   "value": 2.5,
+   "ci95": [
+    -4.3,
+    9.9
+   ],
+   "problems": 167
+  }
+ },
+ "olmo-3.1-32b": {
+  "other_failing_on_own_failed": 506,
+  "other_failing_on_own_passed": 62,
+  "own_split": 2.6,
+  "blind_spot_effect": {
+   "value": -0.2,
+   "ci95": [
+    -10.1,
+    9.6
+   ]
+  },
+  "own_vs_other_wrong_same_problem": {
+   "value": 11.8,
+   "ci95": [
+    3.6,
+    20.5
+   ],
+   "problems": 126
+  }
+ },
+ "nemotron-nano-9b-v2": {
+  "other_failing_on_own_failed": 437,
+  "other_failing_on_own_passed": 120,
+  "own_split": 12.0,
+  "blind_spot_effect": {
+   "value": 6.9,
+   "ci95": [
+    0.3,
+    13.3
+   ]
+  },
+  "own_vs_other_wrong_same_problem": {
+   "value": 13.5,
+   "ci95": [
+    -3.3,
+    29.5
+   ],
+   "problems": 38
+  }
+ },
+ "seed-oss-36b": {
+  "other_failing_on_own_failed": 532,
+  "other_failing_on_own_passed": 38,
+  "own_split": -2.2,
+  "blind_spot_effect": {
+   "value": -1.8,
+   "ci95": [
+    -16.1,
+    12.1
+   ]
+  },
+  "own_vs_other_wrong_same_problem": {
+   "value": 12.4,
+   "ci95": [
+    5.1,
+    19.1
+   ],
+   "problems": 232
+  }
+ },
+ "summary": {
+  "tested": [
+   "gemma-4-31b",
+   "gemma-4-12b",
+   "gemma-4-26b-a4b",
+   "gpt-oss-20b",
+   "olmo-3.1-32b",
+   "nemotron-nano-9b-v2",
+   "seed-oss-36b"
+  ],
+  "blind_spot": [
+   "nemotron-nano-9b-v2"
+  ],
+  "own_beyond": [
+   "gemma-4-31b",
+   "gemma-4-12b",
+   "gemma-4-26b-a4b",
+   "olmo-3.1-32b",
+   "seed-oss-36b"
+  ]
+ }
+}

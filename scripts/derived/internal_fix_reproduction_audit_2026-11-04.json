@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-04",
+  "purpose": "CPU reproduction of supplied pilot analyses on existing activations; not a new Gemma inference or fine-tuning run",
+  "working_directory": "scripts/internal_fix_pilot_2026-11-04",
+  "command_prefix": "rtk proxy uv run --no-project --with numpy --with scipy --with scikit-learn --with datasets --with requests --with python-dotenv python",
+  "environment": {"python": "3.12.9", "numpy": "2.5.4", "scipy": "1.18.1", "scikit_learn": "1.9.1"},
+  "judge_count": {
+    "heldout": {
+      "pairs": 41, "issues": 22,
+      "outside_panel": [0.49, 0.29, 0.65],
+      "written_score": [0.28, 0.19, 0.35],
+      "probe_layer_36": [0.27, 0.11, 0.43],
+      "probe_layer_60": [0.20, 0.08, 0.34]
+    },
+    "lite": {
+      "pairs": 33, "issues": 18,
+      "outside_panel": [0.33, 0.17, 0.53],
+      "written_score": [0.35, 0.26, 0.42],
+      "probe_layer_36": [0.45, 0.29, 0.61],
+      "probe_layer_60": [0.33, 0.14, 0.55]
+    }
+  },
+  "pair_ci": {
+    "heldout": {
+      "pairs": 47, "issues": 34,
+      "outside_panel": [0.596, 0.44, 0.75],
+      "glm_4_5": [0.649, 0.51, 0.77],
+      "logp100": [0.447, 0.32, 0.59],
+      "probe_layer_8": [0.511, 0.36, 0.66],
+      "probe_layer_36": [0.574, 0.41, 0.73],
+      "probe_layer_60": [0.468, 0.32, 0.63]
+    },
+    "lite": {
+      "pairs": 110, "issues": 77,
+      "outside_panel": [0.573, 0.49, 0.67],
+      "logp100": [0.618, 0.51, 0.71],
+      "probe_layer_8": [0.627, 0.54, 0.71],
+      "probe_layer_36": [0.527, 0.43, 0.63],
+      "probe_layer_60": [0.536, 0.42, 0.65]
+    }
+  },
+  "array_definition": "Printed point estimate, lower and upper issue-bootstrap 95% interval; rounded as emitted by supplied scripts",
+  "status": "Partial reproduction. Counts and non-probe strict-pair results match saved output. Relaxed last-layer point estimates reproduce. Several layer-specific estimates differ; cause unresolved. Original outputs not overwritten."
+}

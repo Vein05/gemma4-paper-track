@@ -1,0 +1,76 @@
+
+==== heldout: patches 957, other-writer stamped 440 (failing 136), own stamped 133 (failing 52)
+-- (1) decomposition: own-fail acc = 0.5+e-d, own-pass acc = 0.5+e+d
+  outside panel              own-fail 0.70  own-pass 0.50  -> e=+0.10  d(pro-Gemma)=-0.10
+  Gemma log P(100)           own-fail 0.35  own-pass 0.54  -> e=-0.06  d(pro-Gemma)=+0.10
+  probe L8 all-others        own-fail 0.39  own-pass 0.58  -> e=-0.01  d(pro-Gemma)=+0.10
+  probe L8 demeaned          own-fail 0.17  own-pass 0.71  -> e=-0.06  d(pro-Gemma)=+0.27
+  probe L36 all-others       own-fail 0.57  own-pass 0.67  -> e=+0.12  d(pro-Gemma)=+0.05
+  probe L36 demeaned         own-fail 0.30  own-pass 0.67  -> e=-0.01  d(pro-Gemma)=+0.18
+  probe L60 all-others       own-fail 0.26  own-pass 0.54  -> e=-0.10  d(pro-Gemma)=+0.14
+  probe L60 demeaned         own-fail 0.22  own-pass 0.75  -> e=-0.02  d(pro-Gemma)=+0.27
+-- (2) within-issue pairs among OTHER writers' stamped patches (opposite outcomes)
+  outside panel              0.62 [0.51, 0.74] (72 pairs, 32 issues)
+  Gemma log P(100)           0.62 [0.49, 0.75] (72 pairs, 32 issues)
+  probe L8 all-others        0.54 [0.37, 0.70] (72 pairs, 32 issues)
+  probe L8 demeaned          0.46 [0.30, 0.62] (72 pairs, 32 issues)
+  probe L36 all-others       0.69 [0.55, 0.83] (72 pairs, 32 issues)
+  probe L36 demeaned         0.67 [0.53, 0.81] (72 pairs, 32 issues)
+  probe L60 all-others       0.62 [0.47, 0.78] (72 pairs, 32 issues)
+  probe L60 demeaned         0.67 [0.53, 0.80] (72 pairs, 32 issues)
+-- (3) writer-identity readout among stamped patches: AUROC of readout for writer==w vs rest
+  probe L8 all-others    writer gemma-4-31b                  n=133 AUROC(writer) 0.47  pass rate 0.61
+  probe L8 all-others    writer glm-4.5                      n=116 AUROC(writer) 0.54  pass rate 0.71
+  probe L8 all-others    writer gpt-oss-120b                 n= 66 AUROC(writer) 0.36  pass rate 0.59
+  probe L8 all-others    writer kimi-k2                      n=104 AUROC(writer) 0.57  pass rate 0.68
+  probe L8 all-others    writer llama-4-maverick             n= 54 AUROC(writer) 0.52  pass rate 0.63
+  probe L8 all-others    writer qwen3-coder                  n=100 AUROC(writer) 0.51  pass rate 0.78
+  probe L36 all-others   writer gemma-4-31b                  n=133 AUROC(writer) 0.49  pass rate 0.61
+  probe L36 all-others   writer glm-4.5                      n=116 AUROC(writer) 0.54  pass rate 0.71
+  probe L36 all-others   writer gpt-oss-120b                 n= 66 AUROC(writer) 0.44  pass rate 0.59
+  probe L36 all-others   writer kimi-k2                      n=104 AUROC(writer) 0.49  pass rate 0.68
+  probe L36 all-others   writer llama-4-maverick             n= 54 AUROC(writer) 0.53  pass rate 0.63
+  probe L36 all-others   writer qwen3-coder                  n=100 AUROC(writer) 0.50  pass rate 0.78
+  probe L60 all-others   writer gemma-4-31b                  n=133 AUROC(writer) 0.48  pass rate 0.61
+  probe L60 all-others   writer glm-4.5                      n=116 AUROC(writer) 0.54  pass rate 0.71
+  probe L60 all-others   writer gpt-oss-120b                 n= 66 AUROC(writer) 0.49  pass rate 0.59
+  probe L60 all-others   writer kimi-k2                      n=104 AUROC(writer) 0.48  pass rate 0.68
+  probe L60 all-others   writer llama-4-maverick             n= 54 AUROC(writer) 0.53  pass rate 0.63
+  probe L60 all-others   writer qwen3-coder                  n=100 AUROC(writer) 0.50  pass rate 0.78
+
+==== lite: patches 1455, other-writer stamped 643 (failing 281), own stamped 229 (failing 82)
+-- (1) decomposition: own-fail acc = 0.5+e-d, own-pass acc = 0.5+e+d
+  outside panel              own-fail 0.39  own-pass 0.62  -> e=+0.01  d(pro-Gemma)=+0.11
+  Gemma log P(100)           own-fail 0.57  own-pass 0.63  -> e=+0.10  d(pro-Gemma)=+0.03
+  probe L8 all-others        own-fail 0.70  own-pass 0.74  -> e=+0.22  d(pro-Gemma)=+0.02
+  probe L8 demeaned          own-fail 0.30  own-pass 0.74  -> e=+0.02  d(pro-Gemma)=+0.22
+  probe L36 all-others       own-fail 0.61  own-pass 0.49  -> e=+0.05  d(pro-Gemma)=-0.06
+  probe L36 demeaned         own-fail 0.48  own-pass 0.56  -> e=+0.02  d(pro-Gemma)=+0.04
+  probe L60 all-others       own-fail 0.43  own-pass 0.56  -> e=-0.00  d(pro-Gemma)=+0.06
+  probe L60 demeaned         own-fail 0.43  own-pass 0.53  -> e=-0.02  d(pro-Gemma)=+0.05
+-- (2) within-issue pairs among OTHER writers' stamped patches (opposite outcomes)
+  outside panel              0.45 [0.35, 0.56] (133 pairs, 61 issues)
+  Gemma log P(100)           0.52 [0.42, 0.62] (133 pairs, 61 issues)
+  probe L8 all-others        0.59 [0.48, 0.69] (133 pairs, 61 issues)
+  probe L8 demeaned          0.61 [0.51, 0.70] (133 pairs, 61 issues)
+  probe L36 all-others       0.55 [0.45, 0.66] (133 pairs, 61 issues)
+  probe L36 demeaned         0.60 [0.50, 0.70] (133 pairs, 61 issues)
+  probe L60 all-others       0.56 [0.45, 0.66] (133 pairs, 61 issues)
+  probe L60 demeaned         0.54 [0.43, 0.65] (133 pairs, 61 issues)
+-- (3) writer-identity readout among stamped patches: AUROC of readout for writer==w vs rest
+  probe L8 all-others    writer claude-4-sonnet              n=214 AUROC(writer) 0.57  pass rate 0.60
+  probe L8 all-others    writer deepseek-v3                  n=132 AUROC(writer) 0.36  pass rate 0.54
+  probe L8 all-others    writer entropo-qwen3-coder-30b      n=159 AUROC(writer) 0.60  pass rate 0.64
+  probe L8 all-others    writer gemma-4-31b                  n=229 AUROC(writer) 0.58  pass rate 0.64
+  probe L8 all-others    writer swe-fixer-qwen2.5-72b        n=138 AUROC(writer) 0.32  pass rate 0.44
+  probe L36 all-others   writer claude-4-sonnet              n=214 AUROC(writer) 0.49  pass rate 0.60
+  probe L36 all-others   writer deepseek-v3                  n=132 AUROC(writer) 0.51  pass rate 0.54
+  probe L36 all-others   writer entropo-qwen3-coder-30b      n=159 AUROC(writer) 0.61  pass rate 0.64
+  probe L36 all-others   writer gemma-4-31b                  n=229 AUROC(writer) 0.49  pass rate 0.64
+  probe L36 all-others   writer swe-fixer-qwen2.5-72b        n=138 AUROC(writer) 0.40  pass rate 0.44
+  probe L60 all-others   writer claude-4-sonnet              n=214 AUROC(writer) 0.51  pass rate 0.60
+  probe L60 all-others   writer deepseek-v3                  n=132 AUROC(writer) 0.48  pass rate 0.54
+  probe L60 all-others   writer entropo-qwen3-coder-30b      n=159 AUROC(writer) 0.57  pass rate 0.64
+  probe L60 all-others   writer gemma-4-31b                  n=229 AUROC(writer) 0.52  pass rate 0.64
+  probe L60 all-others   writer swe-fixer-qwen2.5-72b        n=138 AUROC(writer) 0.41  pass rate 0.44
+done

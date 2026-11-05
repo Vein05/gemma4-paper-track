@@ -1,0 +1,14 @@
+== held-out: strong writers (pass rate >= Gemma 0.53): {np.str_('kimi-k2'): np.float64(0.61), np.str_('qwen3-coder'): np.float64(0.7), np.str_('glm-4.5'): np.float64(0.62)}
+   failing: own 85, strong 161; panel mean own failing 57.2, strong failing 64.0, all other failing 46.8
+   own_minus_strong: +9.6 [2.5, 16.2]
+   own_minus_others: +16.6 [10.3, 23.1]
+   own_minus_others_matched_panel: +13.6 [7.1, 20.3]
+   share100_own_minus_others_matched_panel: +16.3 [7.6, 24.9]
+   own_minus_strong_matched_panel: +10.4 [3.8, 17.2]
+== lite: strong writers (pass rate >= Gemma 0.56): {np.str_('claude-4-sonnet'): np.float64(0.57)}
+   failing: own 130, strong 126; panel mean own failing 63.5, strong failing 68.0, all other failing 56.5
+   own_minus_strong: +1.7 [-5.3, 8.7]
+   own_minus_others: +17.8 [12.1, 23.5]
+   own_minus_others_matched_panel: +17.2 [11.3, 23.0]
+   share100_own_minus_others_matched_panel: +15.6 [7.9, 23.3]
+   own_minus_strong_matched_panel: +1.5 [-6.5, 9.1]

@@ -1,0 +1,444 @@
+{
+ "n": {
+  "scored": 1475,
+  "missing": 0,
+  "eval_rows": 979,
+  "eval_issues": 185,
+  "eval_failing": 528,
+  "eval_passing": 451,
+  "eval_pairs": 658,
+  "eval_issues_with_pair": 102,
+  "eval_own_stamped_failing": 51,
+  "eval_own_stamped_passing": 97
+ },
+ "thresholds": {
+  "off": -17.0931,
+  "on": -1.4176,
+  "paper_written_score": 20.0,
+  "paper_logp100": -15.2584
+ },
+ "eval": {
+  "off": {
+   "false_accept": 0.517,
+   "pass_retained": 0.9002,
+   "auroc": 0.7713,
+   "pair_accuracy": 0.7584,
+   "false_accept_at_eval_90": 0.5284,
+   "mean_p_pass_fail": 0.3603,
+   "mean_p_pass_pass": 0.7372,
+   "says_pass_fail": 0.3636,
+   "says_pass_pass": 0.7361
+  },
+  "on": {
+   "false_accept": 0.4886,
+   "pass_retained": 0.8847,
+   "auroc": 0.7765,
+   "pair_accuracy": 0.7568,
+   "false_accept_at_eval_90": 0.517,
+   "mean_p_pass_fail": 0.3358,
+   "mean_p_pass_pass": 0.6578,
+   "says_pass_fail": 0.3258,
+   "says_pass_pass": 0.6984
+  },
+  "paper_written_score": {
+   "false_accept": 0.5844,
+   "pass_retained": 0.9468,
+   "auroc": 0.7366,
+   "pair_accuracy": 0.7523,
+   "false_accept_at_eval_90": 0.5844,
+   "mean_p_pass_fail": null,
+   "mean_p_pass_pass": null,
+   "says_pass_fail": null,
+   "says_pass_pass": null
+  },
+  "paper_logp100": {
+   "false_accept": 0.7476,
+   "pass_retained": 0.9379,
+   "auroc": 0.7686,
+   "pair_accuracy": 0.734,
+   "false_accept_at_eval_90": 0.5199,
+   "mean_p_pass_fail": null,
+   "mean_p_pass_pass": null,
+   "says_pass_fail": null,
+   "says_pass_pass": null
+  }
+ },
+ "primary": {
+  "on": {
+   "false_accept_diff": -0.0284,
+   "false_accept_diff_ci95": [
+    -0.065,
+    0.01
+   ],
+   "pair_accuracy_diff": -0.0015,
+   "pair_accuracy_diff_ci95": [
+    -0.025,
+    0.023
+   ],
+   "auroc_diff": 0.0052,
+   "auroc_diff_ci95": [
+    -0.014,
+    0.024
+   ],
+   "pass_retained_adapter": 0.8847,
+   "own_stamped_false_accept_diff": -0.0196,
+   "own_stamped_false_accept_diff_ci95": [
+    -0.107,
+    0.064
+   ],
+   "distinct_scores": {
+    "on": 951,
+    "off": 951
+   },
+   "reading": "no measurable improvement"
+  }
+ },
+ "slices": {
+  "own": {
+   "rows": 194,
+   "failing": 89,
+   "measures": {
+    "off": {
+     "false_accept": 0.7191,
+     "pass_retained": 0.9524,
+     "auroc": 0.7582,
+     "pair_accuracy": 1.0,
+     "false_accept_at_eval_90": 0.6292,
+     "mean_p_pass_fail": 0.553,
+     "mean_p_pass_pass": 0.8399,
+     "says_pass_fail": 0.5618,
+     "says_pass_pass": 0.8381
+    },
+    "on": {
+     "false_accept": 0.6966,
+     "pass_retained": 0.9429,
+     "auroc": 0.7485,
+     "pair_accuracy": 1.0,
+     "false_accept_at_eval_90": 0.6629,
+     "mean_p_pass_fail": 0.4672,
+     "mean_p_pass_pass": 0.7189,
+     "says_pass_fail": 0.5056,
+     "says_pass_pass": 0.781
+    },
+    "paper_written_score": {
+     "false_accept": 0.7528,
+     "pass_retained": 0.9619,
+     "auroc": 0.6756,
+     "pair_accuracy": 1.0,
+     "false_accept_at_eval_90": 0.573,
+     "mean_p_pass_fail": null,
+     "mean_p_pass_pass": null,
+     "says_pass_fail": null,
+     "says_pass_pass": null
+    },
+    "paper_logp100": {
+     "false_accept": 0.8652,
+     "pass_retained": 0.9714,
+     "auroc": 0.7518,
+     "pair_accuracy": 1.0,
+     "false_accept_at_eval_90": 0.5393,
+     "mean_p_pass_fail": null,
+     "mean_p_pass_pass": null,
+     "says_pass_fail": null,
+     "says_pass_pass": null
+    }
+   }
+  },
+  "other_writers": {
+   "rows": 785,
+   "failing": 439,
+   "measures": {
+    "off": {
+     "false_accept": 0.4761,
+     "pass_retained": 0.8844,
+     "auroc": 0.7732,
+     "pair_accuracy": 0.7573,
+     "false_accept_at_eval_90": 0.5467,
+     "mean_p_pass_fail": 0.3212,
+     "mean_p_pass_pass": 0.706,
+     "says_pass_fail": 0.3235,
+     "says_pass_pass": 0.7052
+    },
+    "on": {
+     "false_accept": 0.4465,
+     "pass_retained": 0.8671,
+     "auroc": 0.7821,
+     "pair_accuracy": 0.7524,
+     "false_accept_at_eval_90": 0.5285,
+     "mean_p_pass_fail": 0.3092,
+     "mean_p_pass_pass": 0.6392,
+     "says_pass_fail": 0.2893,
+     "says_pass_pass": 0.6734
+    },
+    "paper_written_score": {
+     "false_accept": 0.5502,
+     "pass_retained": 0.9422,
+     "auroc": 0.7492,
+     "pair_accuracy": 0.7609,
+     "false_accept_at_eval_90": 0.5502,
+     "mean_p_pass_fail": null,
+     "mean_p_pass_pass": null,
+     "says_pass_fail": null,
+     "says_pass_pass": null
+    },
+    "paper_logp100": {
+     "false_accept": 0.7237,
+     "pass_retained": 0.9277,
+     "auroc": 0.7699,
+     "pair_accuracy": 0.7136,
+     "false_accept_at_eval_90": 0.5639,
+     "mean_p_pass_fail": null,
+     "mean_p_pass_pass": null,
+     "says_pass_fail": null,
+     "says_pass_pass": null
+    }
+   }
+  },
+  "heldout_set": {
+   "rows": 412,
+   "failing": 226,
+   "measures": {
+    "off": {
+     "false_accept": 0.4558,
+     "pass_retained": 0.8817,
+     "auroc": 0.7864,
+     "pair_accuracy": 0.8008,
+     "false_accept_at_eval_90": 0.5265,
+     "mean_p_pass_fail": 0.3303,
+     "mean_p_pass_pass": 0.7228,
+     "says_pass_fail": 0.3363,
+     "says_pass_pass": 0.7204
+    },
+    "on": {
+     "false_accept": 0.4823,
+     "pass_retained": 0.8978,
+     "auroc": 0.7926,
+     "pair_accuracy": 0.8045,
+     "false_accept_at_eval_90": 0.4867,
+     "mean_p_pass_fail": 0.3417,
+     "mean_p_pass_pass": 0.6868,
+     "says_pass_fail": 0.354,
+     "says_pass_pass": 0.7204
+    },
+    "paper_written_score": {
+     "false_accept": 0.5333,
+     "pass_retained": 0.9301,
+     "auroc": 0.7362,
+     "pair_accuracy": 0.75,
+     "false_accept_at_eval_90": 0.5333,
+     "mean_p_pass_fail": null,
+     "mean_p_pass_pass": null,
+     "says_pass_fail": null,
+     "says_pass_pass": null
+    },
+    "paper_logp100": {
+     "false_accept": 0.7822,
+     "pass_retained": 0.9086,
+     "auroc": 0.7587,
+     "pair_accuracy": 0.7368,
+     "false_accept_at_eval_90": 0.6178,
+     "mean_p_pass_fail": null,
+     "mean_p_pass_pass": null,
+     "says_pass_fail": null,
+     "says_pass_pass": null
+    }
+   }
+  },
+  "lite_set": {
+   "rows": 567,
+   "failing": 302,
+   "measures": {
+    "off": {
+     "false_accept": 0.5629,
+     "pass_retained": 0.9132,
+     "auroc": 0.7595,
+     "pair_accuracy": 0.7088,
+     "false_accept_at_eval_90": 0.5298,
+     "mean_p_pass_fail": 0.3828,
+     "mean_p_pass_pass": 0.7473,
+     "says_pass_fail": 0.3841,
+     "says_pass_pass": 0.7472
+    },
+    "on": {
+     "false_accept": 0.4934,
+     "pass_retained": 0.8755,
+     "auroc": 0.7658,
+     "pair_accuracy": 0.7123,
+     "false_accept_at_eval_90": 0.5464,
+     "mean_p_pass_fail": 0.3314,
+     "mean_p_pass_pass": 0.6374,
+     "says_pass_fail": 0.3046,
+     "says_pass_pass": 0.683
+    },
+    "paper_written_score": {
+     "false_accept": 0.6225,
+     "pass_retained": 0.9585,
+     "auroc": 0.737,
+     "pair_accuracy": 0.7579,
+     "false_accept_at_eval_90": 0.4801,
+     "mean_p_pass_fail": null,
+     "mean_p_pass_pass": null,
+     "says_pass_fail": null,
+     "says_pass_pass": null
+    },
+    "paper_logp100": {
+     "false_accept": 0.7219,
+     "pass_retained": 0.9585,
+     "auroc": 0.7724,
+     "pair_accuracy": 0.7053,
+     "false_accept_at_eval_90": 0.4834,
+     "mean_p_pass_fail": null,
+     "mean_p_pass_pass": null,
+     "says_pass_fail": null,
+     "says_pass_pass": null
+    }
+   }
+  },
+  "stamped": {
+   "rows": 587,
+   "failing": 213,
+   "measures": {
+    "off": {
+     "false_accept": 0.9624,
+     "pass_retained": 0.9733,
+     "auroc": 0.6361,
+     "pair_accuracy": 0.5417,
+     "false_accept_at_eval_90": 0.8357,
+     "mean_p_pass_fail": 0.8109,
+     "mean_p_pass_pass": 0.8637,
+     "says_pass_fail": 0.8216,
+     "says_pass_pass": 0.8636
+    },
+    "on": {
+     "false_accept": 0.892,
+     "pass_retained": 0.9679,
+     "auroc": 0.6447,
+     "pair_accuracy": 0.5573,
+     "false_accept_at_eval_90": 0.8169,
+     "mean_p_pass_fail": 0.6295,
+     "mean_p_pass_pass": 0.7382,
+     "says_pass_fail": 0.7183,
+     "says_pass_pass": 0.8021
+    },
+    "paper_written_score": {
+     "false_accept": 1.0,
+     "pass_retained": 1.0,
+     "auroc": 0.5,
+     "pair_accuracy": 0.5,
+     "false_accept_at_eval_90": 1.0,
+     "mean_p_pass_fail": null,
+     "mean_p_pass_pass": null,
+     "says_pass_fail": null,
+     "says_pass_pass": null
+    },
+    "paper_logp100": {
+     "false_accept": 1.0,
+     "pass_retained": 1.0,
+     "auroc": 0.6352,
+     "pair_accuracy": 0.5052,
+     "false_accept_at_eval_90": 0.784,
+     "mean_p_pass_fail": null,
+     "mean_p_pass_pass": null,
+     "says_pass_fail": null,
+     "says_pass_pass": null
+    }
+   }
+  },
+  "own_stamped": {
+   "rows": 148,
+   "failing": 51,
+   "measures": {
+    "off": {
+     "false_accept": 0.9608,
+     "pass_retained": 0.9897,
+     "auroc": 0.6845,
+     "pair_accuracy": null,
+     "false_accept_at_eval_90": 0.8235,
+     "mean_p_pass_fail": 0.8067,
+     "mean_p_pass_pass": 0.8885,
+     "says_pass_fail": 0.8235,
+     "says_pass_pass": 0.8866
+    },
+    "on": {
+     "false_accept": 0.9412,
+     "pass_retained": 0.9691,
+     "auroc": 0.6824,
+     "pair_accuracy": null,
+     "false_accept_at_eval_90": 0.8039,
+     "mean_p_pass_fail": 0.6216,
+     "mean_p_pass_pass": 0.7507,
+     "says_pass_fail": 0.7059,
+     "says_pass_pass": 0.8247
+    },
+    "paper_written_score": {
+     "false_accept": 1.0,
+     "pass_retained": 1.0,
+     "auroc": 0.5,
+     "pair_accuracy": null,
+     "false_accept_at_eval_90": 1.0,
+     "mean_p_pass_fail": null,
+     "mean_p_pass_pass": null,
+     "says_pass_fail": null,
+     "says_pass_pass": null
+    },
+    "paper_logp100": {
+     "false_accept": 1.0,
+     "pass_retained": 1.0,
+     "auroc": 0.6434,
+     "pair_accuracy": null,
+     "false_accept_at_eval_90": 0.7451,
+     "mean_p_pass_fail": null,
+     "mean_p_pass_pass": null,
+     "says_pass_fail": null,
+     "says_pass_pass": null
+    }
+   }
+  }
+ },
+ "dev": {
+  "off": {
+   "false_accept": 0.5902,
+   "pass_retained": 0.9043,
+   "auroc": 0.7732,
+   "pair_accuracy": 0.8056,
+   "false_accept_at_eval_90": 0.5902,
+   "mean_p_pass_fail": 0.3564,
+   "mean_p_pass_pass": 0.7379,
+   "says_pass_fail": 0.3609,
+   "says_pass_pass": 0.7435
+  },
+  "on": {
+   "false_accept": 0.4887,
+   "pass_retained": 0.9043,
+   "auroc": 0.7851,
+   "pair_accuracy": 0.8254,
+   "false_accept_at_eval_90": 0.4887,
+   "mean_p_pass_fail": 0.3089,
+   "mean_p_pass_pass": 0.6224,
+   "says_pass_fail": 0.2632,
+   "says_pass_pass": 0.6435
+  },
+  "paper_written_score": {
+   "false_accept": 0.6053,
+   "pass_retained": 0.9217,
+   "auroc": 0.7011,
+   "pair_accuracy": 0.7479,
+   "false_accept_at_eval_90": 0.6053,
+   "mean_p_pass_fail": null,
+   "mean_p_pass_pass": null,
+   "says_pass_fail": null,
+   "says_pass_pass": null
+  },
+  "paper_logp100": {
+   "false_accept": 0.7857,
+   "pass_retained": 0.9043,
+   "auroc": 0.756,
+   "pair_accuracy": 0.7099,
+   "false_accept_at_eval_90": 0.7857,
+   "mean_p_pass_fail": null,
+   "mean_p_pass_pass": null,
+   "says_pass_fail": null,
+   "says_pass_pass": null
+  }
+ }
+}

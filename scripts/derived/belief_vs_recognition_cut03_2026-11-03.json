@@ -1,0 +1,51 @@
+{
+ "held-out": {
+  "sim_effect": 6.2,
+  "own_minus_same": 1.2,
+  "leniency_both": 4.8,
+  "sim_effect_ci95": [
+   -0.7,
+   12.5
+  ],
+  "own_minus_same_ci95": [
+   -12.5,
+   13.0
+  ],
+  "leniency_both_ci95": [
+   -8.5,
+   17.2
+  ],
+  "cut": 0.3,
+  "n_other_failing_same_edit": 62,
+  "n_other_failing_other_edit": 296,
+  "n_own_failing": 85,
+  "n_issues_both": 22,
+  "n_own_failing_on_both": 22,
+  "reading": "inconclusive",
+  "patches_without_text": 0
+ },
+ "swe-bench-lite": {
+  "sim_effect": 17.4,
+  "own_minus_same": -1.1,
+  "leniency_both": 7.4,
+  "sim_effect_ci95": [
+   11.8,
+   23.1
+  ],
+  "own_minus_same_ci95": [
+   -10.2,
+   8.0
+  ],
+  "leniency_both_ci95": [
+   -2.9,
+   16.7
+  ],
+  "cut": 0.3,
+  "n_other_failing_same_edit": 75,
+  "n_other_failing_other_edit": 600,
+  "n_own_failing": 130,
+  "n_issues_both": 36,
+  "n_own_failing_on_both": 36,
+  "reading": "belief supported"
+ }
+}

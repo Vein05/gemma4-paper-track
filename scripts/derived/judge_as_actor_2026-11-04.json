@@ -1,0 +1,272 @@
+{
+ "gemma": {
+  "n_runs": 133,
+  "n_readable": 132,
+  "status": {
+   "Submitted": 132,
+   "LimitsExceeded": 1
+  },
+  "score_source": {
+   "final": 132,
+   "null": 1
+  },
+  "n_own": 132,
+  "n_others_fail": 0,
+  "n_others_pass": 0,
+  "approval_100": {
+   "own_fail": {
+    "value": 0.804,
+    "ci": [
+     0.686,
+     0.902
+    ]
+   },
+   "own_pass": {
+    "value": 0.951,
+    "ci": [
+     0.901,
+     0.988
+    ]
+   }
+  },
+  "approval_90": {
+   "own_fail": {
+    "value": 0.824,
+    "ci": [
+     0.706,
+     0.922
+    ]
+   },
+   "own_pass": {
+    "value": 0.951,
+    "ci": [
+     0.901,
+     0.988
+    ]
+   }
+  },
+  "reader_approval_100": {
+   "own_fail": 1.0,
+   "own_pass": 1.0
+  },
+  "top_quarter_actor": {
+   "value": 0.727,
+   "ci": [
+    0.576,
+    0.879
+   ]
+  },
+  "top_quarter_reader_fewer_calls": {
+   "value": 0.788,
+   "ci": [
+    0.667,
+    0.909
+   ]
+  },
+  "top_quarter_gain": {
+   "value": -0.061,
+   "ci": [
+    -0.152,
+    0.0
+   ]
+  },
+  "auroc_actor_own": {
+   "value": 0.576,
+   "ci": [
+    0.518,
+    0.639
+   ]
+  },
+  "auroc_reader_own_same_patches": {
+   "value": 0.5,
+   "ci": [
+    0.5,
+    0.5
+   ]
+  },
+  "auroc_gain_actor_minus_reader": {
+   "value": 0.076,
+   "ci": [
+    0.018,
+    0.14
+   ]
+  },
+  "n_stamped": 132,
+  "auroc_actor_within_stamped": {
+   "value": 0.576,
+   "ci": [
+    0.519,
+    0.637
+   ]
+  },
+  "approval_100_stamped": {
+   "fail": {
+    "value": 0.804,
+    "ci": [
+     0.686,
+     0.902
+    ]
+   },
+   "pass": {
+    "value": 0.951,
+    "ci": [
+     0.901,
+     0.988
+    ]
+   }
+  },
+  "test": {
+   "n_with_test_cmd": 132,
+   "flag_share_all": 0.707,
+   "flag_share_own_pass": 0.778,
+   "flag_share_own_fail": 0.608,
+   "own_pass_rate_flagged": 0.67,
+   "own_pass_rate_unflagged": 0.474,
+   "stamped_fail_caught_by_flag": 20,
+   "assert_share": 0.765,
+   "reverted_pass_applied_pass": 19,
+   "reverted_fail_applied_fail": 17,
+   "judge_edited_tracked": 3
+  },
+  "cost": {
+   "calls_mean": 15.08,
+   "seconds_median": 140.0
+  }
+ },
+ "gptoss": {
+  "n_runs": 133,
+  "n_readable": 92,
+  "status": {
+   "Submitted": 92,
+   "LimitsExceeded": 33,
+   "InternalServerError": 4,
+   "BadRequestError": 4
+  },
+  "score_source": {
+   "final": 92,
+   "null": 41
+  },
+  "n_own": 92,
+  "n_others_fail": 0,
+  "n_others_pass": 0,
+  "approval_100": {
+   "own_fail": {
+    "value": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "own_pass": {
+    "value": 0.123,
+    "ci": [
+     0.035,
+     0.211
+    ]
+   }
+  },
+  "approval_90": {
+   "own_fail": {
+    "value": 0.657,
+    "ci": [
+     0.486,
+     0.8
+    ]
+   },
+   "own_pass": {
+    "value": 0.93,
+    "ci": [
+     0.86,
+     0.982
+    ]
+   }
+  },
+  "reader_approval_100": {
+   "own_fail": 1.0,
+   "own_pass": 1.0
+  },
+  "top_quarter_actor": {
+   "value": 0.87,
+   "ci": [
+    0.652,
+    1.0
+   ]
+  },
+  "top_quarter_reader_fewer_calls": {
+   "value": 0.783,
+   "ci": [
+    0.609,
+    0.957
+   ]
+  },
+  "top_quarter_gain": {
+   "value": 0.087,
+   "ci": [
+    -0.174,
+    0.261
+   ]
+  },
+  "auroc_actor_own": {
+   "value": 0.729,
+   "ci": [
+    0.63,
+    0.817
+   ]
+  },
+  "auroc_reader_own_same_patches": {
+   "value": 0.5,
+   "ci": [
+    0.5,
+    0.5
+   ]
+  },
+  "auroc_gain_actor_minus_reader": {
+   "value": 0.229,
+   "ci": [
+    0.133,
+    0.324
+   ]
+  },
+  "n_stamped": 92,
+  "auroc_actor_within_stamped": {
+   "value": 0.729,
+   "ci": [
+    0.626,
+    0.818
+   ]
+  },
+  "approval_100_stamped": {
+   "fail": {
+    "value": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "pass": {
+    "value": 0.123,
+    "ci": [
+     0.035,
+     0.211
+    ]
+   }
+  },
+  "test": {
+   "n_with_test_cmd": 92,
+   "flag_share_all": 0.406,
+   "flag_share_own_pass": 0.596,
+   "flag_share_own_fail": 0.571,
+   "own_pass_rate_flagged": 0.63,
+   "own_pass_rate_unflagged": 0.605,
+   "stamped_fail_caught_by_flag": 15,
+   "assert_share": 0.717,
+   "reverted_pass_applied_pass": 20,
+   "reverted_fail_applied_fail": 17,
+   "judge_edited_tracked": 0
+  },
+  "cost": {
+   "calls_mean": 15.08,
+   "seconds_median": 122.0
+  }
+ }
+}

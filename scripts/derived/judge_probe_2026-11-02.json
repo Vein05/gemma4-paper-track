@@ -1,0 +1,178 @@
+{
+ "n": {
+  "patches": 957,
+  "own": 180,
+  "other": 777,
+  "stamped": 133,
+  "stamped_failing": 52,
+  "stamped_local": 127
+ },
+ "probe": {
+  "own_auroc": 0.741,
+  "stamped_auroc": 0.748,
+  "stamped_local_auroc": 0.729,
+  "other_auroc": 0.809,
+  "own_auroc_ci95": [
+   0.661,
+   0.811
+  ],
+  "stamped_auroc_ci95": [
+   0.666,
+   0.832
+  ],
+  "other_minus_own": 0.068,
+  "folds": [
+   {
+    "layer": 60,
+    "C": 0.001,
+    "inner_auroc": 0.822
+   },
+   {
+    "layer": 60,
+    "C": 0.001,
+    "inner_auroc": 0.816
+   },
+   {
+    "layer": 60,
+    "C": 0.001,
+    "inner_auroc": 0.799
+   },
+   {
+    "layer": 60,
+    "C": 0.001,
+    "inner_auroc": 0.817
+   },
+   {
+    "layer": 44,
+    "C": 0.001,
+    "inner_auroc": 0.798
+   }
+  ]
+ },
+ "verbal_gemma4-31b": {
+  "own_auroc": 0.622,
+  "stamped_auroc": 0.5,
+  "stamped_local_auroc": 0.499,
+  "other_auroc": 0.751,
+  "own_auroc_ci95": [
+   0.558,
+   0.685
+  ],
+  "stamped_auroc_ci95": [
+   0.5,
+   0.5
+  ],
+  "other_minus_own": 0.129
+ },
+ "verbal_glm-4.5": {
+  "own_auroc": 0.778,
+  "stamped_auroc": 0.746,
+  "stamped_local_auroc": 0.728,
+  "other_auroc": 0.823,
+  "own_auroc_ci95": [
+   0.705,
+   0.843
+  ],
+  "stamped_auroc_ci95": [
+   0.666,
+   0.826
+  ],
+  "other_minus_own": 0.045
+ },
+ "verbal_kimi-k2": {
+  "own_auroc": 0.766,
+  "stamped_auroc": 0.733,
+  "stamped_local_auroc": 0.703,
+  "other_auroc": 0.808,
+  "own_auroc_ci95": [
+   0.701,
+   0.828
+  ],
+  "stamped_auroc_ci95": [
+   0.656,
+   0.803
+  ],
+  "other_minus_own": 0.042
+ },
+ "verbal_gemma4-31b-local": {
+  "own_auroc": 0.658,
+  "stamped_auroc": 0.554,
+  "stamped_local_auroc": 0.5,
+  "other_auroc": 0.762,
+  "own_auroc_ci95": [
+   0.593,
+   0.719
+  ],
+  "stamped_auroc_ci95": [
+   0.509,
+   0.609
+  ],
+  "other_minus_own": 0.104
+ },
+ "top_quarter_own": {
+  "gemma": 0.609,
+  "gemma_tiebreak_probe": 0.867,
+  "gemma_tiebreak_calls": 0.778,
+  "probe_alone": 0.867
+ },
+ "control_patch_length": {
+  "own_auroc": 0.599,
+  "stamped_auroc": 0.596,
+  "stamped_local_auroc": 0.589,
+  "other_auroc": 0.612,
+  "own_auroc_ci95": [
+   0.517,
+   0.684
+  ],
+  "stamped_auroc_ci95": [
+   0.496,
+   0.697
+  ],
+  "other_minus_own": 0.013
+ },
+ "control_shuffled_within_issue": {
+  "own_auroc": 0.701,
+  "stamped_auroc": 0.716,
+  "stamped_local_auroc": 0.699,
+  "other_auroc": 0.728,
+  "own_auroc_ci95": [
+   0.625,
+   0.773
+  ],
+  "stamped_auroc_ci95": [
+   0.622,
+   0.799
+  ],
+  "other_minus_own": 0.028
+ },
+ "control_own_in_training": {
+  "own_auroc": 0.715,
+  "stamped_auroc": 0.72,
+  "stamped_local_auroc": 0.699,
+  "other_auroc": 0.802,
+  "own_auroc_ci95": [
+   0.636,
+   0.785
+  ],
+  "stamped_auroc_ci95": [
+   0.632,
+   0.805
+  ],
+  "other_minus_own": 0.088
+ },
+ "issue_likelihood": {
+  "own_auroc": 0.575,
+  "stamped_auroc": 0.575,
+  "stamped_local_auroc": 0.594,
+  "other_auroc": 0.558,
+  "own_auroc_ci95": [
+   0.489,
+   0.658
+  ],
+  "stamped_auroc_ci95": [
+   0.477,
+   0.67
+  ],
+  "other_minus_own": -0.017
+ }
+}

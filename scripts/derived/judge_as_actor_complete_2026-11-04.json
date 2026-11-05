@@ -1,0 +1,135 @@
+{
+ "counts": {
+  "patches": 133,
+  "shell_scored": 125,
+  "by_source": {
+   "pilot": 92,
+   "rerun": 5,
+   "forced_final": 28
+  },
+  "unscored": 8,
+  "local_reading_scored": 103,
+  "rerun_status": {
+   "Submitted": 5,
+   "LimitsExceeded": 2,
+   "InternalServerError": 1
+  },
+  "final_status": {
+   "NoScore": 5,
+   "Finalized": 28
+  }
+ },
+ "primary_pooled_vs_local": {
+  "n": 98,
+  "n_pass": 58,
+  "shell": {
+   "value": 0.681,
+   "ci": [
+    0.58,
+    0.772
+   ]
+  },
+  "reading": {
+   "value": 0.672,
+   "ci": [
+    0.562,
+    0.772
+   ]
+  },
+  "shell_minus_reading": {
+   "value": 0.01,
+   "ci": [
+    -0.141,
+    0.155
+   ]
+  },
+  "rank_sum_minus_reading": {
+   "value": 0.086,
+   "ci": [
+    0.001,
+    0.164
+   ]
+  }
+ },
+ "without_forced_vs_local": {
+  "n": 79,
+  "n_pass": 48,
+  "shell": {
+   "value": 0.725,
+   "ci": [
+    0.615,
+    0.82
+   ]
+  },
+  "reading": {
+   "value": 0.698,
+   "ci": [
+    0.583,
+    0.807
+   ]
+  },
+  "shell_minus_reading": {
+   "value": 0.027,
+   "ci": [
+    -0.131,
+    0.179
+   ]
+  },
+  "rank_sum_minus_reading": {
+   "value": 0.111,
+   "ci": [
+    0.013,
+    0.199
+   ]
+  }
+ },
+ "pooled_vs_openrouter": {
+  "n": 125,
+  "n_pass": 76,
+  "shell": {
+   "value": 0.685,
+   "ci": [
+    0.596,
+    0.768
+   ]
+  },
+  "reading": {
+   "value": 0.624,
+   "ci": [
+    0.529,
+    0.713
+   ]
+  },
+  "shell_minus_reading": {
+   "value": 0.061,
+   "ci": [
+    -0.054,
+    0.185
+   ]
+  },
+  "rank_sum_minus_reading": {
+   "value": 0.082,
+   "ci": [
+    0.014,
+    0.152
+   ]
+  }
+ },
+ "local_vs_openrouter_reading_all": {
+  "local": 0.661,
+  "openrouter_same": 0.606
+ },
+ "forced_final_alone": {
+  "n": 28,
+  "n_pass": 14,
+  "approval_100": {
+   "fail": 0.0,
+   "passing": 0.0
+  },
+  "approval_90": {
+   "fail": 0.714,
+   "passing": 0.714
+  },
+  "auroc": 0.492
+ }
+}

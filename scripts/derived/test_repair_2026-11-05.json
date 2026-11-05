@@ -1,0 +1,35 @@
+{
+ "gemma_patches": 180,
+ "blocked": 35,
+ "blocked_failing": 26,
+ "blocked_passing": 9,
+ "resolved_before": 95,
+ "tests": {
+  "exit_status": {
+   "Submitted": 33,
+   "RetryError": 2
+  },
+  "stamped_failing_now_passing": 9,
+  "of_stamped_failing": 52,
+  "blocked_failing_now_passing": 14,
+  "blocked_passing_now_failing": 4,
+  "resolved_after": 105
+ },
+ "review": {
+  "exit_status": {
+   "Submitted": 34,
+   "LimitsExceeded": 1
+  },
+  "stamped_failing_now_passing": 3,
+  "of_stamped_failing": 52,
+  "blocked_failing_now_passing": 6,
+  "blocked_passing_now_failing": 1,
+  "resolved_after": 100
+ },
+ "tests_vs_review": {
+  "tests_only": 8,
+  "review_only": 0,
+  "sign_test_p": 0.0039
+ },
+ "reading": "the failing tests help repair"
+}

@@ -1,0 +1,152 @@
+{
+ "n_patches_all_judges": 954,
+ "n_own": 180,
+ "31b-local": {
+  "own_written": 0.658,
+  "own_logp": 0.775,
+  "other_written": 0.761,
+  "other_logp": 0.779,
+  "own_tie_share_at_mode": 0.706,
+  "own_mode": 100.0,
+  "own_gain_ci95": [
+   0.07,
+   0.167
+  ],
+  "other_gain_ci95": [
+   -0.005,
+   0.044
+  ],
+  "own_gain": 0.117,
+  "other_gain": 0.018
+ },
+ "31b-hosted": {
+  "own_written": 0.622,
+  "own_logp": 0.755,
+  "other_written": 0.75,
+  "other_logp": 0.786,
+  "own_tie_share_at_mode": 0.739,
+  "own_mode": 100.0,
+  "own_gain_ci95": [
+   0.079,
+   0.185
+  ],
+  "other_gain_ci95": [
+   0.01,
+   0.061
+  ],
+  "own_gain": 0.133,
+  "other_gain": 0.036
+ },
+ "12b": {
+  "own_written": 0.665,
+  "own_logp": 0.684,
+  "other_written": 0.722,
+  "other_logp": 0.733,
+  "own_tie_share_at_mode": 0.483,
+  "own_mode": 100.0,
+  "own_gain_ci95": [
+   -0.017,
+   0.055
+  ],
+  "other_gain_ci95": [
+   -0.012,
+   0.032
+  ],
+  "own_gain": 0.019,
+  "other_gain": 0.011
+ },
+ "26b-a4b": {
+  "own_written": 0.663,
+  "own_logp": 0.736,
+  "other_written": 0.729,
+  "other_logp": 0.762,
+  "own_tie_share_at_mode": 0.572,
+  "own_mode": 100.0,
+  "own_gain_ci95": [
+   0.035,
+   0.111
+  ],
+  "other_gain_ci95": [
+   0.015,
+   0.051
+  ],
+  "own_gain": 0.073,
+  "other_gain": 0.033
+ },
+ "qwen3-32b": {
+  "own_written": 0.638,
+  "own_logp": 0.667,
+  "other_written": 0.657,
+  "other_logp": 0.666,
+  "own_tie_share_at_mode": 0.606,
+  "own_mode": 95.0,
+  "own_gain_ci95": [
+   -0.016,
+   0.077
+  ],
+  "other_gain_ci95": [
+   -0.014,
+   0.035
+  ],
+  "own_gain": 0.029,
+  "other_gain": 0.01
+ },
+ "qwen3-32b-p95": {
+  "own_written": 0.638,
+  "own_logp": 0.649,
+  "other_written": 0.657,
+  "other_logp": 0.653,
+  "own_tie_share_at_mode": 0.606,
+  "own_mode": 95.0,
+  "own_gain_ci95": [
+   -0.035,
+   0.059
+  ],
+  "other_gain_ci95": [
+   -0.034,
+   0.024
+  ],
+  "own_gain": 0.011,
+  "other_gain": -0.004
+ },
+ "31b-local_own_gain_minus_12b": 0.098,
+ "31b-local_own_gain_minus_12b_ci95": [
+  0.045,
+  0.152
+ ],
+ "31b-local_own_gain_minus_26b-a4b": 0.044,
+ "31b-local_own_gain_minus_26b-a4b_ci95": [
+  -0.006,
+  0.099
+ ],
+ "31b-local_own_gain_minus_qwen3-32b": 0.088,
+ "31b-local_own_gain_minus_qwen3-32b_ci95": [
+  0.033,
+  0.145
+ ],
+ "31b-local_own_gain_minus_qwen3-32b-p95": 0.106,
+ "31b-local_own_gain_minus_qwen3-32b-p95_ci95": [
+  0.044,
+  0.173
+ ],
+ "31b-hosted_own_gain_minus_12b": 0.114,
+ "31b-hosted_own_gain_minus_12b_ci95": [
+  0.056,
+  0.171
+ ],
+ "31b-hosted_own_gain_minus_26b-a4b": 0.06,
+ "31b-hosted_own_gain_minus_26b-a4b_ci95": [
+  0.005,
+  0.113
+ ],
+ "31b-hosted_own_gain_minus_qwen3-32b": 0.104,
+ "31b-hosted_own_gain_minus_qwen3-32b_ci95": [
+  0.046,
+  0.16
+ ],
+ "31b-hosted_own_gain_minus_qwen3-32b-p95": 0.122,
+ "31b-hosted_own_gain_minus_qwen3-32b-p95_ci95": [
+  0.055,
+  0.186
+ ]
+}

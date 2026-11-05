@@ -1,0 +1,76 @@
+{
+ "hosted": {
+  "verbal_own": 0.622,
+  "verbal_other": 0.751,
+  "logp_own": 0.755,
+  "logp_other": 0.788,
+  "logp_stamped_own": 0.756,
+  "logp_stamped_other": 0.708,
+  "gap_verbal": 0.129,
+  "gap_logp": 0.033,
+  "gap_logp_ci95": [
+   -0.031,
+   0.095
+  ],
+  "gap_verbal_ci95": [
+   0.065,
+   0.193
+  ],
+  "top_quarter_score": 0.609,
+  "top_quarter_score_tiebreak_logp100": 0.822,
+  "top_quarter_logp100_alone": 0.822,
+  "approve_p0.5_own_failing": 0.576,
+  "approve_p0.5_other_failing": 0.323,
+  "approve_p0.5_own_passing": 0.853,
+  "approve_p0.5_other_passing": 0.789,
+  "approve_p0.9_own_failing": 0.518,
+  "approve_p0.9_other_failing": 0.303,
+  "approve_p0.9_own_passing": 0.811,
+  "approve_p0.9_other_passing": 0.76,
+  "approve_p0.99_own_failing": 0.412,
+  "approve_p0.99_other_failing": 0.265,
+  "approve_p0.99_own_passing": 0.789,
+  "approve_p0.99_other_passing": 0.721,
+  "approve_p0.999_own_failing": 0.294,
+  "approve_p0.999_other_failing": 0.214,
+  "approve_p0.999_own_passing": 0.758,
+  "approve_p0.999_other_passing": 0.674
+ },
+ "local": {
+  "verbal_own": 0.658,
+  "verbal_other": 0.762,
+  "logp_own": 0.775,
+  "logp_other": 0.781,
+  "logp_stamped_own": 0.748,
+  "logp_stamped_other": 0.686,
+  "gap_verbal": 0.104,
+  "gap_logp": 0.006,
+  "gap_logp_ci95": [
+   -0.053,
+   0.067
+  ],
+  "gap_verbal_ci95": [
+   0.038,
+   0.168
+  ],
+  "top_quarter_score": 0.638,
+  "top_quarter_score_tiebreak_logp100": 0.844,
+  "top_quarter_logp100_alone": 0.844,
+  "approve_p0.5_own_failing": 0.541,
+  "approve_p0.5_other_failing": 0.321,
+  "approve_p0.5_own_passing": 0.853,
+  "approve_p0.5_other_passing": 0.776,
+  "approve_p0.9_own_failing": 0.494,
+  "approve_p0.9_other_failing": 0.293,
+  "approve_p0.9_own_passing": 0.842,
+  "approve_p0.9_other_passing": 0.76,
+  "approve_p0.99_own_failing": 0.412,
+  "approve_p0.99_other_failing": 0.262,
+  "approve_p0.99_own_passing": 0.8,
+  "approve_p0.99_other_passing": 0.719,
+  "approve_p0.999_own_failing": 0.365,
+  "approve_p0.999_other_failing": 0.206,
+  "approve_p0.999_own_passing": 0.747,
+  "approve_p0.999_other_passing": 0.648
+ }
+}

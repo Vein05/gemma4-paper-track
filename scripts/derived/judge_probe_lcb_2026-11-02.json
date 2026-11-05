@@ -1,0 +1,49 @@
+{
+ "n": 761,
+ "n_own": 250,
+ "n_train_other": 511,
+ "n_other_passing": 108,
+ "n_stamped": 165,
+ "n_stamped_failing": 62,
+ "own_auroc": 0.68,
+ "stamped_auroc": 0.597,
+ "other_auroc": 0.897,
+ "own_auroc_ci95": [
+  0.613,
+  0.747
+ ],
+ "stamped_auroc_ci95": [
+  0.503,
+  0.689
+ ],
+ "verbal_gemma_own_auroc": 0.662,
+ "folds": [
+  {
+   "layer": 48,
+   "C": 0.001,
+   "inner_auroc": 0.876
+  },
+  {
+   "layer": 48,
+   "C": 0.001,
+   "inner_auroc": 0.894
+  },
+  {
+   "layer": 60,
+   "C": 0.001,
+   "inner_auroc": 0.876
+  },
+  {
+   "layer": 60,
+   "C": 0.001,
+   "inner_auroc": 0.888
+  },
+  {
+   "layer": 48,
+   "C": 0.001,
+   "inner_auroc": 0.886
+  }
+ ],
+ "top_quarter_gemma": 0.624,
+ "top_quarter_gemma_tiebreak_probe": 0.664
+}

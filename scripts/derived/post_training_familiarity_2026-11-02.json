@@ -1,0 +1,37 @@
+{
+ "n": 957,
+ "check_pretrained_logp100_r": 1.0,
+ "check_instruct_logp100_r": 1.0,
+ "median_F": {
+  "pre_own_failing": -0.451,
+  "pre_other_failing": -0.517,
+  "it_own_failing": -3.147,
+  "it_other_failing": -3.524
+ },
+ "median_G_own_failing": -2.68,
+ "median_G_other_failing": -2.975,
+ "overlap": 0.882,
+ "primary_r": -0.154,
+ "primary_issues": 113,
+ "b0": 9.653,
+ "b1": 11.006,
+ "ratio": 1.14,
+ "primary_r_ci": [
+  -0.289,
+  -0.011
+ ],
+ "b0_ci": [
+  3.94,
+  15.093
+ ],
+ "b1_ci": [
+  5.745,
+  15.961
+ ],
+ "ratio_ci": [
+  0.996,
+  1.548
+ ],
+ "reading": "no sign of familiarity",
+ "secondary_unreliable": false
+}

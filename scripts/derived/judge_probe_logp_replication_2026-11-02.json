@@ -1,0 +1,60 @@
+{
+ "lite": {
+  "n": 1455,
+  "n_missing": 0,
+  "n_own": 293,
+  "n_stamped": 229,
+  "n_stamped_failing": 82,
+  "recorded_matches_verbal": 1.0,
+  "K1": 0.654,
+  "K1_ci95": [
+   0.581,
+   0.719
+  ],
+  "own_logp": 0.721,
+  "other_logp": 0.749,
+  "own_verbal": 0.637,
+  "other_verbal": 0.713,
+  "K2_gap_logp": 0.028,
+  "gap_verbal": 0.076,
+  "K2_gap_logp_ci95": [
+   -0.026,
+   0.08
+  ],
+  "gap_verbal_ci95": [
+   0.028,
+   0.126
+  ],
+  "top_quarter_score": 0.642,
+  "top_quarter_score_tiebreak_logp100": 0.805
+ },
+ "livecodebench": {
+  "n": 761,
+  "n_missing": 0,
+  "n_own": 250,
+  "n_stamped": 165,
+  "n_stamped_failing": 62,
+  "recorded_matches_verbal": 1.0,
+  "K1": 0.536,
+  "K1_ci95": [
+   0.442,
+   0.631
+  ],
+  "own_logp": 0.672,
+  "other_logp": 0.882,
+  "own_verbal": 0.662,
+  "other_verbal": 0.898,
+  "K2_gap_logp": 0.209,
+  "gap_verbal": 0.235,
+  "K2_gap_logp_ci95": [
+   0.142,
+   0.282
+  ],
+  "gap_verbal_ci95": [
+   0.176,
+   0.295
+  ],
+  "top_quarter_score": 0.624,
+  "top_quarter_score_tiebreak_logp100": 0.608
+ }
+}

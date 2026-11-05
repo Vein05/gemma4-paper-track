@@ -1,0 +1,241 @@
+{
+ "held-out": {
+  "test_a": {
+   "effect_gemma-4-31b": {
+    "value": 8.0,
+    "ci95": [
+     -0.9,
+     15.9
+    ]
+   },
+   "effect_glm-4.5": {
+    "value": 3.3,
+    "ci95": [
+     -8.1,
+     12.9
+    ]
+   },
+   "effect_gpt-oss-120b": {
+    "value": 2.0,
+    "ci95": [
+     -9.9,
+     10.4
+    ]
+   },
+   "effect_kimi-k2": {
+    "value": 3.9,
+    "ci95": [
+     -7.0,
+     13.5
+    ]
+   },
+   "effect_llama-4-maverick": {
+    "value": 9.5,
+    "ci95": [
+     2.4,
+     19.8
+    ]
+   },
+   "effect_qwen3-coder": {
+    "value": 7.5,
+    "ci95": [
+     -2.1,
+     16.2
+    ]
+   },
+   "mean_other_writers": {
+    "value": 5.2,
+    "ci95": [
+     -0.6,
+     10.7
+    ]
+   },
+   "delta_gemma_minus_mean_other": {
+    "value": 2.7,
+    "ci95": [
+     -7.1,
+     11.5
+    ]
+   },
+   "same_edit_counts": {
+    "gemma-4-31b": 36,
+    "glm-4.5": 28,
+    "gpt-oss-120b": 16,
+    "kimi-k2": 32,
+    "llama-4-maverick": 15,
+    "qwen3-coder": 26
+   },
+   "reading": "inconclusive"
+  },
+  "test_b": {
+   "same_minus_other_edit_qwen3-coder": {
+    "value": -8.9,
+    "ci95": [
+     -15.6,
+     -2.4
+    ]
+   },
+   "own_minus_same_edit_qwen3-coder": {
+    "value": -0.1,
+    "ci95": [
+     -9.3,
+     9.2
+    ]
+   },
+   "same_minus_other_edit_gpt-oss-120b": {
+    "value": 4.2,
+    "ci95": [
+     -5.7,
+     19.9
+    ]
+   },
+   "own_minus_same_edit_gpt-oss-120b": {
+    "value": -3.9,
+    "ci95": [
+     -20.3,
+     6.4
+    ]
+   },
+   "same_minus_other_edit_glm-4.5": {
+    "value": 4.4,
+    "ci95": [
+     -9.2,
+     15.0
+    ]
+   },
+   "own_minus_same_edit_glm-4.5": {
+    "value": -3.5,
+    "ci95": [
+     -17.1,
+     12.0
+    ]
+   },
+   "same_minus_other_edit_kimi-k2": {
+    "value": -5.0,
+    "ci95": [
+     -12.4,
+     2.5
+    ]
+   },
+   "own_minus_same_edit_kimi-k2": {
+    "value": 8.2,
+    "ci95": [
+     -2.3,
+     19.3
+    ]
+   },
+   "same_minus_other_edit_llama-4-maverick": {
+    "value": -18.0,
+    "ci95": [
+     -25.8,
+     -7.0
+    ]
+   },
+   "own_minus_same_edit_llama-4-maverick": {
+    "value": 18.4,
+    "ci95": [
+     6.5,
+     27.5
+    ]
+   },
+   "same_minus_other_edit_gemma4-31b": {
+    "value": 8.0,
+    "ci95": [
+     -0.9,
+     15.9
+    ]
+   },
+   "own_minus_same_edit_gemma4-31b": {
+    "value": 10.3,
+    "ci95": [
+     0.2,
+     21.1
+    ]
+   },
+   "mean_other_judges": {
+    "value": -4.7,
+    "ci95": [
+     -9.2,
+     0.4
+    ]
+   },
+   "gemma_minus_mean_other": {
+    "value": 12.6,
+    "ci95": [
+     1.9,
+     21.5
+    ]
+   },
+   "same_edit_counts": {
+    "qwen3-coder": 36,
+    "gpt-oss-120b": 18,
+    "glm-4.5": 33,
+    "kimi-k2": 39,
+    "llama-4-maverick": 24,
+    "gemma4-31b": 36
+   },
+   "reading": "specific to Gemma"
+  }
+ },
+ "swe-bench-lite": {
+  "test_a": {
+   "effect_claude-4-sonnet": {
+    "value": 14.9,
+    "ci95": [
+     -0.2,
+     26.1
+    ]
+   },
+   "effect_deepseek-v3": {
+    "value": 17.6,
+    "ci95": [
+     14.2,
+     21.1
+    ]
+   },
+   "effect_entropo-qwen3-coder-30b": {
+    "value": 13.5,
+    "ci95": [
+     -1.7,
+     24.3
+    ]
+   },
+   "effect_gemma-4-31b": {
+    "value": 20.0,
+    "ci95": [
+     14.1,
+     25.9
+    ]
+   },
+   "effect_swe-fixer-qwen2.5-72b": {
+    "value": 8.3,
+    "ci95": [
+     -26.5,
+     21.8
+    ]
+   },
+   "mean_other_writers": {
+    "value": 13.6,
+    "ci95": [
+     -3.3,
+     20.7
+    ]
+   },
+   "delta_gemma_minus_mean_other": {
+    "value": 6.4,
+    "ci95": [
+     -0.1,
+     21.2
+    ]
+   },
+   "same_edit_counts": {
+    "claude-4-sonnet": 21,
+    "deepseek-v3": 3,
+    "entropo-qwen3-coder-30b": 17,
+    "gemma-4-31b": 45,
+    "swe-fixer-qwen2.5-72b": 9
+   },
+   "reading": "inconclusive"
+  }
+ }
+}

@@ -47,6 +47,10 @@ def export(a):
 def call(base, model, system, prompt, max_tokens, retries=4):
     body = {"model": model, "messages": [{"role": "system", "content": system}, {"role": "user", "content": prompt}],
             "temperature": 0, "max_tokens": max_tokens}
+    if os.environ.get("LOCAL_JUDGE_NO_THINK"):  # Qwen3 (spec/judge-probe.md addendum 7): thinking off
+        body["chat_template_kwargs"] = {"enable_thinking": False}
+    if os.environ.get("LOCAL_JUDGE_EXTRA"):  # model sweep (spec/lcb-model-sweep.md): per-model body fields, JSON
+        body.update(json.loads(os.environ["LOCAL_JUDGE_EXTRA"]))
     err = None
     for k in range(retries):
         req = urllib.request.Request(base.rstrip("/") + "/chat/completions", data=json.dumps(body).encode(),

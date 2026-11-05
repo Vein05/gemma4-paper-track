@@ -1,0 +1,110 @@
+{
+ "set": "lite",
+ "n": 1458,
+ "own": 295,
+ "own_failing": 130,
+ "issues": 296,
+ "L_pre": 11.257,
+ "L_pre_ci": [
+  8.234,
+  14.243
+ ],
+ "L_it": 11.608,
+ "L_it_ci": [
+  8.768,
+  14.366
+ ],
+ "D": 0.351,
+ "D_ci": [
+  -3.104,
+  3.743
+ ],
+ "auroc_own_written": 0.641,
+ "auroc_own_written_ci": [
+  0.597,
+  0.689
+ ],
+ "auroc_own_pre": 0.664,
+ "auroc_own_pre_ci": [
+  0.601,
+  0.724
+ ],
+ "auroc_own_it": 0.681,
+ "auroc_own_it_ci": [
+  0.62,
+  0.739
+ ],
+ "diff_pre_minus_written": 0.023,
+ "diff_pre_minus_written_ci": [
+  -0.045,
+  0.088
+ ],
+ "diff_it_minus_written": 0.04,
+ "diff_it_minus_written_ci": [
+  -0.017,
+  0.094
+ ],
+ "diff_pre_minus_it": -0.017,
+ "diff_pre_minus_it_ci": [
+  -0.076,
+  0.038
+ ],
+ "approval": {
+  "paper_written_100": {
+   "own_failing": 0.623,
+   "own_passing": 0.903,
+   "precision_own": 0.648,
+   "other_failing": 0.395,
+   "other_passing": 0.773
+  },
+  "instruct_p100_above_half": {
+   "own_failing": 0.7,
+   "own_passing": 0.855,
+   "precision_own": 0.608,
+   "other_failing": 0.483,
+   "other_passing": 0.824
+  },
+  "pretrained_p100_above_half": {
+   "own_failing": 0.469,
+   "own_passing": 0.667,
+   "precision_own": 0.643,
+   "other_failing": 0.297,
+   "other_passing": 0.591
+  }
+ },
+ "matched_approval": {
+  "paper_written_100": {
+   "passing": 0.903,
+   "failing": 0.623
+  },
+  "instruct_p100": {
+   "0.85": {
+    "passing": 0.848,
+    "failing": 0.677
+   },
+   "0.70": {
+    "passing": 0.697,
+    "failing": 0.469
+   },
+   "0.58": {
+    "passing": 0.582,
+    "failing": 0.338
+   }
+  },
+  "pretrained_p100": {
+   "0.85": {
+    "passing": 0.848,
+    "failing": 0.631
+   },
+   "0.70": {
+    "passing": 0.697,
+    "failing": 0.515
+   },
+   "0.58": {
+    "passing": 0.582,
+    "failing": 0.377
+   }
+  }
+ },
+ "reading": "not confirmed"
+}

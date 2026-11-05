@@ -1,0 +1,121 @@
+{
+ "n": {
+  "different": 36,
+  "shares_wrong_part=yes": 44,
+  "same": 22,
+  "shares_wrong_part=no": 9,
+  "shares_wrong_part=cannot_tell": 5,
+  "own failing, same 29 issues": 29,
+  "own failing, all": 85
+ },
+ "point": {
+  "different": {
+   "gemma4-31b-local": {
+    "share_100": 0.5277777777777778,
+    "leniency": 6.355158730158728
+   },
+   "gemma4-31b": {
+    "share_100": 0.5,
+    "leniency": 1.9107142857142856
+   }
+  },
+  "shares_wrong_part=yes": {
+   "gemma4-31b-local": {
+    "share_100": 0.75,
+    "leniency": 11.936688311688313
+   },
+   "gemma4-31b": {
+    "share_100": 0.7045454545454546,
+    "leniency": 10.459415584415584
+   }
+  },
+  "same": {
+   "gemma4-31b-local": {
+    "share_100": 0.9090909090909091,
+    "leniency": 14.728354978354979
+   },
+   "gemma4-31b": {
+    "share_100": 0.9090909090909091,
+    "leniency": 13.819264069264069
+   }
+  },
+  "shares_wrong_part=no": {
+   "gemma4-31b-local": {
+    "share_100": 0.2222222222222222,
+    "leniency": -2.9021164021164023
+   },
+   "gemma4-31b": {
+    "share_100": 0.3333333333333333,
+    "leniency": -15.124338624338625
+   }
+  },
+  "shares_wrong_part=cannot_tell": {
+   "gemma4-31b-local": {
+    "share_100": 0.8,
+    "leniency": 10.742857142857142
+   },
+   "gemma4-31b": {
+    "share_100": 0.8,
+    "leniency": 9.742857142857142
+   }
+  },
+  "own failing, same 29 issues": {
+   "gemma4-31b-local": {
+    "share_100": 0.7586206896551724,
+    "leniency": 10.90948275862069
+   },
+   "gemma4-31b": {
+    "share_100": 0.7931034482758621,
+    "leniency": 15.737068965517242
+   }
+  },
+  "own failing, all": {
+   "gemma4-31b-local": {
+    "share_100": 0.5411764705882353,
+    "leniency": 10.358823529411765
+   },
+   "gemma4-31b": {
+    "share_100": 0.611764705882353,
+    "leniency": 14.064705882352941
+   }
+  }
+ },
+ "same_minus_different": {
+  "gemma4-31b-local": {
+   "share_100": {
+    "point": 0.38131313131313127,
+    "ci": [
+     0.1777053524112348,
+     0.5588235294117647
+    ]
+   },
+   "leniency": {
+    "point": 8.373196248196251,
+    "ci": [
+     -2.8097939857761243,
+     20.23031712685073
+    ]
+   }
+  },
+  "gemma4-31b": {
+   "share_100": {
+    "point": 0.40909090909090906,
+    "ci": [
+     0.21389905244394405,
+     0.586705882352941
+    ]
+   },
+   "leniency": {
+    "point": 11.908549783549784,
+    "ci": [
+     -0.29884927572427494,
+     25.67788751770731
+    ]
+   }
+  }
+ },
+ "added_token_jaccard_median": {
+  "same": 0.15227272727272728,
+  "different": 0.1481678486997636
+ }
+}

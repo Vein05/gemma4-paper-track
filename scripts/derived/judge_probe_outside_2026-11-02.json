@@ -1,0 +1,94 @@
+{
+ "out31b": {
+  "own_auroc": 0.7406811145510837,
+  "stamped_auroc": 0.748338081671415,
+  "other_auroc": 0.8085440521628499,
+  "own_auroc_ci95": [
+   0.661,
+   0.811
+  ],
+  "stamped_auroc_ci95": [
+   0.666,
+   0.832
+  ],
+  "folds": [
+   {
+    "layer": 60,
+    "C": 0.001,
+    "inner_auroc": 0.822
+   },
+   {
+    "layer": 60,
+    "C": 0.001,
+    "inner_auroc": 0.816
+   },
+   {
+    "layer": 60,
+    "C": 0.001,
+    "inner_auroc": 0.799
+   },
+   {
+    "layer": 60,
+    "C": 0.001,
+    "inner_auroc": 0.817
+   },
+   {
+    "layer": 44,
+    "C": 0.001,
+    "inner_auroc": 0.798
+   }
+  ]
+ },
+ "qwen32b": {
+  "own_auroc": 0.6786377708978327,
+  "stamped_auroc": 0.6823361823361822,
+  "other_auroc": 0.7499867472434266,
+  "own_auroc_ci95": [
+   0.597,
+   0.754
+  ],
+  "stamped_auroc_ci95": [
+   0.593,
+   0.774
+  ],
+  "folds": [
+   {
+    "layer": 52,
+    "C": 0.001,
+    "inner_auroc": 0.758
+   },
+   {
+    "layer": 52,
+    "C": 0.001,
+    "inner_auroc": 0.762
+   },
+   {
+    "layer": "final",
+    "C": 0.001,
+    "inner_auroc": 0.727
+   },
+   {
+    "layer": "final",
+    "C": 0.001,
+    "inner_auroc": 0.749
+   },
+   {
+    "layer": 56,
+    "C": 0.001,
+    "inner_auroc": 0.755
+   }
+  ]
+ },
+ "gemma_minus_outside_stamped": 0.06600189933523282,
+ "gemma_minus_outside_stamped_ci95": [
+  -0.007,
+  0.144
+ ],
+ "gemma_minus_outside_own": 0.062043343653250926,
+ "gemma_minus_outside_own_ci95": [
+  -0.001,
+  0.127
+ ],
+ "gemma_minus_outside_other": 0.058557304919423236,
+ "both_probes_rank_mean_stamped_auroc": 0.7305318138651471
+}

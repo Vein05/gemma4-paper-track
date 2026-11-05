@@ -1,0 +1,193 @@
+{
+ "models": {
+  "gemma-4-12b": {
+   "pass_rate_292": 0.414,
+   "own_programs_scored": 203,
+   "own_failing_scored": 83,
+   "other_writers": [
+    "claude-3.5-sonnet",
+    "deepseek-v3"
+   ],
+   "own_failing_given_100": 0.446,
+   "other_failing_given_100": 0.082,
+   "unscored_own": 4,
+   "leniency_qwen_reference": {
+    "value": 26.0,
+    "ci95": [
+     15.7,
+     36.5
+    ],
+    "own_failing": 83,
+    "other_failing": 428
+   }
+  },
+  "gemma-4-26b-a4b": {
+   "pass_rate_292": 0.572,
+   "own_programs_scored": 235,
+   "own_failing_scored": 73,
+   "other_writers": [
+    "claude-3.5-sonnet",
+    "deepseek-v3"
+   ],
+   "own_failing_given_100": 0.452,
+   "other_failing_given_100": 0.077,
+   "unscored_own": 7,
+   "leniency_qwen_reference": {
+    "value": 28.3,
+    "ci95": [
+     15.8,
+     40.4
+    ],
+    "own_failing": 73,
+    "other_failing": 429
+   }
+  },
+  "gpt-oss-20b": {
+   "pass_rate_292": 0.363,
+   "own_programs_scored": 277,
+   "own_failing_scored": 171,
+   "other_writers": [
+    "claude-3.5-sonnet",
+    "deepseek-v3",
+    "gemma-4-31b"
+   ],
+   "own_failing_given_100": 0.018,
+   "other_failing_given_100": 0.007,
+   "unscored_own": 1,
+   "leniency_qwen_reference": {
+    "value": 4.2,
+    "ci95": [
+     -2.8,
+     11.4
+    ],
+    "own_failing": 171,
+    "other_failing": 571
+   }
+  },
+  "olmo-3.1-32b": {
+   "pass_rate_292": 0.182,
+   "own_programs_scored": 185,
+   "own_failing_scored": 134,
+   "other_writers": [
+    "claude-3.5-sonnet",
+    "deepseek-v3",
+    "gemma-4-31b"
+   ],
+   "own_failing_given_100": 0.299,
+   "other_failing_given_100": 0.09,
+   "unscored_own": 4,
+   "leniency_qwen_reference": {
+    "value": 12.1,
+    "ci95": [
+     4.6,
+     19.8
+    ],
+    "own_failing": 134,
+    "other_failing": 568
+   }
+  },
+  "glm-4-9b": {
+   "pass_rate_292": 0.003,
+   "own_programs_scored": 56,
+   "own_failing_scored": 55,
+   "other_writers": [
+    "claude-3.5-sonnet",
+    "deepseek-v3",
+    "gemma-4-31b"
+   ],
+   "own_failing_given_100": 0.0,
+   "other_failing_given_100": 0.025,
+   "unscored_own": 225,
+   "leniency_qwen_reference": {
+    "value": 30.6,
+    "ci95": [
+     19.1,
+     42.0
+    ],
+    "own_failing": 55,
+    "other_failing": 79
+   }
+  },
+  "phi-4-mini": {
+   "pass_rate_292": 0.027,
+   "own_programs_scored": 288,
+   "own_failing_scored": 280,
+   "other_writers": [
+    "claude-3.5-sonnet",
+    "deepseek-v3",
+    "gemma-4-31b"
+   ],
+   "own_failing_given_100": 0.025,
+   "other_failing_given_100": 0.009,
+   "unscored_own": 1,
+   "leniency_qwen_reference": {
+    "value": 18.7,
+    "ci95": [
+     14.0,
+     23.5
+    ],
+    "own_failing": 280,
+    "other_failing": 571
+   }
+  },
+  "nemotron-nano-9b-v2": {
+   "pass_rate_292": 0.325,
+   "own_programs_scored": 132,
+   "own_failing_scored": 40,
+   "other_writers": [
+    "claude-3.5-sonnet",
+    "deepseek-v3",
+    "gemma-4-31b"
+   ],
+   "own_failing_given_100": 0.575,
+   "other_failing_given_100": 0.138,
+   "unscored_own": 5,
+   "leniency_qwen_reference": {
+    "value": 18.6,
+    "ci95": [
+     6.5,
+     30.8
+    ],
+    "own_failing": 40,
+    "other_failing": 557
+   }
+  },
+  "seed-oss-36b": {
+   "pass_rate_292": 0.151,
+   "own_programs_scored": 287,
+   "own_failing_scored": 243,
+   "other_writers": [
+    "claude-3.5-sonnet",
+    "deepseek-v3",
+    "gemma-4-31b"
+   ],
+   "own_failing_given_100": 0.687,
+   "other_failing_given_100": 0.528,
+   "unscored_own": 3,
+   "leniency_qwen_reference": {
+    "value": 13.4,
+    "ci95": [
+     6.5,
+     19.6
+    ],
+    "own_failing": 243,
+    "other_failing": 570
+   }
+  },
+  "gemma-4-31b (existing)": {
+   "leniency_qwen_reference": {
+    "value": 40.3,
+    "ci95": [
+     31.8,
+     48.9
+    ],
+    "own_failing": 122,
+    "other_failing": 396
+   }
+  }
+ },
+ "non_gemma_tested": 6,
+ "non_gemma_flagged": 5,
+ "reading_specific": "common",
+ "reading_family": "family trait"
+}

@@ -16,7 +16,9 @@ Output (append-only, so a restarted job resumes and skips finished issues):
 Environment: APPTAINER, WORK (sandbox scratch), HF_HOME, VLLM_BASE (default http://127.0.0.1:18000/v1),
 APPTAINER_EXEC_FLAGS (default "--fakeroot --ignore-subuid", the lab server; "" on MCSR Magnolia, whose fakeroot needs a
 newer glibc than the images), APPTAINER_MOUNT_DIRS (comma-separated host paths the site binds into every container;
-created inside each sandbox, e.g. "/ddnlus" on Magnolia).
+created inside each sandbox, e.g. "/ddnlus" on Magnolia), SIF_DIR (optional: build sandboxes from images pulled once
+into this folder, as eval_apptainer.py does), SERVED_MODEL and MODEL_ID (the vLLM model name and the checkpoint
+recorded in run.json; defaults are the 31B competition checkpoint; other sizes: spec/gemma-sizes-writers.md).
 """
 import argparse, concurrent.futures as cf, json, os, shutil, subprocess, threading, time, uuid
 from dataclasses import dataclass, field
@@ -26,6 +28,8 @@ from datasets import load_dataset
 from minisweagent.agents.default import DefaultAgent
 from minisweagent.config import builtin_config_dir
 from minisweagent.models.litellm_model import LitellmModel
+
+from eval_apptainer import local_image
 
 APPTAINER = os.environ.get("APPTAINER", "apptainer")
 WORK = os.environ.get("WORK", os.path.abspath("work"))
@@ -89,12 +93,12 @@ class VllmModel(LitellmModel):
 
 
 def image(iid):
-    return f"docker://swebench/sweb.eval.x86_64.{iid.replace('__', '_1776_')}:latest"
+    return local_image(f"docker://swebench/sweb.eval.x86_64.{iid.replace('__', '_1776_')}:latest")
 
 
 def run_one(inst, cfg, out):
     iid, t0 = inst["instance_id"], time.time()
-    model = VllmModel(model_name="hosted_vllm/gemma4-qat",
+    model = VllmModel(model_name="hosted_vllm/" + os.environ.get("SERVED_MODEL", "gemma4-qat"),
                       model_kwargs={"api_base": os.environ.get("VLLM_BASE", "http://127.0.0.1:18000/v1"),
                                     "api_key": "none", **cfg.get("model", {}).get("model_kwargs", {})})
     env = agent = None
@@ -150,9 +154,11 @@ def main():
     import importlib.metadata as md, socket
     start = dict(started=time.strftime("%Y-%m-%dT%H:%M:%S%z"), job=os.environ.get("SLURM_JOB_ID"), host=socket.gethostname(),
                  args=vars(a), issues=ids, already_done=sorted(done), config=cfg,
-                 model=dict(name="google/gemma-4-31B-it-qat-w4a16-ct", revision=os.environ.get("MODEL_REVISION")),
+                 model=dict(name=os.environ.get("MODEL_ID", "google/gemma-4-31B-it-qat-w4a16-ct"),
+                            revision=os.environ.get("MODEL_REVISION")),
                  versions={p: md.version(p) for p in ["mini-swe-agent", "litellm", "vllm", "swebench"] if _has(md, p)},
-                 env={k: os.environ.get(k) for k in ["APPTAINER_EXEC_FLAGS", "APPTAINER_MOUNT_DIRS", "VLLM_BASE"]})
+                 env={k: os.environ.get(k) for k in ["APPTAINER_EXEC_FLAGS", "APPTAINER_MOUNT_DIRS", "VLLM_BASE",
+                                                    "SIF_DIR", "SERVED_MODEL"]})
     with open(os.path.join(a.out, "run.json"), "a") as f:
         f.write(json.dumps(start) + "\n")
 

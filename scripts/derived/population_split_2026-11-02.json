@@ -1,0 +1,58 @@
+{
+ "same place as another writer's failing patch": {
+  "n": 29,
+  "issues": 29,
+  "gemma4-31b-local": {
+   "leniency": 10.9,
+   "share_100": 0.759
+  },
+  "gemma4-12b": {
+   "leniency": -6.7,
+   "share_100": 0.517
+  },
+  "gemma4-26b-a4b": {
+   "leniency": 5.2,
+   "share_100": 0.621
+  },
+  "gemma4-31b": {
+   "leniency": 15.7,
+   "share_100": 0.793
+  }
+ },
+ "no other writer's failing patch at the same place": {
+  "n": 56,
+  "issues": 56,
+  "gemma4-31b-local": {
+   "leniency": 10.1,
+   "share_100": 0.429
+  },
+  "gemma4-12b": {
+   "leniency": -11.2,
+   "share_100": 0.214
+  },
+  "gemma4-26b-a4b": {
+   "leniency": 3.6,
+   "share_100": 0.286
+  },
+  "gemma4-31b": {
+   "leniency": 13.2,
+   "share_100": 0.518
+  }
+ },
+ "no_same_place_contrasts": {
+  "local31b_minus_26b": {
+   "point": 6.4,
+   "ci": [
+    -3.8,
+    16.8
+   ]
+  },
+  "local31b_minus_12b": {
+   "point": 21.2,
+   "ci": [
+    10.3,
+    32.6
+   ]
+  }
+ }
+}

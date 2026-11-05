@@ -1,0 +1,154 @@
+# Judge-as-actor templates for mini-SWE-agent 1.7.0 (spec/judge-as-actor.md). The agent, environment and model
+# sections of mini-SWE-agent's extra/swebench.yaml are kept; only the two prompts, the step limit and the submission
+# command differ. The patch is applied to /testbed before the judge starts; the task text (issue and diff) is built by
+# scripts/judge_actor.py and inserted as {{task}}.
+agent:
+  system_template: |
+    You are a careful software engineer reviewing a proposed patch. You can interact multiple times with a computer
+    shell. Your response must contain exactly ONE bash code block with ONE command (or commands connected with && or ||).
+
+    Include a THOUGHT section before your command where you explain your reasoning process.
+    Format your response as shown in <format_example>.
+
+    <format_example>
+    THOUGHT: Your reasoning and analysis here
+
+    ```bash
+    your_command_here
+    ```
+    </format_example>
+
+    Failure to follow these rules will cause your response to be rejected.
+  instance_template: |
+    {{task}}
+
+    <instructions>
+    # Review task
+
+    The patch shown above has already been applied to the repository in /testbed (it is uncommitted, so
+    `git diff` shows it). Decide whether this patch resolves the issue, and give the chance, from 0 to 100, that it
+    passes the maintainers' hidden tests for the issue.
+
+    Do not decide from reading alone. Use the shell:
+    1. Write a test that fails on the original code and passes with the patch applied. Save it as a new file
+       (for example `judge_test.py`) and run it. To check the original code, run `git stash`, run your test, then
+       `git stash pop` to restore the patch. Your test file is untracked, so it stays in place.
+    2. Then try at least one case the issue implies but does not show (another input, another backend, a boundary,
+       a caller of the changed code), and run it.
+    3. Do not modify tracked source files. You may create new files.
+
+    IMPORTANT: This is an interactive process where you will think and issue ONE command, see its result, then think
+    and issue your next command. You have at most {{step_limit}} commands, including the final one.
+
+    ## Command Execution Rules
+    1. You write a single command
+    2. The system executes that command in a subshell
+    3. You see the result
+    4. You write your next command
+
+    Each response should include a **THOUGHT** section and a single bash code block:
+
+    <format_example>
+    THOUGHT: Here I explain my reasoning process, analysis of the current situation,
+    and what I'm trying to accomplish with the command below.
+
+    ```bash
+    your_command_here
+    ```
+    </format_example>
+
+    - Your response MUST include EXACTLY ONE bash code block with EXACTLY ONE command (or a set of commands connected
+      with && or ||). Zero or multiple bash blocks make the response FAIL.
+    - Directory or environment variable changes are not persistent. Every action is executed in a new subshell.
+    - Always use non-interactive flags (-y, -f); avoid vi, nano or any tool that needs input.
+    - Create a file with `cat <<'EOF' > newfile.py` ... `EOF`. View lines with `nl -ba file.py | sed -n '10,20p'`.
+
+    ## Finishing
+    When you have decided, issue exactly this command, with your own test command and score filled in. The TEST line
+    must be one shell command that runs your test from /testbed (for example `python judge_test.py` or
+    `python -m pytest judge_test.py -x -q`). The SCORE line must be an integer from 0 to 100.
+
+    ```bash
+    echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT && echo "TEST: python judge_test.py" && echo "SCORE: 85"
+    ```
+
+    This command ends the review. You cannot run anything after it.
+    </instructions>
+  action_observation_template: |
+    <returncode>{{output.returncode}}</returncode>
+    {% if output.output | length < 10000 -%}
+    <output>
+    {{ output.output -}}
+    </output>
+    {%- else -%}
+    <warning>
+    The output of your last command was too long.
+    Please try a different command that produces less output.
+    If you're looking at a file you can try use head, tail or sed to view a smaller number of lines selectively.
+    If you're using grep or find and it produced too much output, you can use a more selective search pattern.
+    If you really need to see something from the full command's output, you can redirect output to a file and then search in that file.
+    </warning>
+    {%- set elided_chars = output.output | length - 10000 -%}
+    <output_head>
+    {{ output.output[:5000] }}
+    </output_head>
+    <elided_chars>
+    {{ elided_chars }} characters elided
+    </elided_chars>
+    <output_tail>
+    {{ output.output[-5000:] }}
+    </output_tail>
+    {%- endif -%}
+  # spec addendum 3: mini-SWE-agent's timeout message is not truncated; a timed-out `grep -R ... ..` returned about
+  # 138 million characters (4 gpt-oss runs, vLLM 400). Truncated here like the ordinary observation.
+  timeout_template: |
+    The last command <command>{{action['action']}}</command> timed out and has been killed.
+    The output of the command was:
+    {% if output | length < 10000 -%}
+     <output>
+    {{ output }}
+    </output>
+    {%- else -%}
+     <output_head>
+    {{ output[:5000] }}
+    </output_head>
+    <elided_chars>
+    {{ output | length - 10000 }} characters elided
+    </elided_chars>
+    <output_tail>
+    {{ output[-5000:] }}
+    </output_tail>
+    {%- endif %}
+    Please try another command and make sure to avoid those requiring interactive input.
+  format_error_template: |
+    Please always provide EXACTLY ONE action in triple backticks, found {{actions|length}} actions.
+
+    Please format your action in triple backticks as shown in <response_example>.
+
+    <response_example>
+    Here are some thoughts about why you want to perform the action.
+
+    ```bash
+    <action>
+    ```
+    </response_example>
+
+    If you have decided, finish with the submission command from the first message
+    (echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT && echo "TEST: ..." && echo "SCORE: ...").
+  step_limit: 15
+  cost_limit: 3.
+
+environment:
+  cwd: "/testbed"
+  timeout: 60
+  env:
+    PAGER: cat
+    MANPAGER: cat
+    LESS: -R
+    PIP_PROGRESS_BAR: 'off'
+    TQDM_DISABLE: '1'
+
+model:
+  model_kwargs:
+    drop_params: true
+    temperature: 0.0

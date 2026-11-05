@@ -1,0 +1,238 @@
+{
+ "gemma4-31b": {
+  "pools": 42,
+  "accuracy": {
+   "random": 0.25,
+   "rating_answer_only": 0.409,
+   "rating_reasoning_first": 0.55,
+   "averaged_rating": 0.573,
+   "comparison_answer_only": 0.536,
+   "comparison_reasoning_first": 0.643,
+   "rating_then_comparison": 0.619
+  },
+  "minus_comparison_reasoning_first_ci95": {
+   "random": [
+    -0.536,
+    -0.25
+   ],
+   "rating_answer_only": [
+    -0.363,
+    -0.103
+   ],
+   "rating_reasoning_first": [
+    -0.21,
+    0.026
+   ],
+   "averaged_rating": [
+    -0.165,
+    0.022
+   ],
+   "comparison_answer_only": [
+    -0.234,
+    0.004
+   ],
+   "comparison_reasoning_first": [
+    0.0,
+    0.0
+   ],
+   "rating_then_comparison": [
+    -0.119,
+    0.071
+   ]
+  },
+  "calls_per_pool": {
+   "random": 0.0,
+   "rating_answer_only": 4.0,
+   "rating_reasoning_first": 4.0,
+   "averaged_rating": 12.0,
+   "comparison_answer_only": 12.0,
+   "comparison_reasoning_first": 12.0,
+   "rating_then_comparison": 5.48
+  },
+  "mean_patches_tied_at_top": {
+   "rating_answer_only": 2.57,
+   "rating_reasoning_first": 1.5,
+   "averaged_rating": 1.31
+  },
+  "cost_usd": 2.5427,
+  "reused_rows": 127,
+  "rows": 1848
+ },
+ "gpt-oss-20b": {
+  "pools": 41,
+  "accuracy": {
+   "random": 0.25,
+   "rating_answer_only": 0.514,
+   "rating_reasoning_first": 0.561,
+   "averaged_rating": 0.622,
+   "comparison_answer_only": 0.512,
+   "comparison_reasoning_first": 0.524,
+   "rating_then_comparison": 0.549
+  },
+  "minus_comparison_reasoning_first_ci95": {
+   "random": [
+    -0.409,
+    -0.128
+   ],
+   "rating_answer_only": [
+    -0.179,
+    0.154
+   ],
+   "rating_reasoning_first": [
+    -0.13,
+    0.207
+   ],
+   "averaged_rating": [
+    -0.049,
+    0.232
+   ],
+   "comparison_answer_only": [
+    -0.085,
+    0.061
+   ],
+   "comparison_reasoning_first": [
+    0.0,
+    0.0
+   ],
+   "rating_then_comparison": [
+    -0.134,
+    0.183
+   ]
+  },
+  "calls_per_pool": {
+   "random": 0.0,
+   "rating_answer_only": 4.0,
+   "rating_reasoning_first": 4.0,
+   "averaged_rating": 12.0,
+   "comparison_answer_only": 12.0,
+   "comparison_reasoning_first": 12.0,
+   "rating_then_comparison": 4.93
+  },
+  "mean_patches_tied_at_top": {
+   "rating_answer_only": 1.98,
+   "rating_reasoning_first": 1.39,
+   "averaged_rating": 1.05
+  },
+  "cost_usd": 0.1378,
+  "reused_rows": 122,
+  "rows": 1831
+ },
+ "qwen35-9b": {
+  "pools": 42,
+  "accuracy": {
+   "random": 0.25,
+   "rating_answer_only": 0.361,
+   "rating_reasoning_first": 0.494,
+   "averaged_rating": 0.484,
+   "comparison_answer_only": 0.496,
+   "comparison_reasoning_first": 0.528,
+   "rating_then_comparison": 0.552
+  },
+  "minus_comparison_reasoning_first_ci95": {
+   "random": [
+    -0.417,
+    -0.143
+   ],
+   "rating_answer_only": [
+    -0.286,
+    -0.046
+   ],
+   "rating_reasoning_first": [
+    -0.147,
+    0.075
+   ],
+   "averaged_rating": [
+    -0.159,
+    0.06
+   ],
+   "comparison_answer_only": [
+    -0.171,
+    0.099
+   ],
+   "comparison_reasoning_first": [
+    0.0,
+    0.0
+   ],
+   "rating_then_comparison": [
+    -0.06,
+    0.107
+   ]
+  },
+  "calls_per_pool": {
+   "random": 0.0,
+   "rating_answer_only": 4.0,
+   "rating_reasoning_first": 4.0,
+   "averaged_rating": 12.0,
+   "comparison_answer_only": 12.0,
+   "comparison_reasoning_first": 12.0,
+   "rating_then_comparison": 6.14
+  },
+  "mean_patches_tied_at_top": {
+   "rating_answer_only": 2.57,
+   "rating_reasoning_first": 1.71,
+   "averaged_rating": 1.21
+  },
+  "cost_usd": 0.6193,
+  "reused_rows": 128,
+  "rows": 1848
+ },
+ "glm47-flash": {
+  "pools": 42,
+  "accuracy": {
+   "random": 0.25,
+   "rating_answer_only": 0.373,
+   "rating_reasoning_first": 0.377,
+   "averaged_rating": 0.46,
+   "comparison_answer_only": 0.308,
+   "comparison_reasoning_first": 0.413,
+   "rating_then_comparison": 0.452
+  },
+  "minus_comparison_reasoning_first_ci95": {
+   "random": [
+    -0.294,
+    -0.034
+   ],
+   "rating_answer_only": [
+    -0.167,
+    0.083
+   ],
+   "rating_reasoning_first": [
+    -0.169,
+    0.097
+   ],
+   "averaged_rating": [
+    -0.058,
+    0.167
+   ],
+   "comparison_answer_only": [
+    -0.226,
+    0.006
+   ],
+   "comparison_reasoning_first": [
+    0.0,
+    0.0
+   ],
+   "rating_then_comparison": [
+    -0.067,
+    0.159
+   ]
+  },
+  "calls_per_pool": {
+   "random": 0.0,
+   "rating_answer_only": 4.0,
+   "rating_reasoning_first": 4.0,
+   "averaged_rating": 12.0,
+   "comparison_answer_only": 12.0,
+   "comparison_reasoning_first": 12.0,
+   "rating_then_comparison": 7.0
+  },
+  "mean_patches_tied_at_top": {
+   "rating_answer_only": 2.64,
+   "rating_reasoning_first": 1.98,
+   "averaged_rating": 1.1
+  },
+  "cost_usd": 0.4017,
+  "reused_rows": 116,
+  "rows": 1848
+ }
+}
