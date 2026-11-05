@@ -35,6 +35,21 @@ from other model families on the same patch.
   repairs 9 of the 52 rubber-stamped failing patches, against 3 after a plain second look. The same step breaks 4
   correct patches.
 
+## Reproduce
+
+```
+./reproduce.sh main
+```
+
+This recomputes the main paper's claims from the released data and prints each one next to the paper's value. It takes
+about three minutes, needs no GPU and calls no model. It downloads only the files those analyses read: 74 MB of the
+2.1 GB Hugging Face dataset, plus Gemma's SWE-bench Lite patches from the team that published them. The run fails if
+any downloaded file goes unread. Everything goes into `.reproduce/`, and the repository's own files stay as they are.
+It needs `uv`, or Python 3.11 or newer.
+
+The script also lists the few claims it does not check yet. `./reproduce.sh supplement` and `./reproduce.sh all` are
+not written yet.
+
 ## What is here
 
 | Path | What it is |
