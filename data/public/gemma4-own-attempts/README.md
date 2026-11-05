@@ -5,6 +5,9 @@ datasets by user `n-pelleriti` (AlphaDiana project). These are third-party runs:
 and everything below is what the datasets and their logs state. Built 2026-10-05 by
 `scripts/gemma_own_attempts.py`; `attempts.jsonl` is its output, `summary.json` has the counts.
 
+The public repository's copy of `attempts.jsonl` has no `patch` field, because these datasets declare no license.
+Running the script restores it.
+
 Task set: SWE-bench Verified Mini (`MariusHobbhahn/swe-bench-verified-mini`), 50 tasks,
 25 `django/django` + 25 `sphinx-doc/sphinx`. All six datasets use the same 50 instance ids.
 Model: `google/gemma-4-31B-it`.

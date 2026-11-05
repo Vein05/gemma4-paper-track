@@ -1,12 +1,22 @@
-# Gemma 4 Gives Its Failing Patches Full Marks
+<h1 align="center">Gemma 4 Gives Its Failing Patches Full Marks</h1>
 
-Gemma 4 gives most of its own failing patches the top score when it judges them without being told who wrote them.
-The trust goes with the edit, and failing repository tests let Gemma repair some of these patches.
+<p align="center">
+  Gemma 4 gives most of its own failing patches the top score when it judges them without being told who wrote them.
+  The trust goes with the edit, and failing repository tests let Gemma repair some of these patches.
+</p>
 
-**[Read the paper (PDF)](paper/rubber-stamp.pdf)** and the [supplement (PDF)](paper/rubber-stamp-supplement.pdf).
-Kaggle paper track, Gemma 4 Developer Agent.
+<p align="center">
+  <a href="paper/rubber-stamp.pdf"><img alt="Paper (PDF)" src="https://img.shields.io/badge/paper-PDF-B31B1B?logo=data:image/svg%2Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IndoaXRlIiBkPSJNMTkgM0g1Yy0xLjEgMC0yIC45LTIgMnYxNGMwIDEuMS45IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJtLTkuNSA4LjVjMCAuOC0uNyAxLjUtMS41IDEuNUg3djJINS41VjlIOGMuOCAwIDEuNS43IDEuNSAxLjV6bTUgMmMwIC44LS43IDEuNS0xLjUgMS41aC0yLjVWOUgxM2MuOCAwIDEuNS43IDEuNSAxLjV6bTQtM0gxN3YxaDEuNVYxM0gxN3YyaC0xLjVWOWgzem0tNi41IDBoMXYzaC0xem0tNSAwaDF2MUg3eiIvPjwvc3ZnPg=="></a>
+  <a href="paper/rubber-stamp-supplement.pdf"><img alt="Supplement (PDF)" src="https://img.shields.io/badge/supplement-PDF-B31B1B?logo=data:image/svg%2Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IndoaXRlIiBkPSJNMTkgM0g1Yy0xLjEgMC0yIC45LTIgMnYxNGMwIDEuMS45IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJtLTkuNSA4LjVjMCAuOC0uNyAxLjUtMS41IDEuNUg3djJINS41VjlIOGMuOCAwIDEuNS43IDEuNSAxLjV6bTUgMmMwIC44LS43IDEuNS0xLjUgMS41aC0yLjVWOUgxM2MuOCAwIDEuNS43IDEuNSAxLjV6bTQtM0gxN3YxaDEuNVYxM0gxN3YyaC0xLjVWOWgzem0tNi41IDBoMXYzaC0xem0tNSAwaDF2MUg3eiIvPjwvc3ZnPg=="></a>
+  <a href="https://huggingface.co/datasets/vein05/gemma4-paper-track-data"><img alt="Dataset on Hugging Face" src="https://img.shields.io/badge/dataset-Hugging%20Face-FF9D00?logo=huggingface&logoColor=white"></a>
+  <a href="https://www.kaggle.com/competitions/gemma-4-developer-agent-paper"><img alt="Kaggle paper track, Gemma 4 Developer Agent" src="https://img.shields.io/badge/Kaggle-Gemma%204%20Developer%20Agent-20BEFF?logo=kaggle&logoColor=white"></a>
+</p>
 
-![Gemma 4 31B approves most of its failing patches, and the extra trust goes with the edit](paper/figures/fig-trust.png)
+<p align="center">
+  <br>
+  <img src="paper/figures/fig-trust.png" alt="Gemma 4 31B approves most of its failing patches, and the extra trust goes with the edit" width="88%">
+  <br><br>
+</p>
 
 ## What we found
 
@@ -33,7 +43,7 @@ from other model families on the same patch.
 | [`paper/rubber-stamp-supplement.pdf`](paper/rubber-stamp-supplement.pdf) | The detail behind each section of the paper: setup, the judge prompt, grading checks, each test with its plan and reading, and cost. |
 | [`paper/writeup.md`](paper/writeup.md) | The paper as Markdown (the PDF's source; `cd paper && make` rebuilds both PDFs and `submission.txt`). |
 | [`paper/submission.txt`](paper/submission.txt) | Every field of the Kaggle Writeup form, built from `writeup.md`. |
-| [`spec/`](spec/) | Every analysis plan, each written before its data was computed. |
+| [`spec/`](spec/) | The analysis plans. Some note results already seen when they were written, and `repair-trace-audit-2026-11-05.md` is a retrospective audit. |
 | [`scripts/`](scripts/) | Agent runner, grading, judging, the shell judge, LoRA training, the existing-test check, the repair run and every analysis; `scripts/lab/` and `scripts/mcsr/` run the GPU jobs; `scripts/derived/` holds every judge answer and the summary behind each number. |
 | [`data/`](data/) | Gemma 4 31B's held-out agent runs (patches, labels, trajectories), its LiveCodeBench programs, the hand codes and the public patches we judged; sources and what is left out in `data/README.md`. |
 | [Hugging Face: `vein05/gemma4-paper-track-data`](https://huggingface.co/datasets/vein05/gemma4-paper-track-data) | The raw runs too large for this repository: the shell-judge runs, the existing-test check and repair runs, the LoRA scores, the LiveCodeBench model sweep, the smaller-Gemma runs, the probe features and every judge prompt. |
@@ -42,6 +52,11 @@ from other model families on the same patch.
 
 The project used about 74 GPU-hours, 59 on one A100 80 GB and 15 on L40S. At RunPod on-demand prices this compute
 costs about $122. API judging through OpenRouter is listed in the supplement (Section G).
+
+## License
+
+The code is under the [Apache License 2.0](LICENSE). Third-party data in `data/public/` keeps its source's terms
+([`data/README.md`](data/README.md)).
 
 ## AI disclosure
 

@@ -1,11 +1,14 @@
 # Data
 
+This file describes the project's full `data/` folder. Folders missing from the public repository are either raw
+runs, which are on [Hugging Face](https://huggingface.co/datasets/vein05/gemma4-paper-track-data), or public downloads
+whose source is listed below.
+
 - `public/nebius-swe-agent-trajectories/`: datasets-server JSON pages of the public Hugging Face dataset
   `nebius/SWE-agent-trajectories`, rows 0–3,999 in pages of 100 (`rows_<offset>.json`; `rows_3400.json` failed to
-  download and is unreadable, so 3,900 rows load). Copied 2026-10-05 from the session scratchpad where they were
-  downloaded on 2026-10-04. Used by `scripts/api_quickcheck.py`, `scripts/selfjudge_matrix.py`,
+  download and is unreadable, so 3,900 rows load). Downloaded 2026-10-04. Used by `scripts/api_quickcheck.py`, `scripts/selfjudge_matrix.py`,
   `scripts/selection_test.py` (pass `--cache data/public/nebius-swe-agent-trajectories`). Public data only.
-- Competition data is never stored here; it stays on Kaggle and in the session scratchpad.
+- Competition data is never stored here.
 - `public/swe-bench-live/`: SWE-bench-Live lite submissions (13 `<name>__preds.json` + `<name>__results.json` from
   `github.com/SWE-bench-Live/submission` at commit `cba8a6d3`; no license file in that repo) and `lite.parquet`
   (`SWE-bench-Live/SWE-bench-Live`, lite split, revision `b51a8642`, MIT). Downloaded 2026-10-05. Used by
@@ -20,6 +23,9 @@
   `control_config.json`, the mini-SWE-agent config saved in GLM-5's run. All from `scripts/multilingual_issues.py`.
 - `public/gemma4-own-attempts/`: Gemma 4 31B-it agent attempts on SWE-bench Verified Mini from six third-party HF
   datasets (`n-pelleriti/alphadiana-*`), normalized by `scripts/gemma_own_attempts.py`; own README with shas.
+  The public repository's `attempts.jsonl` has no patch text (these datasets declare no license). Ids, labels and
+  sources stay. Rebuild it with `scripts/gemma_own_attempts.py` before rerunning `scripts/self_preference.py` or
+  `scripts/selection_test.py`, which read the patches.
   `swe-bench-verified-mini.parquet` from `MariusHobbhahn/swe-bench-verified-mini` (sha `b316c349`).
 - `public/swe-bench-verified-mini-control/attempts.jsonl`: patches and SWE-bench reports of six mini-SWE-agent
   submissions on the same 50 issues (`SWE-bench/experiments` entries; files from the public
@@ -30,11 +36,11 @@
   from the same S3 bucket, downloaded 2026-10-05 by `scripts/fresh_issues.py`; `sample.json`, the fixed random order of
   the held-out issues (seed 0) and the pilot issues; `mini50_ids.json`, the Mini issue ids.
 - `mcsr-runs/` (added 2026-10-06): Gemma 4 31B (`gemma-4-31B-it-qat-w4a16-ct`, revision `52f3f65b`) in
-  mini-SWE-agent 1.7.0 on MCSR Magnolia, copied with `./ssh.sh get`. One folder per job: `main-a`, `main-b` (the 200
+  mini-SWE-agent 1.7.0 on MCSR Magnolia. One folder per job: `main-a`, `main-b` (the 200
   held-out issues, positions 0–99 and 100–199 of `sample.json`), `mini50` (the Mini issues), `pilot`, `smoke`;
   `gold`, `gold-retry`, `gold-redo` (reference patches graded on Magnolia), `validate`, `regrade` (grading checks).
   Each holds `preds.jsonl`, `labels.jsonl`, `run.json`, `trajs/` and logs. Files named `*.before-*.jsonl` are the
-  copies kept before a re-grade or a second run of one issue (`changelog/2026-10-06.md`). The release copies these with
+  copies kept before a re-grade or a second run of one issue. The release copies these with
   the cluster account name removed (`make_release.sh`).
 - `hand-codes/` (added 2026-10-22): the 31 held-out cases where Gemma scored its own failing patch 100 and at least
   two outside judges scored it 50 or less. `rubber-stamp-cases.md` is the coding sheet (patch, the low-scoring outside
@@ -64,10 +70,10 @@ Control entries in `public/swe-bench-verified-mini-control/attempts.jsonl` (`wri
 `bash-only/` in the S3 bucket: `20250802_mini-v1.0.0_qwen3-coder-480b-a35b-instruct`, `20250807_mini-v1.7.0_gpt-oss-120b`,
 `20250822_mini-v1.9.1_glm-4.5`, `20250807_mini-v1.7.0_kimi-k2-instruct`,
 `20250720_mini-v0.0.0-Llama-4-Maverick-17B-Instruct`, `20251209_mini-v1.17.2_devstral-small-2512`. The first five
-entries also hold patches for 495–499 of the 500 SWE-bench Verified issues (12 repositories), which the fresh
-replication in `todo.md` can use as controls.
+entries also hold patches for 495–499 of the 500 SWE-bench Verified issues (12 repositories), which the held-out
+study uses as controls.
 
-## Added 2026-11-01 (`handoff/2026-11-01.md`)
+## Added 2026-11-01
 
 - `public/third-party-lite/gemma/`: Gemma 4 31B's SWE-bench Lite run published by another team
   (`dougalldeepmind/2026-10-10-swebench-gemma4-lite-gemma-v2`, sha `1c5f3d3be50e4ca6ceb17654987fd34e6cf23f96`, no
