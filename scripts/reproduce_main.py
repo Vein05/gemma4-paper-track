@@ -44,12 +44,8 @@ STEPS = [
     ("repair_trace_audit_2026-11-05.json", "repair_trace_audit_2026_11_05.py"),
     ("tie_break_2026-10-22.json", "tie_break.py"),
     ("stripped_files_rescore_2026-11-03.json", "stripped_rescore.py analyze"),
-]
-NOT_CHECKED = [
-    ("3.3", "own reproduction script, 63 of 73 failing runs", "the count has no script yet"),
-    ("5", "rubber-stamp rate similar on runs without the sandbox problem", "the count has no script yet"),
-    ("5", "26 of 30 other-writer patches got their official label", "the grading check has no summary file"),
-    ("5", "no difference with the 4-bit checkpoint as judge", "not added to this list yet"),
+    ("gemma_31b_local_2026-10-28.json", "gemma_sizes_analysis.py --sizes gemma4-31b-local"),
+    ("paper_counts_2026-11-05.json", "paper_counts.py"),
 ]
 
 
@@ -221,6 +217,10 @@ def claims():
     audit = load("repair_trace_audit_2026-11-05.json")
     tie = load("tie_break_2026-10-22.json")
     left = load("stripped_files_rescore_2026-11-03.json")
+    local = load("gemma_31b_local_2026-10-28.json")
+    counts = load("paper_counts_2026-11-05.json")
+    script, sandbox, grading = counts["reproduction_script"], counts["sandbox_problem"], counts["grading_check"]
+    mini_off = load("thinking_mode_2026-10-22.json")["own_failing_100"]["off"]
     strong = open(os.path.join(OUT, "strong_writer_leniency_2026-11-04.txt")).read()
     held, rest = strong.split("== lite:")
     grab = lambda text, key: re.search(rf"{key}: (\S+ \[.*?\])", text).group(1).replace("-", "−")
@@ -310,6 +310,8 @@ def claims():
          grab(rest, "own_minus_strong")),
         ("3.3", "thinking before scoring: scored 100, on and off", "62% of its failing patches 100, against 61%", "62%, 61%",
          f"{pct(think['on'])}, {pct(think['off'])}"),
+        ("3.3", "own reproduction script: last run ended without error", "63 of 73 failing runs", "63 of 73",
+         f"{script['ended_without_error']} of {script['ran_own_script']}"),
         ("3.3", "shell judge: still 100 on stamped failing patches", "still scores 80% of the 51", "80%",
          pct(actor["approval_100"]["own_fail"]["value"])),
         ("3.3", "its test fails without the patch and passes with it", "in 61% of its runs on failing", "61%",
@@ -352,6 +354,20 @@ def claims():
          f"{pct(calls['precision'] - calls['precision_minus_gemma'])}, {pct(calls['precision'])}"),
         ("5", "removing leftover files lowers the leniency by", "by 2.2 points [−4.6, 8.7]", "2.2 [−4.6, 8.7]",
          f"{num(left['original_minus_stripped']['value'], False)} {ci(left['original_minus_stripped']['ci95'])}"),
+        ("5", "rate scored 100 without the sandbox problem, Lite, Mini", "similar on the runs without this problem",
+         "65%, 63%, 61%",
+         f"{pct(sandbox['without_problem']['scored_100'] / sandbox['without_problem']['failing'])}, "
+         f"{pct(lite['gemma4-31b_scored100_own_failing'])}, {pct(mini_off)}"),
+        ("5", "4-bit checkpoint as judge: hosted minus local includes zero", "we detect no difference",
+         "+3.2 [\u22120.5, 7.2], includes zero",
+         f"{num(local['31b_minus_gemma4-31b-local_lenient_failing_difference'])} "
+         f"{ci(local['31b_minus_gemma4-31b-local_lenient_failing_difference_ci95'])}, "
+         + ("includes zero" if includes_zero(local["31b_minus_gemma4-31b-local_lenient_failing_difference_ci95"])
+            else "excludes zero")),
+        ("5", "grading check: official label kept", "26 of 30 other-writer patches", "26 of 30",
+         f"{grading['official_label']} of {grading['patches']}"),
+        ("5", "grading check: misses that were passes graded as failures", "All four misses were passes", "4",
+         str(grading["misses_official_pass_graded_fail"])),
     ]
 
 
@@ -394,9 +410,6 @@ def main():
             print(f"  differs: {n}")
     print(f"All {len(pulled)} downloaded files were read by an analysis." if not unread
           else f"Downloaded but not read: {unread}")
-    print("Not checked by this script:")
-    for sec, what, why in NOT_CHECKED:
-        print(f"  {sec}: {what} ({why})")
     print(f"Finished in {time.time() - started:.0f} s. Outputs are in .reproduce/out/.")
     sys.exit(1 if failed or unread else 0)
 

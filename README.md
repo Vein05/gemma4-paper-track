@@ -47,8 +47,7 @@ about three minutes, needs no GPU and calls no model. It downloads only the file
 any downloaded file goes unread. Everything goes into `.reproduce/`, and the repository's own files stay as they are.
 It needs `uv`, or Python 3.11 or newer.
 
-The script also lists the few claims it does not check yet. `./reproduce.sh supplement` and `./reproduce.sh all` are
-not written yet.
+`./reproduce.sh supplement` and `./reproduce.sh all` are not written yet.
 
 ## What is here
 

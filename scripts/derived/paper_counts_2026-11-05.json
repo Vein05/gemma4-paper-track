@@ -1,0 +1,24 @@
+{
+ "reproduction_script": {
+  "failing_patches": 85,
+  "ran_own_script": 64,
+  "ended_without_error": 58
+ },
+ "sandbox_problem": {
+  "patches": 180,
+  "runs_with_problem": 136,
+  "with_problem": {
+   "scored_100": 39,
+   "failing": 65
+  },
+  "without_problem": {
+   "scored_100": 13,
+   "failing": 20
+  }
+ },
+ "grading_check": {
+  "patches": 30,
+  "official_label": 26,
+  "misses_official_pass_graded_fail": 4
+ }
+}

@@ -107,3 +107,4 @@ lab-runs/test-repair/tests/trajs/sympy__sympy-24066.json	f9d534afd069d153ad12f17
 livecodebench-pilot/judging/sweep_ids.json	30bfb9ef4b19c61baa2685f369420d50a3fedb7bf18841fb9fbbc71b4c2ae42d	3104
 sft-pilot/rows.jsonl	40e45df808af932517e8a6cff92d802bf9b38da91a49a227967f0e6c0fbe29a9	7165700
 sft-pilot/train.jsonl	cb7d538a2d09c5a201adc92ada2c5264266bc001a3856692da5d28269762debf	14922
+mcsr-runs/validate/val_gpt-oss-120b.jsonl	958c21ef9191271714b13a47d5b5bfb93a121be77d64ac83a5663b72c10f87a5	5429
