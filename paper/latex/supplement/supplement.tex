@@ -4,7 +4,7 @@
 % THE ONLY COPY TO EDIT. `cd paper && make` writes the one PDF to read: paper/rubber-stamp-supplement.pdf.
 % Not sources: paper/latex/build/ (scratch, rebuilt every make), release/paper/... (copied by make_release.sh),
 % notes/*/supplement.tex (old snapshots). Do not run pdflatex here: it leaves an unstyled supplement.pdf beside this file.
-% Sections follow the paper: A and B back Section 2, C to F back Sections 3.1 to 3.4, G backs Section 6.
+% Sections follow the paper: A and B back Section 2, C to F back Sections 3.1 to 3.4, G backs Section 7.
 % The paper (writeup.md) names these sections by letter; change both together.
 \usepackage{rubberstamp}
 \renewcommand{\thesection}{\Alph{section}}
@@ -49,10 +49,10 @@ served by vLLM 0.30.0 on one NVIDIA A100 at temperature 0 with thinking off, und
 \path{scripts/derived/fresh_gemma4-31b-local.jsonl}).
 
 On the paper's patches, the local judge gives 100 to 54\% of Gemma's failing patches and to 32\% of other writers'. % prose-ok: number-dense-paragraph
-The hosted model gives 61\% and 35\%. On failing patches, the local judge's leniency difference is $+13.4$
+The hosted model gives 61\% and 35\%. On failing patches, the local judge's extra trust is $+13.4$
 [6.9, 20.0]. For the hosted model it is $+16.6$ [10.3, 23.1]. The paired difference, hosted minus local, is $+3.2$
 [$-0.5$, 7.2]. We detect no difference between the two judges, but the interval allows the hosted model to be up to
-7.2 points more lenient. On passing patches, the local judge's leniency difference is $+5.0$ [0.8, 9.0]. For the
+7.2 points more lenient. On passing patches, the local judge's extra trust is $+5.0$ [0.8, 9.0]. For the
 hosted model it is $+3.4$ [$-2.0$, 8.0]. The local judge's AUROC is 0.658 on Gemma's patches and 0.762 on other
 writers'. For the hosted model they are 0.622 and 0.751.
 
@@ -106,8 +106,8 @@ Llama-4-Maverick & 0 & 0 & 0 \\
 \paragraph{Sensitivity to the re-ask (exploratory).} Leaving out patches whose answer needed a re-ask, the held-out
 self-judging gap is $+0.030$ [$-0.024$, 0.083] (all judges' re-asked patches; 763 patches, 143 of Gemma's), $+0.055$
 [0.001, 0.106] (only Kimi-K2's) and $+0.063$ [0.012, 0.115] (only Qwen3.5-9B's). Without the re-asked patches,
-Gemma's own AUROC rises from 0.622 to 0.670, its leniency on failing patches is $+11.1$ [3.8, 18.2] and its
-rubber-stamp rate 56\%. On per-judge percentile ranks instead of raw scores, the held-out leniency is $+0.085$
+Gemma's own AUROC rises from 0.622 to 0.670, its extra trust in failing patches is $+11.1$ [3.8, 18.2] and its
+rubber-stamp rate 56\%. On per-judge percentile ranks instead of raw scores, the held-out extra trust is $+0.085$
 [0.048, 0.122] on failing patches and $+0.024$ [$-0.007$, 0.055] on passing patches.
 
 \section{Agent runs and grading}
@@ -140,7 +140,7 @@ Counting them as failing, as SWE-bench does, changes the matched-harness gap fro
 or a test project, and every judge sees that file in the diff. We removed every added file from all 957 held-out
 patches and had all nine judges score them again with the same prompt and settings, under a plan fixed before the
 scores (\path{spec/stripped-files-rescore.md}, \path{derived/stripped_files_rescore_2026-11-03.json}). On the 875
-patches every judge scored, Gemma's leniency difference on failing patches is $+16.1$ [8.9, 23.2] without the added
+patches every judge scored, Gemma's extra trust in failing patches is $+16.1$ [8.9, 23.2] without the added
 files and $+18.3$ [10.8, 25.1] with them. The paired difference is $+2.2$ [$-4.6$, 8.7]. On unchanged patches, a
 judge's score moves by 6 to 16 points between two runs, so this shift is within run-to-run noise.
 
@@ -181,14 +181,14 @@ Qwen3-Coder & 0\% & 0\% & 0.717 & 0.022 \\
 
 \paragraph{Mini issues.} On the 50 Mini issues, Gemma's patches come from four public harnesses (mixed-harness
 patches). Gemma gives 100 to 61\% of its failing patches there and to 20\% of other writers' failing patches. Its
-leniency difference is $+20.9$ [11.5, 30.2] (Table~\ref{tab:fivelen}).
+extra trust is $+20.9$ [11.5, 30.2] (Table~\ref{tab:fivelen}).
 
 \subsection*{Two more data sets}
 
 We ran the paper's measures on two data sets outside SWE-bench Verified. Each had a written plan before any judge call
 (\texttt{spec/third-party-lite.md}, \texttt{spec/livecodebench-judging.md}). The rule in both plans was the same. The
 result holds if Gemma gives 100 to a larger share of its own failing items than of other writers' failing items, and
-the leniency difference on failing items has a 95\% interval above zero. Both results hold (Table~\ref{tab:more}).
+the extra trust in failing items has a 95\% interval above zero. Both results hold (Table~\ref{tab:more}).
 
 \paragraph{SWE-bench Lite, another team's run.} Gemma 4 31B's patches for the 300 SWE-bench Lite issues come from a
 run that another team published on Hugging Face (\path{dougalldeepmind/2026-10-10-swebench-gemma4-lite-gemma-v2}, % prose-ok: banned
@@ -218,7 +218,7 @@ Of 839 programs, 761 were scored by all six. Intervals resample issues or proble
 \centering
 \small
 \caption{The paper's measures on the two data sets. Rates of 100 are on failing items. ``Outside'' is the mean rate
-of the outside judges on Gemma's own failing items. Leniency is own minus other writers' items, in points.
+of the outside judges on Gemma's own failing items. Extra trust is own minus other writers' items, in points.
 \texttt{derived/third\_party\_lite\_2026-11-01.json}, \texttt{derived/lcb\_judging\_2026-11-01.json} and their
 \texttt{reasked-left-out} versions.}
 \label{tab:more}
@@ -230,11 +230,11 @@ Gemma's own items: failing / passing & 130 / 163 & 124 / 126 \\
 Other writers' items: failing / passing & 695 / 467 & 403 / 108 \\
 Gemma gives 100: own / other writers' & 63\% / 40\% & 50\% / 8\% \\
 Outside judges give 100 to Gemma's failing items & 21\% & 15\% \\
-Leniency, failing items & $+17.8$ [12.1, 23.5] & $+23.0$ [16.6, 29.9] \\
-Leniency, passing items & $+2.5$ [$-1.2$, 6.2] & $+5.1$ [$-2.0$, 12.2] \\
+Extra trust, failing items & $+17.8$ [12.1, 23.5] & $+23.0$ [16.6, 29.9] \\
+Extra trust, passing items & $+2.5$ [$-1.2$, 6.2] & $+5.1$ [$-2.0$, 12.2] \\
 Self-judging gap & $+0.078$ [0.031, 0.123] & $+0.061$ [0.012, 0.114] \\
 \midrule
-Without re-asked items: leniency, failing & $+18.8$ [12.5, 24.8] & $+26.5$ [18.3, 35.0] \\
+Without re-asked items: extra trust, failing & $+18.8$ [12.5, 24.8] & $+26.5$ [18.3, 35.0] \\
 Without re-asked items: self-judging gap & $+0.080$ [0.030, 0.128] & $+0.097$ [0.039, 0.160] \\
 \bottomrule
 \end{tabular}
@@ -254,14 +254,14 @@ first half of 2023 to 16\% on the first half of 2025. Gemma's stays at 86 to 99\
 at 2,000 tokens left out), so we cannot rule out that Gemma saw the problems in training. The
 two other writers pass far fewer of the judged problems than Gemma (18\% and 24\%, against 50\%). Gemma's failing
 programs are mostly on hard problems, and other writers' failing programs include problems Gemma solved. On the 146
-problems Gemma failed, its leniency is still $+20.3$ [13.5, 27.1], and it gives 100 to 50\% of its own failing
+problems Gemma failed, its extra trust is still $+20.3$ [13.5, 27.1], and it gives 100 to 50\% of its own failing
 programs against 12\% of the other writers' (exploratory, \path{scripts/lcb_matched_check.py}).
 
-\paragraph{Per-writer leniency (exploratory).} We chose this analysis on 2026-11-01, after the results above
+\paragraph{Per-writer comparison (exploratory).} We chose this analysis on 2026-11-01, after the results above
 (\path{scripts/per_writer_leniency.py}, \path{derived/per_writer_leniency_2026-11-01.json}).
-Table~\ref{tab:perwriter} splits ``other writers'' by writer. Gemma's own failing items get the most leniency in each
+Table~\ref{tab:perwriter} splits ``other writers'' by writer. Gemma scores its own failing items furthest above the outside judges in each
 data set. One other writer comes close in each SWE-bench set. On the held-out issues, Gemma gives 100 to 61\% of
-Kimi-K2's failing patches, and its leniency on its own is only 5.6 [$-5.1$, 16.3] points higher than on Kimi-K2's. On
+Kimi-K2's failing patches, and its extra trust in its own over Kimi-K2's is only 5.6 [$-5.1$, 16.3] points. On
 SWE-bench Lite, the gap to Claude 4 Sonnet is 1.7 [$-5.3$, 8.7] points. In both SWE-bench sets, Gemma is lenient
 toward writers that pass more than half their issues and harsh toward writers that pass under a third. Qwen3-Coder,
 which passes 70\%, gets neither.
@@ -269,12 +269,12 @@ which passes 70\%, gets neither.
 \begin{table}[H]
 \centering
 \small
-\caption{Gemma as judge, per writer, on failing items: its leniency against the outside judges (points) and the
+\caption{Gemma as judge, per writer, on failing items: how many points it scores them above the outside judges and the
 share it scores 100. Pass rate is over the writer's judged items.}
 \label{tab:perwriter}
 \begin{tabular}{@{}llccc@{}}
 \toprule
-Data set & Writer & Pass rate & Leniency, failing & Scored 100, failing \\
+Data set & Writer & Pass rate & Points above, failing & Scored 100, failing \\
 \midrule
 Held-out & Gemma 4 31B (own) & 53\% & $+14.1$ & 61\% (52 of 85) \\
  & Kimi-K2 & 61\% & $+8.4$ & 61\% (33 of 54) \\
@@ -299,9 +299,9 @@ LiveCodeBench & Gemma 4 31B (own) & 50\% & $+10.5$ & 50\% (62 of 124) \\
 \paragraph{Placebo check (exploratory).} Some outside judges also give Gemma's failing items 100 more often than other
 writers'. On SWE-bench Lite, Llama-4-Maverick gives 100 to 65\% of Gemma's failing patches and 43\% of other writers'.
 We tested whether such judges are also lenient on Gemma's items. We treated each outside judge as if it had written
-them and computed its leniency the same way, against the other judges except Gemma. Maverick's value is $-5.4$ % prose-ok: number-dense-paragraph
+them and computed its extra trust the same way, against the other judges except Gemma. Maverick's value is $-5.4$ % prose-ok: number-dense-paragraph
 [$-10.1$, $-0.7$]. It gives high scores to many patches, but not more to Gemma's than the other judges do. On SWE-bench
-Lite and LiveCodeBench, Gemma's leniency exceeds the largest of the outside judges' by 12.8 [4.3, 16.8] and 14.2 [3.3,
+Lite and LiveCodeBench, Gemma's extra trust exceeds the largest of the outside judges' by 12.8 [4.3, 16.8] and 14.2 [3.3,
 22.2] points. On the held-out issues, Kimi-K2 as judge is also lenient on Gemma's failing patches, at $+10.0$ [5.0,
 14.9] against Gemma's $+16.6$. There Gemma exceeds the largest outside judge by 6.7 [$-2.7$, 12.2] points.
 
@@ -311,14 +311,14 @@ On the Mini issues, five of the other writers judged their own mini-SWE-agent pa
 them by construction. None shows a gap (Table~\ref{tab:five}). The pooled gap over the five is $-0.036$ [$-0.089$,
 0.016].
 
-We also measured their leniency on their own failing patches (Table~\ref{tab:fivelen}). The intervals come from the % prose-ok: number-dense-paragraph
+We also measured their extra trust in their own failing patches (Table~\ref{tab:fivelen}). The intervals come from the % prose-ok: number-dense-paragraph
 same issue resamples as the gap. We computed them on 2026-10-22, after the point estimates had been seen, under a
 plan that counts a model as lenient only if its interval stays above zero after a Bonferroni correction for five
-models. Each model wrote only 14 to 24 failing patches, so the intervals are wide. The pooled leniency difference
+models. Each model wrote only 14 to 24 failing patches, so the intervals are wide. The pooled extra trust
 over the five is $+5.1$ [$-0.8$, 11.0] points. Gemma's is $+20.9$ [11.5, 30.2] on the same issues. That is 15.8 [4.0, 27.7]
 points above the pooled five. By the planned rule, none of the five is shown to be lenient.
 
-Llama-4-Maverick comes closest. Its leniency difference is $+17.5$ [0.6, 32.9], and its Bonferroni interval [$-3.5$, % prose-ok: number-dense-sentence
+Llama-4-Maverick comes closest. Its extra trust is $+17.5$ [0.6, 32.9], and its Bonferroni interval [$-3.5$, % prose-ok: number-dense-sentence
 38.4] includes zero. Maverick gives high scores to most failing patches, whoever wrote them. It scores 95 or above on
 69\% of other writers' failing patches and on 57\% of its own. So it does not single out its own patches the way Gemma
 does.
@@ -327,10 +327,10 @@ On the held-out issues, all nine judges also scored the five writers' own patche
 (Table~\ref{tab:fiveheld}). Each writer has 46 to 123 failing patches there, three to six times as many as on the Mini
 issues. We chose this analysis on 2026-10-22, after the Mini results above and a review of the paper
 (\texttt{spec/other-models-heldout.md}). The code is the Mini code unchanged, and it reproduces Gemma's held-out gap
-and leniency. The pooled gap over the five is $-0.001$ [$-0.031$, 0.029], and the
-pooled leniency difference is $+0.4$ [$-2.5$, 3.4] points. Gemma exceeds the pooled five by 0.075 [0.015, 0.133] in gap
-and by 16.3 [8.9, 23.4] points in leniency. By the same Bonferroni rule, none of the five is shown to have a gap or
-leniency. Llama-4-Maverick's leniency difference falls to $+2.8$ [$-5.0$, 10.8], and it gives 100 to fewer of its own
+and extra trust. The pooled gap over the five is $-0.001$ [$-0.031$, 0.029], and the
+pooled extra trust is $+0.4$ [$-2.5$, 3.4] points. Gemma exceeds the pooled five by 0.075 [0.015, 0.133] in gap
+and by 16.3 [8.9, 23.4] points in extra trust. By the same Bonferroni rule, none of the five is shown to have a gap or
+extra trust. Llama-4-Maverick's extra trust falls to $+2.8$ [$-5.0$, 10.8], and it gives 100 to fewer of its own
 failing patches than of other writers' (33\% against 42\%).
 
 \begin{table}[H]
@@ -354,8 +354,8 @@ Llama-4-Maverick & 0.786 & 0.657 & $-0.019$ [$-0.133$, 0.101] \\
 \begin{table}[H]
 \centering
 \small
-\caption{Leniency difference of models judging their own patches on the Mini issues, in points: mean leniency on
-own patches minus mean leniency on other writers' patches. Gemma's patches come from four harnesses, the others' from mini-SWE-agent.}
+\caption{Extra trust of models judging their own patches on the Mini issues, in points: own patches minus other
+writers' patches. Gemma's patches come from four harnesses, the others' from mini-SWE-agent.}
 \label{tab:fivelen}
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{@{}lccccc@{}}
@@ -379,12 +379,12 @@ Gemma 4 31B & 80 & $+20.9$ [11.5, 30.2] & [8.4, 32.6] & $+0.2$ [$-7.6$, 8.7] & 6
 \centering
 \small
 \caption{Models judging their own patches on the held-out issues (all patches from mini-SWE-agent; exploratory).
-Leniency is the difference on failing patches, in points.}
+Extra trust is on failing patches, in points.}
 \label{tab:fiveheld}
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{@{}lccccc@{}}
 \toprule
- & Own & Self-judging gap & \multicolumn{2}{c}{Leniency, failing patches} & Failing scored \\
+ & Own & Self-judging gap & \multicolumn{2}{c}{Extra trust, failing patches} & Failing scored \\
 Model & failing & [95\%] & [95\%] & [Bonferroni 99\%] & 100: own / others' \\
 \midrule
 Qwen3-Coder & 46 & $-0.040$ [$-0.100$, 0.023] & $-8.1$ [$-15.4$, $-0.5$] & [$-17.3$, 1.9] & 0\% / 0\% \\
@@ -406,25 +406,25 @@ We also asked whether smaller open models trust their own failing programs, unde
 thinking off where it has a switch. It wrote one program for each of the 292 judged LiveCodeBench problems with
 LiveCodeBench's own prompt, and LiveCodeBench's evaluator graded it. The model then scored its own programs and the
 839 existing programs with the paper's LiveCodeBench prompt. These models have no shared outside panel, so Qwen3-32B
-(thinking off) scored every program as the reference judge. Leniency here is the model's score minus Qwen3-32B's
+(thinking off) scored every program as the reference judge. Extra trust here uses the model's score minus Qwen3-32B's
 score on the same program, own failing programs minus other writers' failing programs. Other writers leave out the
 model's family, so the Gemma models compare against Claude 3.5 Sonnet and DeepSeek-V3 only.
 
 Table~\ref{tab:sweep} gives the result. Three of the four usable models outside the Gemma family are lenient on their
 own failing programs: Nemotron-Nano-9B-v2, Seed-OSS-36B and OLMo-3.1-32B. gpt-oss-20b is not. Gemma 4 12B and 26B-A4B % prose-ok: banned
-are lenient too, and Gemma 4 31B is the most lenient of all. By the readings fixed in the plan, own leniency is
+are lenient too, and Gemma 4 31B is the most lenient of all. By the readings fixed in the plan, own extra trust is
 common among these models, and it is a trait of the Gemma family.
 
 Two models are not usable. GLM-4-9B passes 1 of 292 problems, and only 121 of its 839 scores on existing programs
 parse. Phi-4-mini passes 8 problems. Its scores of its own failing programs are no higher than of other writers'
 failing programs, but Qwen3-32B scores Phi-4-mini's programs much lower than other writers' failing programs, and
-that difference appears as leniency. Mistral-Small-3.2-24B did not run, because vLLM could not load it in the shared
+that difference appears as extra trust. Mistral-Small-3.2-24B did not run, because vLLM could not load it in the shared
 server environment.
 
 \begin{table}[H]
 \centering
 \small
-\caption{Small open models on 292 LiveCodeBench problems, judging their own and other writers' programs. Leniency is
+\caption{Small open models on 292 LiveCodeBench problems, judging their own and other writers' programs. Extra trust is
 own failing minus other writers' failing programs, with Qwen3-32B as the reference judge, in points with 95\%
 intervals from 2,000 problem resamples. Gemma 4 31B uses its existing programs and scores.
 \texttt{derived/lcb\_sweep\_2026-11-04.json}.}
@@ -432,7 +432,7 @@ intervals from 2,000 problem resamples. Gemma 4 31B uses its existing programs a
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{@{}lcccc@{}}
 \toprule
-Model & Pass rate & Own failing & Scored 100: own / others' failing & Leniency [95\%] \\
+Model & Pass rate & Own failing & Scored 100: own / others' failing & Extra trust [95\%] \\
 \midrule
 Gemma 4 31B & & 122 & & $+40.3$ [31.8, 48.9] \\
 Gemma 4 26B-A4B & 57.2\% & 73 & 45\% / 8\% & $+28.3$ [15.8, 40.4] \\
@@ -463,7 +463,7 @@ its mean on other writers' failing programs. Table~\ref{tab:samemodel} gives the
 gpt-oss-120b is not. When the two models differ, the plan's reading is to report each model and to say nothing about
 whether the task or the measure explains the difference from Pombal et al.
 
-Llama-4-Maverick's leniency is not Gemma's rubber-stamping. It scores other writers' failing programs high as well, and
+Llama-4-Maverick's extra trust is not Gemma's rubber-stamping. It scores other writers' failing programs high as well, and
 it gives 100 to fewer of its own failing programs than of other writers'. About 40\% of its difference comes from the
 outside judges, who score its failing programs lower than other writers' failing programs.
 
@@ -475,7 +475,7 @@ use a later split of LiveCodeBench and unit-test verdicts, so this test does not
 \begin{table}[H]
 \centering
 \small
-\caption{Three models judging their own LiveCodeBench programs, with an outside panel. Leniency is own failing minus
+\caption{Three models judging their own LiveCodeBench programs, with an outside panel. Extra trust is own failing minus
 other writers' failing programs, in points with 95\% intervals from 2,000 problem resamples. Mean scores and shares
 scored 100 are on failing programs, own / other writers'. Gemma 4 31B checks the code against Section~\ref{app:stamp}.
 \texttt{derived/lcb\_same\_model\_2026-11-05.json}.}
@@ -483,7 +483,7 @@ scored 100 are on failing programs, own / other writers'. Gemma 4 31B checks the
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{@{}lcccccc@{}}
 \toprule
-Model & Pass rate & Own failing & Leniency [95\%] & Model's score & Outside judges' score & Scored 100 \\
+Model & Pass rate & Own failing & Extra trust [95\%] & Model's score & Outside judges' score & Scored 100 \\
 \midrule
 Gemma 4 31B & 50\% & 124 & $+23.0$ [16.6, 29.9] & 57.7 / 9.8 & 47.2 / 22.3 & 50\% / 8\% \\
 Llama-4-Maverick & 20.9\% & 217 & $+19.1$ [13.7, 24.3] & 72.0 / 60.5 & 11.7 / 19.3 & 6\% / 7\% \\
@@ -499,8 +499,8 @@ This section backs Section 3.2 of the paper. Gemma could trust its patches becau
 because it believes in the edit they make. The tests below point to the edit. None of them varies the writer with the
 patch held fixed, so none rules out recognition.
 
-\paragraph{Gemma is not lenient in general.} On other writers' failing held-out patches, Gemma's mean leniency is
-$-2.6$ points, so it scores them slightly below the outside judges do (\path{derived/gemma_sizes_2026-10-28.json}).
+\paragraph{Gemma is not lenient in general.} On other writers' failing held-out patches, Gemma's mean score is
+2.6 points below the outside judges' mean (\path{derived/gemma_sizes_2026-10-28.json}).
 Its extra trust is in its own failing patches only.
 
 \paragraph{Patches the outside judges score the same (exploratory).} Gemma's failing patches do look a little better
@@ -508,8 +508,8 @@ to everyone. The outside judges give them a mean score of 57.2 on the held-out i
 failing patches. We therefore compared Gemma's own failing patches only with other writers' failing patches that the
 outside judges score the same. We cut all failing patches into five bins of equal size by the outside judges' mean
 score and weighted each bin by the number of Gemma's own failing patches in it
-(\path{scripts/strong_writer_leniency.py}, \path{derived/strong_writer_leniency_2026-11-04.txt}). Gemma's leniency
-difference is then $+13.6$ [7.1, 20.3] on the held-out issues and $+17.2$ [11.3, 23.0] on SWE-bench Lite, against
+(\path{scripts/strong_writer_leniency.py}, \path{derived/strong_writer_leniency_2026-11-04.txt}). Gemma's extra
+trust is then $+13.6$ [7.1, 20.3] on the held-out issues and $+17.2$ [11.3, 23.0] on SWE-bench Lite, against
 $+16.6$ and $+17.8$ without the match.
 
 \subsection*{Other writers' failing patches that make Gemma's edit}
@@ -524,15 +524,15 @@ failing patch over other writers' patches that make its edit, on issues that hav
 
 \paragraph{Reading fixed in the plan.} The edit explanation is supported on a data set if the first measure has an
 interval above zero. The second measure must also be small: its interval includes zero, or its estimate is at most
-half the paper's leniency on the same issues. Recognition is supported if the second measure's interval is above zero and its estimate
-is more than half that leniency. With fewer than 20 same-edit patches, or any other pattern, the result is
+half the paper's extra trust on the same issues. Recognition is supported if the second measure's interval is above zero and its estimate
+is more than half that extra trust. With fewer than 20 same-edit patches, or any other pattern, the result is
 inconclusive. The plan allowed the paper to state the edit explanation only if both data sets support it.
 
 \paragraph{Result.} On SWE-bench Lite, Gemma gives other writers' failing patches that make its edit 20.0 points more
 extra trust than the others, and the edit explanation is supported (Table~\ref{tab:edit}). On the held-out issues the
 difference is 8.0 points, its interval reaches zero, and the result is inconclusive. On neither set do we detect extra
 trust in Gemma's own patch beyond the same-edit patches. These are small comparisons: 16 held-out issues and 25 Lite
-issues have both kinds of patch, and on the same 16 held-out issues Gemma's leniency on its own failing patches is
+issues have both kinds of patch, and on the same 16 held-out issues Gemma's extra trust in its own failing patches is
 itself only $+0.6$. By the plan's rule, the edit explanation is supported on one data set of two. With a looser cut of
 0.3, the first measure is $+6.2$ [$-0.7$, 12.5] on the held-out issues and $+17.4$ [11.8, 23.1] on Lite, and the
 second is $+1.2$ and $-1.1$, both intervals including zero.
@@ -552,7 +552,7 @@ Other writers' failing patches: same edit / other edit & 36 / 322 & 45 / 630 \\
 Same edit minus other edit & $+8.0$ [$-0.9$, 15.9] & $+20.0$ [14.1, 25.9] \\
 Issues with both Gemma's failing patch and a same-edit patch & 16 & 25 \\
 Gemma's own failing patch minus same-edit patches & $-5.1$ [$-17.7$, 3.9] & $-7.6$ [$-19.1$, 2.4] \\
-Paper's leniency difference on those issues & $+0.6$ [$-11.5$, 11.7] & $+1.2$ [$-10.4$, 12.0] \\
+Paper's extra trust on those issues & $+0.6$ [$-11.5$, 11.7] & $+1.2$ [$-10.4$, 12.0] \\
 Reading by the plan & inconclusive & edit explanation \\
 \bottomrule
 \end{tabular}
@@ -568,10 +568,10 @@ of it. Both ran with vLLM 0.30.0 on one NVIDIA A100 at temperature 0 with thinki
 parser and one re-ask. The 12B left 3 passing patches by other writers unparsed, so the analysis uses 954 patches
 on 193 issues. The 31B's numbers on failing patches do not change on this set.
 
-\paragraph{Reading fixed in the plan.} A size shares the extra trust if its leniency difference on the 31B's failing
+\paragraph{Reading fixed in the plan.} A size shares the extra trust if its extra trust in the 31B's failing
 patches has an interval above zero. It does not share it if the interval includes zero and its upper end is below
 $+8.3$, half of the 31B's $+16.6$. Anything else is inconclusive. Separately, the extra trust is weaker in a size if
-the 31B's leniency difference minus the size's has an interval above zero.
+the 31B's extra trust minus the size's has an interval above zero.
 
 \paragraph{Result.} Neither size shows measurable extra trust in the 31B's failing patches (Table~\ref{tab:sizes}).
 By the plan, the 12B does not share it and the 26B-A4B is inconclusive, since its interval reaches $+11.8$. In both, the
@@ -582,7 +582,7 @@ and 0.73, above the plan's 0.60.
 \begin{table}[H]
 \centering
 \small
-\caption{Three Gemma 4 sizes judging the 31B's held-out patches (954 patches). Leniency in points with 95\% intervals
+\caption{Three Gemma 4 sizes judging the 31B's held-out patches (954 patches). Extra trust in points with 95\% intervals
 from 2,000 issue resamples. \texttt{derived/gemma\_sizes\_2026-10-28.json}.}
 \label{tab:sizes}
 \setlength{\tabcolsep}{4pt}
@@ -592,8 +592,8 @@ Judge & Gemma 4 31B & Gemma 4 12B & Gemma 4 26B-A4B \\
 \midrule
 The 31B's failing patches scored 100 & 52 of 85 & 27 of 85 & 34 of 85 \\
 Other writers' failing patches scored 100 & 136 of 393 & 95 of 393 & 130 of 393 \\
-Leniency, other writers' failing patches & $-2.6$ & $-10.0$ & $+0.3$ \\
-Leniency difference, failing patches & $+16.6$ [10.3, 23.1] & $+0.4$ [$-6.8$, 7.4] & $+3.9$ [$-4.1$, 11.8] \\
+Above outside judges, others' failing patches & $-2.6$ & $-10.0$ & $+0.3$ \\
+Extra trust, failing patches & $+16.6$ [10.3, 23.1] & $+0.4$ [$-6.8$, 7.4] & $+3.9$ [$-4.1$, 11.8] \\
 The 31B's difference minus this size's & & $+16.2$ [6.2, 26.1] & $+12.7$ [5.1, 20.8] \\
 AUROC: the 31B's patches / other writers' & 0.622 / 0.750 & 0.665 / 0.722 & 0.663 / 0.729 \\
 \bottomrule
@@ -671,18 +671,18 @@ Gemma quotes or describes the defective line and calls it correct.
 Both checks use the mixed-harness Mini patches, where Gemma has several attempts per issue.
 
 \paragraph{Patch size.} Gemma's patches are much smaller than the other writers' (7.7 against 72.7 added lines on
-average). Among single-file failing patches, matched by size in four bins, Gemma's leniency on its own patches stays
-24.1 points [12.7, 39.9] above its leniency on other writers' patches (Table~\ref{tab:size}).
+average). Among single-file failing patches, matched by size in four bins, Gemma's extra trust in its own patches is still
+24.1 points [12.7, 39.9] (Table~\ref{tab:size}).
 
 \begin{table}[H]
 \centering
 \small
-\caption{Gemma's leniency on single-file failing patches by number of changed lines, mixed-harness Mini patches. The
+\caption{Gemma's points above the outside judges on single-file failing patches by number of changed lines, mixed-harness Mini patches. The
 size-matched difference over these bins (own minus others') is $+24.1$ [12.7, 39.9].}
 \label{tab:size}
 \begin{tabular}{@{}lcccc@{}}
 \toprule
-Changed lines & Own failing (n) & Others' failing (n) & Leniency, own & Leniency, others' \\
+Changed lines & Own failing (n) & Others' failing (n) & Points above, own & Points above, others' \\
 \midrule
 1--5 & 29 & 19 & $+14.2$ & $-7.1$ \\
 6--15 & 32 & 13 & $+11.2$ & $-17.1$ \\
@@ -709,7 +709,7 @@ issue, a shell in which Gemma must test the patch, and LoRA fine-tuning on label
 We rated every Mini patch again with Gemma's thinking switched on (Table~\ref{tab:think}). Its AUROC on its own patches
 does not move. It also gives 100 to the same share of its own failing patches: 48 of 79 with thinking off and 49 with
 it on, 40 of them in both. Thinking makes its other scores more extreme. The own failing patches it does not score 100
-drop from a mean of 34 to 14 ($-19.7$ [$-34.0$, $-4.5$]). Its mean leniency on its own failing patches therefore falls
+drop from a mean of 34 to 14 ($-19.7$ [$-34.0$, $-4.5$]). Its mean score above the outside judges on its own failing patches therefore falls
 from $+12.9$ to $+6.2$ points. On other writers' failing patches it rises from $-8.1$ to $-5.5$. The self-judging gap
 shrinks because thinking makes Gemma less accurate on other writers' patches.
 
@@ -717,7 +717,7 @@ shrinks because thinking makes Gemma less accurate on other writers' patches.
 \centering
 \small
 \caption{Gemma~4 31B with reasoning off and with thinking on, Mini issues, mixed-harness patches: the 331 patches that
-all nine judges scored and Gemma scored in both modes (two patches have no thinking score). Leniency is own minus
+all nine judges scored and Gemma scored in both modes (two patches have no thinking score). Extra trust is own minus
 other writers' failing patches. \texttt{derived/thinking\_mode\_2026-10-22.json}.}
 \label{tab:think}
 \begin{tabular}{@{}lcc@{}}
@@ -730,7 +730,7 @@ Own failing patches scored 100 & 61\% & 62\% \\
 Own failing patches scored 95 or above & 66\% & 66\% \\
 Own failing patches below 100, mean score & 34 & 14 \\
 Other writers' failing patches scored 95 or above & 22\% & 35\% \\
-Leniency [95\%] & $+21.0$ [11.5, 30.3] & $+11.7$ [1.1, 22.3] \\
+Extra trust [95\%] & $+21.0$ [11.5, 30.3] & $+11.7$ [1.1, 22.3] \\
 Self-judging gap [95\%] & $+0.138$ [0.063, 0.214] & $+0.097$ [0.010, 0.192] \\
 \bottomrule
 \end{tabular}
@@ -748,7 +748,7 @@ logs of Gemma's agent runs (\path{scripts/paper_counts.py}, with the rule of \pa
 
 \paragraph{Setup.} We fixed the design and a stop rule in a written plan before any run (\path{spec/judge-as-actor.md},
 exploratory). The judge was Gemma 4 31B, the 4-bit competition checkpoint served by vLLM on one NVIDIA
-A100 at temperature 0 with thinking off. It judged each of the 133 held-out patches it had scored 100 as a reader
+A100 at temperature 0 with thinking off. It judged each of the 133 held-out patches it had scored 100 as a judge
 (52 failing, 81 passing). For each
 patch we built a sandbox from the issue's SWE-bench image, with the repository's environment active, and applied the
 patch without committing it. Gemma then ran in mini-SWE-agent 1.7.0 with a 15-step limit and was not told who wrote
@@ -802,7 +802,7 @@ accuracy include zero, the reading is ``no measurable improvement''. Anything el
 \paragraph{Result.} The adapter does not reduce false acceptance by a measurable amount (Table~\ref{tab:lora}). It
 accepts 48.9\% of evaluation failing patches against 53.0\% without it ($-4.2$ percentage points [$-8.3$, 0.0]), and it keeps
 fewer passing patches. AUROC and same-issue pair accuracy do not change. Among Gemma's own failing evaluation patches
-that it had scored 100 as a reader, from both data sets, the adapter still accepts 48 of 51, against 50 without it.
+that it had scored 100 as a judge, from both data sets, the adapter still accepts 48 of 51, against 50 without it.
 The reading is ``no measurable improvement''. One seed, one learning rate and 184 training issues do not show that
 training cannot work.
 
