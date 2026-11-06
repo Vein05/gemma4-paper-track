@@ -136,3 +136,20 @@ them end with a patch.
 rule 3 of the first addendum applies: their 80 issues run as a separate thinking-on arm. Those 5 results count in the arm.
 
 **Order.** Repair seeds, Go test, Go if it qualifies, Lite repair, thinking-on arm.
+
+## Third addendum, 2026-11-06, 13:15 UTC: Go's result and a change of order
+
+Written before any patch was graded or scored. No label or score has been read.
+
+**Go.** With the working fix and thinking off, 1 of 3 Go issues ended with a patch (terraform-34580), below the rule's 2 of 3. The Go issues
+with no patch, caddy-5626 and prometheus-13845, both ended with a patch with thinking on, so Go joins the thinking-on arm under the second
+addendum's rule. The arm is therefore all 120 issues, thinking on, and there is no thinking-off run. The 7 test results count in the arm.
+
+**Order.** The first addendum put this arm after the Lite repair because it might be slow. The Lite repair is waiting for its gate's last two
+issues and its CPU grading, which would leave the GPU idle for about two hours, and the test issues took 22 to 33 minutes per batch. So the arm
+runs now and the Lite repair runs after it. The two share no patches, so the order changes neither result.
+
+**Reading.** The arm is the only Go, Ruby and PHP result. It uses thinking on, unlike every Python run in the paper (thinking off), so any
+comparison with Python is across a changed setting as well as a changed language, and it stays descriptive as section "Measures" already says.
+The 7 test issues had no patch or a looping start with thinking off; their selection does not affect extra trust, which compares patches with
+the control writers on the same issues.
