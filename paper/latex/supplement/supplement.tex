@@ -499,7 +499,7 @@ This section backs Section 3.2 of the paper. Gemma could trust its patches becau
 because it believes in the edit they make. The tests below point to the edit. None of them varies the writer with the
 patch held fixed, so none rules out recognition.
 
-\paragraph{Gemma is not lenient in general.} On other writers' failing held-out patches, Gemma's mean score is
+\paragraph{Gemma does not score every failing patch high.} On other writers' failing held-out patches, Gemma's mean score is
 2.6 points below the outside judges' mean (\path{derived/gemma_sizes_2026-10-28.json}).
 Its extra trust is in its own failing patches only.
 
@@ -928,7 +928,7 @@ and worse on 4 ($p = 0.13$, exploratory). Among the 133 patches Gemma scored 100
 \begin{table}[H]
 \centering
 \small
-\caption{One repair run per held-back patch, held-out issues, graded with the hidden tests.
+\caption{The first repair run on each held-back patch (temperature 0), held-out issues, graded with the hidden tests.
 \texttt{derived/test\_repair\_2026-11-05.json}, \texttt{derived/repair\_trace\_audit\_2026-11-05.json}.}
 \label{tab:repair}
 \begin{tabular}{@{}lcc@{}}
@@ -941,6 +941,29 @@ Held-back passing patches broken (of 9) & 4 & 1 \\
 \quad of them scored 100 by Gemma (of 81) & 4 & 0 \\
 Passing among the 133 Gemma scored 100 (81 before) & 86 & 84 \\
 Passing patches over all 180, after (95 before) & 105 & 100 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Two more runs.} We repeated both conditions on the 35 held-back patches at temperature 0.3, with seeds 1
+and 2 (\texttt{spec/repair-seeds.md}). The reading fixed in that plan needs more passes with the tests shown in both
+runs and a sign test below 0.05 across them. Twelve patches favor the tests shown and none favor the second look
+($p = 0.0002$), so it is met (Table~\ref{tab:repair-seeds}).
+
+\begin{table}[H]
+\centering
+\small
+\caption{Three repair runs on the 35 held-back patches, each cell tests shown / second look.
+\texttt{derived/repair\_seeds\_2026-11-06.json}.}
+\label{tab:repair-seeds}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & Temperature 0 & Seed 1 & Seed 2 \\
+\midrule
+Held-back failing patches repaired (of 26) & 14 / 6 & 13 / 4 & 14 / 4 \\
+\quad of them scored 100 by Gemma (of 52) & 9 / 3 & 8 / 1 & 8 / 0 \\
+Held-back passing patches broken (of 9) & 4 / 1 & 5 / 1 & 5 / 3 \\
+\quad of them scored 100 by Gemma (of 81) & 4 / 0 & 4 / 1 & 4 / 3 \\
 \bottomrule
 \end{tabular}
 \end{table}

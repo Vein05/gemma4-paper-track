@@ -1,0 +1,91 @@
+{
+ "seed1": {
+  "tests_failing_now_passing": 13,
+  "review_failing_now_passing": 4,
+  "tests_passing_now_failing": 5,
+  "review_passing_now_failing": 1,
+  "stamped_tests_repaired": 8,
+  "stamped_review_repaired": 1,
+  "stamped_tests_broken": 4,
+  "stamped_review_broken": 1,
+  "tests_only": 9,
+  "review_only": 0,
+  "sign_test_p": 0.002,
+  "exit_status": {
+   "tests": {
+    "Submitted": 34,
+    "LimitsExceeded": 1
+   },
+   "review": {
+    "Submitted": 33,
+    "LimitsExceeded": 2
+   }
+  }
+ },
+ "seed2": {
+  "tests_failing_now_passing": 14,
+  "review_failing_now_passing": 4,
+  "tests_passing_now_failing": 5,
+  "review_passing_now_failing": 3,
+  "stamped_tests_repaired": 8,
+  "stamped_review_repaired": 0,
+  "stamped_tests_broken": 4,
+  "stamped_review_broken": 3,
+  "tests_only": 10,
+  "review_only": 0,
+  "sign_test_p": 0.001,
+  "exit_status": {
+   "tests": {
+    "Submitted": 34,
+    "ContextWindowExceededError": 1
+   },
+   "review": {
+    "Submitted": 34,
+    "LimitsExceeded": 1
+   }
+  }
+ },
+ "temperature0": {
+  "tests_failing_now_passing": 14,
+  "review_failing_now_passing": 6,
+  "tests_passing_now_failing": 4,
+  "review_passing_now_failing": 1,
+  "stamped_tests_repaired": 9,
+  "stamped_review_repaired": 3,
+  "stamped_tests_broken": 4,
+  "stamped_review_broken": 0,
+  "tests_only": 8,
+  "review_only": 0,
+  "sign_test_p": 0.0039,
+  "exit_status": {
+   "tests": {
+    "Submitted": 33,
+    "RetryError": 2
+   },
+   "review": {
+    "Submitted": 34,
+    "LimitsExceeded": 1
+   }
+  }
+ },
+ "primary": {
+  "patches_favouring_tests": 12,
+  "patches_favouring_review": 0,
+  "sign_test_p": 0.0002,
+  "reading": "the failing tests help across runs"
+ },
+ "spread_of_3_runs": {
+  "tests": {
+   "3": 11,
+   "0": 9,
+   "2": 2,
+   "1": 4
+  },
+  "review": {
+   "0": 19,
+   "1": 2,
+   "2": 3,
+   "3": 2
+  }
+ }
+}

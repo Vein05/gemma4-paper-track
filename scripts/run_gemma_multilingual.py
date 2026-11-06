@@ -65,6 +65,13 @@ class ApptainerEnvironment(SingularityEnvironment):
         command = shlex.join(self.config.interpreter) + " " + shlex.quote(action.get("command", ""))
         return super().execute(action | {"command": command}, cwd, timeout=timeout)
 
+    def _check_finished(self, output: dict):
+        # Images without /etc/localtime make Apptainer print this first in every output. Docker does not, and it hides
+        # the submit marker, which mini-SWE-agent reads from the first line (pilot, 2026-11-06, terraform-34580). The
+        # parent checks inside execute, so the line must go here, before the check.
+        output["output"] = re.sub(r"(?m)^WARNING: Skipping mount .*\n", "", output.get("output", ""))
+        super()._check_finished(output)
+
     def cleanup(self):
         if not hasattr(self, "sandbox_dir"):  # the build failed
             return

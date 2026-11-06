@@ -2,7 +2,7 @@
 
 <p align="center">
   Gemma 4 gives most of its own failing patches the top score when it judges them without being told who wrote them.
-  The trust stays when Gemma checks harder, and failing repository tests let it repair some of these patches.
+  Most of the trust stays when Gemma checks harder, and failing repository tests let it repair some of these patches.
 </p>
 
 <p align="center">
@@ -30,7 +30,7 @@ from other model families on the same patch.
 - **On SWE-bench Lite, the trust reaches other writers' patches that make Gemma's edit.** They get 20 points of extra
   trust from Gemma. On the held-out issues this result is inconclusive. Smaller Gemma 4 models give the 31B's failing
   patches no measurable extra trust.
-- **Checks that Gemma runs itself leave the trust in place.** Thinking before scoring, testing the patch in a shell
+- **Checks that Gemma runs itself leave most of the trust in place.** Thinking before scoring, testing the patch in a shell
   and LoRA fine-tuning on labeled patches each leave most rubber-stamped patches approved.
 - **Tests that Gemma did not write let it repair some patches.** Shown the repository tests its patch breaks, Gemma
   repairs 9 of the 52 rubber-stamped failing patches, against 3 after a plain second look. The same step breaks 4

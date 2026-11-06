@@ -207,7 +207,7 @@ def prepare(a):
     runs = ["main-a", "main-b"]
     pids, X, y, wr, iss, _ = load(J9, runs)
     P = patches(runs)
-    ds = {r["instance_id"]: r for r in load_dataset("princeton-nlp/SWE-bench_Verified", split="test")}
+    ds = {r["instance_id"]: r for r in load_dataset(os.environ.get("SWE_DATASET", "princeton-nlp/SWE-bench_Verified"), split="test")}
     jobs, meta = collections.defaultdict(list), []
     for i, p in enumerate(pids):
         jobs[iss[i]].append(dict(pid=p, writer=str(wr[i]), patch=P[p]["patch"]))
@@ -239,7 +239,7 @@ def run_jobs(a):
     from swebench.harness.constants import MAP_REPO_VERSION_TO_SPECS
     from swebench.harness.log_parsers import MAP_REPO_TO_PARSER
     from swebench.harness.test_spec.test_spec import make_test_spec
-    insts = {r["instance_id"]: r for r in load_dataset("princeton-nlp/SWE-bench_Verified", split="test")}
+    insts = {r["instance_id"]: r for r in load_dataset(os.environ.get("SWE_DATASET", "princeton-nlp/SWE-bench_Verified"), split="test")}
     jobs = [json.loads(l) for l in open(a.jobs)]
     if a.ids:
         want = set(a.ids.split(","))

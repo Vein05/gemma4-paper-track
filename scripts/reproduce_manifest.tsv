@@ -121,3 +121,11 @@ lab-runs/lcb-same-model/scores_gpt-oss-120b.jsonl	2067ed30b11700092133d61b2424d0
 lab-runs/lcb-same-model/scores_gpt-oss-20b.jsonl	c0545937ded2536487868e0723fdf6a75b487e55854849ed6ba6fcb6b6141b0b	346170
 lab-runs/lcb-same-model/scores_llama-4-maverick.jsonl	22094ea044dd7bffb53c2ad79afe01dd44d2800dcbf7fe2539d6ec60cd670050	1117793
 lab-runs/lcb-same-model/scores_qwen35-9b.jsonl	0728290bee68aea016f34c1808644218354c6f4c2cbd22865eeed30ecc7b380f	5495207
+lab-runs/repair-seeds/seed1/tests/preds.jsonl	1b596f1970b8de31416acdd8c027e8dbe143eac0a0648b7541e570cf94ae1cea	132934
+lab-runs/repair-seeds/seed1/tests/labels.jsonl	c9b0bcab3e25c02159027a252977b442460673483de959c4ff65957a4f563a69	5427
+lab-runs/repair-seeds/seed1/review/preds.jsonl	c4fbf6c6547049b4187014e1c573595183209a37b6119e310f892b6a6755e901	137960
+lab-runs/repair-seeds/seed1/review/labels.jsonl	8aed5a4200cfe02368739d1b4b9af7d9a45dd0fcf42840c4025aba718307c9df	5436
+lab-runs/repair-seeds/seed2/tests/preds.jsonl	3fff5f7f090f773d15f0ae45c09177e0e73fabc1bab8cc11598059630862722c	154192
+lab-runs/repair-seeds/seed2/tests/labels.jsonl	b06094328dd11e163c78ca26d7e33623db466a23a79ff1711eb85677393d9a1e	5615
+lab-runs/repair-seeds/seed2/review/preds.jsonl	220e6e6258d0e824ce8d0f1d7c2248d309e791861c428fd470551042f9dc9cbf	184954
+lab-runs/repair-seeds/seed2/review/labels.jsonl	a6fffa94cf469b7c7d1a9723b886b1b39f3f672e4b852c8dad189cf89dfa4a1b	5618

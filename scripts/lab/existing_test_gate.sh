@@ -6,7 +6,7 @@
 set -uo pipefail
 E=<workdir>/swe-env
 B=<workdir>/gemma4-paper-track
-D=$E/existing-test-gate
+D=${GATE_DIR:-$E/existing-test-gate}
 mkdir -p $D/${OUT:?OUT} $E/work $E/tmp
 export HF_HOME=$E/hf HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TMPDIR=$E/tmp
 export APPTAINER=$E/apptainer/bin/apptainer SIF_DIR=$E/sif WORK=$E/work

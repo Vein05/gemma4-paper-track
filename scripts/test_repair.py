@@ -47,7 +47,7 @@ def prepare(a):
     from datasets import load_dataset
     from swebench.harness.constants import MAP_REPO_VERSION_TO_SPECS
     from existing_test_gate import directives
-    insts = {r["instance_id"]: r for r in load_dataset("princeton-nlp/SWE-bench_Verified", split="test")}
+    insts = {r["instance_id"]: r for r in load_dataset(os.environ.get("SWE_DATASET", "princeton-nlp/SWE-bench_Verified"), split="test")}
     patches = {p["pid"]: p for j in map(json.loads, open(a.gate_jobs)) for p in j["patches"]}
     rows = [r for r in map(json.loads, open(os.path.join(a.gate, "runs.jsonl")))
             if r["kind"] == "patch" and r["writer"] == GW and r.get("decision") == "block"]
@@ -88,9 +88,12 @@ def run_jobs(a):
         def execute(self, command, cwd=""):
             return super().execute(ACTIVATE + command, cwd)
 
-    insts = {r["instance_id"]: r for r in load_dataset("princeton-nlp/SWE-bench_Verified", split="test")}
+    insts = {r["instance_id"]: r for r in load_dataset(os.environ.get("SWE_DATASET", "princeton-nlp/SWE-bench_Verified"), split="test")}
     cfg = yaml.safe_load((builtin_config_dir / "extra" / "swebench.yaml").read_text())
     cfg["agent"]["step_limit"] = STEP_LIMIT
+    if os.environ.get("REPAIR_SEED"):  # spec/repair-seeds.md: new runs need sampling; default stays temperature 0
+        cfg["model"]["model_kwargs"] |= dict(temperature=float(os.environ["REPAIR_TEMPERATURE"]),
+                                             seed=int(os.environ["REPAIR_SEED"]))
     jobs = [json.loads(l) for l in open(os.path.join(a.out, "jobs.jsonl"))]
     if a.ids:
         jobs = [j for j in jobs if j["instance_id"] in set(a.ids.split(","))]

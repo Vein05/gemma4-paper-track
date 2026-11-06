@@ -15,7 +15,7 @@ BASE = os.path.join(ROOT, ".reproduce")
 WORK, CACHE, OUT = (os.path.join(BASE, d) for d in ("work", "cache", "out"))
 
 HF_REPO = "vein05/gemma4-paper-track-data"
-HF_REV = "c0a88efc9944cc442cc0ec34a554a06942600f8f"
+HF_REV = "a9359db253fc160e7b1e3875f167b56f985ac75e"
 LITE_REPO = "dougalldeepmind/2026-10-10-swebench-gemma4-lite-gemma-v2"
 LITE_REV = "1c5f3d3be50e4ca6ceb17654987fd34e6cf23f96"
 
@@ -43,6 +43,7 @@ STEPS = [
     ("existing_test_gate_2026-11-05.json", "existing_test_gate.py analyze"),
     ("test_repair_2026-11-05.json", "test_repair.py analyze"),
     ("repair_trace_audit_2026-11-05.json", "repair_trace_audit_2026_11_05.py"),
+    ("repair_seeds_2026-11-06.json", "repair_seeds.py"),
     ("tie_break_2026-10-22.json", "tie_break.py"),
     ("stripped_files_rescore_2026-11-03.json", "stripped_rescore.py analyze"),
     ("gemma_31b_local_2026-10-28.json", "gemma_sizes_analysis.py --sizes gemma4-31b-local"),
@@ -218,9 +219,10 @@ def claims():
     gate = load("existing_test_gate_2026-11-05.json")
     repair = load("test_repair_2026-11-05.json")
     audit = load("repair_trace_audit_2026-11-05.json")
+    seeds = load("repair_seeds_2026-11-06.json")
     tie = load("tie_break_2026-10-22.json")
     counts = load("paper_counts_2026-11-05.json")
-    script, sandbox = counts["reproduction_script"], counts["sandbox_problem"]
+    script, sandbox, grading = counts["reproduction_script"], counts["sandbox_problem"], counts["grading_check"]
     mini_off = load("thinking_mode_2026-10-22.json")["own_failing_100"]["off"]
     strong = open(os.path.join(OUT, "strong_writer_leniency_2026-11-04.txt")).read()
     held, rest = strong.split("== lite:")
@@ -269,6 +271,8 @@ def claims():
          f"{pct(lite['gemma4-31b_scored100_own_failing'])}, {pct(lite['gemma4-31b_scored100_control_failing'])}"),
         ("3.1", "Figure 1a, scored 100, LiveCodeBench: own, other writers", None, "50%, 8%",
          f"{pct(lcb['gemma4-31b_scored100_own_failing'])}, {pct(lcb['gemma4-31b_scored100_control_failing'])}"),
+        ("3.1", "above the outside judges, held-out: own failing, others' failing", "about 14 points above", "+14.1, −2.6",
+         f"{num(fresh['lenient_raw_failing_own'])}, {num(fresh['lenient_raw_failing_control'])}"),
         ("3.1", "leniency, own minus others' failing, held-out", "16.6 points [10.3, 23.1]", "+16.6 [10.3, 23.1]",
          f"{num(fresh['lenient_raw_failing_difference'])} {ci(fresh['lenient_raw_failing_difference_ci95'])}"),
         ("3.1", "same difference, Lite and LiveCodeBench", "The same holds on Lite and LiveCodeBench",
@@ -302,7 +306,7 @@ def claims():
         ("3.2", "no extra trust in own patch beyond same-edit patches, both sets", "We detect no extra trust", "both include zero",
          "both include zero" if includes_zero(belief["held-out"]["own_minus_same_ci95"]) and
          includes_zero(belief["swe-bench-lite"]["own_minus_same_ci95"]) else "not both"),
-        ("3.2", "Gemma 12B and 26B-A4B on the 31B's failing patches", "We find no measurable extra trust",
+        ("3.2", "Gemma 12B and 26B-A4B on the 31B's failing patches", "neither shows measurable extra trust",
          "+0.4, +3.9, both include zero",
          f"{num(sizes['gemma4-12b_lenient_failing_difference'])}, {num(sizes['gemma4-26b-a4b_lenient_failing_difference'])}, "
          + ("both include zero" if includes_zero(sizes["gemma4-12b_lenient_failing_difference_ci95"]) and
@@ -315,7 +319,7 @@ def claims():
          f"{script['ended_without_error']} of {script['ran_own_script']}"),
         ("3.3", "shell judge: still 100 on stamped failing patches", "still scores 80% at 100", "80%",
          pct(actor["approval_100"]["own_fail"]["value"])),
-        ("3.3", "its test fails without the patch and passes with it", "in most of its runs on failing", "61%",
+        ("3.3", "its test fails without the patch and passes with it", "in most of them on failing", "61%",
          pct(actor["test"]["flag_share_own_fail"])),
         ("3.3", "shell lowers the score: failing, passing", "more often on failing patches", "20%, 5%",
          f"{pct(1 - actor['approval_100']['own_fail']['value'])}, {pct(1 - actor['approval_100']['own_pass']['value'])}"),
@@ -326,15 +330,15 @@ def claims():
         ("3.3", "LoRA: change in false acceptance, in points", "did not reduce the failing", "−4.2 [−8.3, 0.0]",
          f"{num(sft['primary']['on']['false_accept_diff'] * 100)} "
          f"{ci([x * 100 for x in sft['primary']['on']['false_accept_diff_ci95']])}"),
-        ("3.4", "existing-test check holds back Gemma's failing patches", "On all held-back failing patches", "26 of 85",
+        ("3.4", "existing-test check holds back Gemma's failing patches", "14 of all 26 held-back failing patches", "26 of 85",
          f"{gate['all_failing_gemma']['blocked']} of {gate['all_failing_gemma']['of']}"),
         ("3.4", "of the failing patches it scored 100", "15 of the 52 failing patches Gemma scored 100", "15 of 52",
          f"{gate['primary']['stamped_failing']['blocked']} of {gate['primary']['stamped_failing']['of']}"),
         ("3.4", "broken test passes with the reference patch", "In almost all of these", "14 of 15",
          f"{sum(map(real, stamped_failing))} of {len(stamped_failing)}"),
-        ("3.4", "held-back failing repaired: tests shown, second look", "the tests repair more than a second look", "14, 6",
+        ("3.4", "held-back failing repaired: tests shown, second look", "against 6 with a second look", "14, 6",
          f"{t['blocked_failing_now_passing']}, {r['blocked_failing_now_passing']}"),
-        ("3.4", "repaired in only one condition: tests, second look", "the tests repair more than a second look", "8, 0",
+        ("3.4", "repaired in only one condition: tests, second look", "against 6 with a second look", "8, 0",
          f"{repair['tests_vs_review']['tests_only']}, {repair['tests_vs_review']['review_only']}"),
         ("3.4", "one-sided sign test", "p = 0.004", "0.004", f"{repair['tests_vs_review']['sign_test_p']:.3f}"),
         ("3.4", "stamped failures repaired: tests shown, second look", "repairs 9 of its 52", "9, 3 of 52",
@@ -351,6 +355,12 @@ def claims():
          f"{sum(not real(p) for p in harmed)} of {len(harmed)}"),
         ("3.4", "fewer failing patches among the 133 stamped", "so five fewer fail", "5",
          str(audit["arms"]["tests"]["stamped_repairs"] - audit["arms"]["tests"]["stamped_harms"])),
+        ("3.4", "two more runs: stamped failures repaired with tests", "the tests repair eight", "8, 8",
+         f"{seeds['seed1']['stamped_tests_repaired']}, {seeds['seed2']['stamped_tests_repaired']}"),
+        ("3.4", "two more runs: correct stamped patches broken with tests", "break four", "4, 4",
+         f"{seeds['seed1']['stamped_tests_broken']}, {seeds['seed2']['stamped_tests_broken']}"),
+        ("3.4", "two more runs: stamped failures repaired by a second look", "repairs at most one", "1, 0",
+         f"{seeds['seed1']['stamped_review_repaired']}, {seeds['seed2']['stamped_review_repaired']}"),
         ("4", "Llama-4-Maverick on its own contest programs: lenient", "finds Llama-4-Maverick lenient", "+19.1, lenient",
          f"{same['llama-4-maverick']['leniency_difference']:+.1f}, {same['llama-4-maverick']['reading']}"),
         ("4", "gpt-oss-120b on its own contest programs: not lenient", "gpt-oss-120b not", "+3.9, not lenient",
@@ -365,6 +375,8 @@ def claims():
          "65%, 63%, 61%",
          f"{pct(sandbox['without_problem']['scored_100'] / sandbox['without_problem']['failing'])}, "
          f"{pct(lite['gemma4-31b_scored100_own_failing'])}, {pct(mini_off)}"),
+        ("5", "grading check: official label kept", "26 of 30 other-writer patches", "26 of 30",
+         f"{grading['official_label']} of {grading['patches']}"),
     ]
 
 
