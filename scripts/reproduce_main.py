@@ -15,7 +15,7 @@ BASE = os.path.join(ROOT, ".reproduce")
 WORK, CACHE, OUT = (os.path.join(BASE, d) for d in ("work", "cache", "out"))
 
 HF_REPO = "vein05/gemma4-paper-track-data"
-HF_REV = "8dcaf92dfc9ebf96701ac1c01904ebca2e0959f0"
+HF_REV = "c0a88efc9944cc442cc0ec34a554a06942600f8f"
 LITE_REPO = "dougalldeepmind/2026-10-10-swebench-gemma4-lite-gemma-v2"
 LITE_REV = "1c5f3d3be50e4ca6ceb17654987fd34e6cf23f96"
 
@@ -30,6 +30,7 @@ STEPS = [
     ("lcb_judging_2026-11-01.json", f"lcb_judging.py analyze --judges {J6}"),
     ("other_models_heldout_2026-10-22.json", "other_models_heldout.py"),
     ("lcb_sweep_2026-11-04.json", "lcb_sweep_analysis.py"),
+    ("lcb_same_model_2026-11-05.json", "lcb_same_model.py analyze"),
     ("belief_vs_recognition_2026-11-03.json", "belief_vs_recognition.py"),
     ("gemma_sizes_2026-10-28.json", "gemma_sizes_analysis.py --sizes gemma4-12b,gemma4-26b-a4b"),
     ("lcb_blind_spot_2026-11-03.json", "lcb_blind_spot.py"),
@@ -206,6 +207,7 @@ def claims():
     other = load("other_models_heldout_2026-10-22.json")
     large = other["pooled"]
     sweep = load("lcb_sweep_2026-11-04.json")["models"]
+    same = load("lcb_same_model_2026-11-05.json")
     belief = load("belief_vs_recognition_2026-11-03.json")
     sizes = load("gemma_sizes_2026-10-28.json")
     blind = load("lcb_blind_spot_2026-11-03.json")
@@ -354,6 +356,10 @@ def claims():
          str(audit["arms"]["tests"]["stamped_repairs"] - audit["arms"]["tests"]["stamped_harms"])),
         ("3.4", "tie-break: top quarter passing, before and after", "from 61% to 78%", "61%, 78%",
          f"{pct(calls['precision'] - calls['precision_minus_gemma'])}, {pct(calls['precision'])}"),
+        ("4", "Llama-4-Maverick on its own contest programs: lenient", "finds Llama-4-Maverick lenient (+19.1)", "+19.1, lenient",
+         f"{same['llama-4-maverick']['leniency_difference']:+.1f}, {same['llama-4-maverick']['reading']}"),
+        ("4", "gpt-oss-120b on its own contest programs: not lenient", "gpt-oss-120b not (+3.9)", "+3.9, not lenient",
+         f"{same['gpt-oss-120b']['leniency_difference']:+.1f}, {same['gpt-oss-120b']['reading']}"),
         ("4", "gpt-oss-120b and Llama-4-Maverick on their own held-out patches: intervals include zero",
          "we detect no leniency", "+2.9 [−3.3, 8.8], +2.8 [−5.0, 10.8], both include zero",
          f"{num(other['gpt-oss-120b']['lenient_difference_failing'])} {ci(other['gpt-oss-120b']['lenient_difference_failing_ci95'])}, "
