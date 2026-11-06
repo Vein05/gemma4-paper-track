@@ -84,3 +84,32 @@ provider is gone, in which case the replacement is recorded. Test files are remo
 `scripts/lab/nonpython_run.sh` on the lab A100, `ml/runs/nonpython/` on the server, copied to
 `data/lab-runs/nonpython/`. W&B project `gemma4-paper-track`, group `nonpython-rubber-stamp`, logged from the Mac.
 Changelog entry with start, end and GPU-hours; compute ledger updated.
+
+## Addendum, 2026-11-06, 08:30 UTC: harness bug and what happens after the stop rule
+
+Written after the pilot met its stop rule (5 of 9 finished, no patch) and before any patch was graded or scored. No label
+or score has been read. The user: "please work on this overnight, do the best, if nothing works just work on the seed".
+
+**Harness bug, fixed.** Images without `/etc/localtime` make Apptainer print `WARNING: Skipping mount /etc/localtime` first
+in every command output. mini-SWE-agent reads its submit marker from the first line, so it did not see Gemma's submission
+on hashicorp__terraform-34580 (112 attempts, one patch). Docker prints no such line. `scripts/run_gemma_multilingual.py`
+now removes lines starting `WARNING: Skipping mount` from outputs. Issues whose outputs carried the warning are rerun from
+the start; their earlier results are kept aside and not analysed. Other pilot issues stand.
+
+**Thinking-on test.** The PHP and Ruby pilot issues that hit the step limit run once with thinking on, same config, on the
+same server, for at most 75 minutes.
+
+**Decision, fixed now, from patch counts only:**
+
+1. If at least 3 of the 6 PHP and Ruby pilot issues and at least 2 of the 3 Go pilot issues end with a patch with thinking
+   off: full run of all 120 issues, thinking off.
+2. Otherwise, each language group is decided alone. Go with at least 2 of 3 patches: its 40 issues, thinking off. PHP and
+   Ruby with at least 3 of 6: their 80 issues, thinking off.
+3. A group that fails runs with thinking on only if at least half of its test issues end with a patch with thinking on. It
+   is then a separate arm, compared only with the same control writers on the same issues, and read apart from thinking-off
+   results. It runs after the Lite repair and the repair seeds, because it may be slow.
+4. If no group qualifies, the Go, Ruby and PHP run ends here and the paper does not claim a result on them. The GPU goes to
+   the Lite repair and `spec/repair-seeds.md`.
+
+Any result names the languages it covers. A language left out because Gemma did not produce patches is reported as that:
+the share of issues with no patch is itself a result, and it limits what extra trust can say about those issues.
