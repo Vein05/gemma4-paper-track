@@ -113,3 +113,26 @@ same server, for at most 75 minutes.
 
 Any result names the languages it covers. A language left out because Gemma did not produce patches is reported as that:
 the share of issues with no patch is itself a result, and it limits what extra trust can say about those issues.
+
+## Second addendum, 2026-11-06, 10:30 UTC: the warning fix did not work
+
+Written before any patch was graded or scored. No label or score has been read.
+
+**What went wrong.** mini-SWE-agent checks for the submit marker inside its own `execute`. The first fix removed the warning
+after that check, so Gemma saw clean outputs while its submissions were still missed. On the rerun, hashicorp__terraform-34580
+sent the submit command 111 times and caddyserver__caddy-5626 98 times, and each output Gemma saw starts with the marker.
+The Go count of 0 of 3 from that rerun therefore says nothing about Gemma. The fix now removes the warning before the check.
+Tested in the terraform image with no model: a submit command now ends the run with the patch.
+
+**What is rerun.** caddy-5626 and terraform-34580 run again from the start with thinking off, and their earlier results are set
+aside. prometheus__prometheus-13845 stands: it never tried to submit in either run (237 of 250 calls in the rerun are one
+command), so the bug did not touch it.
+
+**Decision, unchanged rule.** Go with at least 2 of 3 patches, thinking off: its 40 issues, thinking off. If Go fails, its pilot
+issues with no patch run once with thinking on, at most 45 minutes, and Go joins the thinking-on arm only if at least half of
+them end with a patch.
+
+**PHP and Ruby.** They failed with thinking off (1 of 6) and passed the thinking-on test (5 of 5 issues ended with a patch), so
+rule 3 of the first addendum applies: their 80 issues run as a separate thinking-on arm. Those 5 results count in the arm.
+
+**Order.** Repair seeds, Go test, Go if it qualifies, Lite repair, thinking-on arm.
