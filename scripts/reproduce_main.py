@@ -203,7 +203,8 @@ def claims():
     fresh = load("fresh_replication_2026-10-06.json")["gemma4-31b"]
     lite = load("third_party_lite_2026-11-01.json")["gemma4-31b"]
     lcb = load("lcb_judging_2026-11-01.json")["gemma4-31b"]
-    large = load("other_models_heldout_2026-10-22.json")["pooled"]
+    other = load("other_models_heldout_2026-10-22.json")
+    large = other["pooled"]
     sweep = load("lcb_sweep_2026-11-04.json")["models"]
     belief = load("belief_vs_recognition_2026-11-03.json")
     sizes = load("gemma_sizes_2026-10-28.json")
@@ -248,7 +249,7 @@ def claims():
     coders = [list(csv.DictReader(open(os.path.join(WORK, "data", "hand-codes", f"claims-coder-{c}.csv")))) for c in "ab"]
     endorsed = [sum(r["endorses_defect"] == "yes" for r in rows) for rows in coders]
     lenient = lambda m: sweep[m]["leniency_qwen_reference"]["ci95"][0] > 0
-    small = ["gpt-oss-20b", "olmo-3.1-32b", "nemotron-nano-9b-v2", "seed-oss-36b"]
+    small = ["gpt-oss-20b", "olmo-3.1-32b", "nemotron-nano-9b-v2", "seed-oss-36b", "gemma-4-12b", "gemma-4-26b-a4b"]
     judges = [m for m in blind if isinstance(blind[m], dict) and "blind_spot_effect" in blind[m]]
     own_stamped = sft["slices"]["own_stamped"]["measures"]
     n_stamped = sft["n"]["eval_own_stamped_failing"]
@@ -279,12 +280,18 @@ def claims():
          grab(held, "own_minus_others_matched_panel")),
         ("3.1", "five large models judging their own patches, pooled", "+0.4 [−2.5, 3.4]", "+0.4 [−2.5, 3.4]",
          f"{num(large['lenient_difference_failing'])} {ci(large['lenient_difference_failing_ci95'])}"),
-        ("3.1", "small open models lenient on LiveCodeBench", "three of four usable small open models", "3 of 4",
+        ("3.1", "small open models lenient on LiveCodeBench", "five of six other usable small open models", "5 of 6",
          f"{sum(map(lenient, small))} of {len(small)}"),
-        ("3.1", "Gemma 12B and 26B-A4B lenient too, 31B the most", "Gemma 4 31B is the most lenient of all", "yes",
+        ("3.1", "Gemma 12B and 26B-A4B lenient too, 31B the largest", "Gemma 4 31B has the largest estimate", "yes",
          "yes" if lenient("gemma-4-12b") and lenient("gemma-4-26b-a4b") and
          sweep["gemma-4-31b (existing)"]["leniency_qwen_reference"]["value"] ==
          max(v["leniency_qwen_reference"]["value"] for v in sweep.values()) else "no"),
+        ("3.1", "Figure 2, extra trust in own failing programs, seven models", None,
+         "+40.3, +28.3, +26.0, +18.6, +13.4, +12.1, +4.2",
+         ", ".join(num(x) for x in sorted((v["leniency_qwen_reference"]["value"] for k, v in sweep.items()
+                                           if k not in ("glm-4-9b", "phi-4-mini")), reverse=True))),
+        ("3.1", "models set aside: pass rates of GLM-4-9B and Phi-4-mini", "they pass 0.3% and 2.7% of problems", "0.3%, 2.7%",
+         f"{sweep['glm-4-9b']['pass_rate_292']:.1%}, {sweep['phi-4-mini']['pass_rate_292']:.1%}"),
         ("3.2", "same-edit patches get extra trust, Lite", "20.0 points more extra trust than the others [14.1, 25.9]",
          "+20.0 [14.1, 25.9]",
          f"{num(belief['swe-bench-lite']['sim_effect'])} {ci(belief['swe-bench-lite']['sim_effect_ci95'])}"),
@@ -300,19 +307,14 @@ def claims():
          f"{num(sizes['gemma4-12b_lenient_failing_difference'])}, {num(sizes['gemma4-26b-a4b_lenient_failing_difference'])}, "
          + ("both include zero" if includes_zero(sizes["gemma4-12b_lenient_failing_difference_ci95"]) and
             includes_zero(sizes["gemma4-26b-a4b_lenient_failing_difference_ci95"]) else "not both")),
-        ("3.2", "own wrong program against others' on the same problem", "39.0 points [30.7, 47.7]", "+39.0 [30.7, 47.7]",
-         f"{num(blind['gemma-4-31b']['own_vs_other_wrong_same_problem']['value'])} "
-         f"{ci(blind['gemma-4-31b']['own_vs_other_wrong_same_problem']['ci95'])}"),
-        ("3.2", "judges whom being wrong does not make more lenient", "For six of seven judges", "6 of 7",
-         f"{sum(includes_zero(blind[m]['blind_spot_effect']['ci95']) for m in judges)} of {len(judges)}"),
         ("3.2", "Gemma endorses the defective line, both coders", "In all 18 cases", "18 and 18", f"{endorsed[0]} and {endorsed[1]}"),
         ("3.2", "Gemma on Claude 4 Sonnet's failing patches, Lite", "+1.7 [−5.3, 8.7]", "+1.7 [−5.3, 8.7]",
          grab(rest, "own_minus_strong")),
         ("3.3", "thinking before scoring: scored 100, on and off", "62% of its failing patches 100, against 61%", "62%, 61%",
          f"{pct(think['on'])}, {pct(think['off'])}"),
-        ("3.3", "own reproduction script: last run ended without error", "63 of 73 failing runs", "63 of 73",
+        ("3.3", "own reproduction script: last run ended without error", "58 of 64 failing runs", "58 of 64",
          f"{script['ended_without_error']} of {script['ran_own_script']}"),
-        ("3.3", "shell judge: still 100 on stamped failing patches", "still scores 80% of the 51", "80%",
+        ("3.3", "shell judge: still 100 on stamped failing patches", "still scores 80% at 100", "80%",
          pct(actor["approval_100"]["own_fail"]["value"])),
         ("3.3", "its test fails without the patch and passes with it", "in 61% of its runs on failing", "61%",
          pct(actor["test"]["flag_share_own_fail"])),
@@ -344,14 +346,20 @@ def claims():
          f"{gate['primary']['stamped_passing']['blocked']} of {gate['primary']['stamped_passing']['of']}"),
         ("3.4", "check holds back reference patches", "18 of the 193 reference patches", "18 of 193",
          f"{gate['primary']['reference']['blocked']} of {gate['primary']['reference']['of']}"),
+        ("3.4", "the check alone by its plan", "too many to count the check alone as a fix", "too many false blocks",
+         gate["reading"]),
         ("3.4", "broken test also fails with the reference, of 4 broken", "In 3 of the 4 correct patches", "3 of 4",
          f"{sum(not real(p) for p in harmed)} of {len(harmed)}"),
-        ("3.4", "fewer failing patches among the 133 stamped", "leave five fewer failing patches", "5",
+        ("3.4", "fewer failing patches among the 133 stamped", "so five fewer fail", "5",
          str(audit["arms"]["tests"]["stamped_repairs"] - audit["arms"]["tests"]["stamped_harms"])),
-        ("3.4", "passing patches added over all 180", "add ten passing patches", "10",
-         str(t["resolved_after"] - repair["resolved_before"])),
         ("3.4", "tie-break: top quarter passing, before and after", "from 61% to 78%", "61%, 78%",
          f"{pct(calls['precision'] - calls['precision_minus_gemma'])}, {pct(calls['precision'])}"),
+        ("4", "gpt-oss-120b and Llama-4-Maverick on their own held-out patches: intervals include zero",
+         "we detect no leniency", "+2.9 [−3.3, 8.8], +2.8 [−5.0, 10.8], both include zero",
+         f"{num(other['gpt-oss-120b']['lenient_difference_failing'])} {ci(other['gpt-oss-120b']['lenient_difference_failing_ci95'])}, "
+         f"{num(other['llama-4-maverick']['lenient_difference_failing'])} {ci(other['llama-4-maverick']['lenient_difference_failing_ci95'])}, "
+         + ("both include zero" if includes_zero(other["gpt-oss-120b"]["lenient_difference_failing_ci95"])
+            and includes_zero(other["llama-4-maverick"]["lenient_difference_failing_ci95"]) else "NOT both")),
         ("5", "removing leftover files lowers the leniency by", "by 2.2 points [−4.6, 8.7]", "2.2 [−4.6, 8.7]",
          f"{num(left['original_minus_stripped']['value'], False)} {ci(left['original_minus_stripped']['ci95'])}"),
         ("5", "rate scored 100 without the sandbox problem, Lite, Mini", "similar on the runs without this problem",
@@ -366,8 +374,6 @@ def claims():
             else "excludes zero")),
         ("5", "grading check: official label kept", "26 of 30 other-writer patches", "26 of 30",
          f"{grading['official_label']} of {grading['patches']}"),
-        ("5", "grading check: misses that were passes graded as failures", "All four misses were passes", "4",
-         str(grading["misses_official_pass_graded_fail"])),
     ]
 
 

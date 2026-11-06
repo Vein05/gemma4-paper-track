@@ -1,0 +1,100 @@
+{
+ "gemma4-31b (code check)": {
+  "leniency_difference": 23.023,
+  "ci95": [
+   16.55,
+   29.908
+  ],
+  "reading": "lenient",
+  "outside_judges": [
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "glm47-flash",
+   "gpt-oss-120b",
+   "llama-4-maverick"
+  ],
+  "own_failing": 124,
+  "other_failing": 403,
+  "raw_own_failing": 57.7,
+  "raw_other_failing": 9.8,
+  "panel_own_failing": 47.2,
+  "panel_other_failing": 22.3,
+  "scored100_own_failing": 0.5,
+  "scored100_other_failing": 0.079
+ },
+ "gpt-oss-120b": {
+  "leniency_difference": 3.906,
+  "ci95": [
+   -1.707,
+   9.658
+  ],
+  "reading": "not lenient",
+  "outside_judges": [
+   "gemma4-31b",
+   "qwen35-9b",
+   "glm47-flash",
+   "llama-4-maverick"
+  ],
+  "own_failing": 134,
+  "other_failing": 527,
+  "raw_own_failing": 45.3,
+  "raw_other_failing": 21.2,
+  "panel_own_failing": 49.9,
+  "panel_other_failing": 29.7,
+  "scored100_own_failing": 0.0,
+  "scored100_other_failing": 0.0,
+  "pass_rate_292": 0.462,
+  "programs_with_code": 292,
+  "programs_scored_by_all": 254,
+  "programs_lost": 38,
+  "exploratory_without_qwen35": {
+   "leniency_difference": 1.384,
+   "ci95": [
+    -4.677,
+    7.218
+   ],
+   "own_failing": 152,
+   "other_failing": 527,
+   "programs_lost": 6
+  }
+ },
+ "llama-4-maverick": {
+  "leniency_difference": 19.07,
+  "ci95": [
+   13.738,
+   24.269
+  ],
+  "reading": "lenient",
+  "outside_judges": [
+   "gemma4-31b",
+   "gpt-oss-20b",
+   "qwen35-9b",
+   "glm47-flash",
+   "gpt-oss-120b"
+  ],
+  "own_failing": 217,
+  "other_failing": 527,
+  "raw_own_failing": 72.0,
+  "raw_other_failing": 60.5,
+  "panel_own_failing": 11.7,
+  "panel_other_failing": 19.3,
+  "scored100_own_failing": 0.055,
+  "scored100_other_failing": 0.07,
+  "pass_rate_292": 0.209,
+  "programs_with_code": 292,
+  "programs_scored_by_all": 274,
+  "programs_lost": 18,
+  "exploratory_without_qwen35": {
+   "leniency_difference": 19.465,
+   "ci95": [
+    14.264,
+    24.61
+   ],
+   "own_failing": 227,
+   "other_failing": 527,
+   "programs_lost": 5
+  }
+ },
+ "reading_for_paper": "report each model",
+ "spent_usd": 1.202
+}

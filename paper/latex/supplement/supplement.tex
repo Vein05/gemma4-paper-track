@@ -448,6 +448,50 @@ Phi-4-mini (not usable) & 2.7\% & 280 & 3\% / 1\% & \\
 \end{tabular}
 \end{table}
 
+\subsection*{gpt-oss-120b and Llama-4-Maverick on LiveCodeBench}
+
+Pombal et al. report that on LiveCodeBench gpt-oss-120b wrongly passes unit tests of its own programs 5.97 times as % prose-ok: number-dense-paragraph
+often as those of unrelated models, and Llama 4 Maverick 1.34 times as often (their Table 1). Neither model is lenient
+on its own held-out patches (Table~\ref{tab:fiveheld}). We therefore had both models write one program for each of the
+292 problems and judge them, under a plan fixed before any program was written (\path{spec/lcb-same-model.md}). We
+chose this test after reading both results, so it is exploratory. Writing and judging ran through OpenRouter at
+temperature 0, and LiveCodeBench's evaluator graded the programs. A model's outside judges are the six LiveCodeBench
+judges without the model and its family. Other writers are Gemma 4 31B, Claude 3.5 Sonnet and DeepSeek-V3.
+
+By the plan, a model is lenient if its interval lies above zero and its mean score on its own failing programs is above
+its mean on other writers' failing programs. Table~\ref{tab:samemodel} gives the result. Llama-4-Maverick is lenient and
+gpt-oss-120b is not. When the two models differ, the plan's reading is to report each model and to say nothing about
+whether the task or the measure explains the difference from Pombal et al.
+
+Llama-4-Maverick's leniency is not Gemma's rubber-stamping. It scores other writers' failing programs high as well, and
+it gives 100 to fewer of its own failing programs than of other writers'. About 40\% of its difference comes from the
+outside judges, who score its failing programs lower than other writers' failing programs.
+
+Some programs have no score from every judge, mostly because Qwen3.5-9B's answer did not parse: 38 of gpt-oss-120b's and
+18 of Llama-4-Maverick's. Without Qwen3.5-9B as a judge, the differences are $+1.4$ [$-4.7$, 7.2] and $+19.5$ [14.3, 24.6] (a
+check added after reading the result). Half of the 292 problems were chosen because Gemma 4 31B fails them. Pombal et al.
+use a later split of LiveCodeBench and unit-test verdicts, so this test does not repeat their experiment.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Three models judging their own LiveCodeBench programs, with an outside panel. Leniency is own failing minus
+other writers' failing programs, in points with 95\% intervals from 2,000 problem resamples. Mean scores and shares
+scored 100 are on failing programs, own / other writers'. Gemma 4 31B checks the code against Section~\ref{app:stamp}.
+\texttt{derived/lcb\_same\_model\_2026-11-05.json}.}
+\label{tab:samemodel}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Model & Pass rate & Own failing & Leniency [95\%] & Model's score & Outside judges' score & Scored 100 \\
+\midrule
+Gemma 4 31B & 50\% & 124 & $+23.0$ [16.6, 29.9] & 57.7 / 9.8 & 47.2 / 22.3 & 50\% / 8\% \\
+Llama-4-Maverick & 20.9\% & 217 & $+19.1$ [13.7, 24.3] & 72.0 / 60.5 & 11.7 / 19.3 & 6\% / 7\% \\
+gpt-oss-120b & 46.2\% & 134 & $+3.9$ [$-1.7$, 9.7] & 45.3 / 21.2 & 49.9 / 29.7 & 0\% / 0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \section{Where the extra trust goes}
 \label{app:edit}
 
@@ -695,10 +739,10 @@ Self-judging gap [95\%] & $+0.138$ [0.063, 0.214] & $+0.097$ [0.010, 0.192] \\
 \subsection*{Gemma's own reproduction scripts}
 
 While fixing a held-out issue, Gemma often writes a script that reproduces the bug and runs it again after its edit.
-Among Gemma's failing held-out runs, 79 added such a script to the patch and 73 ran it. In 63 of those 73, the last run
-of the script ended without an error. So in most failing runs Gemma had tested its patch with its own script, and the
-script passed. We counted the runs from the logs of Gemma's agent runs (\texttt{changelog/2026-11-03.md},
-\path{spec/own-script-gate.md}).
+Among the runs behind Gemma's 85 failing held-out patches, 64 ended on such a script: leaving out scripts that edit the
+source, the last script Gemma ran is one its patch adds. In 58 of those 64, that last run ended without an error. So in
+most failing runs Gemma had tested its patch with its own script, and the script passed. We counted the runs from the
+logs of Gemma's agent runs (\path{scripts/paper_counts.py}, with the rule of \path{scripts/own_script_gate.py}).
 
 \subsection*{A shell with the patch applied}
 
@@ -966,8 +1010,9 @@ Gemma~4 31B with thinking on, Mini issues & 401 & 0.51 \\
 Nine judges, held-out and matched-harness patches & 9,857 & 8.66 \\
 Seven judges, SWE-bench Lite (Section~\ref{app:stamp}) & 10,526 & 2.44 \\
 Six judges, LiveCodeBench, with an 8-call cost test & 5,319 & 0.98 \\
+gpt-oss-120b and Llama-4-Maverick, new programs and their scores, LiveCodeBench & 4,008 & 1.20 \\
 \midrule
-Total & 32,639 & 15.78 \\
+Total & 36,647 & 16.98 \\
 \bottomrule
 \end{tabular}
 \end{table}

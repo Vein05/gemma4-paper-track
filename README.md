@@ -2,7 +2,7 @@
 
 <p align="center">
   Gemma 4 gives most of its own failing patches the top score when it judges them without being told who wrote them.
-  The trust goes with the edit, and failing repository tests let Gemma repair some of these patches.
+  The trust stays when Gemma checks harder, and failing repository tests let it repair some of these patches.
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
 
 <p align="center">
   <br>
-  <img src="paper/figures/fig-trust.png" alt="Gemma 4 31B approves most of its failing patches, and the extra trust goes with the edit" width="88%">
+  <img src="paper/figures/fig-trust.png" alt="Gemma 4 31B approves most of its failing patches, and on Lite it also trusts other writers' patches that make its edit" width="88%">
   <br><br>
 </p>
 
@@ -27,8 +27,9 @@ from other model families on the same patch.
 - **Gemma 4 31B rubber-stamps its failing patches.** On held-out SWE-bench Verified issues, it gives the top score to
   52 of its 85 failing patches, while outside judges score the same patches lower. It does the same on another team's
   Gemma run on SWE-bench Lite and on contest programs it wrote without an agent.
-- **The trust goes with the edit.** Other writers' failing patches that make Gemma's edit get extra trust from Gemma,
-  20 points on SWE-bench Lite, while smaller Gemma 4 models give the 31B's failing patches no measurable extra trust.
+- **On SWE-bench Lite, the trust reaches other writers' patches that make Gemma's edit.** They get 20 points of extra
+  trust from Gemma. On the held-out issues this result is inconclusive. Smaller Gemma 4 models give the 31B's failing
+  patches no measurable extra trust.
 - **Checks that Gemma runs itself leave the trust in place.** Thinking before scoring, testing the patch in a shell
   and LoRA fine-tuning on labeled patches each leave most rubber-stamped patches approved.
 - **Tests that Gemma did not write let it repair some patches.** Shown the repository tests its patch breaks, Gemma
