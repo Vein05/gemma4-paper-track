@@ -1,0 +1,73 @@
+{
+ "judges": [
+  "gemma4-31b",
+  "gpt-oss-20b",
+  "qwen35-9b",
+  "glm47-flash",
+  "qwen3-coder",
+  "gpt-oss-120b",
+  "glm-4.5",
+  "kimi-k2",
+  "llama-4-maverick"
+ ],
+ "outside_judges": [
+  "gpt-oss-20b",
+  "qwen35-9b",
+  "glm47-flash",
+  "qwen3-coder",
+  "gpt-oss-120b",
+  "glm-4.5",
+  "kimi-k2",
+  "llama-4-maverick"
+ ],
+ "per_writer": {
+  "gemma-4-31b": {
+   "patches": 180,
+   "solved": 0.528,
+   "failing": 85,
+   "gemma_100": 0.612,
+   "above_outside": 14.1
+  },
+  "glm-4.5": {
+   "patches": 160,
+   "solved": 0.619,
+   "failing": 61,
+   "gemma_100": 0.557,
+   "above_outside": 8.9
+  },
+  "gpt-oss-120b": {
+   "patches": 156,
+   "solved": 0.301,
+   "failing": 109,
+   "gemma_100": 0.248,
+   "above_outside": -6.7
+  },
+  "kimi-k2": {
+   "patches": 138,
+   "solved": 0.609,
+   "failing": 54,
+   "gemma_100": 0.611,
+   "above_outside": 7.1
+  },
+  "llama-4-maverick": {
+   "patches": 169,
+   "solved": 0.272,
+   "failing": 123,
+   "gemma_100": 0.163,
+   "above_outside": -10.7
+  },
+  "qwen3-coder": {
+   "patches": 154,
+   "solved": 0.701,
+   "failing": 46,
+   "gemma_100": 0.478,
+   "above_outside": 1.4
+  }
+ },
+ "failing_all_writers": {
+  "n": 478,
+  "gemma_100": 0.393,
+  "gemma_below_50": 0.523,
+  "gemma_100_or_below_50": 0.916
+ }
+}

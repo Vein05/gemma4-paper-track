@@ -1,225 +1,244 @@
-# Gemma 4 Gives Its Failing Patches Full Marks
+# Gemma 4 Is Less Self-Biased Than It Looks
 
-<!-- kaggle-subtitle: Gemma 4 gives most of its own failing patches the top score when it judges them without being
-told who wrote them. Most of the trust stays when Gemma checks harder, and failing repository tests let it repair some of these
-patches. -->
+<!-- kaggle-subtitle: Gemma 4 scores 100 on 61% of its own failing patches, and on 61% of Kimi-K2's. Much of its
+apparent self-bias comes from comparing it with weaker agents. -->
 
 ## Abstract
 
-Coding agents often decide whether a patch is finished by asking the model that wrote it. This check assumes that
-the model judges its own patches as well as other models' patches. Earlier work found that most judges favor their own
-contest programs, but Gemma 3 12B and 27B do not. In this work, we ask Gemma 4 31B and other models to score SWE-bench
-Verified patches without naming their writer, and we compare each judge with judges from other model families on the
-same patch. Gemma gives its top score to 52 of its 85 failing patches, while the other judges score the same patches
-lower. Most small open models we tested are also lenient on their own contest programs. Five large models show no leniency on their own repository patches. On one of two data sets, Gemma also trusts other models' failing patches that make the same edit. Most of the trust stays when Gemma thinks before
-scoring, tests the patch in a shell, or is fine-tuned on labeled patches. When an agent shows Gemma the repository tests
-that its patch breaks, Gemma repairs 9 of the 52, but it also breaks 4 correct patches. Gemma's score alone should not decide whether its patch is finished. We release everything we ran, including every agent and judge trace, on [GitHub](https://github.com/Vein05/gemma4-paper-track) and [Hugging Face](https://huggingface.co/datasets/vein05/gemma4-paper-track-data).
+Coding agents often decide whether a patch is finished by asking a model, often the one that wrote it. Studies of self-preference test whether a judge is biased toward its own outputs by comparing its scores on them
+with its scores on other models' outputs. The closest study controls for how hard each problem is, but not for how strong the other writers are. We ask Gemma 4 31B and eight other models to score SWE-bench patches, and we grade every patch with the hidden tests.
+By the usual measure, Gemma trusts its own failing patches far more than other writers' failing patches. Against writers as strong as Gemma, the gap shrinks on our main data set and is not detectable on two others. Gemma
+gives the top score to 61% of Kimi-K2's failing patches, the same share as its own. Most of Gemma's own failing patches are wrong fixes that pass every existing test. When
+Gemma is shown an existing test that asserts the behavior the issue changes, it obeys the test and breaks the correct
+patch. We release every agent and judge trace on [GitHub](https://github.com/Vein05/gemma4-paper-track) and
+[Hugging Face](https://huggingface.co/datasets/vein05/gemma4-paper-track-data).
 
 ## 1. Introduction
 
 In matplotlib issue 24570, Gemma 4 31B wrote a patch that fixes the reported alignment bug but also swaps the left
 and right cases of a shared helper. When we later asked Gemma whether this patch would pass the project's hidden
-tests, it gave the highest score on our 0 to 100 scale and called the patch "a simple swap" that "correctly implements the expected
-behavior". GLM-4.5 scored the same patch 20 because it "breaks VPacker by reversing left and right", and the hidden
-tests for left and right alignment fail. Coding agents make this call at the end of every task, and many make it by asking the model that wrote the patch.
+tests, it gave the highest score on our 0 to 100 scale and called the patch "a simple swap" that "correctly
+implements the expected behavior". GLM-4.5 scored the same patch 20 because it "breaks VPacker by reversing left and
+right", and the hidden tests for left and right alignment fail. Coding agents make this call at the end of every
+task, and many make it by asking the model that wrote the patch.
 
-We call this failure rubber-stamping: a judge gives its own failing patch the top score. On LiveCodeBench contest
-programs, Pombal et al. (2026) found that most judges favor their own programs, but Gemma 3 12B and 27B do not. On the
-same benchmark, Gemma 4 31B gives the top score to half of its failing programs and to 8% of other writers'. It also
-rubber-stamps on SWE-bench Verified issues it attempted with mini-SWE-agent, and on another team's Gemma run on
-SWE-bench Lite. We compare Gemma with outside judges, models from families other than Gemma that score the same
-patches, and they do not share this trust.
+The standard test of this risk compares a judge's scores on its own outputs with its scores on other models'
+outputs. Pombal et al. (2026) ran this test on contest programs with executed labels. Most judges favored their own
+programs, the preference held within each band of problem difficulty, and it was larger when the judge recognized
+its own output. Gemma 3 12B and 27B were the exception. The test has a second confound that difficulty bands do not
+remove. Errors from strong writers are harder for a verifier to detect (Zhou et al., 2025), so a judge compared with
+weaker writers will seem to favor itself even if it never recognizes its own work.
 
-On average, Gemma scores other writers' failing patches below the outside judges, so it does not score every failing patch high. On Lite, it also trusts failing patches from other models that make the same edit as its own. One reading is that Gemma
-trusts the fix itself, but we cannot rule out that it recognizes its own patches. Checks that Gemma runs itself leave
-most of the trust in place. Showing Gemma the repository tests its patch breaks repairs more patches than a plain second look.
+We ran this test on Gemma 4 31B with SWE-bench patches from five other agents. By the usual measure, Gemma scores its own failing patches 16.6 points further above judges from
+other model families than it scores other writers' failing patches. Gemma gives Kimi-K2's failing
+patches the top score exactly as often as its own, and Llama-4-Maverick's a quarter as often. Against writers at
+least as strong as Gemma, the gap shrinks on our held-out issues and is within noise on SWE-bench Lite and on Go,
+Ruby and PHP issues.
+
+Gemma trusts strong writers' patches. Most of its own failing patches are wrong fixes: the issue's tests fail
+while every other existing test passes. An agent therefore needs a check that Gemma did not write. Existing tests
+catch regressions, so we let Gemma repair patches that break one. The repair works when the test is right. When the test asserts the old behavior that the issue asks to change, Gemma obeys the test and undoes the
+correct fix. Checking a patch can thus fail in two ways: the judge trusts a patch too much, or the outside evidence
+it is given conflicts with the issue.
 
 We make the following contributions:
 
-- **Gemma 4 31B rubber-stamps its failing patches.** On held-out SWE-bench Verified issues, it gives the top score to
-  52 of its 85 failing patches, while outside judges score the same patches lower. Five of six other small open models are also lenient on their own contest programs. Five large models show no leniency on their own repository patches (Section 3.1).
-- **Gemma's trust reaches other writers' patches that make its edit.** On SWE-bench Lite, Gemma's extra trust in those patches
-  over other failing patches is 20 points. The same test on our held-out issues is inconclusive (Section 3.2).
-- **Tests that Gemma did not write let it repair some patches.** Shown the repository tests its patch breaks, Gemma
-  repairs 9 of the 52 rubber-stamped failing patches, against 3 after a plain second look. The same step breaks 4
-  correct patches (Section 3.4).
+- **Measured self-preference depends on who the other writers are.** Compared only with writers as strong as itself,
+  Gemma's extra trust in its own failing patches falls from 16.6 to 9.6 points on our held-out issues, and it is
+  within noise on two other data sets (Section 3.1).
+- **Gemma obeys outdated tests when it repairs a patch.** Shown the existing tests its patch breaks, Gemma repairs
+  real regressions, but it breaks 16 of 23 held-back correct patches,
+  almost all because a broken test asserts the old behavior.
+- **Gemma gives the top score to most strong writers' failing patches in Python, Go, Ruby and PHP.** Most of its own
+  are wrong fixes, and the checks we ran through Gemma missed most of them (Section 3.2).
 
 ## 2. Setup
 
 **Patches.** The main data set is 193 held-out issues, a random sample of SWE-bench Verified issues (Jimenez et al.,
 2023) outside SWE-bench Verified Mini (MariusHobbhahn). We call the model that wrote a patch its writer. The 4-bit
 competition checkpoint of Gemma 4 31B made one attempt per issue in mini-SWE-agent v1.7.0 (SWE-agent) at temperature
-0, and we graded its patches with SWE-bench's grading code. We kept an issue only if its reference patch passes in
-our environment, which kept 193 of 200. Other writers' patches are public mini-SWE-agent submissions (SWE-bench
-experiments) by GLM-4.5, gpt-oss-120b, Kimi-K2, Llama-4-Maverick and Qwen3-Coder, with their official labels. We
-removed test files from every patch and dropped very long patches.
+0, and we graded its patches with SWE-bench's grading code. Other writers' patches are public mini-SWE-agent
+submissions (SWE-bench experiments) by GLM-4.5, gpt-oss-120b, Kimi-K2, Llama-4-Maverick and Qwen3-Coder, with their
+official labels. We removed test files from every patch and dropped very long patches.
 
-Two more data sets test whether the result depends on our run. Another team ran Gemma 4 31B on the 300 SWE-bench
-Lite issues, in mini-SWE-agent 2.2.1 at full precision with thinking on. LiveCodeBench is a different kind of task: our checkpoint wrote one program per contest problem with no agent. On the 50 Mini issues, Gemma's patches from four public harnesses
-(n-pelleriti), including SWE-agent (Yang et al., 2024), give the same picture (Supplement, Section C).
+Two more data sets test whether the result depends on our run or our language. Another team ran Gemma 4 31B on the
+300 SWE-bench Lite issues, in mini-SWE-agent 2.2.1 at full precision with thinking on. We ran Gemma on 120 Go,
+Ruby and PHP issues from SWE-bench Multilingual (SWE-bench) in mini-SWE-agent 2.0.0 with thinking on. There the other writers are four recent
+models, GLM-5, Kimi-K2.5, DeepSeek-V3.2 and MiniMax-M2.5.
 
 **Judges.** Nine models scored every held-out patch: Gemma 4 31B, gpt-oss-20b, Qwen3.5-9B, GLM-4.7-Flash and the
 five writers above. Each judge saw the issue and one patch, without its writer, and scored the chance that the patch
-passes the hidden tests from 0 to 100. Calls went through OpenRouter at temperature 0 with reasoning off, except for
-gpt-oss, which always reasons and ran at low effort. Credit limits left fewer judges on Lite and
-LiveCodeBench, before any score was read.
+passes the hidden tests from 0 to 100. Calls went through OpenRouter at temperature 0 with reasoning off (gpt-oss at low effort). Fewer judges scored the Lite and Go, Ruby and PHP patches,
+chosen before any score was read.
 
 **Measures.** A judge's score on a failing patch says little alone, because some failing patches look right to
-everyone. We therefore subtract the outside judges' mean score on the same patch from the judge's score. Extra trust compares
-two groups of failing patches on this difference. Unless we name another group, the comparison is with other writers'
-failing patches. A judge with extra trust in its own failing patches is lenient on them. We
-report 95% intervals from 2,000 bootstrap resamples of issues. The
-rubber-stamp rate is the share of a judge's own failing patches that it scores 100.
+everyone. We therefore measure how far a judge scores each patch above the mean of the outside judges, the judges
+from other model families. Extra trust is how much further above them a judge scores one group of failing patches
+than another group. A strong writer is one that solves at least as many issues as Gemma on the same data set. We
+report 95% intervals from 2,000 bootstrap resamples of issues.
 
-**Plans.** We committed a written plan, with the rule for reading its result, before computing each test. We mark as
-exploratory every analysis chosen after we saw a result.
+SWE-bench grades a patch with two groups of tests. The issue's tests fail before the reference fix and pass after
+it. The other existing tests must keep passing. We call a failing patch a wrong fix when the issue's tests fail and
+every other test passes, and a regression when it breaks one of the other tests.
+
+**Plans.** We committed a written plan, with the rule for reading its result, before computing each test. The split
+by writer strength and the split by failure type were chosen after we saw results, and we mark them as exploratory.
 
 ## 3. Results
 
-![Gemma 4 31B's scores on failing patches, and who gets its extra trust](figures/fig-trust.png)
+### 3.1 Measured self-preference depends on who the other writers are
 
-**Figure 1.** (a) Gemma's
-scores on failing patches, its own and other writers', on three data sets. (b) Extra trust in failing patches, in
-score points with 95% intervals. In the two same-edit rows, the comparison is other writers' failing patches without
-Gemma's edit.
+Against all other writers, Gemma's extra trust in its own failing patches is 16.6 points on the held-out issues
+and 17.8 points on Lite (Figure 1b). A standard self-preference study would report these numbers. Table 1 shows where they come from. Gemma gives 100 to 61% of its own failing held-out patches and to the same share of Kimi-K2's. For the two
+weakest writers the share falls to a quarter or less, and these two writers supply 59% of the other writers'
+failing patches.
 
-### 3.1 Gemma rubber-stamps its failing patches
+**Table 1.** Gemma 4 31B's scores on failing held-out patches, by writer (exploratory). "Above outside judges" is
+Gemma's mean score minus the outside judges' mean on the same patches, in points.
 
-Gemma gives 100 to about half or more of its failing patches on all three data sets, and to far fewer of other
-writers' failing patches (Figure 1a). The outside judges do not share this trust. On the held-out issues, Gemma scores its own failing patches about 14 points above the outside judges and other
-writers' failing patches about 3 points below them, an extra trust of 16.6 points [10.3, 23.1]. The same holds on Lite and LiveCodeBench, where both intervals lie above zero.
-Gemma's failing patches do look a little better to everyone, so we also compared them only
-with other writers' failing patches that the outside judges score the same. The held-out extra trust is still +13.6,
-and its interval stays above zero (exploratory, Supplement, Sections C and D).
+| Writer | Issues solved | Failing patches | Gemma scores 100 | Above outside judges |
+|---|---|---|---|---|
+| Qwen3-Coder | 70% | 46 | 48% | +1.4 |
+| GLM-4.5 | 62% | 61 | 56% | +8.9 |
+| Kimi-K2 | 61% | 54 | 61% | +7.1 |
+| Gemma 4 31B | 53% | 85 | 61% | +14.1 |
+| gpt-oss-120b | 30% | 109 | 25% | -6.7 |
+| Llama-4-Maverick | 27% | 123 | 16% | -10.7 |
 
-The failure reaches beyond this one model. On LiveCodeBench, five of six other usable small open models, including Gemma 4 12B and 26B-A4B, are lenient on their own failing programs, and Gemma 4 31B has the largest estimate (Figure 2).
-These models share no outside panel, so Qwen3-32B is the only reference judge here. Seed-OSS-36B gives 100 to most failing programs, its own or not.
+When we compare Gemma's own failing patches only with those of strong writers, the gap shrinks on both data sets where we can split the writers (Figure 1b). On Lite, Claude 4 Sonnet is the only other writer as strong as Gemma, and Gemma trusts Claude's failing patches about as much as its own (+1.7 points). On Go, Ruby and PHP every other writer is strong, and the gap is 4.2 points with an
+interval that includes zero. Our plan for that run had predicted a gap above zero.
 
-![Small open models judging their own and other writers' contest programs on LiveCodeBench](figures/fig-sweep.png)
+![Gemma's trust in each writer's failing patches, and its extra trust in its own against all and strong writers](figures/fig-writers.png)
 
-**Figure 2.** Extra trust (exploratory) is own failing minus other writers' failing programs, in score points above Qwen3-32B. We set
-aside GLM-4-9B and Phi-4-mini after reading their results, because they pass almost no problems (Supplement,
-Section C).
+**Figure 1.** Gemma 4 31B trusts failing patches more when their writer is stronger. (a) Held-out issues. Shaded
+writers solve at least as many issues as Gemma, and dot area shows the number of failing patches. (b) Gemma's extra trust in its own failing patches, with 95% intervals, shrinks against strong writers.
 
-Five large models judged their own held-out patches in the same way, and none shows extra trust like Gemma's (exploratory, Figure 1b,
-Supplement, Section C).
+A smaller gap remains on the held-out issues, and two results point to the patch content as its source. On Lite,
+other writers' failing patches that make nearly the same edit as Gemma's get 20 points more extra trust than their
+other failing patches, although the same planned test is inconclusive on the held-out issues. If the trust came from the model family, Gemma 4 12B and 26B-A4B would share it, but they show no measurable
+extra trust in the 31B's failing patches (Supplement, Section D). We never varied the writer with the patch held fixed, so we cannot rule out that Gemma recognizes its own
+patches.
 
-### 3.2 The trust reaches other writers' patches that make Gemma's edit
+### 3.2 Gemma gives the top score to strong writers' wrong fixes
 
-Gemma could trust its patches because it recognizes them as its own, or because it believes in the edit they make.
-We fixed a test before computing it, and it needed support from both data sets. We split other writers' failing patches by whether they change nearly the same lines
-as Gemma's failing patch for that issue. On Lite, Gemma's extra trust in the same-edit
-patches over the others is 20.0 points (Figure 1b). On the held-out issues the estimate is smaller,
-and its interval reaches zero. We detect no extra trust in Gemma's own patch beyond these same-edit patches
-on either set, but few issues have both kinds of patch. The edit explanation is therefore supported on Lite
-and inconclusive on the held-out issues (Supplement, Section D).
+The trust in strong writers' failing patches holds outside our run. On Go, Ruby and PHP, Gemma gives 100 to 76% of
+its own failing patches and to 68% of the four other writers' failing patches. The outside judges give the same own
+failing patches 100 only 29% of the time. There, Gemma's score separates its own passing patches from its
+failing ones no better than chance.
 
-We also tested whether the trust belongs to the Gemma family. Gemma 4 12B and 26B-A4B scored the 31B's held-out patches, and neither shows measurable extra trust in its failing ones (Figure 1b). The same two models are lenient on contest programs they wrote themselves (Figure 2). Coming from the same family does not produce this trust (Supplement, Section D).
+Gemma's 100 works like a verdict. On the held-out failing patches of all six writers, it gives either 100 or a score below 50 in 92% of cases.
 
-The trust is not limited to Gemma's own fixes. On Lite, Gemma trusts failing patches by Claude 4 Sonnet, one of that
-data set's other writers, about as much as its own (Supplement, Section C). Our data cannot tell the fix Gemma would write from
-the fix most strong models would write. We also never varied the writer with the patch held fixed, so we cannot rule
-out that Gemma recognizes its own patches.
+Most of the failing patches that get this verdict are wrong fixes. We sorted Gemma's 85 failing held-out patches by failure type (exploratory; Supplement, Section C). 55 are wrong fixes, in which every existing test still passes. 13 only break an existing
+test, and 17 do both. Gemma's extra trust is about the same for wrong fixes and for regressions, and the outside
+judges also score both kinds alike. A judge that reads the patch can see a crash, but a wrong fix looks like a fix.
 
-### 3.3 Checking harder through Gemma leaves most of the trust in place
+Checks that Gemma runs itself miss most of the same failures (Table 2; Supplement, Section E).
 
-A check that Gemma runs itself may inherit this trust. We tested four such checks.
+**Table 2.** Checks run by Gemma, and what happens to its failing patches.
 
 | Check run by Gemma | What happens to Gemma's failing patches |
 |---|---|
 | Thinking before scoring (Mini issues) | still scores 62% of its failing patches 100, against 61% without thinking |
 | Its own reproduction script, written while fixing the issue | the last run ends without an error in almost all failing runs that ran one |
 | A shell with the patch applied; Gemma must write a test that fails without it | on the 52 failing held-out patches it had scored 100, still scores 80% at 100 |
-| LoRA fine-tuning on labeled patches from other issues | on separate held-out and Lite issues, still accepts almost all the failing patches it had scored 100 |
+| Fine-tuning Gemma (LoRA) on labeled patches from other issues | on separate held-out and Lite issues, still accepts almost all the failing patches it had scored 100 |
 
-The shell runs had the repository's environment active, and in most of them on failing
-patches Gemma wrote a test that fails without the patch and passes with it. The shell lowers Gemma's score more often on failing patches than on
-passing ones, but it separates them only slightly (AUROC 0.58). The LoRA adapter did not reduce the failing
-patches Gemma accepts on new issues by a measurable amount (one seed, Supplement, Section E).
+### 3.3 Gemma obeys outdated tests when it repairs a patch
 
-### 3.4 Tests that Gemma did not write let it repair some patches
+We gave the agent a check that uses the repository's existing tests and needs no hidden test. It picks the existing tests whose files or functions match the changed code, runs them twice
+before the patch and once after, and holds back the patch if a test that passed both times now fails. A held-back
+patch gets one more Gemma run in mini-SWE-agent. In one condition Gemma sees the broken tests and their output and is asked to make them pass without editing the test files. In the other it gets a second look (Supplement, Section F).
 
-The repository's existing tests encode what the project's developers expected. We gave the agent a check that needs
-no hidden test and no second model. It picks the existing tests whose files or functions match the changed code,
-runs them twice before the patch and once after, and holds back the patch if a test that passed both times now
-fails or disappears. A held-back patch gets one more Gemma run in mini-SWE-agent. In one condition Gemma sees
-the broken tests and their output, and in the other it gets a plain second look at its patch. We graded every result
-with the hidden tests (Supplement, Section F).
+On the held-out issues, the broken tests let Gemma repair 14 of 26 held-back failing patches, against 6 with a
+second look (one-sided sign test, p = 0.004). On Gemma's Lite patches from the other team, the planned repeat
+repaired 1 of 30.
 
-![The 133 held-out patches Gemma scored 100, before and after the check and one repair run](figures/fig-repair.png)
+The two patch sets differ in failure type (Table 3). Most held-out failures that the check held back broke an
+existing test. 
+Half of the Lite failures were wrong fixes, held back by a test outside SWE-bench's own list, and making that test
+pass cannot fix the issue.
 
-**Figure 3.** Showing Gemma the tests its patch breaks repairs 9 of its 52 rubber-stamped failing patches and breaks
-4 of its 81 correct ones. Each dot is one of the 133 held-out patches Gemma scored 100: filled if it passes the hidden
-tests, hollow if it fails. The grey band marks the patches the check held back, and only these got a repair run.
+**Table 3.** The repair on two sets of Gemma's patches, with the broken tests shown and with a second look. A
+held-back patch "breaks an existing test" when it fails one of SWE-bench's listed regression tests. Repaired
+counts leave out one Lite issue whose test fails at random.
 
-The check holds back 15 of the 52 failing patches Gemma scored 100. In almost all of these, the broken test passes with the
-reference patch, so these are real regressions that Gemma missed.
+| | Held-out, tests | Held-out, second look | Lite, tests | Lite, second look |
+|---|---|---|---|---|
+| Held-back failing patches | 26 | 26 | 30 | 30 |
+| Of these, break an existing test | 22 | | 15 | |
+| Repaired | 14 | 6 | 1 | 0 |
+| Held-back correct patches | 9 | 9 | 14 | 14 |
+| Broken by the repair | 4 | 1 | 12 | 2 |
+| Net change in passing patches | +10 | +5 | −11 | −2 |
 
-Shown the broken tests, Gemma repairs 14 of all 26 held-back failing patches, against 6 with a second look
-(one-sided sign test, p = 0.004). This meets the reading we fixed before the run. Among the 52 patches it scored 100, the tests repair nine and a second look repairs three.
+The larger cost falls on correct patches. Some existing tests assert the old behavior that the issue asks to change.
+For all 14 correct Lite patches that the check held back, the reference fix fails the same check. Shown such a test, Gemma broke 12 of these 14 patches, against 2 with a second look. On xarray issue 5131 it wrote
+that the tests "explicitly expect" the old output, and that "the constraints of the task (making tests pass without
+editing them) force me to restore it". On held-out issues the repair still helps on net: 105 of Gemma's 180 patches pass after it, against 95 before.
+On Lite it hurts.
 
-The repair has a cost. Some existing tests assert the old behavior that the issue asks to change, so the check also
-holds back about one in ten correct patches. By our plan, that is too many to count the check alone as a fix. Shown such a test, Gemma
-often obeys it. In 3 of the 4 correct patches it broke, the broken test also fails with the reference patch, and
-Gemma restored the old behavior to make it pass. On sympy issue 12481 it wrote that it had "re-introduced the
-disjointness check to make `test_args` pass, although this contradicts the PR description". Among the 133 patches Gemma scored 100, the repair fixes nine and breaks four, so five fewer fail.
-
-We ran the repair twice more on every held-back patch, at temperature 0.3, and the result holds. In each run, the tests repair eight and break four, and a second look repairs at most one.
+The missing step is a decision about which tests may change, which Agentless (Xia et al., 2024) leaves to the model. In an exploratory test on the saved runs, Gemma read
+only the issue and the broken-test report, and labeled each test as outdated or as a real regression. Skipping the
+repair for patches whose tests were all labeled outdated cut the broken correct Lite patches from 12 to 6 and kept
+12 of the 14 held-out repairs. We chose this rule after seeing the outcomes, so it needs a fresh test.
 
 ## 4. Related work
 
-The closest work is Pombal et al. (2026). They asked judges whether a LiveCodeBench program passes each unit test, and most judges wrongly pass their own
-programs more often than other families' programs. Gemma 3 4B does too, while 12B and 27B do not. We score whole
-programs and did not run Gemma 3, so we cannot say whether the model or the measure explains the difference from Gemma
-4 31B. In their data, gpt-oss-120b and Llama-4-Maverick do this too, yet we detect no extra trust
-in either on its own repository patches. On contest programs, our measure finds Llama-4-Maverick lenient and gpt-oss-120b not (exploratory, Supplement, Section C).
+**Measuring self-preference.** Panickssery et al. (2024) link a judge's preference for its own summaries to how well
+it recognizes them. Pombal et al. (2026) asked judges whether a LiveCodeBench program passes each unit test. Most
+judges wrongly pass their own programs more often than other families' programs, while Gemma 3 12B and 27B do not.
+Roytburg et al. (2026) compare a judge's own wrong answers with other models' wrong answers to the same question, and
+much of the measured self-preference goes away. Their correction concerns the judge. Ours concerns the other writers, and it applies even when the judge and the problems stay the same.
 
-Other work on judges that favor their own outputs uses mostly text and short programs. Panickssery et al. (2024)
-link this self-preference to how well a model recognizes its own summaries. Roytburg et al. (2026) compare a judge's
-own wrong answers with other models' wrong answers to the same question, and much of the measured self-preference
-goes away.
+**Verifying strong writers.** On math, knowledge and reasoning tasks, Zhou et al. (2025) find that weak generators' errors are easier to detect
+than strong ones'. Table 1 shows the same pattern for repository patches.
+Khullar et al. (2026) find that one model rates a SWE-bench patch as more correct when it is framed as its own earlier
+answer. Our judges see no authorship cue.
 
-Khullar et al. (2026) find that one model rates
-a SWE-bench patch as more correct when it is framed as its own earlier answer. In our setting, the judge sees no
-authorship cue, and the patches come from full agent runs. SWE-Gym (Pan et al., 2024) and R2E-Gym (Jain et al., 2025)
-fine-tune verifiers that choose among attempts at one issue.
+**Tests as a check.** In test-based program repair, test suites are often too weak, so repair tools produce many incorrect patches
+that pass them (Xiong et al., 2017). Our wrong
+fixes are this class. When code changes, some tests must change too, and Shang et al. (2026) find that coding agents identify those
+tests with an F1 below 50%. ImpossibleBench (Zhong et al., 2025) edits SWE-bench tests to conflict with the issue and tells the agent to put the issue first. Our conflicts come from the repositories' own tests, and our note gave no order. Gemma chose the test.
 
 ## 5. Limitations
 
-All our data are Python code. The repair covers Gemma 4 31B only. In the agent runs that wrote Gemma's held-out patches, the
-repository's Python environment was not active, so Gemma often could not import the code.
-This lowers its resolve rate, but its rubber-stamp rate is similar on the runs without this problem and on the Lite
-and Mini runs, which were made elsewhere. Both repair conditions had the environment active, so the second look's repairs already include its effect. We graded Gemma's patches ourselves, and in our environment 26
-of 30 other-writer patches got their official label.
+The writer-strength and failure-type splits are exploratory, and the strong group holds one to four writers per
+data set. The own-patch gap against strong writers stays above zero on the held-out issues. The Go, Ruby and PHP run
+also changes the agent version, thinking and the language, so it supports the writer account without isolating it. In Gemma's held-out agent runs, the repository's Python environment was not active, so Gemma often
+could not import the code. This lowers its resolve rate and may produce more crash patches, which the repair fixes
+most easily. The repair's harm rests on 23 correct patches, and each Lite repair condition ran once.
 
 ## 6. Conclusion
 
-Gemma 4 31B gives its top score to 52 of its 85 failing patches, and the outside judges score the same patches lower.
-Checks that Gemma runs itself leave most of the trust in place. The repository's existing tests catch some of these
-patches, and seeing the broken tests lets Gemma repair nine of the 52, at the cost of four correct patches. An agent
-built on Gemma should not let Gemma's score alone decide that a patch is finished. It should run the project's existing
-tests, and someone other than Gemma should decide when such a test conflicts with the issue.
+A judge that seems to favor its own patches may partly be favoring strong writers. For Gemma 4 31B, the measured preference for its own failing patches shrinks, or is no longer detectable, once the comparison
+writers are as strong as Gemma, so self-preference studies should report who the other writers were. Gemma gives most strong agents' failing patches the top score, and the checks we ran through Gemma left most of its
+own failing patches undetected. Existing tests detect regressions, but when a test
+conflicts with the issue, Gemma follows the test. An agent built on Gemma should not let Gemma's score decide that a
+patch is finished, and it should not let Gemma decide alone which test to believe.
 
 ## 7. Data, code and compute
 
-The GitHub repository holds the paper, the supplement, all code, every analysis plan, every judge answer and the summary behind each number. The Hugging Face
-dataset holds the raw runs, including every agent run and judge prompt. The project used about 74
-GPU-hours. At RunPod on-demand prices this compute costs about $122.
+The GitHub repository holds the paper, supplement, code, analysis plans and judge answers. The Hugging Face dataset holds the agent runs and judge prompts. Running `./reproduce.sh main` regenerates every
+table in this paper from the released data, without a GPU.
+The project used about 90 GPU-hours. At RunPod on-demand prices this compute costs about $150.
 
 ## References
 
-<!-- cite: panickssery2024recognize roytburg2026narcissists pombal2026rubric khullar2026selfattribution pan2024swegym jain2025r2egym jimenez2023swebench swebenchverifiedmini miniswe swebenchexperiments alphadiana yang2024sweagent -->
+<!-- cite: panickssery2024recognize roytburg2026narcissists pombal2026rubric khullar2026selfattribution zhou2026variation xiong2018patchcorrectness shang2026tebench xia2024agentless zhong2025impossiblebench jimenez2023swebench swebenchverifiedmini miniswe swebenchexperiments swebenchmultilingual yang2024sweagent -->
 <!-- refs:start -->
-- Naman Jain, Jaskirat Singh, Manish Shetty, Liang Zheng, Koushik Sen and Ion Stoica. 2025. *R2E-Gym: Procedural Environments and Hybrid Verifiers for Scaling Open-Weights SWE Agents*. <https://arxiv.org/abs/2504.07164>.
 - Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press and Karthik Narasimhan. 2023. *SWE-bench: Can Language Models Resolve Real-World GitHub Issues?* <https://arxiv.org/abs/2310.06770>. ICLR 2024 (arXiv comment, https://openreview.net/forum?id=VTF8yNQM66).
 - Dipika Khullar, Jack Hopkins, Rowan Wang and Fabien Roger. 2026. *Self-Attribution Bias: When AI Monitors Go Easy on Themselves*. <https://arxiv.org/abs/2603.04582>.
 - MariusHobbhahn. *swe-bench-verified-mini*. <https://huggingface.co/datasets/MariusHobbhahn/swe-bench-verified-mini>. Hugging Face dataset; revision b316c349; accessed 2026-10-05.
-- n-pelleriti. *AlphaDiana Gemma 4 agent-run datasets*. <https://huggingface.co/n-pelleriti>. Six Hugging Face datasets; accessed 2026-10-05.
-- Jiayi Pan, Xingyao Wang, Graham Neubig, Navdeep Jaitly, Heng Ji, Alane Suhr and Yizhe Zhang. 2024. *Training Software Engineering Agents and Verifiers with SWE-Gym*. <https://arxiv.org/abs/2412.21139>. ICML 2025 (arXiv comment).
 - Arjun Panickssery, Samuel R. Bowman and Shi Feng. 2024. *LLM Evaluators Recognize and Favor Their Own Generations*. <https://arxiv.org/abs/2404.13076>.
 - José Pombal, Ricardo Rei and André F. T. Martins. 2026. *Self-Preference Bias in Rubric-Based Evaluation of Large Language Models*. <https://arxiv.org/abs/2604.06996>.
 - Dani Roytburg, Matthew Bozoukov, Matthew Nguyen, Jou Barzdukas, Mackenzie Puig-Hall and Narmeen Oozeer. 2026. *Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations*. <https://arxiv.org/abs/2601.22548>. ICML 2026 Main.
+- Ye Shang, Quanjun Zhang, Haichuan Hu, Chunrong Fang, Liang Xiao and Zhenyu Chen. 2026. *Breaking, Stale, or Missing? Benchmarking Coding Agents on Project-Level Test Evolution*. <https://arxiv.org/abs/2605.06125>.
 - SWE-agent. *mini-SWE-agent*. <https://github.com/SWE-agent/mini-swe-agent>. GitHub repository; accessed 2026-10-05.
 - SWE-bench. *SWE-bench experiments*. <https://github.com/SWE-bench/experiments>. GitHub repository; patches from the swe-bench-submissions bucket; revision 40f164d5; accessed 2026-10-05.
+- SWE-bench. *SWE-bench Multilingual*. <https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual>. Hugging Face dataset; revision 846e647b; accessed 2026-11-07.
+- Chunqiu Steven Xia, Yinlin Deng, Soren Dunn and Lingming Zhang. 2024. *Agentless: Demystifying LLM-based Software Engineering Agents*. <https://arxiv.org/abs/2407.01489>.
+- Yingfei Xiong, Xinyuan Liu, Muhan Zeng, Lu Zhang and Gang Huang. 2017. *Identifying Patch Correctness in Test-Based Program Repair*. <https://arxiv.org/abs/1706.09120>. ICSE 2018 (arXiv comment).
 - John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan and Ofir Press. 2024. *SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering*. <https://arxiv.org/abs/2405.15793>.
+- Ziqian Zhong, Aditi Raghunathan and Nicholas Carlini. 2025. *ImpossibleBench: Measuring LLMs' Propensity of Exploiting Test Cases*. <https://arxiv.org/abs/2510.20270>. ICLR 2026 (proceedings page https://iclr.cc/virtual/2026/poster/10009390, https://openreview.net/forum?id=SeO4vyAj7E).
+- Yefan Zhou, Austin Xu, Yilun Zhou, Janvijay Singh, Jiang Gui and Shafiq Joty. 2025. *Variation in Verification: Understanding Verification Dynamics in Large Language Models*. <https://arxiv.org/abs/2509.17995>. ICLR 2026 (arXiv comment).
 <!-- refs:end -->

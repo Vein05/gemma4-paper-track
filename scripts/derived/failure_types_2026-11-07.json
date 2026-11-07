@@ -1,0 +1,42 @@
+{
+ "held_out_own_failing": {
+  "n": 85,
+  "types": {
+   "both": {
+    "n": 17,
+    "gemma_minus_outside": 10.7,
+    "outside_mean": 47.9
+   },
+   "regression": {
+    "n": 13,
+    "gemma_minus_outside": 16.8,
+    "outside_mean": 60.1
+   },
+   "wrong fix": {
+    "n": 55,
+    "gemma_minus_outside": 14.5,
+    "outside_mean": 59.4
+   }
+  }
+ },
+ "held_out_held_back_failing": {
+  "n": 26,
+  "with_log": 26,
+  "break_other_test": 22,
+  "types": {
+   "both": 12,
+   "wrong fix": 4,
+   "regression": 10
+  }
+ },
+ "lite_held_back_failing": {
+  "n": 30,
+  "with_log": 30,
+  "break_other_test": 15,
+  "types": {
+   "both": 9,
+   "regression": 6,
+   "wrong fix": 15
+  }
+ }
+}

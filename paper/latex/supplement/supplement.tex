@@ -1,22 +1,23 @@
 \documentclass[10pt,letterpaper]{article}
-% Supplement to "Gemma 4 Gives Its Failing Patches Full Marks". Design: ../rubberstamp.sty (shared with the paper).
+% Supplement to "Gemma 4 Is Less Self-Biased Than It Looks". Design: ../rubberstamp.sty (shared with the paper).
 % Built from paper/ by the Makefile through latex/style_supplement.py (header-row tints, color marks).
 % THE ONLY COPY TO EDIT. `cd paper && make` writes the one PDF to read: paper/rubber-stamp-supplement.pdf.
 % Not sources: paper/latex/build/ (scratch, rebuilt every make), release/paper/... (copied by make_release.sh),
-% notes/*/supplement.tex (old snapshots). Do not run pdflatex here: it leaves an unstyled supplement.pdf beside this file.
-% Sections follow the paper: A and B back Section 2, C to F back Sections 3.1 to 3.4, G backs Section 7.
-% The paper (writeup.md) names these sections by letter; change both together.
+% notes/*/supplement.tex and paper/drafts/supplement/ (old snapshots). Do not run pdflatex here: it leaves an unstyled
+% supplement.pdf beside this file.
+% Sections: A and B back Section 2; C backs Section 3.1 and the first part of 3.2; D the end of 3.1; E Table 2 in 3.2;
+% F Section 3.3; G Section 7. The paper (writeup.md) names these sections by letter; change both together.
 \usepackage{rubberstamp}
 \renewcommand{\thesection}{\Alph{section}}
-\hypersetup{pdftitle={Gemma 4 Gives Its Failing Patches Full Marks: Supplement}}
-\rsfooter{Gemma 4 Gives Its Failing Patches Full Marks: Supplement}
+\hypersetup{pdftitle={Gemma 4 Is Less Self-Biased Than It Looks: Supplement}}
+\rsfooter{Gemma 4 Is Less Self-Biased Than It Looks: Supplement}
 \makeatletter\g@addto@macro{\UrlBreaks}{\do\-}\makeatother % long dataset names break at hyphens
 \begin{document}
-\rstitle{Supplement}{Gemma 4 Gives Its Failing Patches Full Marks}{Paper: \texttt{rubber-stamp.pdf}}
-\noindent This supplement accompanies \emph{Gemma~4 Gives Its Failing Patches Full Marks} (\texttt{rubber-stamp.pdf}).
-Its sections follow the paper. Sections~\ref{app:prompt} and~\ref{app:grading} give the setup of the paper's
-Section~2. Sections~\ref{app:stamp} to~\ref{app:repair} give the detail behind Sections 3.1 to 3.4, and
-Section~\ref{app:cost} gives the cost. Terms, patch sets and measures are those of the paper. Every number traces to
+\rstitle{Supplement}{Gemma 4 Is Less Self-Biased Than It Looks}{Paper: \href{https://github.com/Vein05/gemma4-paper-track/blob/main/paper/rubber-stamp.pdf}{\texttt{rubber-stamp.pdf}}}
+\noindent This supplement accompanies \emph{Gemma~4 Is Less Self-Biased Than It Looks} (\texttt{rubber-stamp.pdf}). Its sections follow the paper.
+Sections~\ref{app:prompt} and~\ref{app:grading} give the setup of the paper's Section~2. Section~\ref{app:stamp} backs
+Section 3.1 and the first part of Section 3.2, Section~\ref{app:edit} the end of Section 3.1, Section~\ref{app:checks}
+the checks in Table 2, Section~\ref{app:repair} Section 3.3, and Section~\ref{app:cost} the cost. Terms, patch sets and measures are those of the paper. Every number traces to
 a file in \texttt{scripts/derived/} of the repository, \url{https://github.com/Vein05/gemma4-paper-track}, and every
 test names its written plan in \texttt{spec/}. The raw runs behind them, including every agent and judge trace, are in
 the Hugging Face dataset \url{https://huggingface.co/datasets/vein05/gemma4-paper-track-data}. Analyses chosen after a result was seen are marked exploratory.
@@ -106,8 +107,8 @@ Llama-4-Maverick & 0 & 0 & 0 \\
 \paragraph{Sensitivity to the re-ask (exploratory).} Leaving out patches whose answer needed a re-ask, the held-out
 self-judging gap is $+0.030$ [$-0.024$, 0.083] (all judges' re-asked patches; 763 patches, 143 of Gemma's), $+0.055$
 [0.001, 0.106] (only Kimi-K2's) and $+0.063$ [0.012, 0.115] (only Qwen3.5-9B's). Without the re-asked patches,
-Gemma's own AUROC rises from 0.622 to 0.670, its extra trust in failing patches is $+11.1$ [3.8, 18.2] and its
-rubber-stamp rate 56\%. On per-judge percentile ranks instead of raw scores, the held-out extra trust is $+0.085$
+Gemma's own AUROC rises from 0.622 to 0.670, its extra trust in failing patches is $+11.1$ [3.8, 18.2], and it
+gives 100 to 56\% of its failing patches. On per-judge percentile ranks instead of raw scores, the held-out extra trust is $+0.085$
 [0.048, 0.122] on failing patches and $+0.024$ [$-0.007$, 0.055] on passing patches.
 
 \section{Agent runs and grading}
@@ -144,12 +145,14 @@ patches every judge scored, Gemma's extra trust in failing patches is $+16.1$ [8
 files and $+18.3$ [10.8, 25.1] with them. The paired difference is $+2.2$ [$-4.6$, 8.7]. On unchanged patches, a
 judge's score moves by 6 to 16 points between two runs, so this shift is within run-to-run noise.
 
-\section{Rubber-stamping on three data sets}
+\section{Gemma's scores on failing patches}
 \label{app:stamp}
 
-This section backs Section 3.1 of the paper. Gemma gives 100 to about half or more of its failing patches on the
-held-out issues, on SWE-bench Lite and on LiveCodeBench, and the outside judges do not share this trust. Five large
-models do not show it on their own patches. Several small open models do.
+This section backs Section 3.1 and the first part of Section 3.2 of the paper. Gemma gives 100 to about half or more
+of its failing patches on the held-out issues, on SWE-bench Lite, on LiveCodeBench and on Go, Ruby and PHP issues, and
+the outside judges do not share this trust. How much more it trusts its own failing patches than other writers'
+depends on how strong the other writers are. Five large models do not show the extra trust on their own patches.
+Several small open models do.
 
 \paragraph{Held-out issues, per judge.} Table~\ref{tab:perjudge} gives each judge's share of failing patches scored
 100. Gemma gives 100 to 52 of its 85 failing patches (61\%) and to 136 of the 393 failing patches by other writers
@@ -304,6 +307,136 @@ them and computed its extra trust the same way, against the other judges except 
 Lite and LiveCodeBench, Gemma's extra trust exceeds the largest of the outside judges' by 12.8 [4.3, 16.8] and 14.2 [3.3,
 22.2] points. On the held-out issues, Kimi-K2 as judge is also lenient on Gemma's failing patches, at $+10.0$ [5.0,
 14.9] against Gemma's $+16.6$. There Gemma exceeds the largest outside judge by 6.7 [$-2.7$, 12.2] points.
+
+\subsection*{Writer strength (exploratory)}
+
+We chose this split on 2026-11-04, after the results above (\path{scripts/strong_writer_leniency.py},
+\path{derived/strong_writer_leniency_2026-11-04.txt}). A strong writer solves at least as many issues as Gemma on the
+same data set. On the held-out issues, Qwen3-Coder (70\%), GLM-4.5 (62\%) and Kimi-K2 (61\%) are strong, against
+Gemma's 53\%. On SWE-bench Lite, Claude 4 Sonnet is the only strong writer (57\% against 56\%). On the Go, Ruby and
+PHP issues, all four other writers solve 63 to 68\% of the issues, against Gemma's 52\%
+(\path{derived/nonpython_2026-11-07.json}).
+
+Table~\ref{tab:strong} compares Gemma's own failing patches with strong writers' failing patches only. The extra trust
+falls from 16.6 to 9.6 points on the held-out issues and from 17.8 to 1.7 points on Lite. The outside judges
+themselves score strong writers' failing patches higher than Gemma's own: 64.0 against 57.2 on the held-out issues,
+and 68.0 against 63.5 on Lite. Gemma's own failing patches look a little better to the outside judges than weak
+writers' failing patches do. We therefore also compared patches within five bands of the outside judges' mean score,
+weighted by Gemma's own patches. This changes neither comparison by more than one point.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Gemma's extra trust in its own failing patches, against all other writers and against strong writers only, in
+points with 95\% intervals. ``Within bands'' compares patches inside quintiles of the outside judges' mean score.
+Outside means are the outside judges' mean scores on Gemma's own, strong writers' and all other writers' failing
+patches.}
+\label{tab:strong}
+\footnotesize
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & Held-out & SWE-bench Lite & Go, Ruby and PHP \\
+\midrule
+Strong writers & Qwen3-Coder, GLM-4.5, Kimi-K2 & Claude 4 Sonnet & all four \\[2pt]
+Failing patches: own / strong writers' & 85 / 161 & 130 / 126 & 54 / 152 \\
+Outside mean: own / strong / other & 57.2 / 64.0 / 46.8 & 63.5 / 68.0 / 56.5 & \\
+Against all other writers & $+16.6$ [10.3, 23.1] & $+17.8$ [12.1, 23.5] & $+4.2$ [$-3.7$, 11.8] \\
+Against strong writers only & $+9.6$ [2.5, 16.2] & $+1.7$ [$-5.3$, 8.7] & $+4.2$ [$-3.7$, 11.8] \\
+Against strong writers, within bands & $+10.4$ [3.8, 17.2] & $+1.5$ [$-6.5$, 9.1] & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Two outside panels.} Table 1 of the paper compares Gemma with the paper's outside judges, the eight judges
+outside Gemma's family (\path{scripts/writer_table.py}, \path{derived/writer_table_2026-11-07.json}).
+Table~\ref{tab:perwriter} above also leaves out the judges of the writer's own family, so GLM-4.5's and Qwen3-Coder's
+patches are compared with fewer judges. The two panels order the strong writers differently. Both put strong writers'
+failing patches above the outside judges, the two weak writers' below them, and Gemma's own highest.
+
+\subsection*{Go, Ruby and PHP issues}
+
+\paragraph{Setup.} We fixed the issues, judges, measures and reading in a written plan before the run
+(\path{spec/nonpython-rubber-stamp.md}). The issues are 40 Go, 40 Ruby and 40 PHP issues of SWE-bench Multilingual,
+taken in a fixed random order, each with a reference patch that passes our grader. Gemma, the 4-bit competition
+checkpoint at temperature 0, ran in mini-SWE-agent 2.0.0's SWE-bench runner on the lab's A100. The other writers are
+the four public mini-SWE-agent 2.0.0 entries on the same issues, GLM-5, Kimi-K2.5, DeepSeek-V3.2 and MiniMax-M2.5,
+with their official labels. Only their failing patches were scored.
+
+\paragraph{Thinking on.} A nine-issue pilot met the plan's stop rule. A harness fault hid Gemma's submissions in part of
+it, and after the fix, Gemma still ended most PHP, Ruby and Go pilot issues without a patch with thinking off. With
+thinking on, every one of them ended with a patch. Rules added to the plan before any patch was graded then ran all
+120 issues with thinking on. This is the only run of ours with thinking on for Gemma as the writer. The patches from
+the other team's Lite run also had thinking on. Gemma solved 62 of the 120 issues.
+
+\paragraph{Judges.} Five judges scored every patch through OpenRouter, each on one pinned provider: Gemma 4 31B and
+four outside judges, GLM-4.5, Qwen3.5-9B, gpt-oss-20b and Llama-4-Maverick. GLM-4.5 is left out of the panel for
+GLM-5's patches. The prompt, parser and re-ask rule are those of the held-out run (\path{scripts/multilingual_judging.py}).
+The system message still calls the judge an expert Python maintainer, as for the Python issues. Of 273 patches, 266
+got all five scores.
+
+\paragraph{Result.} The plan's reading is that the extra trust carries over if its 95\% interval is above zero. It is
+$+4.2$ [$-3.7$, 11.8], so it does not carry over (Table~\ref{tab:np}). The plan had predicted the opposite, a lower
+bound above zero (judged about 70\% likely), with a point guess of $+10$. Gemma still gives 100 to most failing
+patches, its own and other writers'. Its score separates its own passing patches from its failing ones no better than
+chance (AUROC 0.47), while the outside judges' mean does (0.66). The plan's descriptive comparison with the held-out
+issues under the same four outside judges was not computed.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Go, Ruby and PHP issues, thinking on. Shares and extra trust with 95\% intervals; per-language and per-writer
+values are descriptive. \texttt{derived/nonpython\_2026-11-07.json}.}
+\label{tab:np}
+\begin{tabular}{@{}lc@{}}
+\toprule
+Measure & Value \\
+\midrule
+Issues; Gemma's judged patches: passing / failing & 118; 60 / 54 \\
+Other writers' failing patches & 152 \\
+Gemma gives 100: own failing / other writers' failing & 76\% [64, 87] / 68\% [59, 77] \\
+Outside judges give 100 to Gemma's own failing patches & 29\% [23, 34] \\
+Gemma gives 100 to its own passing patches & 42 of 60 \\
+Extra trust, failing patches & $+4.2$ [$-3.7$, 11.8] \\
+Same issue only & $+2.6$ [$-3.6$, 8.9] \\
+By language: Ruby / Go / PHP & $+16.7$ / $+2.6$ / $-5.1$ \\
+By writer: GLM-5 / Kimi-K2.5 / DeepSeek-V3.2 / MiniMax-M2.5 & $+5.7$ / $+4.5$ / $+9.4$ / $-3.2$ \\
+AUROC on own patches: Gemma / outside judges & 0.47 / 0.66 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Only Ruby's interval lies above zero (Ruby $+16.7$ [6.5, 27.1], Go $+2.6$ [$-9.0$, 14.3], PHP $-5.1$ [$-20.7$, 9.8]).
+Every per-writer interval includes zero.
+
+\subsection*{Scores like verdicts, and failure types (exploratory)}
+
+On the 478 failing held-out patches of all six writers, Gemma gives 100 to 39\% and a score below 50 to 52\%. So 92\%
+of its scores on failing patches sit at one of the two ends (\path{scripts/writer_table.py}).
+
+We sorted Gemma's 85 failing held-out patches by which of SWE-bench's tests fail (\path{scripts/failure_types.py},
+\path{derived/failure_types_2026-11-07.json}). The issue's tests (\texttt{FAIL\_TO\_PASS}) fail before the reference fix
+and pass after it. The other listed tests (\texttt{PASS\_TO\_PASS}) pass before and after it. A wrong fix fails an
+issue test and passes every other listed test. A regression passes the issue tests and fails another listed test. The
+test outcomes come from SWE-bench 4.1.0's log parser on our grading logs (\path{data/failure-types/test_status.jsonl}).
+Table~\ref{tab:types} gives the result. Gemma scores wrong fixes and regressions about equally far above the outside
+judges, and the outside judges score the two kinds alike. Patches that do both get lower scores, from Gemma and from the outside judges.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Gemma's 85 failing held-out patches by failure type. Points above: Gemma's score minus the outside judges'
+mean, averaged over the patches.}
+\label{tab:types}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Failure type & Patches & Points above the outside judges & Outside judges' mean \\
+\midrule
+Wrong fix (an issue test fails) & 55 & $+14.5$ & 59.4 \\
+Regression (another test fails) & 13 & $+16.8$ & 60.1 \\
+Both & 17 & $+10.7$ & 47.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection*{Five large models judging their own patches}
 
@@ -463,7 +596,7 @@ its mean on other writers' failing programs. Table~\ref{tab:samemodel} gives the
 gpt-oss-120b is not. When the two models differ, the plan's reading is to report each model and to say nothing about
 whether the task or the measure explains the difference from Pombal et al.
 
-Llama-4-Maverick's extra trust is not Gemma's rubber-stamping. It scores other writers' failing programs high as well, and
+Llama-4-Maverick's extra trust differs from Gemma's. It scores other writers' failing programs high as well, and
 it gives 100 to fewer of its own failing programs than of other writers'. About 40\% of its difference comes from the
 outside judges, who score its failing programs lower than other writers' failing programs.
 
@@ -495,7 +628,7 @@ gpt-oss-120b & 46.2\% & 134 & $+3.9$ [$-1.7$, 9.7] & 45.3 / 21.2 & 49.9 / 29.7 &
 \section{Where the extra trust goes}
 \label{app:edit}
 
-This section backs Section 3.2 of the paper. Gemma could trust its patches because it recognizes them as its own, or
+This section backs the end of Section 3.1 of the paper. Gemma could trust its patches because it recognizes them as its own, or
 because it believes in the edit they make. The tests below point to the edit. None of them varies the writer with the
 patch held fixed, so none rules out recognition.
 
@@ -638,7 +771,7 @@ gpt-oss-20b & $-2.2$ [$-10.0$, 5.4] & $+2.5$ [$-4.3$, 9.9] (167) \\
 \end{tabular}
 \end{table}
 
-\subsection*{What Gemma writes when it rubber-stamps}
+\subsection*{What Gemma writes when it scores a failing patch 100}
 
 \paragraph{Gemma's reasons (exploratory).} Gemma scored 52 of its own failing held-out patches 100. At least two
 outside judges scored 31 of these at 50 or less. We set this rule after a first look at the answers. For each
@@ -700,7 +833,7 @@ does not fit.
 \section{Checks that Gemma runs itself}
 \label{app:checks}
 
-This section backs Section 3.3 of the paper. If the trust is a belief about the fix, a check that Gemma runs should
+This section backs the checks in Table 2 of the paper (Section 3.2). If the trust is a belief about the fix, a check that Gemma runs should
 inherit it. We tested four such checks: thinking before scoring, the reproduction scripts Gemma writes while fixing an
 issue, a shell in which Gemma must test the patch, and LoRA fine-tuning on labeled patches.
 
@@ -828,7 +961,7 @@ Gemma's own failing patches it scored 100, accepted & 50 of 51 & 48 of 51 & $-3.
 \section{Tests that Gemma did not write}
 \label{app:repair}
 
-This section backs Section 3.4 of the paper. The repository's existing tests encode what the project's developers
+This section backs Section 3.3 of the paper. The repository's existing tests encode what the project's developers
 expected. An agent can run them before and after a patch without a hidden test or a second model, hold back a patch
 that breaks one, and show Gemma what broke.
 
@@ -859,7 +992,7 @@ patches.
 
 \paragraph{Result.} The check holds back 15 of the 52 failing patches Gemma scored 100, and 26 of all 85 of Gemma's
 failing patches (Table~\ref{tab:gate}). It also holds back 7 of the 81 passing patches Gemma scored 100 and 18 of the
-193 reference patches. By the plan, the check alone holds back too many correct patches to count as a fix. Section 3.4
+193 reference patches. By the plan, the check alone holds back too many correct patches to count as a fix. Section 3.3
 of the paper therefore uses it only to choose which patches get a repair run.
 
 \begin{table}[H]
@@ -981,9 +1114,97 @@ repairs come from editing errors and from edits Gemma did not check. On sympy is
 12481 Gemma wrote that it had ``re-introduced the disjointness check to make \texttt{test\_args} pass, although this
 contradicts the PR description''.
 
+\paragraph{Failure types of the held-back patches (exploratory).} With the test outcomes of Table~\ref{tab:types}, 22 of
+the 26 held-back failing held-out patches break one of SWE-bench's listed other tests: 10 only that, and 12 also fail
+an issue test. The other 4 are wrong fixes. In several, the patch had crashed the module, and fixing the crash also made
+the issue's tests pass. On the Lite patches below, 15 of the 30 held-back failing patches break a listed other test
+and 15 are wrong fixes (\path{derived/failure_types_2026-11-07.json}).
+
+\subsection*{The same check and repair on another team's Lite patches}
+
+\paragraph{Setup.} We wrote the plan before the check or any repair ran on these patches
+(\path{spec/lite-repair-replication.md}). The patches are Gemma's patches from the other team's SWE-bench Lite run
+(Section~\ref{app:stamp}) on the 263 Lite issues outside our 193 held-out issues, plus each issue's reference patch.
+They differ from the held-out patches in three ways: the full-precision model file, thinking on and mini-SWE-agent
+2.2.1. The check, the two repair conditions and their limits are those above, and the repairing agent is again the
+4-bit Gemma with thinking off. We graded the start, reference and repaired patches with our grader against SWE-bench
+Lite. A patch counts as failing or passing by our grade of its start patch. Issues whose reference patch fails our
+grader are left out. An empty submission counts as failing, and a run that does not submit keeps the start patch and its grade.
+
+\paragraph{The check.} It checked 241 of the 263 patches. Of the rest, 24 had a run that timed out or did not run, 14
+had no matching test and 5 had no stable test. It held back 47 patches. Three issues whose reference patch fails our
+grader leave 44: 30 failing and 14 passing. Our start grades agree with the other team's labels on 43 of the 44. The
+check also holds back 30 reference patches, and it holds back the reference patch of every one of the 14 correct
+patches it holds back. So each test those correct patches break also fails with the reference fix: it asserts the old
+behavior.
+
+\paragraph{Result.} The reading fixed in the plan is ``no repair'' when fewer than 3 held-back failing patches pass
+with the broken tests shown. Two pass, so the reading is no repair (Table~\ref{tab:literepair},
+\path{scripts/lite_repair.py}, \path{derived/lite_repair_2026-11-07_empty-as-failing.json}). One of the two,
+django-15790, also passes after a second look. Our grade of its start patch differs from the other team's label, and
+its test depends on the order of a Python set, so we do not count it as a repair.
+
+\paragraph{Harm.} With the broken tests shown, Gemma
+breaks 12 of the 14 held-back correct patches. A second look breaks 2. In three runs with the broken tests shown,
+Gemma reverted its whole patch and submitted an empty one. Two of these were correct patches (pytest-11148 and
+xarray-5131). Seven grades in that condition first timed out while the lab server was overloaded. We graded them again
+with the same grader, and one more correct patch passes. The plan had predicted that the tests shown would repair more
+patches than a second look (judged 80 to 85\% likely), with a point guess of about 35\% repaired.
+
+\begin{table}[H]
+\centering
+\small
+\caption{The repair on the other team's Lite patches, one run per patch at temperature 0, graded with our grader.
+Repairs leave out django-15790, whose start grade changes between runs.}
+\label{tab:literepair}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & Broken tests shown & Second look \\
+\midrule
+Held-back failing patches repaired (of 30) & 1 & 0 \\
+Held-back correct patches broken (of 14) & 12 & 2 \\
+\quad of them by an empty submission & 2 & 0 \\
+Runs that ended without a submission (of 47) & 3 & 0 \\
+Failing patches Gemma scored 100 that pass after (of 78, 14 held back) & 0 & 0 \\
+Correct patches Gemma scored 100 that fail after (of 126, 15 held back) & 12 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Labelling the broken tests before a repair (exploratory)}
+
+We chose this rule on 2026-11-07, after the repair outcomes above were seen, so it needs a fresh test
+(\path{scripts/outdated_test_judge.py}, \path{scripts/outdated_tests.py}, \path{derived/outdated_tests_2026-11-07.json}).
+Gemma 4 31B read the issue and the same broken-test report the repair run shows, without the patch. It labelled each
+broken test as outdated, when the test asserts the old behavior the issue asks to change, or as a regression, when the
+test checks behavior the issue does not change. This was the hosted model through OpenRouter (bf16, temperature 0, one
+call per patch), not our 4-bit file. The rule keeps the start patch when Gemma labels every broken test outdated, and
+otherwise takes the result of the repair with the broken tests shown (Table~\ref{tab:outdated}). The answers file also
+holds gpt-oss-120b's labels, which the paper does not use.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Repair with the broken tests shown, and the same with the repair skipped when Gemma labels every broken test
+outdated. Lite repairs leave out django-15790, as in Table~\ref{tab:literepair}.}
+\label{tab:outdated}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & Held-out & SWE-bench Lite \\
+\midrule
+Held-back patches; all broken tests labelled outdated & 35; 7 & 44; 17 \\
+Failing patches repaired: tests shown / with the rule & 14 / 12 & 1 / 0 \\
+Correct patches broken: tests shown / with the rule & 4 / 2 & 12 / 6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On Lite, the rule skips the one counted repair (django-16816), because Gemma labelled all of its broken tests outdated.
+
 \subsection*{Breaking the tie at 100 by fewer model calls}
 
-Section 3.4 of the paper closes with a way to set Gemma's verdict aside without repairing anything. We fixed three
+Gemma's score can also be put to use without any repair, by breaking the tie among patches it scores 100. The paper
+does not use this result. We fixed three
 tie-breaks on the Mini issues before computing any held-out value (Table~\ref{tab:tiebreak}; \texttt{spec/tie-break.md}).
 Inside Gemma's score, each ranks one kind of patch higher: fewer concern words in Gemma's answer, a shorter answer, or
 fewer model calls in Gemma's agent run. Only our own runs record model calls, so that tie-break was chosen on the 32
@@ -1022,7 +1243,8 @@ Fewer model calls & 0.731 (32) & 0.679 [0.578, 0.769] & $+16.9$ [5.7, 26.8] & $+
 \small
 \caption{API cost as reported by OpenRouter per call. gpt-oss-120b calls were reported at zero cost by their
 provider. Gemma's 250 agent runs took 49 agent-hours on one NVIDIA L40S of a university cluster, at no charge. Gemma's
-LiveCodeBench programs were written on one NVIDIA A100 of our lab, at no charge.}
+LiveCodeBench programs, the Go, Ruby and PHP run and the repair runs ran on one NVIDIA A100 of our lab, at no
+charge. All GPU work took about 90 GPU-hours, which would cost about \$150 at RunPod's on-demand prices.}
 \begin{tabular}{@{}lrr@{}}
 \toprule
 Run & Calls & Cost (USD) \\
@@ -1034,8 +1256,10 @@ Nine judges, held-out and matched-harness patches & 9,857 & 8.66 \\
 Seven judges, SWE-bench Lite (Section~\ref{app:stamp}) & 10,526 & 2.44 \\
 Six judges, LiveCodeBench, with an 8-call cost test & 5,319 & 0.98 \\
 gpt-oss-120b and Llama-4-Maverick, new programs and their scores, LiveCodeBench & 4,008 & 1.20 \\
+Five judges, Go, Ruby and PHP issues & 1,427 & 0.82 \\
+Gemma and gpt-oss-120b labelling broken tests & 164 & 0.04 \\
 \midrule
-Total & 36,647 & 16.98 \\
+Total & 38,238 & 17.84 \\
 \bottomrule
 \end{tabular}
 \end{table}

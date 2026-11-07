@@ -64,15 +64,21 @@ def analyze(a):
     keep = [m for m in blk if ref.get(m["iid"]) is True and start.get(m["iid"]) is not None]
     fail = [m for m in keep if start[m["iid"]] is False]
     good = [m for m in keep if start[m["iid"]] is True]
-    after, status = {}, {}
+    after, status, reverted = {}, {}, {}
+    # The released preds drop the patch text of these Lite runs and keep only whether it was empty.
+    empty = lambda p: p.get("exit_status") == "Submitted" and p.get("patch_empty", not (p.get("model_patch") or "").strip())
     tok = {}
     for arm in ("tests", "review"):
         pr = {r["instance_id"]: r for r in map(json.loads, open(os.path.join(RUN, arm, "preds.jsonl")))}
         lab = labels(os.path.join(RUN, arm, "labels.jsonl"))
         status[arm] = dict(collections.Counter(p["exit_status"] for p in pr.values()))
         tok[arm] = dict(calls=sum(p["n_calls"] for p in pr.values()), tokens=sum(p["tokens"] for p in pr.values()))
-        # no submission or not gradable: the start patch and its grade (spec/test-repair.md)
-        after[arm] = {m["iid"]: bool(lab[m["iid"]]) if lab.get(m["iid"]) is not None else bool(start[m["iid"]]) for m in keep}
+        # No grade: an empty submission (Gemma reverted its whole patch) leaves the issue unfixed, so it fails; any
+        # other ungraded run (no submission, not gradable) keeps the start patch and its grade (spec/test-repair.md).
+        # Fixed 2026-11-07: empty submissions used to keep the start grade.
+        reverted[arm] = {m["iid"] for m in keep if lab.get(m["iid"]) is None and empty(pr.get(m["iid"], {}))}
+        after[arm] = {m["iid"]: bool(lab[m["iid"]]) if lab.get(m["iid"]) is not None
+                      else False if m["iid"] in reverted[arm] else bool(start[m["iid"]]) for m in keep}
     t_only = sum(after["tests"][m["iid"]] and not after["review"][m["iid"]] for m in fail)
     r_only = sum(after["review"][m["iid"]] and not after["tests"][m["iid"]] for m in fail)
     pv = binomtest(t_only, t_only + r_only, 0.5, alternative="greater").pvalue if t_only + r_only else 1.0
@@ -80,6 +86,10 @@ def analyze(a):
     stamped_f = [m for m in gem if m["y"] == 0 and m["gemma"] == 100]
     stamped_p = [m for m in gem if m["y"] == 1 and m["gemma"] == 100]
     keep_ids = {m["pid"] for m in keep}
+    # Start grades that differ from the other team's label: the test outcome changes between runs, so a pass after
+    # repair is not counted as a repair.
+    unstable = {m["iid"] for m in keep if bool(m["y"]) != start[m["iid"]]}
+    gold_blocked = {m["iid"] for m in meta.values() if m["writer"] == "gold" and dec.get(m["pid"], {}).get("decision") == "block"}
     out = dict(
         gemma_patches=len(gem), checked=sum(dec.get(m["pid"], {}).get("status") == "checked" for m in gem),
         blocked=len(blk), blocked_analysed=len(keep), blocked_failing=len(fail), blocked_passing=len(good),
@@ -91,8 +101,13 @@ def analyze(a):
                              theirs_fail_ours_pass=sum(m["y"] == 0 and start[m["iid"]] is True for m in keep),
                              theirs_pass_ours_fail=sum(m["y"] == 1 and start[m["iid"]] is False for m in keep)),
         exit_status=status, cost=tok,
-        tests=dict(blocked_failing_now_passing=nt, blocked_passing_now_failing=sum(not after["tests"][m["iid"]] for m in good)),
-        review=dict(blocked_failing_now_passing=nr, blocked_passing_now_failing=sum(not after["review"][m["iid"]] for m in good)),
+        unstable_start_grade=sorted(unstable),
+        held_back_passing_reference_also_held_back=sum(m["iid"] in gold_blocked for m in good),
+        **{k: dict(blocked_failing_now_passing=sum(after[k][m["iid"]] for m in fail),
+                   blocked_failing_now_passing_stable=sum(after[k][m["iid"]] for m in fail if m["iid"] not in unstable),
+                   blocked_passing_now_failing=sum(not after[k][m["iid"]] for m in good),
+                   reverted_whole_patch=len(reverted[k]),
+                   reverted_correct_patch=sum(bool(start[i]) for i in reverted[k])) for k in ("tests", "review")},
         tests_vs_review=dict(tests_only=t_only, review_only=r_only, sign_test_p=round(pv, 4)),
         reading=("no repair" if nt < 3 else "the failing tests help repair" if nt > nr and pv < 0.05
                  else "a second look is enough" if nr >= nt else "repairs, no clear credit to the failing tests"),

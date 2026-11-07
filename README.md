@@ -1,8 +1,8 @@
-<h1 align="center">Gemma 4 Gives Its Failing Patches Full Marks</h1>
+<h1 align="center">Gemma 4 Is Less Self-Biased Than It Looks</h1>
 
 <p align="center">
-  Gemma 4 gives most of its own failing patches the top score when it judges them without being told who wrote them.
-  Most of the trust stays when Gemma checks harder, and failing repository tests let it repair some of these patches.
+  Gemma 4 scores 100 on 61% of its own failing patches, and on 61% of Kimi-K2's. Much of its
+  apparent self-bias comes from comparing it with weaker agents.
 </p>
 
 <p align="center">
@@ -14,27 +14,28 @@
 
 <p align="center">
   <br>
-  <img src="paper/figures/fig-trust.png" alt="Gemma 4 31B approves most of its failing patches, and on Lite it also trusts other writers' patches that make its edit" width="88%">
+  <img src="paper/figures/fig-writers.png" alt="Gemma 4 31B trusts failing patches more when their writer is stronger, and its extra trust in its own failing patches shrinks against strong writers" width="88%">
   <br><br>
 </p>
 
 ## What we found
 
-Coding agents often decide whether a patch is finished by asking the model that wrote it. We asked Gemma 4 31B and
-other models to score SWE-bench Verified patches without naming their writer, and compared each judge with judges
-from other model families on the same patch.
+Coding agents often decide whether a patch is finished by asking a model, often the one that wrote it. We asked Gemma 4
+31B and eight other models to score SWE-bench patches without naming their writer, and graded every patch with the
+hidden tests. Gemma's extra trust in a patch is its score minus the mean score of judges from other model families.
 
-- **Gemma 4 31B rubber-stamps its failing patches.** On held-out SWE-bench Verified issues, it gives the top score to
-  52 of its 85 failing patches, while outside judges score the same patches lower. It does the same on another team's
-  Gemma run on SWE-bench Lite and on contest programs it wrote without an agent.
-- **On SWE-bench Lite, the trust reaches other writers' patches that make Gemma's edit.** They get 20 points of extra
-  trust from Gemma. On the held-out issues this result is inconclusive. Smaller Gemma 4 models give the 31B's failing
-  patches no measurable extra trust.
-- **Checks that Gemma runs itself leave most of the trust in place.** Thinking before scoring, testing the patch in a shell
-  and LoRA fine-tuning on labeled patches each leave most rubber-stamped patches approved.
-- **Tests that Gemma did not write let it repair some patches.** Shown the repository tests its patch breaks, Gemma
-  repairs 9 of the 52 rubber-stamped failing patches, against 3 after a plain second look. The same step breaks 4
-  correct patches.
+- **Measured self-preference depends on who the other writers are.** By the usual measure, Gemma's extra trust in its
+  own failing patches is 16.6 points above its extra trust in other writers' failing patches. Compared only with
+  writers that solve at least as many issues as Gemma, the gap falls to 9.6 points on held-out SWE-bench Verified
+  issues, and it is within noise on SWE-bench Lite and on Go, Ruby and PHP issues.
+- **Gemma gives the top score to most strong writers' failing patches.** It scores 100 on 61% of Kimi-K2's failing
+  patches, the same share as its own, and on 16% of Llama-4-Maverick's. Most of its own failing patches are wrong
+  fixes that pass every existing test. Thinking before scoring, testing the patch in a shell and LoRA fine-tuning each
+  left most of them approved.
+- **Gemma obeys outdated tests when it repairs a patch.** Shown the existing tests its patch breaks, Gemma repairs 14
+  of 26 held-back failing patches on the held-out issues, against 6 after a second look. On SWE-bench Lite, the
+  reference fix fails the same tests for every held-back correct patch. There Gemma breaks 12 of 14 correct patches,
+  against 2 after a second look.
 
 ## Reproduce
 
@@ -43,7 +44,7 @@ from other model families on the same patch.
 ```
 
 This recomputes the main paper's claims from the released data and prints each one next to the paper's value. It takes
-about three minutes, needs no GPU and calls no model. It downloads only the files those analyses read: 74 MB of the
+about three minutes, needs no GPU and calls no model. It downloads only the files those analyses read: 92 MB of the
 2.1 GB Hugging Face dataset, plus Gemma's SWE-bench Lite patches from the team that published them. The run fails if
 any downloaded file goes unread. Everything goes into `.reproduce/`, and the repository's own files stay as they are.
 It needs `uv`, or Python 3.11 or newer.
@@ -61,12 +62,12 @@ It needs `uv`, or Python 3.11 or newer.
 | [`spec/`](spec/) | The analysis plans. Some note results already seen when they were written, and `repair-trace-audit-2026-11-05.md` is a retrospective audit. |
 | [`scripts/`](scripts/) | Agent runner, grading, judging, the shell judge, LoRA training, the existing-test check, the repair run and every analysis; `scripts/lab/` and `scripts/mcsr/` run the GPU jobs; `scripts/derived/` holds every judge answer and the summary behind each number. |
 | [`data/`](data/) | Gemma 4 31B's held-out agent runs (patches, labels, trajectories), its LiveCodeBench programs, the hand codes and the public patches we judged; sources and what is left out in `data/README.md`. |
-| [Hugging Face: `vein05/gemma4-paper-track-data`](https://huggingface.co/datasets/vein05/gemma4-paper-track-data) | The raw runs too large for this repository: the shell-judge runs, the existing-test check and repair runs, the LoRA scores, the LiveCodeBench model sweep, the smaller-Gemma runs, the probe features and every judge prompt. |
+| [Hugging Face: `vein05/gemma4-paper-track-data`](https://huggingface.co/datasets/vein05/gemma4-paper-track-data) | The raw runs too large for this repository: the shell-judge runs, the existing-test check and repair runs, the LoRA scores, the Go, Ruby and PHP runs, the repair of another team's Lite patches, the LiveCodeBench model sweep, the smaller-Gemma runs, the probe features and every judge prompt. |
 
 ## Compute
 
-The project used about 74 GPU-hours, 59 on one A100 80 GB and 15 on L40S. At RunPod on-demand prices this compute
-costs about $122. API judging through OpenRouter is listed in the supplement (Section G).
+The project used about 90 GPU-hours, 74 on one A100 80 GB and 15 on L40S. At RunPod on-demand prices this compute
+costs about $150. API judging through OpenRouter is listed in the supplement (Section G).
 
 ## License
 

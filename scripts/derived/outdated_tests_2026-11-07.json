@@ -1,0 +1,32 @@
+{
+ "held_out": {
+  "blocked": 35,
+  "labeled": 35,
+  "labeled_all_outdated": 7,
+  "failing": 26,
+  "correct": 9,
+  "tests": {
+   "repaired": 14,
+   "broken": 4
+  },
+  "rule": {
+   "repaired": 12,
+   "broken": 2
+  }
+ },
+ "lite": {
+  "blocked": 44,
+  "labeled": 44,
+  "labeled_all_outdated": 17,
+  "failing": 30,
+  "correct": 14,
+  "tests": {
+   "repaired": 2,
+   "broken": 12
+  },
+  "rule": {
+   "repaired": 1,
+   "broken": 6
+  }
+ }
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Extra trust on Go, Ruby and PHP issues (spec/nonpython-rubber-stamp.md). Reads derived/ml_np-<judge>.jsonl and
-data/lab-runs/nonpython/labels.jsonl. One JSON object on stdout. Intervals: 2,000 resamples of issues, seed 0."""
+"""Extra trust on Go, Ruby and PHP issues (spec/nonpython-rubber-stamp.md). Reads derived/ml_np-<judge>.jsonl,
+data/lab-runs/nonpython/labels.jsonl and the control writers' official labels in data/public/swe-bench-multilingual/. One JSON object on stdout. Intervals: 2,000 resamples of issues, seed 0."""
 import collections, json, os, sys
 
 import numpy as np
@@ -66,14 +66,27 @@ def main():
     for _ in range(2000):
         for k, v in stats([r for i in rng.choice(issues, len(issues)) for r in by[i]]).items():
             B[k].append(v)
-    res = {k: dict(value=round(float(v), 3), ci95=[round(float(np.nanpercentile(B[k], q)), 3) for q in (2.5, 97.5)]) for k, v in pt.items()}
+    res = {k: dict(value=round(float(v), 4), ci95=[round(float(np.nanpercentile(B[k], q)), 4) for q in (2.5, 97.5)]) for k, v in pt.items()}
     g = [r for r in rows if r["writer"] == GW]
+
+    def auroc(key):  # how well a score separates Gemma's own passing patches from its failing ones; ties count half
+        pos, neg = [r[key] for r in g if r["y"] == 1], [r[key] for r in g if r["y"] == 0]
+        return round(float(np.mean([(a > b) + 0.5 * (a == b) for a in pos for b in neg])), 3)
     preds = json.load(open(os.path.join(ROOT, "data", "lab-runs", "nonpython", "preds.json")))
+    # Share of the issues (reference patch passes) each writer solves, by its official label; Gemma's by ours.
+    kept = [i for i in lang if ref.get(i) is True]
+    solved = {GW: round(sum(bool(lab.get(i)) for i in kept) / len(kept), 3)}
+    att = [json.loads(l) for l in open(os.path.join(ROOT, "data", "public", "swe-bench-multilingual", "attempts.jsonl"))]
+    for w in WRITERS:
+        rs = {a["instance_id"]: label(a) for a in att if a["writer"].endswith(w) and a["instance_id"] in kept}
+        solved[w] = round(sum(bool(rs.get(i)) for i in kept) / len(kept), 3)
     print(json.dumps(dict(issues_run=len(preds), issues_no_patch=sum(not p.get("model_patch") for p in preds.values()),
                           issues=len(issues), gemma_patches=len(g), gemma_passing=sum(r["y"] for r in g),
                           own_failing=sum(r["y"] == 0 for r in g), control_failing=sum(r["writer"] != GW for r in rows),
                           per_language={l: sum(lang[r["iid"]] == l for r in g) for l in frozen["languages"]},
-                          stamped_passing=sum(r["y"] == 1 and r["g"] == 100 for r in g), estimates=res,
+                          stamped_passing=sum(r["y"] == 1 and r["g"] == 100 for r in g),
+                          solved=solved,
+                          auroc_own=dict(gemma=auroc("g"), outside_judges=auroc("panel")), estimates=res,
                           reading="carries over" if res["extra_trust"]["ci95"][0] > 0 else "does not carry over"), indent=1))
 
 

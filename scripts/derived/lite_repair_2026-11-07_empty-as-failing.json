@@ -1,0 +1,75 @@
+{
+ "gemma_patches": 263,
+ "checked": 241,
+ "blocked": 47,
+ "blocked_analysed": 44,
+ "blocked_failing": 30,
+ "blocked_passing": 14,
+ "reference_fails_our_grader": 3,
+ "reference_patches_blocked": 30,
+ "no_check_reasons": {
+  "no tests selected": 14,
+  "no test stable at base": 5,
+  "base run timed out or not run": 24
+ },
+ "label_agreement": {
+  "both_fail": 29,
+  "both_pass": 14,
+  "theirs_fail_ours_pass": 0,
+  "theirs_pass_ours_fail": 1
+ },
+ "exit_status": {
+  "tests": {
+   "Submitted": 44,
+   "ContextWindowExceededError": 2,
+   "LimitsExceeded": 1
+  },
+  "review": {
+   "Submitted": 47
+  }
+ },
+ "cost": {
+  "tests": {
+   "calls": 953,
+   "tokens": 14929016
+  },
+  "review": {
+   "calls": 608,
+   "tokens": 6147496
+  }
+ },
+ "unstable_start_grade": [
+  "django__django-15790"
+ ],
+ "held_back_passing_reference_also_held_back": 14,
+ "tests": {
+  "blocked_failing_now_passing": 2,
+  "blocked_failing_now_passing_stable": 1,
+  "blocked_passing_now_failing": 12,
+  "reverted_whole_patch": 3,
+  "reverted_correct_patch": 2
+ },
+ "review": {
+  "blocked_failing_now_passing": 1,
+  "blocked_failing_now_passing_stable": 0,
+  "blocked_passing_now_failing": 2,
+  "reverted_whole_patch": 0,
+  "reverted_correct_patch": 0
+ },
+ "tests_vs_review": {
+  "tests_only": 1,
+  "review_only": 0,
+  "sign_test_p": 0.5
+ },
+ "reading": "no repair",
+ "end_to_end": {
+  "stamped_failing": 78,
+  "stamped_passing": 126,
+  "stamped_failing_blocked": 14,
+  "stamped_passing_blocked": 15,
+  "tests_stamped_failing_now_passing": 0,
+  "review_stamped_failing_now_passing": 0,
+  "tests_stamped_passing_now_failing": 12,
+  "review_stamped_passing_now_failing": 2
+ }
+}

@@ -67,7 +67,8 @@ def remove(path):
 
 def run(cmd, timeout):
     # one stream, interleaved, as in the SWE-bench harness log
-    return subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=timeout)
+    # errors="replace": a test log with bytes that are not UTF-8 (a Go, Ruby or PHP test, 2026-11-07) crashed the whole grading job
+    return subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, errors="replace", timeout=timeout)
 
 
 def grade(inst, patch, tag, timeout=1800):

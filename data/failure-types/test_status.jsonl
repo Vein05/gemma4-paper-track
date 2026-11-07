@@ -1,0 +1,348 @@
+{"set": "held-out", "pid": "astropy__astropy-13236|gemma-4-31b|e67bf9a6", "iid": "astropy__astropy-13236", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 644, "other_n": 644}
+{"set": "held-out", "pid": "astropy__astropy-14365|gemma-4-31b|d63a0c3d", "iid": "astropy__astropy-14365", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 8, "other_n": 8}
+{"set": "held-out", "pid": "astropy__astropy-14508|gemma-4-31b|fe42eec4", "iid": "astropy__astropy-14508", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 173, "other_n": 174}
+{"set": "held-out", "pid": "django__django-10999|gemma-4-31b|efcf86db", "iid": "django__django-10999", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 10, "other_n": 10}
+{"set": "held-out", "pid": "django__django-11138|gemma-4-31b|5402a395", "iid": "django__django-11138", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 73, "other_n": 73}
+{"set": "held-out", "pid": "django__django-11265|gemma-4-31b|64297339", "iid": "django__django-11265", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 30, "other_n": 30}
+{"set": "held-out", "pid": "django__django-11333|gemma-4-31b|eccd3f76", "iid": "django__django-11333", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 2, "other_n": 2}
+{"set": "held-out", "pid": "django__django-11400|gemma-4-31b|ee91b3c1", "iid": "django__django-11400", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 6, "other_pass": 53, "other_n": 58}
+{"set": "held-out", "pid": "django__django-11433|gemma-4-31b|8b9db385", "iid": "django__django-11433", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 138, "other_n": 142}
+{"set": "held-out", "pid": "django__django-11555|gemma-4-31b|a7e22fac", "iid": "django__django-11555", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 26, "other_n": 26}
+{"set": "held-out", "pid": "django__django-11728|gemma-4-31b|edffe56c", "iid": "django__django-11728", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 2, "other_pass": 43, "other_n": 44}
+{"set": "held-out", "pid": "django__django-12754|gemma-4-31b|3952ca5d", "iid": "django__django-12754", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 112, "other_n": 112}
+{"set": "held-out", "pid": "django__django-13195|gemma-4-31b|80bc3d0c", "iid": "django__django-13195", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 5, "other_pass": 382, "other_n": 382}
+{"set": "held-out", "pid": "django__django-13344|gemma-4-31b|811b2eab", "iid": "django__django-13344", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 356, "other_n": 356}
+{"set": "held-out", "pid": "django__django-13512|gemma-4-31b|5c36886e", "iid": "django__django-13512", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 3, "other_pass": 32, "other_n": 32}
+{"set": "held-out", "pid": "django__django-13513|gemma-4-31b|1d841b1a", "iid": "django__django-13513", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 83, "other_n": 83}
+{"set": "held-out", "pid": "django__django-13925|gemma-4-31b|1fe2435a", "iid": "django__django-13925", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 2, "other_pass": 24, "other_n": 24}
+{"set": "held-out", "pid": "django__django-13964|gemma-4-31b|1f9e2116", "iid": "django__django-13964", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 36, "other_n": 36}
+{"set": "held-out", "pid": "django__django-14017|gemma-4-31b|00879f6b", "iid": "django__django-14017", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 2, "other_pass": 147, "other_n": 147}
+{"set": "held-out", "pid": "django__django-14053|gemma-4-31b|c260e2c4", "iid": "django__django-14053", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 31, "other_n": 31}
+{"set": "held-out", "pid": "django__django-14089|gemma-4-31b|d7834890", "iid": "django__django-14089", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 38, "other_n": 43}
+{"set": "held-out", "pid": "django__django-14311|gemma-4-31b|67a401df", "iid": "django__django-14311", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 56, "other_n": 59}
+{"set": "held-out", "pid": "django__django-14315|gemma-4-31b|32946608", "iid": "django__django-14315", "log": true, "parsed": true, "issue_pass": 9, "issue_n": 11, "other_pass": 0, "other_n": 0}
+{"set": "held-out", "pid": "django__django-14376|gemma-4-31b|ff73166b", "iid": "django__django-14376", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 3, "other_pass": 6, "other_n": 6}
+{"set": "held-out", "pid": "django__django-14534|gemma-4-31b|1adb30a5", "iid": "django__django-14534", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 2, "other_pass": 118, "other_n": 118}
+{"set": "held-out", "pid": "django__django-14792|gemma-4-31b|8d2105ad", "iid": "django__django-14792", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 23, "other_n": 23}
+{"set": "held-out", "pid": "django__django-15037|gemma-4-31b|8f277655", "iid": "django__django-15037", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 14, "other_n": 14}
+{"set": "held-out", "pid": "django__django-15128|gemma-4-31b|4fc904ca", "iid": "django__django-15128", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 282, "other_n": 282}
+{"set": "held-out", "pid": "django__django-15252|gemma-4-31b|6ff75b0b", "iid": "django__django-15252", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 34, "other_n": 34}
+{"set": "held-out", "pid": "django__django-15280|gemma-4-31b|2f7cceb2", "iid": "django__django-15280", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 77, "other_n": 85}
+{"set": "held-out", "pid": "django__django-15375|gemma-4-31b|6c814659", "iid": "django__django-15375", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 93, "other_n": 95}
+{"set": "held-out", "pid": "django__django-15382|gemma-4-31b|c6c71b4c", "iid": "django__django-15382", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 152, "other_n": 161}
+{"set": "held-out", "pid": "django__django-15957|gemma-4-31b|b36d0245", "iid": "django__django-15957", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 4, "other_pass": 41, "other_n": 89}
+{"set": "held-out", "pid": "django__django-16032|gemma-4-31b|740b6120", "iid": "django__django-16032", "log": true, "parsed": true, "issue_pass": 2, "issue_n": 2, "other_pass": 60, "other_n": 77}
+{"set": "held-out", "pid": "django__django-16082|gemma-4-31b|cd0099d6", "iid": "django__django-16082", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 170, "other_n": 170}
+{"set": "held-out", "pid": "django__django-16263|gemma-4-31b|275a8c3e", "iid": "django__django-16263", "log": true, "parsed": true, "issue_pass": 2, "issue_n": 3, "other_pass": 99, "other_n": 100}
+{"set": "held-out", "pid": "django__django-16315|gemma-4-31b|3a1b5368", "iid": "django__django-16315", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 38, "other_n": 42}
+{"set": "held-out", "pid": "django__django-16502|gemma-4-31b|7df8c535", "iid": "django__django-16502", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 4, "other_n": 4}
+{"set": "held-out", "pid": "django__django-16667|gemma-4-31b|1f9a145b", "iid": "django__django-16667", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 2, "other_pass": 24, "other_n": 24}
+{"set": "held-out", "pid": "django__django-16819|gemma-4-31b|d2fb0997", "iid": "django__django-16819", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 0, "other_n": 38}
+{"set": "held-out", "pid": "django__django-16938|gemma-4-31b|07254d57", "iid": "django__django-16938", "log": true, "parsed": true, "issue_pass": 15, "issue_n": 23, "other_pass": 65, "other_n": 65}
+{"set": "held-out", "pid": "django__django-16950|gemma-4-31b|0e837181", "iid": "django__django-16950", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 3, "other_n": 3}
+{"set": "held-out", "pid": "matplotlib__matplotlib-20488|gemma-4-31b|9a8ef15b", "iid": "matplotlib__matplotlib-20488", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 111, "other_n": 111}
+{"set": "held-out", "pid": "matplotlib__matplotlib-23299|gemma-4-31b|555f613b", "iid": "matplotlib__matplotlib-23299", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 192, "other_n": 192}
+{"set": "held-out", "pid": "matplotlib__matplotlib-24570|gemma-4-31b|f2cbabfa", "iid": "matplotlib__matplotlib-24570", "log": true, "parsed": true, "issue_pass": 2, "issue_n": 2, "other_pass": 265, "other_n": 267}
+{"set": "held-out", "pid": "matplotlib__matplotlib-24637|gemma-4-31b|3fadea62", "iid": "matplotlib__matplotlib-24637", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 29, "other_n": 29}
+{"set": "held-out", "pid": "matplotlib__matplotlib-25960|gemma-4-31b|9a68fdaf", "iid": "matplotlib__matplotlib-25960", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 131, "other_n": 137}
+{"set": "held-out", "pid": "matplotlib__matplotlib-26291|gemma-4-31b|8c1301fa", "iid": "matplotlib__matplotlib-26291", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 49, "other_n": 49}
+{"set": "held-out", "pid": "mwaskom__seaborn-3187|gemma-4-31b|fbf6e222", "iid": "mwaskom__seaborn-3187", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 248, "other_n": 248}
+{"set": "held-out", "pid": "pydata__xarray-3305|gemma-4-31b|6415e5c6", "iid": "pydata__xarray-3305", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 141, "other_n": 653}
+{"set": "held-out", "pid": "pydata__xarray-6744|gemma-4-31b|fce4bcb8", "iid": "pydata__xarray-6744", "log": true, "parsed": true, "issue_pass": 3, "issue_n": 3, "other_pass": 1811, "other_n": 1815}
+{"set": "held-out", "pid": "pydata__xarray-7393|gemma-4-31b|6c8daf32", "iid": "pydata__xarray-7393", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 71, "other_n": 71}
+{"set": "held-out", "pid": "pylint-dev__pylint-4551|gemma-4-31b|389edef4", "iid": "pylint-dev__pylint-4551", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 10, "other_pass": 0, "other_n": 0}
+{"set": "held-out", "pid": "pylint-dev__pylint-4604|gemma-4-31b|59825f23", "iid": "pylint-dev__pylint-4604", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 21, "other_pass": 0, "other_n": 0}
+{"set": "held-out", "pid": "pylint-dev__pylint-4661|gemma-4-31b|a5f232a8", "iid": "pylint-dev__pylint-4661", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 0, "other_n": 0}
+{"set": "held-out", "pid": "pylint-dev__pylint-7080|gemma-4-31b|383e04ac", "iid": "pylint-dev__pylint-7080", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 120, "other_n": 120}
+{"set": "held-out", "pid": "pylint-dev__pylint-8898|gemma-4-31b|7e48b0b1", "iid": "pylint-dev__pylint-8898", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 17, "other_n": 18}
+{"set": "held-out", "pid": "pytest-dev__pytest-10356|gemma-4-31b|4a56fd74", "iid": "pytest-dev__pytest-10356", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 79, "other_n": 79}
+{"set": "held-out", "pid": "pytest-dev__pytest-6197|gemma-4-31b|8dd6ba7c", "iid": "pytest-dev__pytest-6197", "log": true, "parsed": true, "issue_pass": 2, "issue_n": 2, "other_pass": 144, "other_n": 145}
+{"set": "held-out", "pid": "pytest-dev__pytest-6202|gemma-4-31b|b2ab333c", "iid": "pytest-dev__pytest-6202", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 72, "other_n": 72}
+{"set": "held-out", "pid": "pytest-dev__pytest-7236|gemma-4-31b|36491694", "iid": "pytest-dev__pytest-7236", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 50, "other_n": 51}
+{"set": "held-out", "pid": "pytest-dev__pytest-7324|gemma-4-31b|86c707a7", "iid": "pytest-dev__pytest-7324", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 3, "other_pass": 58, "other_n": 58}
+{"set": "held-out", "pid": "scikit-learn__scikit-learn-10297|gemma-4-31b|d1593c9b", "iid": "scikit-learn__scikit-learn-10297", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 28, "other_n": 28}
+{"set": "held-out", "pid": "scikit-learn__scikit-learn-13135|gemma-4-31b|63f5ec30", "iid": "scikit-learn__scikit-learn-13135", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 33, "other_n": 33}
+{"set": "held-out", "pid": "scikit-learn__scikit-learn-13142|gemma-4-31b|8bb11c3c", "iid": "scikit-learn__scikit-learn-13142", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 0, "other_n": 54}
+{"set": "held-out", "pid": "scikit-learn__scikit-learn-13328|gemma-4-31b|1561461a", "iid": "scikit-learn__scikit-learn-13328", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 9, "other_n": 9}
+{"set": "held-out", "pid": "scikit-learn__scikit-learn-14087|gemma-4-31b|4be1065d", "iid": "scikit-learn__scikit-learn-14087", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 3, "other_pass": 160, "other_n": 172}
+{"set": "held-out", "pid": "scikit-learn__scikit-learn-14496|gemma-4-31b|662f080f", "iid": "scikit-learn__scikit-learn-14496", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 39, "other_n": 39}
+{"set": "held-out", "pid": "scikit-learn__scikit-learn-14629|gemma-4-31b|773e96d2", "iid": "scikit-learn__scikit-learn-14629", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 0, "other_n": 26}
+{"set": "held-out", "pid": "scikit-learn__scikit-learn-25747|gemma-4-31b|afd01534", "iid": "scikit-learn__scikit-learn-25747", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 14, "other_n": 14}
+{"set": "held-out", "pid": "sphinx-doc__sphinx-7462|gemma-4-31b|0cf88c11", "iid": "sphinx-doc__sphinx-7462", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 49, "other_n": 49}
+{"set": "held-out", "pid": "sphinx-doc__sphinx-7889|gemma-4-31b|6581abe2", "iid": "sphinx-doc__sphinx-7889", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 5, "other_n": 5}
+{"set": "held-out", "pid": "sphinx-doc__sphinx-8593|gemma-4-31b|1e94fa7b", "iid": "sphinx-doc__sphinx-8593", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 0, "other_n": 1}
+{"set": "held-out", "pid": "sphinx-doc__sphinx-9658|gemma-4-31b|72b574d8", "iid": "sphinx-doc__sphinx-9658", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 24, "other_n": 24}
+{"set": "held-out", "pid": "sympy__sympy-12419|gemma-4-31b|36efa716", "iid": "sympy__sympy-12419", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 0, "other_n": 25}
+{"set": "held-out", "pid": "sympy__sympy-12481|gemma-4-31b|f71c61e2", "iid": "sympy__sympy-12481", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 6, "other_n": 7}
+{"set": "held-out", "pid": "sympy__sympy-13974|gemma-4-31b|66aa8770", "iid": "sympy__sympy-13974", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 4, "other_n": 4}
+{"set": "held-out", "pid": "sympy__sympy-14248|gemma-4-31b|97f75805", "iid": "sympy__sympy-14248", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 2, "other_pass": 364, "other_n": 433}
+{"set": "held-out", "pid": "sympy__sympy-14711|gemma-4-31b|dcd4ed65", "iid": "sympy__sympy-14711", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 0, "other_n": 2}
+{"set": "held-out", "pid": "sympy__sympy-15976|gemma-4-31b|5730f6cd", "iid": "sympy__sympy-15976", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 37, "other_n": 37}
+{"set": "held-out", "pid": "sympy__sympy-17318|gemma-4-31b|fd0e824f", "iid": "sympy__sympy-17318", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 10, "other_n": 10}
+{"set": "held-out", "pid": "sympy__sympy-18211|gemma-4-31b|26debe44", "iid": "sympy__sympy-18211", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 54, "other_n": 54}
+{"set": "held-out", "pid": "sympy__sympy-21596|gemma-4-31b|60a4bf17", "iid": "sympy__sympy-21596", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 46, "other_n": 46}
+{"set": "held-out", "pid": "sympy__sympy-23413|gemma-4-31b|b314fc72", "iid": "sympy__sympy-23413", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 2, "other_n": 2}
+{"set": "held-out", "pid": "sympy__sympy-24066|gemma-4-31b|a1eb1d06", "iid": "sympy__sympy-24066", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 28, "other_n": 30}
+{"set": "lite", "pid": "astropy__astropy-14182|gemma-4-31b|e93ceeeb", "iid": "astropy__astropy-14182", "log": false}
+{"set": "lite", "pid": "astropy__astropy-14995|gemma-4-31b|fe5523fc", "iid": "astropy__astropy-14995", "log": false}
+{"set": "lite", "pid": "astropy__astropy-6938|gemma-4-31b|87b7ee80", "iid": "astropy__astropy-6938", "log": false}
+{"set": "lite", "pid": "astropy__astropy-7746|gemma-4-31b|b81f4595", "iid": "astropy__astropy-7746", "log": false}
+{"set": "lite", "pid": "django__django-10914|gemma-4-31b|56f5662c", "iid": "django__django-10914", "log": false}
+{"set": "lite", "pid": "django__django-10924|gemma-4-31b|7c31bddf", "iid": "django__django-10924", "log": false}
+{"set": "lite", "pid": "django__django-11001|gemma-4-31b|da90ae91", "iid": "django__django-11001", "log": false}
+{"set": "lite", "pid": "django__django-11019|gemma-4-31b|688d63a2", "iid": "django__django-11019", "log": true, "parsed": true, "issue_pass": 5, "issue_n": 16, "other_pass": 58, "other_n": 58}
+{"set": "lite", "pid": "django__django-11039|gemma-4-31b|d0ae0068", "iid": "django__django-11039", "log": false}
+{"set": "lite", "pid": "django__django-11049|gemma-4-31b|5391366d", "iid": "django__django-11049", "log": false}
+{"set": "lite", "pid": "django__django-11099|gemma-4-31b|f6499f77", "iid": "django__django-11099", "log": false}
+{"set": "lite", "pid": "django__django-11133|gemma-4-31b|3f00821a", "iid": "django__django-11133", "log": false}
+{"set": "lite", "pid": "django__django-11179|gemma-4-31b|b7266c23", "iid": "django__django-11179", "log": false}
+{"set": "lite", "pid": "django__django-11283|gemma-4-31b|75dd05ce", "iid": "django__django-11283", "log": false}
+{"set": "lite", "pid": "django__django-11422|gemma-4-31b|a89ccfb0", "iid": "django__django-11422", "log": false}
+{"set": "lite", "pid": "django__django-11564|gemma-4-31b|7e682325", "iid": "django__django-11564", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 174, "other_n": 174}
+{"set": "lite", "pid": "django__django-11583|gemma-4-31b|3b45df53", "iid": "django__django-11583", "log": false}
+{"set": "lite", "pid": "django__django-11620|gemma-4-31b|ed0c6608", "iid": "django__django-11620", "log": false}
+{"set": "lite", "pid": "django__django-11630|gemma-4-31b|8d6d7d5c", "iid": "django__django-11630", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 15, "other_n": 16}
+{"set": "lite", "pid": "django__django-11742|gemma-4-31b|0472bc47", "iid": "django__django-11742", "log": false}
+{"set": "lite", "pid": "django__django-11797|gemma-4-31b|71d5a1bc", "iid": "django__django-11797", "log": false}
+{"set": "lite", "pid": "django__django-11815|gemma-4-31b|31de1d5e", "iid": "django__django-11815", "log": true, "parsed": true, "issue_pass": 2, "issue_n": 2, "other_pass": 44, "other_n": 44}
+{"set": "lite", "pid": "django__django-11848|gemma-4-31b|5735e861", "iid": "django__django-11848", "log": false}
+{"set": "lite", "pid": "django__django-11905|gemma-4-31b|0d5cb1e8", "iid": "django__django-11905", "log": false}
+{"set": "lite", "pid": "django__django-11910|gemma-4-31b|4c1970f6", "iid": "django__django-11910", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 108, "other_n": 110}
+{"set": "lite", "pid": "django__django-11964|gemma-4-31b|08f0d689", "iid": "django__django-11964", "log": false}
+{"set": "lite", "pid": "django__django-11999|gemma-4-31b|c8db626b", "iid": "django__django-11999", "log": false}
+{"set": "lite", "pid": "django__django-12113|gemma-4-31b|ca1b94a8", "iid": "django__django-12113", "log": false}
+{"set": "lite", "pid": "django__django-12125|gemma-4-31b|f5aedc9f", "iid": "django__django-12125", "log": true, "parsed": true, "issue_pass": 2, "issue_n": 2, "other_pass": 45, "other_n": 45}
+{"set": "lite", "pid": "django__django-12184|gemma-4-31b|91d188ed", "iid": "django__django-12184", "log": false}
+{"set": "lite", "pid": "django__django-12284|gemma-4-31b|a642f738", "iid": "django__django-12284", "log": false}
+{"set": "lite", "pid": "django__django-12286|gemma-4-31b|410f7104", "iid": "django__django-12286", "log": false}
+{"set": "lite", "pid": "django__django-12308|gemma-4-31b|88f7affb", "iid": "django__django-12308", "log": false}
+{"set": "lite", "pid": "django__django-12453|gemma-4-31b|04417dd7", "iid": "django__django-12453", "log": false}
+{"set": "lite", "pid": "django__django-12470|gemma-4-31b|a7b24d2d", "iid": "django__django-12470", "log": false}
+{"set": "lite", "pid": "django__django-12497|gemma-4-31b|ae7a697e", "iid": "django__django-12497", "log": false}
+{"set": "lite", "pid": "django__django-12589|gemma-4-31b|d3351153", "iid": "django__django-12589", "log": false}
+{"set": "lite", "pid": "django__django-12700|gemma-4-31b|0b27dda1", "iid": "django__django-12700", "log": false}
+{"set": "lite", "pid": "django__django-12708|gemma-4-31b|8e8790ef", "iid": "django__django-12708", "log": false}
+{"set": "lite", "pid": "django__django-12747|gemma-4-31b|efc0dca6", "iid": "django__django-12747", "log": true, "parsed": true, "issue_pass": 3, "issue_n": 3, "other_pass": 49, "other_n": 49}
+{"set": "lite", "pid": "django__django-12856|gemma-4-31b|c09a9217", "iid": "django__django-12856", "log": false}
+{"set": "lite", "pid": "django__django-12908|gemma-4-31b|955b9f8f", "iid": "django__django-12908", "log": false}
+{"set": "lite", "pid": "django__django-12915|gemma-4-31b|f7a5bd4d", "iid": "django__django-12915", "log": false}
+{"set": "lite", "pid": "django__django-12983|gemma-4-31b|306d6ba4", "iid": "django__django-12983", "log": false}
+{"set": "lite", "pid": "django__django-13028|gemma-4-31b|ed170f64", "iid": "django__django-13028", "log": false}
+{"set": "lite", "pid": "django__django-13158|gemma-4-31b|9310102c", "iid": "django__django-13158", "log": false}
+{"set": "lite", "pid": "django__django-13220|gemma-4-31b|37da99db", "iid": "django__django-13220", "log": false}
+{"set": "lite", "pid": "django__django-13230|gemma-4-31b|a82b02b7", "iid": "django__django-13230", "log": false}
+{"set": "lite", "pid": "django__django-13265|gemma-4-31b|3c07ae0c", "iid": "django__django-13265", "log": false}
+{"set": "lite", "pid": "django__django-13315|gemma-4-31b|0c7fe732", "iid": "django__django-13315", "log": false}
+{"set": "lite", "pid": "django__django-13321|gemma-4-31b|dad8f918", "iid": "django__django-13321", "log": false}
+{"set": "lite", "pid": "django__django-13401|gemma-4-31b|fdaadf3f", "iid": "django__django-13401", "log": false}
+{"set": "lite", "pid": "django__django-13447|gemma-4-31b|0ccf749f", "iid": "django__django-13447", "log": false}
+{"set": "lite", "pid": "django__django-13448|gemma-4-31b|2fa5fcd9", "iid": "django__django-13448", "log": false}
+{"set": "lite", "pid": "django__django-13551|gemma-4-31b|836cd616", "iid": "django__django-13551", "log": false}
+{"set": "lite", "pid": "django__django-13590|gemma-4-31b|383525d5", "iid": "django__django-13590", "log": false}
+{"set": "lite", "pid": "django__django-13660|gemma-4-31b|60febc7b", "iid": "django__django-13660", "log": false}
+{"set": "lite", "pid": "django__django-13710|gemma-4-31b|4f093195", "iid": "django__django-13710", "log": false}
+{"set": "lite", "pid": "django__django-13757|gemma-4-31b|c7ed5a83", "iid": "django__django-13757", "log": false}
+{"set": "lite", "pid": "django__django-13768|gemma-4-31b|d44f1d7c", "iid": "django__django-13768", "log": false}
+{"set": "lite", "pid": "django__django-13933|gemma-4-31b|37196973", "iid": "django__django-13933", "log": false}
+{"set": "lite", "pid": "django__django-14016|gemma-4-31b|7e4c1ffd", "iid": "django__django-14016", "log": false}
+{"set": "lite", "pid": "django__django-14155|gemma-4-31b|42e75ea9", "iid": "django__django-14155", "log": false}
+{"set": "lite", "pid": "django__django-14238|gemma-4-31b|88d7d8e6", "iid": "django__django-14238", "log": false}
+{"set": "lite", "pid": "django__django-14382|gemma-4-31b|fd3af2ac", "iid": "django__django-14382", "log": false}
+{"set": "lite", "pid": "django__django-14411|gemma-4-31b|77117c23", "iid": "django__django-14411", "log": false}
+{"set": "lite", "pid": "django__django-14667|gemma-4-31b|900a2543", "iid": "django__django-14667", "log": false}
+{"set": "lite", "pid": "django__django-14672|gemma-4-31b|42f3a96c", "iid": "django__django-14672", "log": false}
+{"set": "lite", "pid": "django__django-14730|gemma-4-31b|43d3d4c2", "iid": "django__django-14730", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 119, "other_n": 119}
+{"set": "lite", "pid": "django__django-14855|gemma-4-31b|2c5b07c4", "iid": "django__django-14855", "log": false}
+{"set": "lite", "pid": "django__django-14997|gemma-4-31b|045121d8", "iid": "django__django-14997", "log": false}
+{"set": "lite", "pid": "django__django-15061|gemma-4-31b|507837f3", "iid": "django__django-15061", "log": false}
+{"set": "lite", "pid": "django__django-15202|gemma-4-31b|9b61336a", "iid": "django__django-15202", "log": false}
+{"set": "lite", "pid": "django__django-15213|gemma-4-31b|baf6319e", "iid": "django__django-15213", "log": false}
+{"set": "lite", "pid": "django__django-15320|gemma-4-31b|5cae17ee", "iid": "django__django-15320", "log": false}
+{"set": "lite", "pid": "django__django-15347|gemma-4-31b|d053d898", "iid": "django__django-15347", "log": false}
+{"set": "lite", "pid": "django__django-15388|gemma-4-31b|dccac148", "iid": "django__django-15388", "log": false}
+{"set": "lite", "pid": "django__django-15400|gemma-4-31b|d23b2636", "iid": "django__django-15400", "log": false}
+{"set": "lite", "pid": "django__django-15498|gemma-4-31b|76d02eb4", "iid": "django__django-15498", "log": false}
+{"set": "lite", "pid": "django__django-15695|gemma-4-31b|e54d5345", "iid": "django__django-15695", "log": false}
+{"set": "lite", "pid": "django__django-15738|gemma-4-31b|b755c0bd", "iid": "django__django-15738", "log": false}
+{"set": "lite", "pid": "django__django-15781|gemma-4-31b|8a1e2263", "iid": "django__django-15781", "log": false}
+{"set": "lite", "pid": "django__django-15789|gemma-4-31b|225b9753", "iid": "django__django-15789", "log": false}
+{"set": "lite", "pid": "django__django-15790|gemma-4-31b|506f5b95", "iid": "django__django-15790", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 10, "other_n": 12}
+{"set": "lite", "pid": "django__django-15819|gemma-4-31b|03eda489", "iid": "django__django-15819", "log": false}
+{"set": "lite", "pid": "django__django-15851|gemma-4-31b|b6c7734f", "iid": "django__django-15851", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 8, "other_n": 8}
+{"set": "lite", "pid": "django__django-15902|gemma-4-31b|7e637028", "iid": "django__django-15902", "log": false}
+{"set": "lite", "pid": "django__django-15996|gemma-4-31b|70b280bd", "iid": "django__django-15996", "log": false}
+{"set": "lite", "pid": "django__django-16041|gemma-4-31b|fb21a3af", "iid": "django__django-16041", "log": false}
+{"set": "lite", "pid": "django__django-16046|gemma-4-31b|0838ac5f", "iid": "django__django-16046", "log": false}
+{"set": "lite", "pid": "django__django-16139|gemma-4-31b|ec57b5c2", "iid": "django__django-16139", "log": false}
+{"set": "lite", "pid": "django__django-16229|gemma-4-31b|f27cb929", "iid": "django__django-16229", "log": false}
+{"set": "lite", "pid": "django__django-16379|gemma-4-31b|00cc3ea8", "iid": "django__django-16379", "log": false}
+{"set": "lite", "pid": "django__django-16400|gemma-4-31b|bbb88781", "iid": "django__django-16400", "log": false}
+{"set": "lite", "pid": "django__django-16408|gemma-4-31b|8c24acd4", "iid": "django__django-16408", "log": false}
+{"set": "lite", "pid": "django__django-16816|gemma-4-31b|65956cb5", "iid": "django__django-16816", "log": true, "parsed": true, "issue_pass": 2, "issue_n": 2, "other_pass": 122, "other_n": 123}
+{"set": "lite", "pid": "django__django-16820|gemma-4-31b|6ef9edd3", "iid": "django__django-16820", "log": false}
+{"set": "lite", "pid": "django__django-16873|gemma-4-31b|bd4bf1b2", "iid": "django__django-16873", "log": true, "parsed": true, "issue_pass": 2, "issue_n": 2, "other_pass": 12, "other_n": 12}
+{"set": "lite", "pid": "django__django-16910|gemma-4-31b|7566bd7e", "iid": "django__django-16910", "log": false}
+{"set": "lite", "pid": "django__django-17051|gemma-4-31b|45e2b929", "iid": "django__django-17051", "log": false}
+{"set": "lite", "pid": "django__django-17087|gemma-4-31b|ff4a54c1", "iid": "django__django-17087", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-18869|gemma-4-31b|a0fbe15e", "iid": "matplotlib__matplotlib-18869", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-22711|gemma-4-31b|471383e4", "iid": "matplotlib__matplotlib-22711", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 91, "other_n": 91}
+{"set": "lite", "pid": "matplotlib__matplotlib-22835|gemma-4-31b|955474e5", "iid": "matplotlib__matplotlib-22835", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-23314|gemma-4-31b|1e47a123", "iid": "matplotlib__matplotlib-23314", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-23476|gemma-4-31b|a404fd40", "iid": "matplotlib__matplotlib-23476", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-23562|gemma-4-31b|1c4b46cf", "iid": "matplotlib__matplotlib-23562", "log": true, "parsed": true, "issue_pass": 2, "issue_n": 2, "other_pass": 127, "other_n": 136}
+{"set": "lite", "pid": "matplotlib__matplotlib-23563|gemma-4-31b|81c06ddc", "iid": "matplotlib__matplotlib-23563", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-23913|gemma-4-31b|450226a7", "iid": "matplotlib__matplotlib-23913", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-23964|gemma-4-31b|4b1b167f", "iid": "matplotlib__matplotlib-23964", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-23987|gemma-4-31b|2e8f51a4", "iid": "matplotlib__matplotlib-23987", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 43, "other_n": 43}
+{"set": "lite", "pid": "matplotlib__matplotlib-24149|gemma-4-31b|db74be50", "iid": "matplotlib__matplotlib-24149", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-24265|gemma-4-31b|b1c710fe", "iid": "matplotlib__matplotlib-24265", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-24334|gemma-4-31b|1791195f", "iid": "matplotlib__matplotlib-24334", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-24970|gemma-4-31b|80d686bb", "iid": "matplotlib__matplotlib-24970", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-25079|gemma-4-31b|f63cb964", "iid": "matplotlib__matplotlib-25079", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 253, "other_n": 253}
+{"set": "lite", "pid": "matplotlib__matplotlib-25332|gemma-4-31b|9d2d5b7b", "iid": "matplotlib__matplotlib-25332", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-25433|gemma-4-31b|f9e0351b", "iid": "matplotlib__matplotlib-25433", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-25442|gemma-4-31b|298203ae", "iid": "matplotlib__matplotlib-25442", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-25498|gemma-4-31b|7de6a930", "iid": "matplotlib__matplotlib-25498", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-26011|gemma-4-31b|70956a88", "iid": "matplotlib__matplotlib-26011", "log": false}
+{"set": "lite", "pid": "matplotlib__matplotlib-26020|gemma-4-31b|d05aa2e3", "iid": "matplotlib__matplotlib-26020", "log": false}
+{"set": "lite", "pid": "mwaskom__seaborn-2848|gemma-4-31b|f8ffbafc", "iid": "mwaskom__seaborn-2848", "log": false}
+{"set": "lite", "pid": "mwaskom__seaborn-3010|gemma-4-31b|eb109cec", "iid": "mwaskom__seaborn-3010", "log": false}
+{"set": "lite", "pid": "mwaskom__seaborn-3190|gemma-4-31b|b444fb18", "iid": "mwaskom__seaborn-3190", "log": false}
+{"set": "lite", "pid": "mwaskom__seaborn-3407|gemma-4-31b|ae427ff3", "iid": "mwaskom__seaborn-3407", "log": false}
+{"set": "lite", "pid": "pallets__flask-4045|gemma-4-31b|bfe65822", "iid": "pallets__flask-4045", "log": false}
+{"set": "lite", "pid": "pallets__flask-4992|gemma-4-31b|3688963c", "iid": "pallets__flask-4992", "log": false}
+{"set": "lite", "pid": "pallets__flask-5063|gemma-4-31b|76b5977d", "iid": "pallets__flask-5063", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 52, "other_n": 54}
+{"set": "lite", "pid": "psf__requests-1963|gemma-4-31b|dcde1ca3", "iid": "psf__requests-1963", "log": false}
+{"set": "lite", "pid": "psf__requests-2148|gemma-4-31b|961fd2dc", "iid": "psf__requests-2148", "log": true, "parsed": true, "issue_pass": 7, "issue_n": 10, "other_pass": 116, "other_n": 118}
+{"set": "lite", "pid": "psf__requests-2317|gemma-4-31b|5d150f04", "iid": "psf__requests-2317", "log": true, "parsed": true, "issue_pass": 5, "issue_n": 8, "other_pass": 129, "other_n": 133}
+{"set": "lite", "pid": "psf__requests-2674|gemma-4-31b|fd3da846", "iid": "psf__requests-2674", "log": false}
+{"set": "lite", "pid": "psf__requests-3362|gemma-4-31b|d818f1b4", "iid": "psf__requests-3362", "log": false}
+{"set": "lite", "pid": "psf__requests-863|gemma-4-31b|a212eb85", "iid": "psf__requests-863", "log": true, "parsed": true, "issue_pass": 4, "issue_n": 4, "other_pass": 56, "other_n": 60}
+{"set": "lite", "pid": "pydata__xarray-3364|gemma-4-31b|2e20416c", "iid": "pydata__xarray-3364", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 107, "other_n": 110}
+{"set": "lite", "pid": "pydata__xarray-4094|gemma-4-31b|1fe84ab4", "iid": "pydata__xarray-4094", "log": false}
+{"set": "lite", "pid": "pydata__xarray-4248|gemma-4-31b|b9da4449", "iid": "pydata__xarray-4248", "log": false}
+{"set": "lite", "pid": "pydata__xarray-4493|gemma-4-31b|0d58c5a8", "iid": "pydata__xarray-4493", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 1631, "other_n": 1689}
+{"set": "lite", "pid": "pydata__xarray-5131|gemma-4-31b|5a38e32e", "iid": "pydata__xarray-5131", "log": true, "parsed": true, "issue_pass": 10, "issue_n": 10, "other_pass": 24, "other_n": 24}
+{"set": "lite", "pid": "pylint-dev__pylint-5859|gemma-4-31b|0e65f1d5", "iid": "pylint-dev__pylint-5859", "log": false}
+{"set": "lite", "pid": "pylint-dev__pylint-6506|gemma-4-31b|f3947e8d", "iid": "pylint-dev__pylint-6506", "log": false}
+{"set": "lite", "pid": "pylint-dev__pylint-7114|gemma-4-31b|3a0cac1e", "iid": "pylint-dev__pylint-7114", "log": false}
+{"set": "lite", "pid": "pylint-dev__pylint-7228|gemma-4-31b|70185364", "iid": "pylint-dev__pylint-7228", "log": false}
+{"set": "lite", "pid": "pylint-dev__pylint-7993|gemma-4-31b|df26e6c6", "iid": "pylint-dev__pylint-7993", "log": false}
+{"set": "lite", "pid": "pytest-dev__pytest-11143|gemma-4-31b|04406a56", "iid": "pytest-dev__pytest-11143", "log": false}
+{"set": "lite", "pid": "pytest-dev__pytest-11148|gemma-4-31b|d24fa47f", "iid": "pytest-dev__pytest-11148", "log": true, "parsed": true, "issue_pass": 2, "issue_n": 2, "other_pass": 129, "other_n": 129}
+{"set": "lite", "pid": "pytest-dev__pytest-5103|gemma-4-31b|8211e60c", "iid": "pytest-dev__pytest-5103", "log": false}
+{"set": "lite", "pid": "pytest-dev__pytest-5221|gemma-4-31b|50e3bfa5", "iid": "pytest-dev__pytest-5221", "log": false}
+{"set": "lite", "pid": "pytest-dev__pytest-5227|gemma-4-31b|ddd572a6", "iid": "pytest-dev__pytest-5227", "log": true, "parsed": true, "issue_pass": 3, "issue_n": 3, "other_pass": 34, "other_n": 34}
+{"set": "lite", "pid": "pytest-dev__pytest-5413|gemma-4-31b|091d2594", "iid": "pytest-dev__pytest-5413", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 92, "other_n": 92}
+{"set": "lite", "pid": "pytest-dev__pytest-5495|gemma-4-31b|e4d8d7a0", "iid": "pytest-dev__pytest-5495", "log": false}
+{"set": "lite", "pid": "pytest-dev__pytest-5692|gemma-4-31b|00791fda", "iid": "pytest-dev__pytest-5692", "log": false}
+{"set": "lite", "pid": "pytest-dev__pytest-6116|gemma-4-31b|d5c7781d", "iid": "pytest-dev__pytest-6116", "log": false}
+{"set": "lite", "pid": "pytest-dev__pytest-7168|gemma-4-31b|cbc162be", "iid": "pytest-dev__pytest-7168", "log": false}
+{"set": "lite", "pid": "pytest-dev__pytest-7220|gemma-4-31b|4d579a1e", "iid": "pytest-dev__pytest-7220", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 11, "other_n": 11}
+{"set": "lite", "pid": "pytest-dev__pytest-7373|gemma-4-31b|ae218981", "iid": "pytest-dev__pytest-7373", "log": false}
+{"set": "lite", "pid": "pytest-dev__pytest-7432|gemma-4-31b|2ad29b45", "iid": "pytest-dev__pytest-7432", "log": false}
+{"set": "lite", "pid": "pytest-dev__pytest-7490|gemma-4-31b|c7f74c7a", "iid": "pytest-dev__pytest-7490", "log": true, "parsed": true, "issue_pass": 2, "issue_n": 2, "other_pass": 77, "other_n": 78}
+{"set": "lite", "pid": "pytest-dev__pytest-8365|gemma-4-31b|5e1072b6", "iid": "pytest-dev__pytest-8365", "log": false}
+{"set": "lite", "pid": "pytest-dev__pytest-8906|gemma-4-31b|60cce61f", "iid": "pytest-dev__pytest-8906", "log": false}
+{"set": "lite", "pid": "pytest-dev__pytest-9359|gemma-4-31b|22358457", "iid": "pytest-dev__pytest-9359", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-10508|gemma-4-31b|12ac31a9", "iid": "scikit-learn__scikit-learn-10508", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-10949|gemma-4-31b|8f351ba2", "iid": "scikit-learn__scikit-learn-10949", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-11040|gemma-4-31b|c0cc2239", "iid": "scikit-learn__scikit-learn-11040", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-11281|gemma-4-31b|581ffb4e", "iid": "scikit-learn__scikit-learn-11281", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-12471|gemma-4-31b|e0e958e0", "iid": "scikit-learn__scikit-learn-12471", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-13241|gemma-4-31b|c706c869", "iid": "scikit-learn__scikit-learn-13241", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-13439|gemma-4-31b|46c6cea5", "iid": "scikit-learn__scikit-learn-13439", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-13496|gemma-4-31b|d1a3f35b", "iid": "scikit-learn__scikit-learn-13496", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-13497|gemma-4-31b|2929132f", "iid": "scikit-learn__scikit-learn-13497", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-13584|gemma-4-31b|43a824f3", "iid": "scikit-learn__scikit-learn-13584", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-13779|gemma-4-31b|c31c0686", "iid": "scikit-learn__scikit-learn-13779", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-14092|gemma-4-31b|0a0cb34e", "iid": "scikit-learn__scikit-learn-14092", "log": true, "parsed": true, "issue_pass": 3, "issue_n": 3, "other_pass": 212, "other_n": 212}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-14894|gemma-4-31b|7151618d", "iid": "scikit-learn__scikit-learn-14894", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-14983|gemma-4-31b|8d4d50e4", "iid": "scikit-learn__scikit-learn-14983", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-15512|gemma-4-31b|471ac9ac", "iid": "scikit-learn__scikit-learn-15512", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-15535|gemma-4-31b|ece03208", "iid": "scikit-learn__scikit-learn-15535", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-25500|gemma-4-31b|0d338acc", "iid": "scikit-learn__scikit-learn-25500", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-25570|gemma-4-31b|370049cf", "iid": "scikit-learn__scikit-learn-25570", "log": false}
+{"set": "lite", "pid": "scikit-learn__scikit-learn-25638|gemma-4-31b|6743a67b", "iid": "scikit-learn__scikit-learn-25638", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-10325|gemma-4-31b|084894fc", "iid": "sphinx-doc__sphinx-10325", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-10451|gemma-4-31b|2274477f", "iid": "sphinx-doc__sphinx-10451", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-11445|gemma-4-31b|c5ae2b76", "iid": "sphinx-doc__sphinx-11445", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-7686|gemma-4-31b|cec911b9", "iid": "sphinx-doc__sphinx-7686", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-7738|gemma-4-31b|6f852a48", "iid": "sphinx-doc__sphinx-7738", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-7975|gemma-4-31b|583441fc", "iid": "sphinx-doc__sphinx-7975", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-8273|gemma-4-31b|2e2b7972", "iid": "sphinx-doc__sphinx-8273", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 1, "other_n": 3}
+{"set": "lite", "pid": "sphinx-doc__sphinx-8282|gemma-4-31b|62649301", "iid": "sphinx-doc__sphinx-8282", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-8435|gemma-4-31b|833016f2", "iid": "sphinx-doc__sphinx-8435", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-8474|gemma-4-31b|b4631fcb", "iid": "sphinx-doc__sphinx-8474", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-8506|gemma-4-31b|11845f64", "iid": "sphinx-doc__sphinx-8506", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-8627|gemma-4-31b|ee6dd4c0", "iid": "sphinx-doc__sphinx-8627", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-8713|gemma-4-31b|7753167d", "iid": "sphinx-doc__sphinx-8713", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-8721|gemma-4-31b|85140fa0", "iid": "sphinx-doc__sphinx-8721", "log": false}
+{"set": "lite", "pid": "sphinx-doc__sphinx-8801|gemma-4-31b|1a460cba", "iid": "sphinx-doc__sphinx-8801", "log": false}
+{"set": "lite", "pid": "sympy__sympy-11400|gemma-4-31b|1d2f94a6", "iid": "sympy__sympy-11400", "log": false}
+{"set": "lite", "pid": "sympy__sympy-11870|gemma-4-31b|40305385", "iid": "sympy__sympy-11870", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 58, "other_n": 58}
+{"set": "lite", "pid": "sympy__sympy-12171|gemma-4-31b|27c81882", "iid": "sympy__sympy-12171", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 7, "other_n": 8}
+{"set": "lite", "pid": "sympy__sympy-12236|gemma-4-31b|0d6d77be", "iid": "sympy__sympy-12236", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 133, "other_n": 133}
+{"set": "lite", "pid": "sympy__sympy-12454|gemma-4-31b|7e98078f", "iid": "sympy__sympy-12454", "log": false}
+{"set": "lite", "pid": "sympy__sympy-13031|gemma-4-31b|f0a25a36", "iid": "sympy__sympy-13031", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 9, "other_n": 9}
+{"set": "lite", "pid": "sympy__sympy-13043|gemma-4-31b|45d7d7ac", "iid": "sympy__sympy-13043", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 1, "other_n": 1}
+{"set": "lite", "pid": "sympy__sympy-13146|gemma-4-31b|fe4d451b", "iid": "sympy__sympy-13146", "log": false}
+{"set": "lite", "pid": "sympy__sympy-13177|gemma-4-31b|7ef26b72", "iid": "sympy__sympy-13177", "log": false}
+{"set": "lite", "pid": "sympy__sympy-13437|gemma-4-31b|807179b5", "iid": "sympy__sympy-13437", "log": false}
+{"set": "lite", "pid": "sympy__sympy-13471|gemma-4-31b|ee0795b2", "iid": "sympy__sympy-13471", "log": false}
+{"set": "lite", "pid": "sympy__sympy-13480|gemma-4-31b|58a9324f", "iid": "sympy__sympy-13480", "log": false}
+{"set": "lite", "pid": "sympy__sympy-13773|gemma-4-31b|f1e26242", "iid": "sympy__sympy-13773", "log": false}
+{"set": "lite", "pid": "sympy__sympy-13895|gemma-4-31b|73ce3c12", "iid": "sympy__sympy-13895", "log": false}
+{"set": "lite", "pid": "sympy__sympy-13915|gemma-4-31b|fd839524", "iid": "sympy__sympy-13915", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 62, "other_n": 62}
+{"set": "lite", "pid": "sympy__sympy-13971|gemma-4-31b|25320d9c", "iid": "sympy__sympy-13971", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 102, "other_n": 102}
+{"set": "lite", "pid": "sympy__sympy-14024|gemma-4-31b|f33d9de7", "iid": "sympy__sympy-14024", "log": false}
+{"set": "lite", "pid": "sympy__sympy-14308|gemma-4-31b|2aa1921f", "iid": "sympy__sympy-14308", "log": false}
+{"set": "lite", "pid": "sympy__sympy-14317|gemma-4-31b|9c61ac0d", "iid": "sympy__sympy-14317", "log": false}
+{"set": "lite", "pid": "sympy__sympy-14396|gemma-4-31b|6aeb3fc5", "iid": "sympy__sympy-14396", "log": false}
+{"set": "lite", "pid": "sympy__sympy-14774|gemma-4-31b|e062b2e2", "iid": "sympy__sympy-14774", "log": false}
+{"set": "lite", "pid": "sympy__sympy-14817|gemma-4-31b|75e27948", "iid": "sympy__sympy-14817", "log": false}
+{"set": "lite", "pid": "sympy__sympy-15011|gemma-4-31b|da87b6e7", "iid": "sympy__sympy-15011", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 51, "other_n": 53}
+{"set": "lite", "pid": "sympy__sympy-15308|gemma-4-31b|65172c47", "iid": "sympy__sympy-15308", "log": false}
+{"set": "lite", "pid": "sympy__sympy-15345|gemma-4-31b|4ad9589c", "iid": "sympy__sympy-15345", "log": false}
+{"set": "lite", "pid": "sympy__sympy-15346|gemma-4-31b|09ba88c3", "iid": "sympy__sympy-15346", "log": false}
+{"set": "lite", "pid": "sympy__sympy-15609|gemma-4-31b|beb217e7", "iid": "sympy__sympy-15609", "log": false}
+{"set": "lite", "pid": "sympy__sympy-15678|gemma-4-31b|e2b02d8d", "iid": "sympy__sympy-15678", "log": false}
+{"set": "lite", "pid": "sympy__sympy-16106|gemma-4-31b|fd2e6ef8", "iid": "sympy__sympy-16106", "log": false}
+{"set": "lite", "pid": "sympy__sympy-16281|gemma-4-31b|11567ffc", "iid": "sympy__sympy-16281", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 2, "other_pass": 120, "other_n": 120}
+{"set": "lite", "pid": "sympy__sympy-16503|gemma-4-31b|ab82b215", "iid": "sympy__sympy-16503", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 121, "other_n": 121}
+{"set": "lite", "pid": "sympy__sympy-16988|gemma-4-31b|dac3f1dd", "iid": "sympy__sympy-16988", "log": true, "parsed": true, "issue_pass": 2, "issue_n": 2, "other_pass": 72, "other_n": 72}
+{"set": "lite", "pid": "sympy__sympy-17022|gemma-4-31b|528de401", "iid": "sympy__sympy-17022", "log": false}
+{"set": "lite", "pid": "sympy__sympy-17630|gemma-4-31b|dbb42908", "iid": "sympy__sympy-17630", "log": false}
+{"set": "lite", "pid": "sympy__sympy-18057|gemma-4-31b|e5939d2d", "iid": "sympy__sympy-18057", "log": false}
+{"set": "lite", "pid": "sympy__sympy-18087|gemma-4-31b|e05cda3c", "iid": "sympy__sympy-18087", "log": false}
+{"set": "lite", "pid": "sympy__sympy-18189|gemma-4-31b|d034adb8", "iid": "sympy__sympy-18189", "log": false}
+{"set": "lite", "pid": "sympy__sympy-18199|gemma-4-31b|1f10e08a", "iid": "sympy__sympy-18199", "log": false}
+{"set": "lite", "pid": "sympy__sympy-18532|gemma-4-31b|e141342d", "iid": "sympy__sympy-18532", "log": true, "parsed": true, "issue_pass": 2, "issue_n": 2, "other_pass": 28, "other_n": 28}
+{"set": "lite", "pid": "sympy__sympy-18621|gemma-4-31b|1f060a8e", "iid": "sympy__sympy-18621", "log": false}
+{"set": "lite", "pid": "sympy__sympy-18698|gemma-4-31b|bbaec023", "iid": "sympy__sympy-18698", "log": true, "parsed": true, "issue_pass": 1, "issue_n": 1, "other_pass": 147, "other_n": 147}
+{"set": "lite", "pid": "sympy__sympy-18835|gemma-4-31b|f5928aaf", "iid": "sympy__sympy-18835", "log": false}
+{"set": "lite", "pid": "sympy__sympy-19007|gemma-4-31b|ec3b4e12", "iid": "sympy__sympy-19007", "log": false}
+{"set": "lite", "pid": "sympy__sympy-19254|gemma-4-31b|7877eea2", "iid": "sympy__sympy-19254", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 16, "other_n": 18}
+{"set": "lite", "pid": "sympy__sympy-19487|gemma-4-31b|ec064585", "iid": "sympy__sympy-19487", "log": false}
+{"set": "lite", "pid": "sympy__sympy-20049|gemma-4-31b|e79171cd", "iid": "sympy__sympy-20049", "log": false}
+{"set": "lite", "pid": "sympy__sympy-20154|gemma-4-31b|5b49eea7", "iid": "sympy__sympy-20154", "log": false}
+{"set": "lite", "pid": "sympy__sympy-20212|gemma-4-31b|1e144138", "iid": "sympy__sympy-20212", "log": false}
+{"set": "lite", "pid": "sympy__sympy-20322|gemma-4-31b|aa6b7afc", "iid": "sympy__sympy-20322", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 89, "other_n": 89}
+{"set": "lite", "pid": "sympy__sympy-20442|gemma-4-31b|a38d2c46", "iid": "sympy__sympy-20442", "log": false}
+{"set": "lite", "pid": "sympy__sympy-20639|gemma-4-31b|d8e16173", "iid": "sympy__sympy-20639", "log": false}
+{"set": "lite", "pid": "sympy__sympy-21055|gemma-4-31b|441f9b3f", "iid": "sympy__sympy-21055", "log": false}
+{"set": "lite", "pid": "sympy__sympy-21171|gemma-4-31b|8db909fa", "iid": "sympy__sympy-21171", "log": false}
+{"set": "lite", "pid": "sympy__sympy-21612|gemma-4-31b|39f2a4d0", "iid": "sympy__sympy-21612", "log": false}
+{"set": "lite", "pid": "sympy__sympy-21614|gemma-4-31b|8cef72fd", "iid": "sympy__sympy-21614", "log": false}
+{"set": "lite", "pid": "sympy__sympy-21627|gemma-4-31b|96670b9c", "iid": "sympy__sympy-21627", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 25, "other_n": 26}
+{"set": "lite", "pid": "sympy__sympy-21847|gemma-4-31b|f5376d13", "iid": "sympy__sympy-21847", "log": false}
+{"set": "lite", "pid": "sympy__sympy-22005|gemma-4-31b|1120a482", "iid": "sympy__sympy-22005", "log": false}
+{"set": "lite", "pid": "sympy__sympy-22714|gemma-4-31b|0876c91f", "iid": "sympy__sympy-22714", "log": false}
+{"set": "lite", "pid": "sympy__sympy-22840|gemma-4-31b|e23d37e9", "iid": "sympy__sympy-22840", "log": false}
+{"set": "lite", "pid": "sympy__sympy-23117|gemma-4-31b|5c928e09", "iid": "sympy__sympy-23117", "log": false}
+{"set": "lite", "pid": "sympy__sympy-23191|gemma-4-31b|34962185", "iid": "sympy__sympy-23191", "log": true, "parsed": true, "issue_pass": 0, "issue_n": 1, "other_pass": 2, "other_n": 3}
+{"set": "lite", "pid": "sympy__sympy-23262|gemma-4-31b|31169be3", "iid": "sympy__sympy-23262", "log": false}
+{"set": "lite", "pid": "sympy__sympy-24102|gemma-4-31b|d9dd12ad", "iid": "sympy__sympy-24102", "log": false}
+{"set": "lite", "pid": "sympy__sympy-24152|gemma-4-31b|5c258e34", "iid": "sympy__sympy-24152", "log": false}
+{"set": "lite", "pid": "sympy__sympy-24213|gemma-4-31b|44d69d70", "iid": "sympy__sympy-24213", "log": false}
+{"set": "lite", "pid": "sympy__sympy-24909|gemma-4-31b|20550bd7", "iid": "sympy__sympy-24909", "log": false}

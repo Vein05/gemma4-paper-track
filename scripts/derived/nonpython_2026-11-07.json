@@ -1,0 +1,113 @@
+{
+ "issues_run": 120,
+ "issues_no_patch": 3,
+ "issues": 118,
+ "gemma_patches": 114,
+ "gemma_passing": 60,
+ "own_failing": 54,
+ "control_failing": 152,
+ "per_language": {
+  "Go": 38,
+  "Ruby": 40,
+  "PHP": 36
+ },
+ "stamped_passing": 42,
+ "solved": {
+  "gemma-4-31b": 0.517,
+  "glm-5": 0.675,
+  "kimi-k2-5": 0.667,
+  "deepseek-3-2": 0.625,
+  "minimax-2-5": 0.633
+ },
+ "auroc_own": {
+  "gemma": 0.472,
+  "outside_judges": 0.655
+ },
+ "estimates": {
+  "extra_trust": {
+   "value": 4.1582,
+   "ci95": [
+    -3.6505,
+    11.7885
+   ]
+  },
+  "stamp_own": {
+   "value": 0.7593,
+   "ci95": [
+    0.6415,
+    0.8696
+   ]
+  },
+  "stamp_controls": {
+   "value": 0.6776,
+   "ci95": [
+    0.5862,
+    0.7652
+   ]
+  },
+  "outside_stamp_own": {
+   "value": 0.287,
+   "ci95": [
+    0.2304,
+    0.3421
+   ]
+  },
+  "same_issue": {
+   "value": 2.6034,
+   "ci95": [
+    -3.6343,
+    8.9205
+   ]
+  },
+  "vs_glm-5": {
+   "value": 5.689,
+   "ci95": [
+    -5.9762,
+    18.0853
+   ]
+  },
+  "vs_kimi-k2-5": {
+   "value": 4.5033,
+   "ci95": [
+    -6.0856,
+    14.9087
+   ]
+  },
+  "vs_deepseek-3-2": {
+   "value": 9.418,
+   "ci95": [
+    -1.2218,
+    20.7655
+   ]
+  },
+  "vs_minimax-2-5": {
+   "value": -3.1681,
+   "ci95": [
+    -12.3403,
+    5.977
+   ]
+  },
+  "lang_Go": {
+   "value": 2.6275,
+   "ci95": [
+    -8.9551,
+    14.2799
+   ]
+  },
+  "lang_Ruby": {
+   "value": 16.6862,
+   "ci95": [
+    6.4715,
+    27.1197
+   ]
+  },
+  "lang_PHP": {
+   "value": -5.0887,
+   "ci95": [
+    -20.7372,
+    9.8285
+   ]
+  }
+ },
+ "reading": "does not carry over"
+}

@@ -14,7 +14,7 @@ import os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 HERE = os.path.dirname(os.path.abspath(__file__))
 BIB = os.path.join(HERE, "..", "references.bib")
-MD = os.path.join(HERE, "..", "writeup.md")
+MD = os.environ.get("REPORT_MD", os.path.join(HERE, "..", "writeup.md"))  # REPORT_MD: build a draft
 
 
 def entries(bib):
