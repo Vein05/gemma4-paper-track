@@ -56,11 +56,11 @@ It needs `uv`, or Python 3.11 or newer.
 | Path | What it is |
 |---|---|
 | [`paper/rubber-stamp.pdf`](paper/rubber-stamp.pdf) | The paper. |
-| [`paper/rubber-stamp-supplement.pdf`](paper/rubber-stamp-supplement.pdf) | The detail behind each section of the paper: setup, the judge prompt, grading checks, each test with its plan and reading, and cost. |
-| [`paper/writeup.md`](paper/writeup.md) | The paper as Markdown (the PDF's source; `cd paper && make` rebuilds both PDFs and `submission.txt`). |
-| [`scripts/`](scripts/) | Agent runner, grading, judging, the shell judge, LoRA training, the existing-test check, the repair run and every analysis; `scripts/lab/` and `scripts/mcsr/` run the GPU jobs; `scripts/derived/` holds every judge answer and the summary behind each number. |
-| [`data/`](data/) | Gemma 4 31B's held-out agent runs (patches, labels, trajectories), its LiveCodeBench programs, the hand codes and the public patches we judged; sources and what is left out in `data/README.md`. |
-| [Hugging Face: `vein05/gemma4-paper-track-data`](https://huggingface.co/datasets/vein05/gemma4-paper-track-data) | The raw runs too large for this repository: the shell-judge runs, the existing-test check and repair runs, the LoRA scores, the Go, Ruby and PHP runs, the repair of another team's Lite patches, the LiveCodeBench model sweep, the smaller-Gemma runs, the probe features and every judge prompt. |
+| [`paper/rubber-stamp-supplement.pdf`](paper/rubber-stamp-supplement.pdf) | Setup, judge prompt, grading checks, every test and its cost. |
+| [`paper/writeup.md`](paper/writeup.md) | The paper as Markdown, the PDF's source (`cd paper && make` rebuilds it). |
+| [`scripts/`](scripts/) | Agent runs, grading, judging, repair and every analysis; `scripts/derived/` holds each judge answer and number. |
+| [`data/`](data/) | Gemma 4 31B's agent runs, its contest programs and the public patches we judged (see `data/README.md`). |
+| [Hugging Face: `vein05/gemma4-paper-track-data`](https://huggingface.co/datasets/vein05/gemma4-paper-track-data) | The raw runs too large for this repository, and every judge prompt. |
 
 ## Compute
 
