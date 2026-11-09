@@ -1,0 +1,339 @@
+{
+ "issues": 193,
+ "gemma_rate": 0.5401,
+ "band": 0.08,
+ "band_writers": [
+  "20250726_mini-v1.0.0_gemini-2.5-pro",
+  "20250726_mini-v1.0.0_o3-2025-04-16",
+  "20250726_mini-v1.0.0_o4-mini-2025-04-16",
+  "20250807_mini-v1.7.0_gpt-5-nano",
+  "20260217_mini-v2.0.0_gpt-5-mini",
+  "glm-4.5",
+  "kimi-k2"
+ ],
+ "failing_patches": {
+  "20250726_mini-v1.0.0_o4-mini-2025-04-16": 93,
+  "20250726_mini-v1.0.0_gemini-2.5-pro": 81,
+  "20250726_mini-v1.0.0_o3-2025-04-16": 72,
+  "20250807_mini-v1.7.0_gpt-5-nano": 82,
+  "20260217_mini-v2.0.0_gpt-5-mini": 76,
+  "gemma-4-31b": 86,
+  "kimi-k2": 58,
+  "glm-4.5": 64
+ },
+ "failing_total": 612,
+ "writers": {
+  "20260217_mini-v2.0.0_claude-4-6-opus": {
+   "usable": 191,
+   "passing": 156,
+   "rate": 0.8168,
+   "family": "anthropic",
+   "excluded": null,
+   "in_band": false
+  },
+  "20260217_mini-v2.0.0_minimax-2-5-high": {
+   "usable": 190,
+   "passing": 152,
+   "rate": 0.8,
+   "family": "minimax",
+   "excluded": null,
+   "in_band": false
+  },
+  "20260217_mini-v2.0.0_gemini-3-flash-high": {
+   "usable": 192,
+   "passing": 153,
+   "rate": 0.7969,
+   "family": "google",
+   "excluded": null,
+   "in_band": false
+  },
+  "20260217_mini-v2.0.0_claude-4-5-opus-high": {
+   "usable": 189,
+   "passing": 150,
+   "rate": 0.7937,
+   "family": "anthropic",
+   "excluded": null,
+   "in_band": false
+  },
+  "20251124_mini-v1.16.0_claude-opus-4-5-20251101": {
+   "usable": 188,
+   "passing": 148,
+   "rate": 0.7872,
+   "family": "anthropic",
+   "excluded": null,
+   "in_band": false
+  },
+  "20251118_mini-v1.15.0_gemini-3-pro-preview-20251118": {
+   "usable": 191,
+   "passing": 149,
+   "rate": 0.7801,
+   "family": "google",
+   "excluded": null,
+   "in_band": false
+  },
+  "20251211_mini-v1.17.2_gpt-5.2-2025-12-11-high": {
+   "usable": 192,
+   "passing": 149,
+   "rate": 0.776,
+   "family": "gpt-oss",
+   "excluded": null,
+   "in_band": false
+  },
+  "20260217_mini-v2.0.0_glm-5-high": {
+   "usable": 189,
+   "passing": 143,
+   "rate": 0.7566,
+   "family": "glm",
+   "excluded": null,
+   "in_band": false
+  },
+  "20250929_mini-v1.13.3_sonnet-4-5-20250929": {
+   "usable": 182,
+   "passing": 137,
+   "rate": 0.7527,
+   "family": "anthropic",
+   "excluded": null,
+   "in_band": false
+  },
+  "20260217_mini-v2.0.0_gpt-5-2-high": {
+   "usable": 193,
+   "passing": 144,
+   "rate": 0.7461,
+   "family": "gpt-oss",
+   "excluded": null,
+   "in_band": false
+  },
+  "20260217_mini-v2.0.0_claude-4-5-sonnet-high": {
+   "usable": 193,
+   "passing": 143,
+   "rate": 0.7409,
+   "family": "anthropic",
+   "excluded": null,
+   "in_band": false
+  },
+  "20260217_mini-v2.0.0_deepseek-3-2-high": {
+   "usable": 193,
+   "passing": 141,
+   "rate": 0.7306,
+   "family": "deepseek",
+   "excluded": null,
+   "in_band": false
+  },
+  "20250802_mini-v1.0.0_claude-4-opus-20250514": {
+   "usable": 161,
+   "passing": 116,
+   "rate": 0.7205,
+   "family": "anthropic",
+   "excluded": null,
+   "in_band": false
+  },
+  "20251124_mini-v1.17.0_minimax-m2": {
+   "usable": 143,
+   "passing": 103,
+   "rate": 0.7203,
+   "family": "minimax",
+   "excluded": null,
+   "in_band": false
+  },
+  "20251211_mini-v1.17.2_gpt-5.2-2025-12-11": {
+   "usable": 193,
+   "passing": 139,
+   "rate": 0.7202,
+   "family": "gpt-oss",
+   "excluded": null,
+   "in_band": false
+  },
+  "20251124_mini-v1.16.0_gpt-5.1-codex": {
+   "usable": 184,
+   "passing": 132,
+   "rate": 0.7174,
+   "family": "gpt-oss",
+   "excluded": null,
+   "in_band": false
+  },
+  "20260217_mini-v2.0.0_claude-4-5-haiku-high": {
+   "usable": 192,
+   "passing": 137,
+   "rate": 0.7135,
+   "family": "anthropic",
+   "excluded": null,
+   "in_band": false
+  },
+  "20251120_mini-v1.15.0_gpt-5.1-2025-11-13": {
+   "usable": 189,
+   "passing": 134,
+   "rate": 0.709,
+   "family": "gpt-oss",
+   "excluded": null,
+   "in_band": false
+  },
+  "qwen3-coder": {
+   "usable": 156,
+   "passing": 109,
+   "rate": 0.6987,
+   "family": "qwen",
+   "excluded": null,
+   "in_band": false
+  },
+  "20250726_mini-v1.0.0_claude-sonnet-4-20250514": {
+   "usable": 165,
+   "passing": 115,
+   "rate": 0.697,
+   "family": "anthropic",
+   "excluded": null,
+   "in_band": false
+  },
+  "20251209_mini-v1.17.2_devstral-2512": {
+   "usable": 156,
+   "passing": 108,
+   "rate": 0.6923,
+   "family": "mistral",
+   "excluded": null,
+   "in_band": false
+  },
+  "20251209_mini-v1.17.2_devstral-small-2512": {
+   "usable": 169,
+   "passing": 115,
+   "rate": 0.6805,
+   "family": "mistral",
+   "excluded": null,
+   "in_band": false
+  },
+  "20250807_mini-v1.7.0_gpt-5": {
+   "usable": 191,
+   "passing": 128,
+   "rate": 0.6702,
+   "family": "gpt-oss",
+   "excluded": null,
+   "in_band": false
+  },
+  "20251201_mini-v1.17.1_deepseek-v3.2-reasoner": {
+   "usable": 151,
+   "passing": 101,
+   "rate": 0.6689,
+   "family": "deepseek",
+   "excluded": null,
+   "in_band": false
+  },
+  "20251201_mini-v1.17.1_glm-4.6": {
+   "usable": 150,
+   "passing": 100,
+   "rate": 0.6667,
+   "family": "glm",
+   "excluded": null,
+   "in_band": false
+  },
+  "20250807_mini-v1.7.0_gpt-5-mini": {
+   "usable": 184,
+   "passing": 120,
+   "rate": 0.6522,
+   "family": "gpt-oss",
+   "excluded": null,
+   "in_band": false
+  },
+  "20250720_mini-v0.0.0-claude-3-7-sonnet-20250219": {
+   "usable": 30,
+   "passing": 19,
+   "rate": 0.6333,
+   "family": "anthropic",
+   "excluded": "patches for fewer than half the issues",
+   "in_band": false
+  },
+  "20250726_mini-v1.0.0_o3-2025-04-16": {
+   "usable": 188,
+   "passing": 116,
+   "rate": 0.617,
+   "family": "gpt-oss",
+   "excluded": null,
+   "in_band": true
+  },
+  "glm-4.5": {
+   "usable": 164,
+   "passing": 100,
+   "rate": 0.6098,
+   "family": "glm",
+   "excluded": null,
+   "in_band": true
+  },
+  "20260217_mini-v2.0.0_gpt-5-mini": {
+   "usable": 187,
+   "passing": 111,
+   "rate": 0.5936,
+   "family": "gpt-oss",
+   "excluded": null,
+   "in_band": true
+  },
+  "kimi-k2": {
+   "usable": 142,
+   "passing": 84,
+   "rate": 0.5915,
+   "family": "kimi",
+   "excluded": null,
+   "in_band": true
+  },
+  "20250726_mini-v1.0.0_gemini-2.5-pro": {
+   "usable": 182,
+   "passing": 101,
+   "rate": 0.5549,
+   "family": "google",
+   "excluded": null,
+   "in_band": true
+  },
+  "gemma-4-31b": {
+   "usable": 187,
+   "passing": 101,
+   "rate": 0.5401,
+   "family": "gemma",
+   "excluded": null,
+   "in_band": false
+  },
+  "20250807_mini-v1.7.0_gpt-5-nano": {
+   "usable": 158,
+   "passing": 76,
+   "rate": 0.481,
+   "family": "gpt-oss",
+   "excluded": null,
+   "in_band": true
+  },
+  "20250726_mini-v1.0.0_o4-mini-2025-04-16": {
+   "usable": 179,
+   "passing": 86,
+   "rate": 0.4804,
+   "family": "gpt-oss",
+   "excluded": null,
+   "in_band": true
+  },
+  "gpt-oss-120b": {
+   "usable": 162,
+   "passing": 51,
+   "rate": 0.3148,
+   "family": "gpt-oss",
+   "excluded": null,
+   "in_band": false
+  },
+  "llama-4-maverick": {
+   "usable": 171,
+   "passing": 46,
+   "rate": 0.269,
+   "family": "llama",
+   "excluded": null,
+   "in_band": false
+  },
+  "20250803_mini-v1.0.0_qwen2-5-coder-32b-instruct": {
+   "usable": 165,
+   "passing": 22,
+   "rate": 0.1333,
+   "family": "qwen",
+   "excluded": null,
+   "in_band": false
+  },
+  "20260226_mini-v2.0.0_gemini-3-pro-high": {
+   "usable": 182,
+   "passing": 0,
+   "rate": 0.0,
+   "family": "google",
+   "excluded": "no resolved issue (labels unusable)",
+   "in_band": false
+  }
+ }
+}

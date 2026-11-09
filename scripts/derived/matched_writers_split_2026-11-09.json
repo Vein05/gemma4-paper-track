@@ -1,0 +1,46 @@
+{
+ "gemma_score": {
+  "own": 69.1,
+  "equally_strong_family_balanced": 69.4,
+  "difference": -0.3,
+  "ci95": [
+   -9.8,
+   8.7
+  ]
+ },
+ "outside_score": {
+  "own": 55.8,
+  "equally_strong_family_balanced": 64.8,
+  "difference": -9.0,
+  "ci95": [
+   -14.2,
+   -4.0
+  ]
+ },
+ "extra_trust_three_judges_of_no_writers_family": {
+  "own": 1.7,
+  "equally_strong_family_balanced": -6.6,
+  "difference": 8.3,
+  "ci95": [
+   0.6,
+   16.2
+  ]
+ },
+ "extra_trust_all_eight_other_judges": {
+  "own": 13.3,
+  "equally_strong_family_balanced": 6.3,
+  "difference": 7.0,
+  "ci95": [
+   0.1,
+   14.0
+  ]
+ },
+ "exploratory": true,
+ "patches": 591,
+ "issues": 151,
+ "judges_of_no_writers_family": [
+  "qwen35-9b",
+  "qwen3-coder",
+  "llama-4-maverick"
+ ]
+}

@@ -1,8 +1,8 @@
 <h1 align="center">Gemma 4 Is Less Self-Biased Than It Looks</h1>
 
 <p align="center">
-  Gemma 4 scores 100 on 60% of its own failing patches, and on 61% of Kimi-K2's. Much of its
-  apparent self-bias comes from comparing it with weaker agents.
+  Gemma 4 scores 100 on 59% of its own failing patches, and on 57% of the failing patches of seven
+  equally strong agents. About half of its apparent self-bias comes from comparing it with weaker agents.
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
 
 <p align="center">
   <br>
-  <img src="paper/figures/fig-writers.png" alt="Gemma 4 31B trusts failing patches more when their writer is stronger, and its extra trust in its own failing patches shrinks against strong writers" width="88%">
+  <img src="paper/figures/fig-writers.png" alt="Gemma 4 31B trusts failing patches more when their writer is stronger, and its extra trust in its own failing patches halves against equally strong writers" width="88%">
   <br><br>
 </p>
 
@@ -24,14 +24,14 @@ Coding agents often decide whether a patch is finished by asking a model, often 
 31B and eight other models to score SWE-bench patches without naming their writer, and graded every patch with the
 hidden tests. Gemma's extra trust in a patch is its score minus the mean score of judges from other model families.
 
-- **Measured self-preference depends on who the other writers are.** By the usual measure, Gemma's extra trust in its
-  own failing patches is 16.3 points above its extra trust in other writers' failing patches. Compared only with
-  writers that solve at least as many issues as Gemma, the gap falls to 9.2 points on held-out SWE-bench Verified
-  issues, and it is within noise on SWE-bench Lite and on Go, Ruby and PHP issues.
-- **Gemma gives the top score to most strong writers' failing patches.** It scores 100 on 61% of Kimi-K2's failing
-  patches, almost the same share as its own, and on 16% of Llama-4-Maverick's. Most of its own failing patches are wrong
-  fixes that pass every existing test. Thinking before scoring, testing the patch in a shell and LoRA fine-tuning each
-  left most of them approved.
+- **Gemma 4's self-preference halves against equally strong writers.** By the usual measure, against five public
+  agents of mixed strength, Gemma's extra trust in its own failing patches is 16.3 points. Against the seven public
+  agents that solve about as many held-out SWE-bench Verified issues as Gemma, chosen by a rule fixed before scoring,
+  it is 8.7 points. Gemma gives these seven agents' failing patches the top score as often as its own.
+- **Gemma gives the top score to most strong writers' failing patches.** On Go, Ruby and PHP issues it scores 100 on
+  76% of its own failing patches and on 68% of four stronger agents' failing patches. Most of its own failing patches
+  are wrong fixes that pass every existing test. Thinking before scoring, testing the patch in a shell and LoRA
+  fine-tuning each left most of them approved.
 - **Gemma obeys outdated tests when it repairs a patch.** Shown the existing tests its patch breaks, Gemma repairs 14
   of 26 held-back failing patches on the held-out issues, against 7 after a second look. On SWE-bench Lite, the
   reference fix fails the same tests for every held-back correct patch. There Gemma breaks 12 of 14 correct patches,

@@ -54,6 +54,8 @@ STEPS = [
     ("lite_repair_2026-11-07_empty-as-failing.json", "lite_repair.py analyze"),
     ("outdated_tests_2026-11-07.json", "outdated_tests.py"),
     ("labelled_repair_2026-11-09.json", "labelled_repair_analyze.py --no-wandb"),
+    ("matched_writers_2026-11-09.json", "matched_writers.py analyze"),
+    ("matched_writers_split_2026-11-09.json", "matched_writers_split.py"),
 ]
 # The paper whose claims are checked: paper/writeup.md by default; REPRODUCE_PAPER selects another copy of its text.
 PAPER = os.environ.get("REPRODUCE_PAPER", "paper/writeup.md")
@@ -240,79 +242,84 @@ def claims():
     W = wt["per_writer"]
     others = [w for w in W if w != "gemma-4-31b"]
     weak = ["gpt-oss-120b", "llama-4-maverick"]
-    strong_n = [len(re.search(r"\{(.*?)\}", t).group(1).split(",")) for t in (held, rest)]
     E = ft["held_out_own_failing"]["types"]
     C = ft["held_out_own_failing_by_check"]
     L_t, L_l = labelled["all"]["tests"], labelled["all"]["labelled"]
     t, r = repair["tests"], repair["review"]
     lt, lr = lite["tests"], lite["review"]
-    table1 = lambda w, name: (f"| {name} | {pct(W[w]['solved'])} | {W[w]['failing']} | {pct(W[w]['gemma_100'])} | "
-                              f"{sgn(W[w]['above_outside'])} |")
-    rows1 = [("qwen3-coder", "Qwen3-Coder", "| Qwen3-Coder | 70% | 46 | 48% | +1.4 |"),
-             ("glm-4.5", "GLM-4.5", "| GLM-4.5 | 62% | 61 | 56% | +8.9 |"),
-             ("kimi-k2", "Kimi-K2", "| Kimi-K2 | 61% | 54 | 61% | +7.1 |"),
-             ("gemma-4-31b", "Gemma 4 31B", "| Gemma 4 31B | 54% | 82 | 60% | +13.7 |"),
-             ("gpt-oss-120b", "gpt-oss-120b", "| gpt-oss-120b | 30% | 109 | 25% | -6.7 |"),
-             ("llama-4-maverick", "Llama-4-Maverick", "| Llama-4-Maverick | 27% | 123 | 16% | -10.7 |")]
+    m = load("matched_writers_2026-11-09.json")["gemma4-31b"]
+    sel = json.load(open(os.path.join(WORK, "scripts", "derived", "matched_writers_selection.json")))
+    M = m["per_writer"]
+    eq = lambda key: m[f"extra_trust_own_minus_matched_{key}"]
+    top = lambda w: round(M[w]["gemma_share_100"] / 100 * M[w]["failing"]) / M[w]["failing"]  # share from the count
+    fams = sorted({M[w]["family"] for w in m["band_writers"]})
+    theirs = sum(sum(top(w) for w in m["band_writers"] if M[w]["family"] == f) /
+                 sum(M[w]["family"] == f for w in m["band_writers"]) for f in fams) / len(fams)
+    table1 = lambda w, name: (f"| {name} | {pct(M[w]['resolve_rate'])} | {pct(top(w))} | {num(M[w]['extra_trust'])} |")
+    rows1 = [("20250726_mini-v1.0.0_o3-2025-04-16", "o3", "| o3 | 62% | 55% | −1.7 |"),
+             ("glm-4.5", "GLM-4.5", "| GLM-4.5 | 61% | 57% | +3.8 |"),
+             ("20260217_mini-v2.0.0_gpt-5-mini", "GPT-5 mini", "| GPT-5 mini | 59% | 79% | +3.0 |"),
+             ("kimi-k2", "Kimi-K2", "| Kimi-K2 | 59% | 55% | +6.4 |"),
+             ("20250726_mini-v1.0.0_gemini-2.5-pro", "Gemini 2.5 Pro", "| Gemini 2.5 Pro | 55% | 65% | +12.6 |"),
+             ("gemma-4-31b", "Gemma 4 31B", "| Gemma 4 31B | 54% | 59% | +13.3 |"),
+             ("20250807_mini-v1.7.0_gpt-5-nano", "GPT-5 nano", "| GPT-5 nano | 48% | 26% | −12.1 |"),
+             ("20250726_mini-v1.0.0_o4-mini-2025-04-16", "o4-mini", "| o4-mini | 48% | 41% | −7.4 |")]
     return [
-        ("Abs", "Gemma scores 100: Kimi-K2's failing patches, its own", "61% of Kimi-K2's failing patches, almost the same share",
-         "61%, 60%", f"{pct(W['kimi-k2']['gemma_100'])}, {pct(W['gemma-4-31b']['gemma_100'])}"),
+        ("Abs", "equally strong writers by the rule (within 8 points of Gemma)", "Against seven writers as strong as Gemma",
+         "7", str(len(sel["band_writers"]))),
         ("1", "matplotlib 24570: Gemma scores it 100, GLM-4.5 scores it 20", "scored the same patch 20", "100 and 20",
          f"{answer['gemma4-31b']} and {answer['glm-4.5']}"),
         ("1", "extra trust in own failing patches, all other writers", "16.3 points further above", "+16.3",
          sgn(fresh["lenient_raw_failing_difference"])),
-        ("1", "scored 100: Llama-4-Maverick's failing patches, Gemma's own", "Llama-4-Maverick's a quarter as often",
+        ("1", "scored 100: Llama-4-Maverick's failing patches, Gemma's own", "the weakest writer's a quarter as often",
          "16%, 60%", f"{pct(W['llama-4-maverick']['gemma_100'])}, {pct(W['gemma-4-31b']['gemma_100'])}"),
-        ("1", "against strong writers only, held-out", "falls from 16.3 to 9.2 points", "+16.3, +9.2",
-         f"{grab(held, 'own_minus_others').split()[0]}, {grab(held, 'own_minus_strong').split()[0]}"),
+        ("1", "extra trust: mixed-strength writers, equally strong writers",
+         "is 16.3 points against five writers of mixed strength and 8.7 against seven", "+16.3, +8.7",
+         f"{grab(held, 'own_minus_others').split()[0]}, {sgn(eq('family_balanced')['value'])}"),
+        ("1", "equally strong writers, in the introduction", "the gap is 8.7 points", "+8.7 [1.7, 15.8]",
+         ci_(eq("family_balanced")["value"], eq("family_balanced")["ci95"])),
         ("1", "correct held-back Lite patches broken with the tests shown", "On Lite it breaks 12 of 14 correct",
          "12 of 14", f"{lt['blocked_passing_now_failing']} of {lite['blocked_passing']}"),
         ("2", "held-out issues", "193 held-out issues", "193", str(gate["issues"])),
         ("2", "Go, Ruby and PHP issues run", "Gemma on 120 Go", "120", str(npy["issues_run"])),
         *[("3.1", f"Table 1, {name}", quote, quote, table1(w, name)) for w, name, quote in rows1],
-        ("3.1", "Figure 1a, all other writers together: scored 100, failing patches", None, "35%, 393",
-         f"{pct(sum(round(W[w]['gemma_100'] * W[w]['failing']) for w in others) / sum(W[w]['failing'] for w in others))}, "
-         f"{sum(W[w]['failing'] for w in others)}"),
-        ("3.1", "held-out: drop from all other writers to strong writers, 95% interval",
-         "the drop's 95% interval excludes zero", "excludes zero",
-         "excludes zero" if not includes_zero([float(x) for x in re.search(r"\[(.*?)\]", grab(held, "drop_others_to_strong")).group(1).split(", ")])
-         else "reaches zero"),
-        ("3.1", "Lite against Claude 4 Sonnet, in the text", "about as much as its own (+1.7 points)", "+1.7",
-         grab(rest, "own_minus_strong").split()[0]),
-        ("3.1", "two weakest writers' share of other writers' failing patches", "supply 59% of the other writers'",
+        ("3.1", "equally strong writers: extra trust, share of the mixed-strength gap, interval",
+         "is 8.7 points, about half of the gap above, with a 95% interval above zero", "+8.7, 53%, above zero",
+         f"{sgn(eq('family_balanced')['value'])}, "
+         f"{pct(eq('family_balanced')['value'] / float(grab(held, 'own_minus_others').split()[0]))}, "
+         + ("above zero" if eq("family_balanced")["ci95"][0] > 0 else "reaches zero")),
+        ("3.1", "scored 100: own failing, equally strong writers' failing (families weighted equally)",
+         "100 to 59% of its own failing patches and to 57% of theirs, a difference within noise", "59%, 57%, includes zero",
+         f"{pct(top('gemma-4-31b'))}, {pct(theirs)}, "
+         + ("includes zero" if includes_zero(m["share_100_own_minus_matched_family_balanced"]["ci95"]) else "excludes zero")),
+        ("3.1", "OpenAI writers among the seven; model families", "Four of the seven are OpenAI models", "4 of 7, 4 families",
+         f"{sum(M[w]['family'] == 'gpt-oss' for w in m['band_writers'])} of {len(m['band_writers'])}, {len(fams)} families"),
+        ("3.1", "above outside judges: Gemini 2.5 Pro's failing patches, Gemma's own", "as far above the outside judges as its own",
+         "+12.6, +13.3", f"{sgn(M['20250726_mini-v1.0.0_gemini-2.5-pro']['extra_trust'])}, {sgn(M['gemma-4-31b']['extra_trust'])}"),
+        ("3.1", "without Gemini; without the OpenAI writers", "without the OpenAI writers its interval includes zero",
+         "+11.4, +5.7 includes zero", f"{sgn(eq('without_google')['value'])}, {sgn(eq('without_gpt-oss')['value'])} "
+         + ("includes zero" if includes_zero(eq("without_gpt-oss")["ci95"]) else "excludes zero")),
+        ("3.1", "two weakest writers' share of other writers' failing patches", "these two supply most of the group's",
          "59%", pct(sum(W[w]["failing"] for w in weak) / sum(W[w]["failing"] for w in others))),
-        ("3.1", "scored 100, two weakest writers", "falls to a quarter or less", "25%, 16%",
+        ("3.1", "scored 100, two weakest writers", "a quarter or less of the two weakest writers'", "25%, 16%",
          ", ".join(pct(W[w]["gemma_100"]) for w in weak)),
-        ("3.1", "Figure 1b, held-out: all other writers, strong only", None, "+16.3 [9.9, 22.7], +9.2 [2.1, 16.0]",
-         f"{grab(held, 'own_minus_others')}, {grab(held, 'own_minus_strong')}"),
-        ("3.1", "Figure 1b, Lite: all other writers, strong only", None, "+17.8 [12.1, 23.5], +1.7 [-5.3, 8.7]",
-         f"{grab(rest, 'own_minus_others')}, {grab(rest, 'own_minus_strong')}"),
-        ("3.1", "Figure 1b and text, Go, Ruby and PHP", "the gap is 4.2 points", "+4.2 [-3.7, 11.8]",
+        ("3.1", "Figure 1b, held-out: mixed-strength, equally strong, without Gemini, without OpenAI", None,
+         "+16.3 [9.9, 22.7], +8.7 [1.7, 15.8], +11.4 [4.1, 18.8], +5.7 [-1.6, 13.3]",
+         f"{grab(held, 'own_minus_others')}, " + ", ".join(ci_(eq(k)["value"], eq(k)["ci95"])
+                                                           for k in ("family_balanced", "without_google", "without_gpt-oss"))),
+        ("3.1", "Figure 1b, Lite: mixed-strength writers", None, "+17.8 [12.1, 23.5]", grab(rest, "own_minus_others")),
+        ("3.2", "Figure 1b and text, Go, Ruby and PHP", "its extra trust in its own is within noise", "+4.2 [-3.7, 11.8]",
          ci_(npy["estimates"]["extra_trust"]["value"], npy["estimates"]["extra_trust"]["ci95"])),
-        ("3.1", "strong writers per data set: held-out, Lite, Go/Ruby/PHP", "one to four writers per", "3, 1, 4",
-         f"{strong_n[0]}, {strong_n[1]}, {len([k for k in npy['estimates'] if k.startswith('vs_')])}"),
-        ("3.1", "Go/Ruby/PHP: other writers solving at least as many issues as Gemma", "every other writer is strong",
+        ("3.2", "Go/Ruby/PHP: other writers solving at least as many issues as Gemma", "every other writer solves more issues than Gemma",
          "4 of 4", f"{sum(v >= npy['solved']['gemma-4-31b'] for k, v in npy['solved'].items() if k != 'gemma-4-31b')}"
                    f" of {len(npy['solved']) - 1}"),
-        ("3.1", "same-edit patches get more extra trust, Lite; held-out interval reaches zero", "20 points more extra trust",
-         "+20.0, reaches zero", f"{sgn(belief['swe-bench-lite']['sim_effect'])}, "
-         + ("reaches zero" if includes_zero(belief["held-out"]["sim_effect_ci95"]) else "above zero")),
-        ("3.1", "Gemma 12B and 26B-A4B on the 31B's failing patches", "no measurable", "both include zero",
-         "both include zero" if includes_zero(sizes["gemma4-12b_lenient_failing_difference_ci95"]) and
-         includes_zero(sizes["gemma4-26b-a4b_lenient_failing_difference_ci95"]) else "not both"),
         ("3.2", "Go/Ruby/PHP scored 100: own failing, other writers' failing", "Gemma gives 100 to 76% of", "76%, 68%",
          f"{pct(npy['estimates']['stamp_own']['value'])}, {pct(npy['estimates']['stamp_controls']['value'])}"),
         ("3.2", "Go/Ruby/PHP outside judges score own failing 100", "only 29% of the time", "29%",
          pct(npy["estimates"]["outside_stamp_own"]["value"])),
-        ("3.2", "Go/Ruby/PHP: Gemma's score separates own pass from fail (AUROC)", "no better than chance", "0.47",
-         f"{npy['auroc_own']['gemma']:.2f}"),
         ("3.2", "Gemma's failing held-out patches: wrong fix, regression only, both",
-         "52 are wrong fixes", "82: 52, 13, 17",
+         "52 are wrong fixes, in which every existing test still passes. The other 30 break an existing test.", "82: 52, 13, 17",
          f"{ft['held_out_own_failing']['n']}: {E['wrong fix']['n']}, {E['regression']['n']}, {E['both']['n']}"),
-        ("3.2", "extra trust: wrong fixes, regressions; outside judges' mean on both",
-         "about the same for wrong fixes and for regressions", "+13.9, +16.8; 58.4, 60.1",
-         f"{sgn(E['wrong fix']['gemma_minus_outside'])}, {sgn(E['regression']['gemma_minus_outside'])}; "
-         f"{E['wrong fix']['outside_mean']}, {E['regression']['outside_mean']}"),
         ("3.2", "thinking before scoring: scored 100, on and off", "62% of its failing patches 100, against 61%",
          "62%, 61%", f"{pct(think['on'])}, {pct(think['off'])}"),
         ("3.2", "own reproduction script: last run ended without error", "in almost all failing runs", "55 of 61",
@@ -354,13 +361,11 @@ def claims():
          "22 of 30, 4 of 52",
          f"{C['regression | block'] + C['both | block']} of {E['regression']['n'] + E['both']['n']}, "
          f"{C['wrong fix | block']} of {E['wrong fix']['n']}"),
-        ("3.3", "labelled repair: other writers' held-back patches", "on 172 held-back patches from the other five writers",
-         "172", str(labelled["patches"])),
         ("3.3", "labelled repair against tests shown: correct broken, fewer repaired",
-         "Correct patches broken fell from 20 to 7, but 5 fewer failing patches were repaired",
+         "Correct patches broken fell from 20 to 7, but fewer failing patches were repaired",
          "20 to 7, 5 fewer", f"{L_t['correct_broken']} to {L_l['correct_broken']}, "
                              f"{L_t['failing_repaired'] - L_l['failing_repaired']} fewer"),
-        ("3.3", "labelled repair: net gain in passing patches, interval reaches zero", "The net gain of 8 passing patches is within noise",
+        ("3.3", "labelled repair: net gain in passing patches, interval reaches zero", "the net gain is within noise",
          "+8, reaches zero", f"{net(labelled['labelled_minus_tests']['diff'])}, "
                              + ("reaches zero" if includes_zero(labelled["labelled_minus_tests"]["ci95"]) else "excludes zero")),
         ("5", "correct patches the repair's harm rests on", "rests on 23 correct patches", "23",

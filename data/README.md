@@ -35,6 +35,11 @@ whose source is listed below.
   mini-SWE-agent control entries (first five in the list below) on SWE-bench Verified issues outside the Mini issues,
   from the same S3 bucket, downloaded 2026-10-05 by `scripts/fresh_issues.py`; `sample.json`, the fixed random order of
   the held-out issues (seed 0) and the pilot issues; `mini50_ids.json`, the Mini issue ids.
+- `public/swe-bench-verified-more-writers/` (added 2026-11-09): `attempts.jsonl`, patches (`patch.diff`) and official
+  labels (`per_instance_details.json`) of public mini-SWE-agent entries on the 200 held-out issues, from the same S3
+  bucket and `SWE-bench/experiments` revision `40f164d5`, downloaded by `scripts/matched_writers.py fetch`;
+  `source.json` lists the entries. The release holds the five entries that the equally-strong-writers test adds (o3,
+  o4-mini, GPT-5 mini, GPT-5 nano, Gemini 2.5 Pro; `spec/matched-writers.md`). Locally the folder holds all 34 entries.
 - `mcsr-runs/` (added 2026-10-06): Gemma 4 31B (`gemma-4-31B-it-qat-w4a16-ct`, revision `52f3f65b`) in
   mini-SWE-agent 1.7.0 on MCSR Magnolia. One folder per job: `main-a`, `main-b` (the 200
   held-out issues, positions 0–99 and 100–199 of `sample.json`), `mini50` (the Mini issues), `pilot`, `smoke`;

@@ -312,9 +312,99 @@ Lite and LiveCodeBench, Gemma's extra trust exceeds the largest of the outside j
 22.2] points. On the held-out issues, Kimi-K2 as judge is also lenient on Gemma's failing patches, at $+9.9$ [4.9,
 14.9] against Gemma's $+16.3$. There Gemma exceeds the largest outside judge by 6.4 [$-3.9$, 11.7] points.
 
+\subsection*{Equally strong writers}
+
+\paragraph{Plan.} We fixed the writers, the measures and the reading in a written plan before any patch in this set
+was scored (\path{spec/matched-writers.md}). The candidates are all public mini-SWE-agent entries on SWE-bench Verified
+in \texttt{SWE-bench/experiments} (revision \texttt{40f164d5}), with their patches prepared as in the paper. An
+equally strong writer solves a share of the held-out issues within 8 points of Gemma's 54.0\%. The rule uses labels
+only. It gives seven writers in four model families: o3, o4-mini, GPT-5 mini and GPT-5 nano from OpenAI, Gemini 2.5 Pro
+from Google, Kimi-K2 from Moonshot and GLM-4.5 from Zhipu. Three entries were left out before the rule was applied.
+One has no resolved issue in its labels, and two have patches for fewer than half the issues
+(\path{derived/matched_writers_selection.json}).
+
+\paragraph{Scoring.} On 2026-11-09 the nine judges of the held-out run scored the 612 failing patches of Gemma and of
+these seven writers, with the same prompt, settings, parser and re-ask rule (\path{scripts/matched_writers.py}).
+Gemma's, Kimi-K2's and GLM-4.5's failing patches were scored again, so every comparison uses scores from one session.
+All nine judges gave a score to 591 patches on 151 issues. Gemma has 86 failing patches in this set. The rest of the
+paper counts 82, the ones that all nine judges had scored in October. The two gpt-oss judges are left out of the
+outside judges for the OpenAI writers. The run cost \$5.29 on OpenRouter.
+
+\paragraph{Result.} The planned measure is Gemma's extra trust in its own failing patches against the seven writers,
+with the four families weighted equally. A family's value is the mean over its writers. The plan fixed three readings.
+An interval that includes zero means no detectable preference. An interval above zero with an estimate below 9.9, the
+lower end of the interval against the mixed-strength writers, means the preference shrinks but remains. An estimate of
+9.9 or more means that writer strength does not explain the gap. The result is $+8.7$ [1.7, 15.8], so the preference
+shrinks but remains (Table~\ref{tab:equalgap}). Gemma gives 100 to its own failing patches 2.3 points more often than
+to these writers' failing patches, with an interval that includes zero.
+
+The plan also asks whether the reading changes when Google's or OpenAI's writers are left out. It does. Without Gemini
+2.5 Pro the estimate is 11.4, the third reading. Without the four OpenAI writers the interval includes zero, the first
+reading. Table~\ref{tab:equalwriters} shows why. Gemma scores Gemini 2.5 Pro's failing patches 12.6 points above the
+outside judges, close to the 13.3 points for its own, and scores three of the four OpenAI writers' failing patches
+below the outside judges.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Gemma as judge on the failing patches of the equally strong writers. ``Solved'' is the writer's share of
+issues solved. ``Gemma'' and ``Outside'' are the mean scores of Gemma and of the outside judges on the failing patches
+that all nine judges scored, and ``Above'' is their difference. \texttt{derived/matched\_writers\_2026-11-09.json}.}
+\label{tab:equalwriters}
+\footnotesize
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Writer & Family & Solved & Gemma & Outside & Above & Scored 100 \\
+\midrule
+o3 & OpenAI & 61.7\% & 69.3 & 71.0 & $-1.7$ & 55\% (38 of 69) \\
+GLM-4.5 & Zhipu & 61.0\% & 72.7 & 68.9 & $+3.8$ & 57\% (34 of 60) \\
+GPT-5 mini & OpenAI & 59.4\% & 83.6 & 80.6 & $+3.0$ & 79\% (58 of 73) \\
+Kimi-K2 & Moonshot & 59.2\% & 67.5 & 61.1 & $+6.4$ & 55\% (31 of 56) \\
+Gemini 2.5 Pro & Google & 55.5\% & 77.1 & 64.5 & $+12.6$ & 65\% (49 of 75) \\
+Gemma 4 31B (own) & & 54.0\% & 69.1 & 55.8 & $+13.3$ & 59\% (51 of 86) \\
+GPT-5 nano & OpenAI & 48.1\% & 39.4 & 51.5 & $-12.1$ & 26\% (21 of 80) \\
+o4-mini & OpenAI & 48.0\% & 48.3 & 55.7 & $-7.4$ & 41\% (38 of 92) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Gemma's own failing patches against the equally strong writers' failing patches, with 95\% intervals. Extra
+trust is in points. The last column is the difference in the share of failing patches that Gemma scores 100, in
+percentage points. \texttt{derived/matched\_writers\_2026-11-09.json}.}
+\label{tab:equalgap}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Comparison & Extra trust & Scored 100 \\
+\midrule
+Four families weighted equally (planned reading) & $+8.7$ [1.7, 15.8] & $+2.3$ [$-8.9$, 12.7] \\
+All patches pooled & $+13.3$ [6.6, 20.0] & $+6.0$ [$-4.6$, 16.0] \\
+Without Google (Gemini 2.5 Pro) & $+11.4$ [4.1, 18.8] & $+5.1$ [$-6.6$, 16.3] \\
+Without OpenAI (four writers) & $+5.7$ [$-1.6$, 13.3] & $+0.2$ [$-11.9$, 11.2] \\
+Without Moonshot (Kimi-K2) & $+9.3$ [2.5, 16.3] & $+1.8$ [$-9.6$, 12.8] \\
+Without Zhipu (GLM-4.5) & $+8.4$ [1.1, 15.7] & $+2.2$ [$-9.3$, 12.5] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{October against November.} The two sessions share 193 patches with all nine scores. On these, Gemma's
+extra trust in its own failing patches was 13.7 points in October and is 12.8 now. For Kimi-K2's and GLM-4.5's
+failing patches it was 5.8 and is 6.4. A judge's score for the same patch moved by 7 to 20 points on average, and the
+mean shift per judge lies between $-5.6$ and $+5.3$ points.
+
+\paragraph{Where the remaining gap sits (exploratory).} We split the planned gap after seeing it
+(\path{scripts/matched_writers_split.py}, \path{derived/matched_writers_split_2026-11-09.json}). Gemma's mean score is
+69.1 on its own failing patches and 69.4 on the equally strong writers' failing patches, a difference of $-0.3$
+[$-9.8$, 8.7]. The outside judges give 55.8 and 64.8, a difference of $-9.0$ [$-14.2$, $-4.0$]. So Gemma scores both
+groups alike, and the gap comes from the outside judges, who score Gemma's failing patches lower. The outside judges
+differ by writer family, so we also used one panel for every writer. The gap is $+8.3$ [0.6, 16.2] with the three
+judges of no writer's family and $+7.0$ [0.1, 14.0] with all eight other judges.
+
 \subsection*{Writer strength (exploratory)}
 
-We chose this split on 2026-11-04, after the results above (\path{scripts/strong_writer_leniency.py},
+The planned test above replaces this split in the paper. We chose this split on 2026-11-04, after the results above (\path{scripts/strong_writer_leniency.py},
 \path{derived/strong_writer_leniency_2026-11-04.txt}). A strong writer solves at least as many issues as Gemma on the
 same data set. On the held-out issues, Qwen3-Coder (70\%), GLM-4.5 (62\%) and Kimi-K2 (61\%) are strong, against
 Gemma's 54\%. On SWE-bench Lite, Claude 4 Sonnet is the only strong writer (57\% against 56\%). On the Go, Ruby and
@@ -352,11 +442,12 @@ Against strong writers, within bands & $+10.4$ [3.7, 17.6] & $+1.5$ [$-6.5$, 9.1
 \end{tabular}
 \end{table}
 
-\paragraph{Two outside panels.} Table 1 of the paper compares Gemma with the paper's outside judges, the eight judges
-outside Gemma's family (\path{scripts/writer_table.py}, \path{derived/writer_table_2026-11-07.json}).
-Table~\ref{tab:perwriter} above also leaves out the judges of the writer's own family, so GLM-4.5's and Qwen3-Coder's
-patches are compared with fewer judges. The two panels order the strong writers differently. Both put strong writers'
-failing patches above the outside judges, the two weak writers' below them, and Gemma's own highest.
+\paragraph{Two outside panels.} The paper's outside judges leave out the judges of the judge's own family and of
+the writer's family, as in Table~\ref{tab:perwriter}. Figure 1a of the paper takes the shares of 100 for Qwen3-Coder,
+gpt-oss-120b and Llama-4-Maverick from \path{derived/writer_table_2026-11-07.json}. That file also compares Gemma with
+all eight judges outside Gemma's family (\path{scripts/writer_table.py}). The two panels order the strong writers
+differently. Both put strong writers' failing patches above the outside judges, the two weak writers' below them, and
+Gemma's own highest.
 
 \subsection*{Go, Ruby and PHP issues}
 
@@ -1301,8 +1392,9 @@ Six judges, LiveCodeBench, with an 8-call cost test & 5,319 & 0.98 \\
 gpt-oss-120b and Llama-4-Maverick, new programs and their scores, LiveCodeBench & 4,008 & 1.20 \\
 Five judges, Go, Ruby and PHP issues & 1,427 & 0.82 \\
 Gemma and gpt-oss-120b labelling broken tests & 164 & 0.04 \\
+Nine judges, equally strong writers' failing patches (Section~\ref{app:stamp}) & 5,644 & 5.29 \\
 \midrule
-Total & 38,238 & 17.84 \\
+Total & 43,882 & 23.13 \\
 \bottomrule
 \end{tabular}
 \end{table}
