@@ -18,7 +18,7 @@
   "cut": 0.5,
   "n_other_failing_same_edit": 36,
   "n_other_failing_other_edit": 322,
-  "n_own_failing": 85,
+  "n_own_failing": 82,
   "n_issues_both": 16,
   "n_own_failing_on_both": 16,
   "reading": "inconclusive",

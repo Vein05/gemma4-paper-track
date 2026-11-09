@@ -1,42 +1,42 @@
 {
  "qwen3-coder": {
   "self_auroc_own": 0.672,
-  "self_auroc_rest": 0.733,
-  "self_drop": 0.061,
-  "baseline_drop": 0.101,
-  "gap": -0.04,
-  "lenient_difference_failing": -8.088,
+  "self_auroc_rest": 0.732,
+  "self_drop": 0.059,
+  "baseline_drop": 0.102,
+  "gap": -0.043,
+  "lenient_difference_failing": -8.371,
   "stamp100_own_failing": 0.0,
   "stamp100_other_failing": 0.0,
-  "lenient_difference_passing": 2.677,
+  "lenient_difference_passing": 2.93,
   "gap_ci95": [
-   -0.1,
-   0.023
+   -0.103,
+   0.018
   ],
   "gap_ci99_bonferroni": [
-   -0.118,
-   0.039
+   -0.119,
+   0.037
   ],
   "lenient_difference_failing_ci95": [
-   -15.4,
-   -0.5
+   -15.6,
+   -1.0
   ],
   "lenient_difference_failing_ci99_bonferroni": [
-   -17.3,
-   1.9
+   -17.7,
+   1.5
   ],
   "lenient_difference_passing_ci95": [
-   -1.6,
-   6.9
+   -1.3,
+   7.2
   ],
   "lenient_difference_passing_ci99_bonferroni": [
-   -2.6,
-   8.5
+   -2.5,
+   8.6
   ],
   "n": {
    "own_failing": 46,
    "own_passing": 108,
-   "other_failing": 432
+   "other_failing": 429
   },
   "outside_judges": [
    "gemma4-31b",
@@ -51,42 +51,42 @@
  },
  "gpt-oss-120b": {
   "self_auroc_own": 0.778,
-  "self_auroc_rest": 0.712,
-  "self_drop": -0.066,
-  "baseline_drop": -0.067,
-  "gap": 0.001,
-  "lenient_difference_failing": 2.859,
+  "self_auroc_rest": 0.715,
+  "self_drop": -0.063,
+  "baseline_drop": -0.068,
+  "gap": 0.005,
+  "lenient_difference_failing": 3.02,
   "stamp100_own_failing": 0.0,
   "stamp100_other_failing": 0.0,
-  "lenient_difference_passing": 0.811,
+  "lenient_difference_passing": 0.619,
   "gap_ci95": [
-   -0.066,
-   0.073
+   -0.063,
+   0.076
   ],
   "gap_ci99_bonferroni": [
-   -0.088,
-   0.097
+   -0.083,
+   0.1
   ],
   "lenient_difference_failing_ci95": [
-   -3.3,
-   8.8
+   -3.2,
+   8.9
   ],
   "lenient_difference_failing_ci99_bonferroni": [
-   -5.0,
+   -4.8,
    10.8
   ],
   "lenient_difference_passing_ci95": [
-   -6.5,
-   7.7
+   -6.6,
+   7.5
   ],
   "lenient_difference_passing_ci99_bonferroni": [
-   -8.6,
-   10.0
+   -8.9,
+   9.7
   ],
   "n": {
    "own_failing": 109,
    "own_passing": 47,
-   "other_failing": 369
+   "other_failing": 366
   },
   "outside_judges": [
    "gemma4-31b",
@@ -101,42 +101,42 @@
  },
  "glm-4.5": {
   "self_auroc_own": 0.77,
-  "self_auroc_rest": 0.819,
-  "self_drop": 0.049,
-  "baseline_drop": 0.097,
+  "self_auroc_rest": 0.82,
+  "self_drop": 0.05,
+  "baseline_drop": 0.098,
   "gap": -0.048,
-  "lenient_difference_failing": 0.83,
+  "lenient_difference_failing": 0.983,
   "stamp100_own_failing": 0.115,
-  "stamp100_other_failing": 0.091,
-  "lenient_difference_passing": 5.552,
+  "stamp100_other_failing": 0.092,
+  "lenient_difference_passing": 5.504,
   "gap_ci95": [
-   -0.113,
+   -0.112,
    0.019
   ],
   "gap_ci99_bonferroni": [
    -0.129,
-   0.034
+   0.035
   ],
   "lenient_difference_failing_ci95": [
-   -8.8,
-   9.7
+   -8.6,
+   9.8
   ],
   "lenient_difference_failing_ci99_bonferroni": [
-   -11.8,
-   12.3
+   -11.7,
+   12.4
   ],
   "lenient_difference_passing_ci95": [
-   1.1,
-   10.3
+   1.0,
+   10.2
   ],
   "lenient_difference_passing_ci99_bonferroni": [
-   -0.1,
-   11.7
+   -0.2,
+   11.6
   ],
   "n": {
    "own_failing": 61,
    "own_passing": 99,
-   "other_failing": 417
+   "other_failing": 414
   },
   "outside_judges": [
    "gemma4-31b",
@@ -151,42 +151,42 @@
  },
  "kimi-k2": {
   "self_auroc_own": 0.713,
-  "self_auroc_rest": 0.809,
-  "self_drop": 0.096,
+  "self_auroc_rest": 0.81,
+  "self_drop": 0.097,
   "baseline_drop": 0.061,
   "gap": 0.035,
-  "lenient_difference_failing": 3.474,
+  "lenient_difference_failing": 3.547,
   "stamp100_own_failing": 0.037,
   "stamp100_other_failing": 0.014,
-  "lenient_difference_passing": 0.531,
+  "lenient_difference_passing": 0.477,
   "gap_ci95": [
    -0.035,
    0.103
   ],
   "gap_ci99_bonferroni": [
    -0.052,
-   0.125
+   0.126
   ],
   "lenient_difference_failing_ci95": [
-   -3.9,
+   -3.8,
    10.6
   ],
   "lenient_difference_failing_ci99_bonferroni": [
    -6.2,
-   13.2
+   13.3
   ],
   "lenient_difference_passing_ci95": [
-   -3.0,
-   4.4
+   -3.1,
+   4.3
   ],
   "lenient_difference_passing_ci99_bonferroni": [
    -4.2,
-   5.5
+   5.4
   ],
   "n": {
    "own_failing": 54,
    "own_passing": 84,
-   "other_failing": 424
+   "other_failing": 421
   },
   "outside_judges": [
    "gemma4-31b",
@@ -202,24 +202,24 @@
  },
  "llama-4-maverick": {
   "self_auroc_own": 0.735,
-  "self_auroc_rest": 0.657,
+  "self_auroc_rest": 0.656,
   "self_drop": -0.079,
   "baseline_drop": -0.126,
-  "gap": 0.048,
-  "lenient_difference_failing": 2.835,
+  "gap": 0.046,
+  "lenient_difference_failing": 2.798,
   "stamp100_own_failing": 0.333,
   "stamp100_other_failing": 0.423,
-  "lenient_difference_passing": -2.89,
+  "lenient_difference_passing": -2.935,
   "gap_ci95": [
-   -0.021,
-   0.117
+   -0.022,
+   0.115
   ],
   "gap_ci99_bonferroni": [
    -0.042,
-   0.139
+   0.137
   ],
   "lenient_difference_failing_ci95": [
-   -5.0,
+   -5.1,
    10.8
   ],
   "lenient_difference_failing_ci99_bonferroni": [
@@ -227,17 +227,17 @@
    12.5
   ],
   "lenient_difference_passing_ci95": [
-   -8.5,
+   -8.6,
    2.9
   ],
   "lenient_difference_passing_ci99_bonferroni": [
    -10.6,
-   5.3
+   5.2
   ],
   "n": {
    "own_failing": 123,
    "own_passing": 46,
-   "other_failing": 355
+   "other_failing": 352
   },
   "outside_judges": [
    "gemma4-31b",
@@ -252,42 +252,42 @@
   "spec_role": "tested writer"
  },
  "gemma4-31b": {
-  "self_auroc_own": 0.622,
+  "self_auroc_own": 0.631,
   "self_auroc_rest": 0.751,
-  "self_drop": 0.129,
-  "baseline_drop": 0.055,
-  "gap": 0.074,
-  "lenient_difference_failing": 16.643,
-  "stamp100_own_failing": 0.612,
+  "self_drop": 0.12,
+  "baseline_drop": 0.054,
+  "gap": 0.065,
+  "lenient_difference_failing": 16.277,
+  "stamp100_own_failing": 0.598,
   "stamp100_other_failing": 0.346,
-  "lenient_difference_passing": 3.365,
+  "lenient_difference_passing": 3.785,
   "gap_ci95": [
-   0.022,
-   0.126
+   0.015,
+   0.116
   ],
   "gap_ci99_bonferroni": [
-   0.007,
-   0.143
+   -0.004,
+   0.132
   ],
   "lenient_difference_failing_ci95": [
-   10.3,
-   23.1
+   9.9,
+   22.7
   ],
   "lenient_difference_failing_ci99_bonferroni": [
-   7.6,
-   24.5
+   7.2,
+   24.3
   ],
   "lenient_difference_passing_ci95": [
-   -2.0,
-   8.0
+   -1.5,
+   8.4
   ],
   "lenient_difference_passing_ci99_bonferroni": [
-   -3.6,
-   9.9
+   -2.8,
+   10.1
   ],
   "n": {
-   "own_failing": 85,
-   "own_passing": 95,
+   "own_failing": 82,
+   "own_passing": 98,
    "other_failing": 393
   },
   "outside_judges": [
@@ -324,15 +324,15 @@
   "patches_rated_by_all": 957,
   "resamples": 2000,
   "seed": 0,
-  "gemma_minus_pooled_gap": 0.075,
+  "gemma_minus_pooled_gap": 0.066,
   "gemma_minus_pooled_gap_ci95": [
-   0.015,
-   0.133
+   0.006,
+   0.124
   ],
-  "gemma_minus_pooled_lenient_difference_failing": 16.3,
+  "gemma_minus_pooled_lenient_difference_failing": 15.9,
   "gemma_minus_pooled_lenient_difference_failing_ci95": [
-   8.9,
-   23.4
+   8.3,
+   23.1
   ]
  }
 }

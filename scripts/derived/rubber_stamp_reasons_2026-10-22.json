@@ -1,33 +1,33 @@
 {
  "rule": "own failing held-out patch, Gemma 100, at least two outside judges <= 50",
- "own_failing_scored_100": 52,
- "cases": 31,
+ "own_failing_scored_100": 49,
+ "cases": 29,
  "code": {
-  "agreement": 0.839,
-  "kappa": 0.448
+  "agreement": 0.828,
+  "kappa": 0.44
  },
  "opposite": {
-  "agreement": 0.419,
-  "kappa": 0.028
+  "agreement": 0.448,
+  "kappa": 0.049
  },
  "coder_a": {
   "named": 5,
-  "not_named": 26,
+  "not_named": 24,
   "opposite": 7,
-  "named_share": 0.161,
+  "named_share": 0.172,
   "named_share_ci95": [
-   0.032,
-   0.29
+   0.034,
+   0.31
   ]
  },
  "coder_b": {
   "named": 6,
-  "not_named": 25,
-  "opposite": 21,
-  "named_share": 0.194,
+  "not_named": 23,
+  "opposite": 19,
+  "named_share": 0.207,
   "named_share_ci95": [
-   0.065,
-   0.355
+   0.069,
+   0.379
   ]
  },
  "named_by_both": 3,

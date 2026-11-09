@@ -28,6 +28,7 @@ def run(name, X, y, wr, iss, judges, wfam):
         r={}
         r['own_minus_strong']=D[own].mean()-D[st].mean()
         r['own_minus_others']=D[own].mean()-D[oth].mean()
+        r['drop_others_to_strong']=r['own_minus_others']-r['own_minus_strong']  # added 2026-11-07: interval of the drop itself
         # matched by panel bin, weighted by own count; also 100-share
         num=den=num100=0
         for k in range(5):

@@ -116,3 +116,31 @@ Changes, to make base and patch runs the same shape:
 The selection rule, the decision rule and the readings are unchanged. The django reference patch's block in the smoke
 test (`test_negative` asserts the negative-duration behaviour the issue changes) is a real outcome of the rule and
 stays. The smoke issues are rerun in the full run with the corrected code.
+
+## Addendum 2 (2026-11-09, after the full run and the labelled repair run): patches tested with their fix removed
+
+Written before any rerun below. The labels and earlier gate decisions of these patches have been seen.
+
+**The error.** Some patches contain hunks that do not apply to our images: edits to `tox.ini`, `setup.py` or
+`pyproject.toml` that the images already hold, or binary files. Plain `git apply` then fails. SWE-bench's second fallback,
+`git apply --reject`, applied the source hunks and exited with an error. The third, `patch --batch`, took those hunks as
+already applied and reversed them. The patch then counted as applied while the code was unpatched. Running the old
+fallbacks on all 210 patches that fail plain `git apply` (lab, 2026-11-09) gave: 142 with the fix in place, 60 with the fix removed, 6 where nothing applied, 2 with no source file. All 68
+without the fix in place are in the Verified set. None are in the Lite set, and none are among the patches of the
+earlier Gemma repair runs.
+
+**The change** (`apply_patch` in `scripts/eval_apptainer.py`, used by this gate, `scripts/test_repair.py` and the
+grader). `git apply` first. If it fails, again without binary files, then also without `tox.ini`, `setup.py` and
+`pyproject.toml`. If all fail, `patch --batch --forward --fuzz=5`, tried with `--dry-run` first on the same three texts.
+There is no `--reject` step. `git apply --reject` can never succeed where plain `git apply` failed, so removing it
+loses no patch.
+
+**The rerun.** The patches whose code was not patched in the full run (`applycheck` result: fix removed, nothing
+applied, or no source file): 68 patches on 29 issues, lab CPU, 4 workers, in
+`<workdir>/swe-env/existing-test-gate-applyfix/`. Selection, decision rule and readings are unchanged. Each new
+row replaces the old row of that patch. The old rows stay on disk and are not used. The numbers of every earlier
+measure of this gate are recomputed from the merged rows.
+
+**Check of the change.** Run on the same 210 patches with the new code: the fix must be in place in the 142, and the
+source files changed in the 60 where it was removed. The grader is re-validated on 30 control patches against official
+labels.

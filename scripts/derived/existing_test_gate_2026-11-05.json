@@ -8,29 +8,29 @@
  "primary": {
   "stamped_failing": {
    "blocked": 15,
-   "of": 52,
-   "share": 0.288,
+   "of": 49,
+   "share": 0.306,
    "ci95": [
-    0.17,
-    0.419
+    0.182,
+    0.442
    ]
   },
   "stamped_passing": {
    "blocked": 7,
-   "of": 81,
-   "share": 0.086,
+   "of": 84,
+   "share": 0.083,
    "ci95": [
-    0.033,
-    0.151
+    0.032,
+    0.145
    ]
   },
   "all_passing_gemma": {
    "blocked": 9,
-   "of": 95,
-   "share": 0.095,
+   "of": 98,
+   "share": 0.092,
    "ci95": [
-    0.042,
-    0.157
+    0.041,
+    0.153
    ]
   },
   "reference": {
@@ -45,29 +45,29 @@
  },
  "all_failing_gemma": {
   "blocked": 26,
-  "of": 85,
-  "share": 0.306,
+  "of": 82,
+  "share": 0.317,
   "ci95": [
-   0.211,
-   0.41
+   0.219,
+   0.422
   ]
  },
  "others_stamped_failing": {
-  "blocked": 34,
+  "blocked": 33,
   "of": 136,
-  "share": 0.25,
+  "share": 0.243,
   "ci95": [
-   0.169,
-   0.344
+   0.161,
+   0.333
   ]
  },
  "others_passing": {
-  "blocked": 46,
+  "blocked": 32,
   "of": 384,
-  "share": 0.12,
+  "share": 0.083,
   "ci95": [
-   0.068,
-   0.18
+   0.042,
+   0.132
   ]
  },
  "coverage": {
@@ -84,11 +84,11 @@
    "of": 193
   },
   "gpt-oss-120b": {
-   "checked": 131,
+   "checked": 130,
    "of": 156
   },
   "kimi-k2": {
-   "checked": 127,
+   "checked": 128,
    "of": 138
   },
   "llama-4-maverick": {
@@ -107,8 +107,8 @@
   "base run timed out or not run": 26
  },
  "block_reasons": {
-  "missing only": 95,
-  "failed": 152
+  "missing only": 69,
+  "failed": 156
  },
  "overlap_label_assisted": {
   "label_flagged": 17,
@@ -116,21 +116,21 @@
   "gate_blocked_outside": 3
  },
  "witness": {
-  "failing | a broken test passes with the reference": 159,
+  "failing | a broken test passes with the reference": 151,
   "failing | broken tests also fail with the reference": 15,
-  "passing | a broken test passes with the reference": 25,
+  "passing | a broken test passes with the reference": 11,
   "passing | broken tests also fail with the reference": 30,
   "passing reference | broken tests also fail with the reference": 18
  },
  "gate_or_glm45_le50": {
   "stamped_failing": {
    "caught": 27,
-   "of": 52,
+   "of": 49,
    "glm_alone": 18
   },
   "stamped_passing": {
    "caught": 14,
-   "of": 81,
+   "of": 84,
    "glm_alone": 8
   }
  },

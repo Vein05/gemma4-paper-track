@@ -24,7 +24,10 @@ for ds in ('princeton-nlp/SWE-bench_Verified', 'princeton-nlp/SWE-bench_Lite'):
         issues[r['instance_id']] = r['problem_statement']
 
 jobs = []
-for name, rep in (('heldout', 'test-repair'), ('lite', 'lite-repair')):
+SETS = (('heldout', 'test-repair'), ('lite', 'lite-repair'))
+if len(sys.argv) > 3:  # 2026-11-07, spec/labelled-repair.md: e.g. others=labelled-repair (a folder in data/lab-runs)
+    SETS = tuple(s.split('=', 1) for s in sys.argv[3].split(','))
+for name, rep in SETS:
     for j in L(f'{R}/{rep}/jobs.jsonl'):
         jobs.append((name, j))
 

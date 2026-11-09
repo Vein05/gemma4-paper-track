@@ -13,6 +13,8 @@ export LD_LIBRARY_PATH=<workdir>/_cuda-compat-test/ext/usr/local/cuda-13.0/compa
 export VLLM_USE_FLASHINFER_SAMPLER=0 VLLM_NO_USAGE_STATS=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export HF_HOME=$B/hf HF_HUB_OFFLINE=1 TMPDIR=$E/tmp
 export APPTAINER=$E/apptainer/bin/apptainer SIF_DIR=$E/sif WORK=$E/work
+export SANDBOX_MEM_KB=64000000  # memory cap and cleanup for agent commands (run_gemma_mini.py, 2026-11-08)
+nohup setsid bash <workdir>/swe-env/scripts/lab/memory_watchdog.sh </dev/null >/dev/null 2>&1 &  # a second copy exits at once
 export APPTAINER_CACHEDIR=$E/cache APPTAINER_TMPDIR=$E/tmp APPTAINER_EXEC_FLAGS="--fakeroot --ignore-subuid"
 export VLLM_BASE=http://127.0.0.1:18000/v1
 export SERVED_MODEL=gpt-oss-20b MODEL_ID=openai/gpt-oss-20b MODEL_REVISION=6cee5e81ee83917806bbde320786a8fb61efebee

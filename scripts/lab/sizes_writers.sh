@@ -13,6 +13,8 @@ S=<workdir>/gemma4-paper-track/sizes
 B=<workdir>/gemma4-paper-track
 cd $S || exit 1
 export APPTAINER=<workdir>/swe-env/apptainer/bin/apptainer PATH=<workdir>/swe-env/apptainer/bin:$PATH
+export SANDBOX_MEM_KB=64000000  # memory cap and cleanup for agent commands (run_gemma_mini.py, 2026-11-08)
+nohup setsid bash <workdir>/swe-env/scripts/lab/memory_watchdog.sh </dev/null >/dev/null 2>&1 &  # a second copy exits at once
 export APPTAINER_CACHEDIR=<workdir>/swe-env/cache APPTAINER_TMPDIR=<workdir>/swe-env/tmp
 export WORK=$S/work TMPDIR=$S/work HF_HOME=<workdir>/swe-env/hf HF_HUB_OFFLINE=${HF_HUB_OFFLINE:-0}
 export APPTAINER_EXEC_FLAGS="--fakeroot --ignore-subuid"  # as the 2026-10-05 lab validation on Verified images

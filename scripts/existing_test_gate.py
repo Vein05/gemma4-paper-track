@@ -307,12 +307,8 @@ def run_jobs(a):
                     sh(f"rm -rf -- '{p}'")
 
             def apply(patch, k):
-                txt = patch if patch.endswith("\n") else patch + "\n"
-                open(os.path.join(sbx, f"p{k}.diff"), "w").write(txt)
-                for c in ev.APPLY:
-                    if sh(c.replace("/patch.diff", f"/p{k}.diff")).returncode == 0:
-                        return True
-                return False
+                return ev.apply_patch(patch, os.path.join(sbx, f"p{k}.diff"), f"/p{k}.diff",
+                                      lambda c: sh(c).returncode) is not None
 
             def install():
                 if "install" not in specs:

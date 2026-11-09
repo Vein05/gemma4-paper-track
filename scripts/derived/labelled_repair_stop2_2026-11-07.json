@@ -1,0 +1,55 @@
+{
+ "patches": 194,
+ "finished_in_both_arms": 40,
+ "arm_b_kind": {
+  "labelled": 19,
+  "same_as_tests": 150,
+  "keep": 25
+ },
+ "exit_status": {
+  "tests": {
+   "Submitted": 38,
+   "LimitsExceeded": 1,
+   "ContextWindowExceededError": 1
+  },
+  "labelled": {
+   "Submitted": 3
+  }
+ },
+ "outcomes": {
+  "tests": {
+   "graded": 37,
+   "reverted": 1,
+   "no_patch": 2
+  },
+  "labelled": {
+   "graded": 3
+  }
+ },
+ "stop_rule_2": {
+  "sample": 40,
+  "finished": 40,
+  "patches": 40,
+  "correct": 14,
+  "failing": 26,
+  "tests": {
+   "passing": 12,
+   "correct_broken": 9,
+   "failing_repaired": 7
+  },
+  "skip": {
+   "passing": 15,
+   "correct_broken": 6,
+   "failing_repaired": 7
+  },
+  "labelled": {
+   "passing": 17,
+   "correct_broken": 4,
+   "failing_repaired": 7
+  },
+  "no_repair": {
+   "passing": 14
+  },
+  "reading": "go on"
+ }
+}

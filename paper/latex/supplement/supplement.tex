@@ -33,7 +33,11 @@ issues drawn first were left out of the sample. A usable patch is non-empty afte
 \paragraph{Agent.} The 4-bit competition checkpoint \texttt{gemma-4-31B-it-qat-w4a16-ct} (revision \texttt{52f3f65b}) ran
 in mini-SWE-agent v1.7.0 with its SWE-bench configuration unchanged (250 steps, temperature 0, 60-second command
 timeout), served by vLLM with a 131,072-token context on one NVIDIA L40S. Docker was replaced by Apptainer sandboxes
-of the same SWE-bench images. Grading used SWE-bench 4.1.0's grading code in the same kind of sandbox.
+of the same SWE-bench images. Grading used SWE-bench 4.1.0's grading code in the same kind of sandbox. Some patches carry edits to \texttt{tox.ini},
+\texttt{setup.py}, \texttt{pyproject.toml} or binary files that do not apply to these images. When \texttt{git apply}
+failed on them, the fallback of \texttt{git apply --reject} followed by \texttt{patch} undid the patch's source changes. We now
+leave those edits out and apply the rest (\path{spec/existing-test-gate.md}, addendum 2). Three of Gemma's held-out
+patches went from failing to passing, so the plans quote counts that differ by three from those here.
 
 \paragraph{Judges.} Outside judges for a model exclude its own family and, for each patch, the family of the patch's % prose-ok: number-dense-paragraph
 writer. Gemma as judge is the hosted model. OpenRouter routed its 1,064 held-out calls to nine providers. Most of them
@@ -49,13 +53,13 @@ served by vLLM 0.30.0 on one NVIDIA A100 at temperature 0 with thinking off, und
 (\path{spec/gemma-31b-local-judge.md}). It gave a score to all 1,063 prompts on the first ask (rows:
 \path{scripts/derived/fresh_gemma4-31b-local.jsonl}).
 
-On the paper's patches, the local judge gives 100 to 54\% of Gemma's failing patches and to 32\% of other writers'. % prose-ok: number-dense-paragraph
-The hosted model gives 61\% and 35\%. On failing patches, the local judge's extra trust is $+13.4$
-[6.9, 20.0]. For the hosted model it is $+16.6$ [10.3, 23.1]. The paired difference, hosted minus local, is $+3.2$
-[$-0.5$, 7.2]. We detect no difference between the two judges, but the interval allows the hosted model to be up to
-7.2 points more lenient. On passing patches, the local judge's extra trust is $+5.0$ [0.8, 9.0]. For the
-hosted model it is $+3.4$ [$-2.0$, 8.0]. The local judge's AUROC is 0.658 on Gemma's patches and 0.762 on other
-writers'. For the hosted model they are 0.622 and 0.751.
+On the paper's patches, the local judge gives 100 to 52\% of Gemma's failing patches and to 32\% of other writers'. % prose-ok: number-dense-paragraph
+The hosted model gives 60\% and 35\%. On failing patches, the local judge's extra trust is $+12.9$
+[6.2, 19.7]. For the hosted model it is $+16.3$ [9.9, 22.7]. The paired difference, hosted minus local, is $+3.3$
+[$-0.5$, 7.5]. We detect no difference between the two judges, but the interval allows the hosted model to be up to
+7.5 points more lenient. On passing patches, the local judge's extra trust is $+5.3$ [1.3, 9.3]. For the
+hosted model it is $+3.8$ [$-1.5$, 8.4]. The local judge's AUROC is 0.669 on Gemma's patches and 0.762 on other
+writers'. For the hosted model they are 0.631 and 0.751.
 
 \paragraph{Prompt.} Every judge received the same system and user messages at temperature 0
 (\path{scripts/selfjudge_matrix.py}, \path{scripts/selection_test.py}). Braces mark the parts filled in per patch.
@@ -105,11 +109,11 @@ Llama-4-Maverick & 0 & 0 & 0 \\
 \end{table}
 
 \paragraph{Sensitivity to the re-ask (exploratory).} Leaving out patches whose answer needed a re-ask, the held-out
-self-judging gap is $+0.030$ [$-0.024$, 0.083] (all judges' re-asked patches; 763 patches, 143 of Gemma's), $+0.055$
-[0.001, 0.106] (only Kimi-K2's) and $+0.063$ [0.012, 0.115] (only Qwen3.5-9B's). Without the re-asked patches,
-Gemma's own AUROC rises from 0.622 to 0.670, its extra trust in failing patches is $+11.1$ [3.8, 18.2], and it
-gives 100 to 56\% of its failing patches. On per-judge percentile ranks instead of raw scores, the held-out extra trust is $+0.085$
-[0.048, 0.122] on failing patches and $+0.024$ [$-0.007$, 0.055] on passing patches.
+self-judging gap is $+0.019$ [$-0.033$, 0.071] (all judges' re-asked patches; 763 patches, 143 of Gemma's), $+0.046$
+[$-0.008$, 0.097] (only Kimi-K2's) and $+0.053$ [0.001, 0.103] (only Qwen3.5-9B's). Without the re-asked patches,
+Gemma's own AUROC rises from 0.631 to 0.683, its extra trust in failing patches is $+10.3$ [2.8, 17.7], and it
+gives 100 to 54\% of its failing patches. On per-judge percentile ranks instead of raw scores, the held-out extra trust is $+0.082$
+[0.045, 0.119] on failing patches and $+0.028$ [$-0.002$, 0.060] on passing patches.
 
 \section{Agent runs and grading}
 \label{app:grading}
@@ -141,8 +145,8 @@ Counting them as failing, as SWE-bench does, changes the matched-harness gap fro
 or a test project, and every judge sees that file in the diff. We removed every added file from all 957 held-out
 patches and had all nine judges score them again with the same prompt and settings, under a plan fixed before the
 scores (\path{spec/stripped-files-rescore.md}, \path{derived/stripped_files_rescore_2026-11-03.json}). On the 875
-patches every judge scored, Gemma's extra trust in failing patches is $+16.1$ [8.9, 23.2] without the added
-files and $+18.3$ [10.8, 25.1] with them. The paired difference is $+2.2$ [$-4.6$, 8.7]. On unchanged patches, a
+patches every judge scored, Gemma's extra trust in failing patches is $+16.8$ [9.6, 24.0] without the added
+files and $+17.9$ [10.3, 24.9] with them. The paired difference is $+1.1$ [$-5.4$, 7.3]. On unchanged patches, a
 judge's score moves by 6 to 16 points between two runs, so this shift is within run-to-run noise.
 
 \section{Gemma's scores on failing patches}
@@ -155,29 +159,29 @@ depends on how strong the other writers are. Five large models do not show the e
 Several small open models do.
 
 \paragraph{Held-out issues, per judge.} Table~\ref{tab:perjudge} gives each judge's share of failing patches scored
-100. Gemma gives 100 to 52 of its 85 failing patches (61\%) and to 136 of the 393 failing patches by other writers
-(35\%). No outside judge comes close to the 61\% on Gemma's failing patches.
+100. Gemma gives 100 to 49 of its 82 failing patches (60\%) and to 136 of the 393 failing patches by other writers
+(35\%). No outside judge comes close to the 60\% on Gemma's failing patches.
 
 \begin{table}[H]
 \centering
 \small
 \caption{Held-out issues, per judge: share of failing patches scored 100 on Gemma's patches and on the other writers'
 patches. AUROC on Gemma's patches. For outside judges, the drop from their AUROC on other writers' patches to
-their AUROC on Gemma's (the mean drop, 0.055, enters the self-judging gap).}
+their AUROC on Gemma's (the mean drop, 0.054, enters the self-judging gap).}
 \label{tab:perjudge}
 \begin{tabular}{@{}lcccc@{}}
 \toprule
 Judge & Gemma's failing at 100 & Others' failing at 100 & AUROC, Gemma's & Drop \\
 \midrule
-Gemma~4 31B & 61.2\% & 34.6\% & 0.622 & \\
-Llama-4-Maverick & 45.9\% & 38.7\% & 0.611 & 0.059 \\
-GLM-4.7-Flash & 36.5\% & 24.9\% & 0.636 & 0.091 \\
-Qwen3.5-9B & 21.2\% & 23.4\% & 0.685 & 0.050 \\
-GLM-4.5 & 10.6\% & 9.2\% & 0.778 & 0.053 \\
-Kimi-K2 & 1.2\% & 1.8\% & 0.766 & 0.055 \\
-gpt-oss-20b & 0\% & 0\% & 0.665 & 0.038 \\
-gpt-oss-120b & 0\% & 0\% & 0.656 & 0.074 \\
-Qwen3-Coder & 0\% & 0\% & 0.717 & 0.022 \\
+Gemma~4 31B & 59.8\% & 34.6\% & 0.631 & \\
+Llama-4-Maverick & 46.3\% & 38.7\% & 0.609 & 0.061 \\
+GLM-4.7-Flash & 36.6\% & 24.9\% & 0.630 & 0.096 \\
+Qwen3.5-9B & 22.0\% & 23.4\% & 0.681 & 0.054 \\
+GLM-4.5 & 11.0\% & 9.2\% & 0.778 & 0.053 \\
+Kimi-K2 & 1.2\% & 1.8\% & 0.764 & 0.057 \\
+gpt-oss-20b & 0\% & 0\% & 0.682 & 0.021 \\
+gpt-oss-120b & 0\% & 0\% & 0.667 & 0.063 \\
+Qwen3-Coder & 0\% & 0\% & 0.711 & 0.028 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -264,7 +268,7 @@ programs against 12\% of the other writers' (exploratory, \path{scripts/lcb_matc
 (\path{scripts/per_writer_leniency.py}, \path{derived/per_writer_leniency_2026-11-01.json}).
 Table~\ref{tab:perwriter} splits ``other writers'' by writer. Gemma scores its own failing items furthest above the outside judges in each
 data set. One other writer comes close in each SWE-bench set. On the held-out issues, Gemma gives 100 to 61\% of
-Kimi-K2's failing patches, and its extra trust in its own over Kimi-K2's is only 5.6 [$-5.1$, 16.3] points. On
+Kimi-K2's failing patches, and its extra trust in its own over Kimi-K2's is only 5.3 [$-5.4$, 15.9] points. On
 SWE-bench Lite, the gap to Claude 4 Sonnet is 1.7 [$-5.3$, 8.7] points. In both SWE-bench sets, Gemma is lenient
 toward writers that pass more than half their issues and harsh toward writers that pass under a third. Qwen3-Coder,
 which passes 70\%, gets neither.
@@ -279,7 +283,7 @@ share it scores 100. Pass rate is over the writer's judged items.}
 \toprule
 Data set & Writer & Pass rate & Points above, failing & Scored 100, failing \\
 \midrule
-Held-out & Gemma 4 31B (own) & 53\% & $+14.1$ & 61\% (52 of 85) \\
+Held-out & Gemma 4 31B (own) & 54\% & $+13.7$ & 60\% (49 of 82) \\
  & Kimi-K2 & 61\% & $+8.4$ & 61\% (33 of 54) \\
  & GLM-4.5 & 62\% & $+4.1$ & 56\% (34 of 61) \\
  & Qwen3-Coder & 70\% & $+0.4$ & 48\% (22 of 46) \\
@@ -305,24 +309,24 @@ We tested whether such judges are also lenient on Gemma's items. We treated each
 them and computed its extra trust the same way, against the other judges except Gemma. Maverick's value is $-5.4$ % prose-ok: number-dense-paragraph
 [$-10.1$, $-0.7$]. It gives high scores to many patches, but not more to Gemma's than the other judges do. On SWE-bench
 Lite and LiveCodeBench, Gemma's extra trust exceeds the largest of the outside judges' by 12.8 [4.3, 16.8] and 14.2 [3.3,
-22.2] points. On the held-out issues, Kimi-K2 as judge is also lenient on Gemma's failing patches, at $+10.0$ [5.0,
-14.9] against Gemma's $+16.6$. There Gemma exceeds the largest outside judge by 6.7 [$-2.7$, 12.2] points.
+22.2] points. On the held-out issues, Kimi-K2 as judge is also lenient on Gemma's failing patches, at $+9.9$ [4.9,
+14.9] against Gemma's $+16.3$. There Gemma exceeds the largest outside judge by 6.4 [$-3.9$, 11.7] points.
 
 \subsection*{Writer strength (exploratory)}
 
 We chose this split on 2026-11-04, after the results above (\path{scripts/strong_writer_leniency.py},
 \path{derived/strong_writer_leniency_2026-11-04.txt}). A strong writer solves at least as many issues as Gemma on the
 same data set. On the held-out issues, Qwen3-Coder (70\%), GLM-4.5 (62\%) and Kimi-K2 (61\%) are strong, against
-Gemma's 53\%. On SWE-bench Lite, Claude 4 Sonnet is the only strong writer (57\% against 56\%). On the Go, Ruby and
+Gemma's 54\%. On SWE-bench Lite, Claude 4 Sonnet is the only strong writer (57\% against 56\%). On the Go, Ruby and
 PHP issues, all four other writers solve 63 to 68\% of the issues, against Gemma's 52\%
 (\path{derived/nonpython_2026-11-07.json}).
 
 Table~\ref{tab:strong} compares Gemma's own failing patches with strong writers' failing patches only. The extra trust
-falls from 16.6 to 9.6 points on the held-out issues and from 17.8 to 1.7 points on Lite. The outside judges
-themselves score strong writers' failing patches higher than Gemma's own: 64.0 against 57.2 on the held-out issues,
+falls from 16.3 to 9.2 points on the held-out issues and from 17.8 to 1.7 points on Lite. The outside judges
+themselves score strong writers' failing patches higher than Gemma's own: 64.0 against 56.5 on the held-out issues,
 and 68.0 against 63.5 on Lite. Gemma's own failing patches look a little better to the outside judges than weak
 writers' failing patches do. We therefore also compared patches within five bands of the outside judges' mean score,
-weighted by Gemma's own patches. This changes neither comparison by more than one point.
+weighted by Gemma's own patches. This moves neither comparison by more than 1.2 points.
 
 \begin{table}[H]
 \centering
@@ -338,11 +342,12 @@ patches.}
  & Held-out & SWE-bench Lite & Go, Ruby and PHP \\
 \midrule
 Strong writers & Qwen3-Coder, GLM-4.5, Kimi-K2 & Claude 4 Sonnet & all four \\[2pt]
-Failing patches: own / strong writers' & 85 / 161 & 130 / 126 & 54 / 152 \\
-Outside mean: own / strong / other & 57.2 / 64.0 / 46.8 & 63.5 / 68.0 / 56.5 & \\
-Against all other writers & $+16.6$ [10.3, 23.1] & $+17.8$ [12.1, 23.5] & $+4.2$ [$-3.7$, 11.8] \\
-Against strong writers only & $+9.6$ [2.5, 16.2] & $+1.7$ [$-5.3$, 8.7] & $+4.2$ [$-3.7$, 11.8] \\
-Against strong writers, within bands & $+10.4$ [3.8, 17.2] & $+1.5$ [$-6.5$, 9.1] & \\
+Failing patches: own / strong writers' & 82 / 161 & 130 / 126 & 54 / 152 \\
+Outside mean: own / strong / other & 56.5 / 64.0 / 46.8 & 63.5 / 68.0 / 56.5 & \\
+Against all other writers & $+16.3$ [9.9, 22.7] & $+17.8$ [12.1, 23.5] & $+4.2$ [$-3.7$, 11.8] \\
+Against strong writers only & $+9.2$ [2.1, 16.0] & $+1.7$ [$-5.3$, 8.7] & $+4.2$ [$-3.7$, 11.8] \\
+Drop, all other writers to strong writers & $+7.1$ [3.9, 10.5] & $+16.1$ [11.3, 21.2] & \\
+Against strong writers, within bands & $+10.4$ [3.7, 17.6] & $+1.5$ [$-6.5$, 9.1] & \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -410,10 +415,10 @@ Every per-writer interval includes zero.
 
 \subsection*{Scores like verdicts, and failure types (exploratory)}
 
-On the 478 failing held-out patches of all six writers, Gemma gives 100 to 39\% and a score below 50 to 52\%. So 92\%
+On the 475 failing held-out patches of all six writers, Gemma gives 100 to 39\% and a score below 50 to 53\%. So 92\%
 of its scores on failing patches sit at one of the two ends (\path{scripts/writer_table.py}).
 
-We sorted Gemma's 85 failing held-out patches by which of SWE-bench's tests fail (\path{scripts/failure_types.py},
+We sorted Gemma's 82 failing held-out patches by which of SWE-bench's tests fail (\path{scripts/failure_types.py},
 \path{derived/failure_types_2026-11-07.json}). The issue's tests (\texttt{FAIL\_TO\_PASS}) fail before the reference fix
 and pass after it. The other listed tests (\texttt{PASS\_TO\_PASS}) pass before and after it. A wrong fix fails an
 issue test and passes every other listed test. A regression passes the issue tests and fails another listed test. The
@@ -424,14 +429,14 @@ judges, and the outside judges score the two kinds alike. Patches that do both g
 \begin{table}[H]
 \centering
 \small
-\caption{Gemma's 85 failing held-out patches by failure type. Points above: Gemma's score minus the outside judges'
+\caption{Gemma's 82 failing held-out patches by failure type. Points above: Gemma's score minus the outside judges'
 mean, averaged over the patches.}
 \label{tab:types}
 \begin{tabular}{@{}lccc@{}}
 \toprule
 Failure type & Patches & Points above the outside judges & Outside judges' mean \\
 \midrule
-Wrong fix (an issue test fails) & 55 & $+14.5$ & 59.4 \\
+Wrong fix (an issue test fails) & 52 & $+13.9$ & 58.4 \\
 Regression (another test fails) & 13 & $+16.8$ & 60.1 \\
 Both & 17 & $+10.7$ & 47.9 \\
 \bottomrule
@@ -461,9 +466,9 @@ On the held-out issues, all nine judges also scored the five writers' own patche
 issues. We chose this analysis on 2026-10-22, after the Mini results above and a review of the paper
 (\texttt{spec/other-models-heldout.md}). The code is the Mini code unchanged, and it reproduces Gemma's held-out gap
 and extra trust. The pooled gap over the five is $-0.001$ [$-0.031$, 0.029], and the
-pooled extra trust is $+0.4$ [$-2.5$, 3.4] points. Gemma exceeds the pooled five by 0.075 [0.015, 0.133] in gap
-and by 16.3 [8.9, 23.4] points in extra trust. By the same Bonferroni rule, none of the five is shown to have a gap or
-extra trust. Llama-4-Maverick's extra trust falls to $+2.8$ [$-5.0$, 10.8], and it gives 100 to fewer of its own
+pooled extra trust is $+0.4$ [$-2.5$, 3.4] points. Gemma exceeds the pooled five by 0.066 [0.006, 0.124] in gap
+and by 15.9 [8.3, 23.1] points in extra trust. By the same Bonferroni rule, none of the five is shown to have a gap or
+extra trust. Llama-4-Maverick's extra trust falls to $+2.8$ [$-5.1$, 10.8], and it gives 100 to fewer of its own
 failing patches than of other writers' (33\% against 42\%).
 
 \begin{table}[H]
@@ -520,14 +525,14 @@ Extra trust is on failing patches, in points.}
  & Own & Self-judging gap & \multicolumn{2}{c}{Extra trust, failing patches} & Failing scored \\
 Model & failing & [95\%] & [95\%] & [Bonferroni 99\%] & 100: own / others' \\
 \midrule
-Qwen3-Coder & 46 & $-0.040$ [$-0.100$, 0.023] & $-8.1$ [$-15.4$, $-0.5$] & [$-17.3$, 1.9] & 0\% / 0\% \\
-gpt-oss-120b & 109 & $+0.001$ [$-0.066$, 0.073] & $+2.9$ [$-3.3$, 8.8] & [$-5.0$, 10.8] & 0\% / 0\% \\
-GLM-4.5 & 61 & $-0.048$ [$-0.113$, 0.019] & $+0.8$ [$-8.8$, 9.7] & [$-11.8$, 12.3] & 12\% / 9\% \\
-Kimi-K2 & 54 & $+0.035$ [$-0.035$, 0.103] & $+3.5$ [$-3.9$, 10.6] & [$-6.2$, 13.2] & 4\% / 1\% \\
-Llama-4-Maverick & 123 & $+0.048$ [$-0.021$, 0.117] & $+2.8$ [$-5.0$, 10.8] & [$-7.7$, 12.5] & 33\% / 42\% \\
+Qwen3-Coder & 46 & $-0.043$ [$-0.103$, 0.018] & $-8.4$ [$-15.6$, $-1.0$] & [$-17.7$, 1.5] & 0\% / 0\% \\
+gpt-oss-120b & 109 & $+0.005$ [$-0.063$, 0.076] & $+3.0$ [$-3.2$, 8.9] & [$-4.8$, 10.8] & 0\% / 0\% \\
+GLM-4.5 & 61 & $-0.048$ [$-0.112$, 0.019] & $+1.0$ [$-8.6$, 9.8] & [$-11.7$, 12.4] & 12\% / 9\% \\
+Kimi-K2 & 54 & $+0.035$ [$-0.035$, 0.103] & $+3.5$ [$-3.8$, 10.6] & [$-6.2$, 13.3] & 4\% / 1\% \\
+Llama-4-Maverick & 123 & $+0.046$ [$-0.022$, 0.115] & $+2.8$ [$-5.1$, 10.8] & [$-7.7$, 12.5] & 33\% / 42\% \\
 \midrule
 Pooled, five models & & $-0.001$ [$-0.031$, 0.029] & $+0.4$ [$-2.5$, 3.4] & & \\
-Gemma 4 31B & 85 & $+0.074$ [0.022, 0.126] & $+16.6$ [10.3, 23.1] & [7.6, 24.5] & 61\% / 35\% \\
+Gemma 4 31B & 82 & $+0.065$ [0.015, 0.116] & $+16.3$ [9.9, 22.7] & [7.2, 24.3] & 60\% / 35\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -637,13 +642,13 @@ patch held fixed, so none rules out recognition.
 Its extra trust is in its own failing patches only.
 
 \paragraph{Patches the outside judges score the same (exploratory).} Gemma's failing patches do look a little better
-to everyone. The outside judges give them a mean score of 57.2 on the held-out issues, against 46.8 for other writers'
+to everyone. The outside judges give them a mean score of 56.5 on the held-out issues, against 46.8 for other writers'
 failing patches. We therefore compared Gemma's own failing patches only with other writers' failing patches that the
 outside judges score the same. We cut all failing patches into five bins of equal size by the outside judges' mean
 score and weighted each bin by the number of Gemma's own failing patches in it
 (\path{scripts/strong_writer_leniency.py}, \path{derived/strong_writer_leniency_2026-11-04.txt}). Gemma's extra
-trust is then $+13.6$ [7.1, 20.3] on the held-out issues and $+17.2$ [11.3, 23.0] on SWE-bench Lite, against
-$+16.6$ and $+17.8$ without the match.
+trust is then $+13.5$ [6.9, 20.2] on the held-out issues and $+17.2$ [11.3, 23.0] on SWE-bench Lite, against
+$+16.3$ and $+17.8$ without the match.
 
 \subsection*{Other writers' failing patches that make Gemma's edit}
 
@@ -703,12 +708,12 @@ on 193 issues. The 31B's numbers on failing patches do not change on this set.
 
 \paragraph{Reading fixed in the plan.} A size shares the extra trust if its extra trust in the 31B's failing
 patches has an interval above zero. It does not share it if the interval includes zero and its upper end is below
-$+8.3$, half of the 31B's $+16.6$. Anything else is inconclusive. Separately, the extra trust is weaker in a size if
+$+8.1$, half of the 31B's $+16.3$. Anything else is inconclusive. Separately, the extra trust is weaker in a size if
 the 31B's extra trust minus the size's has an interval above zero.
 
 \paragraph{Result.} Neither size shows measurable extra trust in the 31B's failing patches (Table~\ref{tab:sizes}).
-By the plan, the 12B does not share it and the 26B-A4B is inconclusive, since its interval reaches $+11.8$. In both, the
-extra trust is weaker than in the 31B, by 16.2 and 12.7 points. Both sizes are valid judges by the plan's rule. At
+By the plan, the 12B does not share it and the 26B-A4B is inconclusive, since its interval reaches $+12.4$. In both, the
+extra trust is weaker than in the 31B, by 16.8 and 11.7 points. Both sizes are valid judges by the plan's rule. At
 least 95\% of their answers parse, none carries thinking tokens, and their AUROC on other writers' patches is 0.72
 and 0.73, above the plan's 0.60.
 
@@ -723,12 +728,12 @@ from 2,000 issue resamples. \texttt{derived/gemma\_sizes\_2026-10-28.json}.}
 \toprule
 Judge & Gemma 4 31B & Gemma 4 12B & Gemma 4 26B-A4B \\
 \midrule
-The 31B's failing patches scored 100 & 52 of 85 & 27 of 85 & 34 of 85 \\
+The 31B's failing patches scored 100 & 49 of 82 & 27 of 82 & 33 of 82 \\
 Other writers' failing patches scored 100 & 136 of 393 & 95 of 393 & 130 of 393 \\
 Above outside judges, others' failing patches & $-2.6$ & $-10.0$ & $+0.3$ \\
-Extra trust, failing patches & $+16.6$ [10.3, 23.1] & $+0.4$ [$-6.8$, 7.4] & $+3.9$ [$-4.1$, 11.8] \\
-The 31B's difference minus this size's & & $+16.2$ [6.2, 26.1] & $+12.7$ [5.1, 20.8] \\
-AUROC: the 31B's patches / other writers' & 0.622 / 0.750 & 0.665 / 0.722 & 0.663 / 0.729 \\
+Extra trust, failing patches & $+16.3$ [9.9, 22.7] & $-0.5$ [$-7.6$, 6.3] & $+4.6$ [$-3.6$, 12.4] \\
+The 31B's difference minus this size's & & $+16.8$ [6.5, 27.1] & $+11.7$ [4.0, 19.7] \\
+AUROC: the 31B's patches / other writers' & 0.631 / 0.750 & 0.663 / 0.722 & 0.655 / 0.729 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -773,30 +778,30 @@ gpt-oss-20b & $-2.2$ [$-10.0$, 5.4] & $+2.5$ [$-4.3$, 9.9] (167) \\
 
 \subsection*{What Gemma writes when it scores a failing patch 100}
 
-\paragraph{Gemma's reasons (exploratory).} Gemma scored 52 of its own failing held-out patches 100. At least two
-outside judges scored 31 of these at 50 or less. We set this rule after a first look at the answers. For each
+\paragraph{Gemma's reasons (exploratory).} Gemma scored 49 of its own failing held-out patches 100. At least two
+outside judges scored 29 of these at 50 or less. We set this rule after a first look at the answers. For each
 case, a coder found the main defect, the reason the low-scoring outside judges give for their low score, and asked
 whether Gemma's answer names it (\texttt{data/hand-codes/}, with the codebook). Two coders coded every case on their own.
 Both were Claude models: Sonnet, then Opus without access to the first coder's codes. The first coded 5 cases as
-naming the defect and the second 6. They agree on 26 of 31 (Cohen's $\kappa = 0.45$): both find the defect never
-mentioned in 23 and named in 3. Two of the five split cases come from choosing the main defect when the outside
+naming the defect and the second 6. They agree on 24 of 29 (Cohen's $\kappa = 0.44$): both find the defect never
+mentioned in 21 and named in 3. Two of the five split cases come from choosing the main defect when the outside
 judges name several. The other three turn on whether Gemma describing the flagged change, with no doubt about it,
 counts as naming the defect.
 
 The codebook also asked whether Gemma states the opposite of the outside judges' claim. The two coders
-agree on this in only 13 of 31 cases ($\kappa = 0.03$), so we do not report it. One split case is django-15037. There Gemma
+agree on this in only 13 of 29 cases ($\kappa = 0.05$), so we do not report it. One split case is django-15037. There Gemma
 calls \texttt{to\_fields=[target\_field]} ``the correct way to specify a non-PK reference'', and GLM-4.5 (score 15)
 answers that Django's keyword is \texttt{to\_field}. Two other low-scoring judges give a leftover script in the patch
 as their reason, and Gemma mentions that script.
 \texttt{derived/rubber\_stamp\_reasons\_2026-10-22.json}.
 
 \paragraph{Gemma reads the defective line and calls it correct (exploratory).} Two more coders, Claude Sonnet models
-working apart and blind to the scores, sorted the same 31 cases by defect type and marked the defective lines. They
-agree with $\kappa = 0.71$, and \path{data/hand-codes/defect-type.csv} gives the five settled disagreements with
-their reasons. Twenty are wrong code,
-seven are a missing change and four are unclear. In 18 of the 20 wrong-code cases the defect sits on one or two marked
+working apart and blind to the scores, sorted the same 29 cases by defect type and marked the defective lines. They
+agree with $\kappa = 0.75$, and \path{data/hand-codes/defect-type.csv} gives the settled disagreements with
+their reasons. Nineteen are wrong code,
+seven are a missing change and three are unclear. In 17 of the 19 wrong-code cases the defect sits on one or two marked
 lines. Two further coders then read Gemma's answer for each case and asked whether it endorses the marked line
-(\path{data/hand-codes/claims-coder-a.csv}, \path{claims-coder-b.csv}). Both coders find that it does in all 18.
+(\path{data/hand-codes/claims-coder-a.csv}, \path{claims-coder-b.csv}). Both coders find that it does in all 17.
 Gemma quotes or describes the defective line and calls it correct.
 
 \subsection*{Two simple explanations that do not fit}
@@ -872,8 +877,8 @@ Self-judging gap [95\%] & $+0.138$ [0.063, 0.214] & $+0.097$ [0.010, 0.192] \\
 \subsection*{Gemma's own reproduction scripts}
 
 While fixing a held-out issue, Gemma often writes a script that reproduces the bug and runs it again after its edit.
-Among the runs behind Gemma's 85 failing held-out patches, 64 ended on such a script: leaving out scripts that edit the
-source, the last script Gemma ran is one its patch adds. In 58 of those 64, that last run ended without an error. So in
+Among the runs behind Gemma's 82 failing held-out patches, 61 ended on such a script: leaving out scripts that edit the
+source, the last script Gemma ran is one its patch adds. In 55 of those 61, that last run ended without an error. So in
 most failing runs Gemma had tested its patch with its own script, and the script passed. We counted the runs from the
 logs of Gemma's agent runs (\path{scripts/paper_counts.py}, with the rule of \path{scripts/own_script_gate.py}).
 
@@ -882,7 +887,7 @@ logs of Gemma's agent runs (\path{scripts/paper_counts.py}, with the rule of \pa
 \paragraph{Setup.} We fixed the design and a stop rule in a written plan before any run (\path{spec/judge-as-actor.md},
 exploratory). The judge was Gemma 4 31B, the 4-bit competition checkpoint served by vLLM on one NVIDIA
 A100 at temperature 0 with thinking off. It judged each of the 133 held-out patches it had scored 100 as a judge
-(52 failing, 81 passing). For each
+(49 failing, 84 passing). For each
 patch we built a sandbox from the issue's SWE-bench image, with the repository's environment active, and applied the
 patch without committing it. Gemma then ran in mini-SWE-agent 1.7.0 with a 15-step limit and was not told who wrote
 the patch. Its task was the issue, the patch, and this instruction (\path{scripts/judge_actor.yaml}):
@@ -904,11 +909,11 @@ We discarded it and ran the pilot again with the environment fixed.
 approval enough. The plan stopped it if Gemma still gave 100 to more than half of the failing patches and to more
 than 80\% of the passing ones.
 
-\paragraph{Result.} Gemma gave a score in 132 of 133 runs. It still gives 100 to 41 of the 51 failing patches (80\%
-[69, 90]) and to 77 of the 81 passing patches (95\% [90, 99]). The stop rule fired, so the full run did not start. In
-31 of the 51 runs on failing patches (61\%), Gemma's test fails without the patch and passes with it. Its test checks
+\paragraph{Result.} Gemma gave a score in 132 of 133 runs. It still gives 100 to 38 of the 48 failing patches (79\%
+[67, 90]) and to 80 of the 84 passing patches (95\% [91, 99]). The stop rule fired, so the full run did not start. In
+31 of the 48 runs on failing patches (65\%), Gemma's test fails without the patch and passes with it. Its test checks
 the behavior Gemma believes is right. The shell lowers Gemma's score on about one in five of these failing patches,
-but also on one in twenty of the passing ones. So it separates them only slightly, with an AUROC of 0.58 [0.52, 0.64]
+but also on one in twenty of the passing ones. So it separates them only slightly, with an AUROC of 0.58 [0.52, 0.65]
 on the 132 patches. A run took 15 model calls on average and 140 seconds at the median
 (\path{derived/judge_as_actor_2026-11-04.json}).
 
@@ -933,9 +938,9 @@ of the passing patches, and same-issue pair accuracy rises with an interval abov
 accuracy include zero, the reading is ``no measurable improvement''. Anything else is inconclusive.
 
 \paragraph{Result.} The adapter does not reduce false acceptance by a measurable amount (Table~\ref{tab:lora}). It
-accepts 48.9\% of evaluation failing patches against 53.0\% without it ($-4.2$ percentage points [$-8.3$, 0.0]), and it keeps
+accepts 48.8\% of evaluation failing patches against 52.9\% without it ($-4.2$ percentage points [$-8.3$, 0.0]), and it keeps
 fewer passing patches. AUROC and same-issue pair accuracy do not change. Among Gemma's own failing evaluation patches
-that it had scored 100 as a judge, from both data sets, the adapter still accepts 48 of 51, against 50 without it.
+that it had scored 100 as a judge, from both data sets, the adapter still accepts 47 of 50, against 49 without it.
 The reading is ``no measurable improvement''. One seed, one learning rate and 184 training issues do not show that
 training cannot work.
 
@@ -949,11 +954,11 @@ the development issues. Intervals from 2,000 paired issue resamples. \texttt{der
 \toprule
 Measure & Adapter off & Adapter on & On minus off [95\%] \\
 \midrule
-Failing patches accepted (528) & 53.0\% & 48.9\% & $-4.2$ [$-8.3$, 0.0] \\
-Passing patches kept (451) & 90.2\% & 88.5\% & $-1.7$ \\
-AUROC & 0.779 & 0.776 & $-0.002$ [$-0.021$, 0.015] \\
-Same-issue pair accuracy (658 pairs) & 0.766 & 0.758 & $-0.008$ [$-0.032$, 0.015] \\
-Gemma's own failing patches it scored 100, accepted & 50 of 51 & 48 of 51 & $-3.9$ [$-11.5$, 3.8] \\
+Failing patches accepted (527) & 52.9\% & 48.8\% & $-4.2$ [$-8.3$, 0.0] \\
+Passing patches kept (452) & 90.3\% & 88.5\% & $-1.8$ \\
+AUROC & 0.780 & 0.776 & $-0.003$ [$-0.021$, 0.015] \\
+Same-issue pair accuracy (661 pairs) & 0.767 & 0.760 & $-0.008$ [$-0.031$, 0.015] \\
+Gemma's own failing patches it scored 100, accepted & 49 of 50 & 47 of 50 & $-4.0$ [$-11.8$, 3.9] \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -988,10 +993,10 @@ timed out or did not run, 8 had no stable test and 2 did not apply.
 
 \paragraph{Reading fixed in the plan.} The check would count as a fix for an agent under three conditions. It holds back at
 least 11 of the 52 failing patches Gemma scored 100, at most 4 of the 81 passing ones, and at most 5\% of the reference
-patches.
+patches. These counts come from before the grading correction in Section~\ref{app:prompt}.
 
-\paragraph{Result.} The check holds back 15 of the 52 failing patches Gemma scored 100, and 26 of all 85 of Gemma's
-failing patches (Table~\ref{tab:gate}). It also holds back 7 of the 81 passing patches Gemma scored 100 and 18 of the
+\paragraph{Result.} The check holds back 15 of the 49 failing patches Gemma scored 100, and 26 of all 82 of Gemma's
+failing patches (Table~\ref{tab:gate}). It also holds back 7 of the 84 passing patches Gemma scored 100 and 18 of the
 193 reference patches. By the plan, the check alone holds back too many correct patches to count as a fix. Section 3.3
 of the paper therefore uses it only to choose which patches get a repair run.
 
@@ -1005,13 +1010,13 @@ back. \texttt{derived/existing\_test\_gate\_2026-11-05.json}.}
 \toprule
 Patches & Held back & Share [95\%] \\
 \midrule
-Gemma's failing patches it scored 100 & 15 of 52 & 29\% [17, 42] \\
-Gemma's failing patches, all & 26 of 85 & 31\% [21, 41] \\
-Gemma's passing patches it scored 100 & 7 of 81 & 9\% [3, 15] \\
-Gemma's passing patches, all & 9 of 95 & 9\% [4, 16] \\
+Gemma's failing patches it scored 100 & 15 of 49 & 31\% [18, 44] \\
+Gemma's failing patches, all & 26 of 82 & 32\% [22, 42] \\
+Gemma's passing patches it scored 100 & 7 of 84 & 8\% [3, 15] \\
+Gemma's passing patches, all & 9 of 98 & 9\% [4, 15] \\
 Reference patches & 18 of 193 & 9\% [5, 14] \\
-Other writers' failing patches Gemma scored 100 & 34 of 136 & 25\% [17, 34] \\
-Other writers' passing patches & 46 of 384 & 12\% [7, 18] \\
+Other writers' failing patches Gemma scored 100 & 33 of 136 & 24\% [16, 33] \\
+Other writers' passing patches & 32 of 384 & 8\% [4, 13] \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1049,13 +1054,13 @@ grade: 2 of 35 runs with the broken tests shown (model-call timeouts) and 1 of 3
 broken tests shown than after a second look. The test is a one-sided exact sign test on the patches where the two
 conditions differ, with $p < 0.05$.
 
-\paragraph{Result.} With the broken tests shown, Gemma repairs 14 of the 26 held-back failing patches, against 6 after
-a second look (Table~\ref{tab:repair}). Eight were repaired only with the tests shown and none only by the second look
-($p = 0.004$), which meets the reading fixed before the run. Nine of the 14 are among the 52 failing patches Gemma
+\paragraph{Result.} With the broken tests shown, Gemma repairs 14 of the 26 held-back failing patches, against 7 after
+a second look (Table~\ref{tab:repair}). Eight were repaired only with the tests shown and one only by the second look
+($p = 0.02$), which meets the reading fixed before the run. Nine of the 14 are among the 49 failing patches Gemma
 scored 100. The same step breaks 4 of the 9 held-back passing patches, all of them patches Gemma scored 100. The
 second look breaks one, which Gemma had not scored 100. The sign test covers only the repair of held-back failing
 patches. Over all 35 held-back patches, the run with the tests shown does better than the second look on 9
-and worse on 4 ($p = 0.13$, exploratory). Among the 133 patches Gemma scored 100, it does better on 6 and worse on 4
+and worse on 5 ($p = 0.21$, exploratory). Among the 133 patches Gemma scored 100, it does better on 6 and worse on 4
 ($p = 0.38$).
 
 \begin{table}[H]
@@ -1068,12 +1073,12 @@ and worse on 4 ($p = 0.13$, exploratory). Among the 133 patches Gemma scored 100
 \toprule
  & Broken tests shown & Second look \\
 \midrule
-Held-back failing patches repaired (of 26) & 14 & 6 \\
-\quad of them scored 100 by Gemma (of 52) & 9 & 3 \\
+Held-back failing patches repaired (of 26) & 14 & 7 \\
+\quad of them scored 100 by Gemma (of 49) & 9 & 3 \\
 Held-back passing patches broken (of 9) & 4 & 1 \\
-\quad of them scored 100 by Gemma (of 81) & 4 & 0 \\
-Passing among the 133 Gemma scored 100 (81 before) & 86 & 84 \\
-Passing patches over all 180, after (95 before) & 105 & 100 \\
+\quad of them scored 100 by Gemma (of 84) & 4 & 0 \\
+Passing among the 133 Gemma scored 100 (84 before) & 89 & 87 \\
+Passing patches over all 180, after (98 before) & 108 & 104 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1093,10 +1098,10 @@ runs and a sign test below 0.05 across them. Twelve patches favor the tests show
 \toprule
  & Temperature 0 & Seed 1 & Seed 2 \\
 \midrule
-Held-back failing patches repaired (of 26) & 14 / 6 & 13 / 4 & 14 / 4 \\
-\quad of them scored 100 by Gemma (of 52) & 9 / 3 & 8 / 1 & 8 / 0 \\
+Held-back failing patches repaired (of 26) & 14 / 7 & 13 / 4 & 14 / 4 \\
+\quad of them scored 100 by Gemma (of 49) & 9 / 3 & 8 / 1 & 8 / 0 \\
 Held-back passing patches broken (of 9) & 4 / 1 & 5 / 1 & 5 / 3 \\
-\quad of them scored 100 by Gemma (of 81) & 4 / 0 & 4 / 1 & 4 / 3 \\
+\quad of them scored 100 by Gemma (of 84) & 4 / 0 & 4 / 1 & 4 / 3 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1117,7 +1122,7 @@ contradicts the PR description''.
 \paragraph{Failure types of the held-back patches (exploratory).} With the test outcomes of Table~\ref{tab:types}, 22 of
 the 26 held-back failing held-out patches break one of SWE-bench's listed other tests: 10 only that, and 12 also fail
 an issue test. The other 4 are wrong fixes. In several, the patch had crashed the module, and fixing the crash also made
-the issue's tests pass. On the Lite patches below, 15 of the 30 held-back failing patches break a listed other test
+the issue's tests pass. Among all 82 of Gemma's failing held-out patches, the check holds back 22 of the 30 that break a listed other test and 4 of the 52 wrong fixes, and 11 of the wrong fixes have no check. On the Lite patches below, 15 of the 30 held-back failing patches break a listed other test
 and 15 are wrong fixes (\path{derived/failure_types_2026-11-07.json}).
 
 \subsection*{The same check and repair on another team's Lite patches}
@@ -1201,6 +1206,44 @@ Correct patches broken: tests shown / with the rule & 4 / 2 & 12 / 6 \\
 
 On Lite, the rule skips the one counted repair (django-16816), because Gemma labelled all of its broken tests outdated.
 
+\subsection*{A repair told which tests are outdated, on other writers' patches}
+
+\paragraph{Setup.} We wrote the plan before any labeling call or repair run (\path{spec/labelled-repair.md}). The
+patches are the other five writers' held-out patches that the check held back, so Gemma repairs patches it did not
+write. Hosted Gemma 4 31B reads the issue and the broken-test report, never the patch, and labels each broken test as
+outdated or as a real regression. A patch with every broken test labeled outdated stays as it is, with no repair run.
+When only some are labeled outdated, the repair note lists them and tells Gemma to keep the behavior the issue asks for
+over those tests. Otherwise the run is the repair with the broken tests shown. Agent settings are those of the repair
+run above.
+
+\paragraph{Reading fixed in the plan.} The primary measure is passing patches with the labels minus passing patches
+with the broken tests shown, with a 95\% interval from 2,000 issue resamples. The claim for the method stands only if
+the interval is above zero and the labeled repair also passes more patches than no repair.
+
+\paragraph{Result.} With the corrected apply step (Section~\ref{app:prompt}), the check holds back 172 of these patches, on
+99 issues: 32 correct and 140 failing. The labeled repair passes 8 more patches than the repair with the tests shown, with an
+interval of $-4$ to 21, so the claim for the method fails (Table~\ref{tab:labeled}). It passes 38 more than no repair
+[23, 51]. It breaks 13 fewer correct patches than the repair with the tests shown [3, 25] and repairs 5 fewer failing
+patches [0, 10]. Skipping the repair when all tests are labeled outdated, and otherwise showing the tests, passes 2 more
+than the tests shown [$-6$, 12].
+
+\begin{table}[H]
+\centering
+\small
+\caption{Repair of 172 held-back patches from other writers, graded with the hidden tests.
+\texttt{derived/labelled\_repair\_2026-11-09.json}.}
+\label{tab:labeled}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & No repair & Tests shown & Skip if all outdated & Labeled repair \\
+\midrule
+Passing patches (of 172) & 32 & 62 & 64 & 70 \\
+Correct patches broken (of 32) & & 20 & 13 & 7 \\
+Failing patches repaired (of 140) & & 50 & 45 & 45 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsection*{Breaking the tie at 100 by fewer model calls}
 
 Gemma's score can also be put to use without any repair, by breaking the tie among patches it scores 100. The paper
@@ -1212,7 +1255,7 @@ matched-harness Mini patches Gemma scored 100. On the held-out issues, concern w
 helps a little, and fewer model calls help most.
 
 Ranking Gemma's 180 held-out patches by its score and then by fewer
-model calls raises the share of the top quarter that passes from 61\% to 78\%. The rule ``Gemma scores 100 and the
+model calls raises the share of the top quarter that passes from 63\% to 78\%. The rule ``Gemma scores 100 and the
 run used at most 9 model calls'' submits 41 held-out patches (22.8\%). Of these, 78.0\% pass. Inside the tie, the
 number of model calls correlates with the outside judges' mean score (Spearman $-0.57$), so run length may partly
 stand for how hard the issue is.
@@ -1228,9 +1271,9 @@ points, with 95\% intervals. \texttt{derived/tie\_break\_2026-10-22.json}.}
 \toprule
 Tie-break & AUROC in tie, Mini & AUROC in tie, held-out & Top quarter & Top half \\
 \midrule
-Fewer concern words & 0.527 (142) & 0.533 [0.438, 0.630] & $+6.1$ [$-4.2$, 16.8] & $0.0$ [$-5.0$, 5.5] \\
-Shorter answer & 0.621 (142) & 0.626 [0.529, 0.717] & $+10.9$ [0.3, 21.7] & $+4.1$ [$-1.4$, 10.5] \\
-Fewer model calls & 0.731 (32) & 0.679 [0.578, 0.769] & $+16.9$ [5.7, 26.8] & $+10.8$ [4.2, 16.5] \\
+Fewer concern words & 0.527 (142) & 0.555 [0.462, 0.653] & $+8.3$ [$-2.0$, 18.8] & $+1.0$ [$-3.9$, 6.4] \\
+Shorter answer & 0.621 (142) & 0.617 [0.520, 0.712] & $+10.9$ [$-0.3$, 21.5] & $+3.5$ [$-1.9$, 9.8] \\
+Fewer model calls & 0.731 (32) & 0.657 [0.553, 0.752] & $+14.6$ [3.3, 24.5] & $+9.4$ [3.1, 14.9] \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1244,7 +1287,7 @@ Fewer model calls & 0.731 (32) & 0.679 [0.578, 0.769] & $+16.9$ [5.7, 26.8] & $+
 \caption{API cost as reported by OpenRouter per call. gpt-oss-120b calls were reported at zero cost by their
 provider. Gemma's 250 agent runs took 49 agent-hours on one NVIDIA L40S of a university cluster, at no charge. Gemma's
 LiveCodeBench programs, the Go, Ruby and PHP run and the repair runs ran on one NVIDIA A100 of our lab, at no
-charge. All GPU work took about 90 GPU-hours, which would cost about \$150 at RunPod's on-demand prices.}
+charge. All GPU work took about 113 GPU-hours, which would cost about \$191 at RunPod's on-demand prices.}
 \begin{tabular}{@{}lrr@{}}
 \toprule
 Run & Calls & Cost (USD) \\

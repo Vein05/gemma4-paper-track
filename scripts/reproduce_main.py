@@ -15,7 +15,7 @@ BASE = os.path.join(ROOT, ".reproduce")
 WORK, CACHE, OUT = (os.path.join(BASE, d) for d in ("work", "cache", "out"))
 
 HF_REPO = "vein05/gemma4-paper-track-data"
-HF_REV = "a8904741dc622ef74dcc73cfb4928fa04ed67165"
+HF_REV = "2be7dd2255cd560e42d8c9838a2ff23852c1e240"
 LITE_REPO = "dougalldeepmind/2026-10-10-swebench-gemma4-lite-gemma-v2"
 LITE_REV = "1c5f3d3be50e4ca6ceb17654987fd34e6cf23f96"
 
@@ -53,6 +53,7 @@ STEPS = [
     ("nonpython_2026-11-07.json", "nonpython_analyze.py"),
     ("lite_repair_2026-11-07_empty-as-failing.json", "lite_repair.py analyze"),
     ("outdated_tests_2026-11-07.json", "outdated_tests.py"),
+    ("labelled_repair_2026-11-09.json", "labelled_repair_analyze.py --no-wandb"),
 ]
 # The paper whose claims are checked: paper/writeup.md by default; REPRODUCE_PAPER selects another copy of its text.
 PAPER = os.environ.get("REPRODUCE_PAPER", "paper/writeup.md")
@@ -224,7 +225,7 @@ def claims():
     ft = load("failure_types_2026-11-07.json")
     npy = load("nonpython_2026-11-07.json")
     lite = load("lite_repair_2026-11-07_empty-as-failing.json")
-    out = load("outdated_tests_2026-11-07.json")
+    labelled = load("labelled_repair_2026-11-09.json")
     strong = open(os.path.join(OUT, "strong_writer_leniency_2026-11-04.txt")).read()
     held, rest = strong.split("== lite:")
     grab = lambda text, key: re.search(rf"{key}: (\S+ \[.*?\])", text).group(1)  # ASCII minus, as in the draft
@@ -241,6 +242,8 @@ def claims():
     weak = ["gpt-oss-120b", "llama-4-maverick"]
     strong_n = [len(re.search(r"\{(.*?)\}", t).group(1).split(",")) for t in (held, rest)]
     E = ft["held_out_own_failing"]["types"]
+    C = ft["held_out_own_failing_by_check"]
+    L_t, L_l = labelled["all"]["tests"], labelled["all"]["labelled"]
     t, r = repair["tests"], repair["review"]
     lt, lr = lite["tests"], lite["review"]
     table1 = lambda w, name: (f"| {name} | {pct(W[w]['solved'])} | {W[w]['failing']} | {pct(W[w]['gemma_100'])} | "
@@ -248,36 +251,39 @@ def claims():
     rows1 = [("qwen3-coder", "Qwen3-Coder", "| Qwen3-Coder | 70% | 46 | 48% | +1.4 |"),
              ("glm-4.5", "GLM-4.5", "| GLM-4.5 | 62% | 61 | 56% | +8.9 |"),
              ("kimi-k2", "Kimi-K2", "| Kimi-K2 | 61% | 54 | 61% | +7.1 |"),
-             ("gemma-4-31b", "Gemma 4 31B", "| Gemma 4 31B | 53% | 85 | 61% | +14.1 |"),
+             ("gemma-4-31b", "Gemma 4 31B", "| Gemma 4 31B | 54% | 82 | 60% | +13.7 |"),
              ("gpt-oss-120b", "gpt-oss-120b", "| gpt-oss-120b | 30% | 109 | 25% | -6.7 |"),
              ("llama-4-maverick", "Llama-4-Maverick", "| Llama-4-Maverick | 27% | 123 | 16% | -10.7 |")]
     return [
-        ("Abs", "Gemma scores 100: Kimi-K2's failing patches, its own", "61% of Kimi-K2's failing patches, the same share",
-         "61%, 61%", f"{pct(W['kimi-k2']['gemma_100'])}, {pct(W['gemma-4-31b']['gemma_100'])}"),
+        ("Abs", "Gemma scores 100: Kimi-K2's failing patches, its own", "61% of Kimi-K2's failing patches, almost the same share",
+         "61%, 60%", f"{pct(W['kimi-k2']['gemma_100'])}, {pct(W['gemma-4-31b']['gemma_100'])}"),
         ("1", "matplotlib 24570: Gemma scores it 100, GLM-4.5 scores it 20", "scored the same patch 20", "100 and 20",
          f"{answer['gemma4-31b']} and {answer['glm-4.5']}"),
-        ("1", "extra trust in own failing patches, all other writers", "16.6 points further above", "+16.6",
+        ("1", "extra trust in own failing patches, all other writers", "16.3 points further above", "+16.3",
          sgn(fresh["lenient_raw_failing_difference"])),
         ("1", "scored 100: Llama-4-Maverick's failing patches, Gemma's own", "Llama-4-Maverick's a quarter as often",
-         "16%, 61%", f"{pct(W['llama-4-maverick']['gemma_100'])}, {pct(W['gemma-4-31b']['gemma_100'])}"),
-        ("1", "against strong writers only, held-out", "falls from 16.6 to 9.6 points", "+16.6, +9.6",
+         "16%, 60%", f"{pct(W['llama-4-maverick']['gemma_100'])}, {pct(W['gemma-4-31b']['gemma_100'])}"),
+        ("1", "against strong writers only, held-out", "falls from 16.3 to 9.2 points", "+16.3, +9.2",
          f"{grab(held, 'own_minus_others').split()[0]}, {grab(held, 'own_minus_strong').split()[0]}"),
-        ("1", "correct held-back patches broken with the tests shown, both sets", "breaks 16 of 23 held-back correct",
-         "16 of 23", f"{t['blocked_passing_now_failing'] + lt['blocked_passing_now_failing']} of "
-                     f"{repair['blocked_passing'] + lite['blocked_passing']}"),
+        ("1", "correct held-back Lite patches broken with the tests shown", "On Lite it breaks 12 of 14 correct",
+         "12 of 14", f"{lt['blocked_passing_now_failing']} of {lite['blocked_passing']}"),
         ("2", "held-out issues", "193 held-out issues", "193", str(gate["issues"])),
         ("2", "Go, Ruby and PHP issues run", "Gemma on 120 Go", "120", str(npy["issues_run"])),
         *[("3.1", f"Table 1, {name}", quote, quote, table1(w, name)) for w, name, quote in rows1],
         ("3.1", "Figure 1a, all other writers together: scored 100, failing patches", None, "35%, 393",
          f"{pct(sum(round(W[w]['gemma_100'] * W[w]['failing']) for w in others) / sum(W[w]['failing'] for w in others))}, "
          f"{sum(W[w]['failing'] for w in others)}"),
+        ("3.1", "held-out: drop from all other writers to strong writers, 95% interval",
+         "the drop's 95% interval excludes zero", "excludes zero",
+         "excludes zero" if not includes_zero([float(x) for x in re.search(r"\[(.*?)\]", grab(held, "drop_others_to_strong")).group(1).split(", ")])
+         else "reaches zero"),
         ("3.1", "Lite against Claude 4 Sonnet, in the text", "about as much as its own (+1.7 points)", "+1.7",
          grab(rest, "own_minus_strong").split()[0]),
         ("3.1", "two weakest writers' share of other writers' failing patches", "supply 59% of the other writers'",
          "59%", pct(sum(W[w]["failing"] for w in weak) / sum(W[w]["failing"] for w in others))),
         ("3.1", "scored 100, two weakest writers", "falls to a quarter or less", "25%, 16%",
          ", ".join(pct(W[w]["gemma_100"]) for w in weak)),
-        ("3.1", "Figure 1b, held-out: all other writers, strong only", None, "+16.6 [10.3, 23.1], +9.6 [2.5, 16.2]",
+        ("3.1", "Figure 1b, held-out: all other writers, strong only", None, "+16.3 [9.9, 22.7], +9.2 [2.1, 16.0]",
          f"{grab(held, 'own_minus_others')}, {grab(held, 'own_minus_strong')}"),
         ("3.1", "Figure 1b, Lite: all other writers, strong only", None, "+17.8 [12.1, 23.5], +1.7 [-5.3, 8.7]",
          f"{grab(rest, 'own_minus_others')}, {grab(rest, 'own_minus_strong')}"),
@@ -300,36 +306,33 @@ def claims():
          pct(npy["estimates"]["outside_stamp_own"]["value"])),
         ("3.2", "Go/Ruby/PHP: Gemma's score separates own pass from fail (AUROC)", "no better than chance", "0.47",
          f"{npy['auroc_own']['gemma']:.2f}"),
-        ("3.2", "held-out failing, all writers: 100 or below 50", "below 50 in 92% of cases", "92%",
-         pct(wt["failing_all_writers"]["gemma_100_or_below_50"])),
         ("3.2", "Gemma's failing held-out patches: wrong fix, regression only, both",
-         "55 are wrong fixes", "85: 55, 13, 17",
+         "52 are wrong fixes", "82: 52, 13, 17",
          f"{ft['held_out_own_failing']['n']}: {E['wrong fix']['n']}, {E['regression']['n']}, {E['both']['n']}"),
         ("3.2", "extra trust: wrong fixes, regressions; outside judges' mean on both",
-         "about the same for wrong fixes and for regressions", "+14.5, +16.8; 59.4, 60.1",
+         "about the same for wrong fixes and for regressions", "+13.9, +16.8; 58.4, 60.1",
          f"{sgn(E['wrong fix']['gemma_minus_outside'])}, {sgn(E['regression']['gemma_minus_outside'])}; "
          f"{E['wrong fix']['outside_mean']}, {E['regression']['outside_mean']}"),
         ("3.2", "thinking before scoring: scored 100, on and off", "62% of its failing patches 100, against 61%",
          "62%, 61%", f"{pct(think['on'])}, {pct(think['off'])}"),
-        ("3.2", "own reproduction script: last run ended without error", "in almost all failing runs", "58 of 64",
+        ("3.2", "own reproduction script: last run ended without error", "in almost all failing runs", "55 of 61",
          f"{script['ended_without_error']} of {script['ran_own_script']}"),
-        ("3.2", "shell judge: failing patches it had scored 100, still 100", "on the 52 failing held-out patches",
-         "52, 80%", f"{stamp['own_failing_scored_100']}, {pct(actor['approval_100']['own_fail']['value'])}"),
-        ("3.2", "LoRA: accepted of 51, with adapter and without", "still accepts almost all", "48 and 50 of 51",
+        ("3.2", "shell judge: failing patches it had scored 100, still 100", "on the 49 failing held-out patches",
+         "49, 79%", f"{stamp['own_failing_scored_100']}, {pct(actor['approval_100']['own_fail']['value'])}"),
+        ("3.2", "LoRA: accepted of 50, with adapter and without", "still accepts almost all", "47 and 49 of 50",
          f"{round(sft['slices']['own_stamped']['measures']['on']['false_accept'] * sft['n']['eval_own_stamped_failing'])}"
          f" and {round(sft['slices']['own_stamped']['measures']['off']['false_accept'] * sft['n']['eval_own_stamped_failing'])}"
          f" of {sft['n']['eval_own_stamped_failing']}"),
-        ("3.3", "held-out repair: tests shown, second look, of held-back failing", "repair 14 of 26 held-back failing",
-         "14, 6 of 26", f"{t['blocked_failing_now_passing']}, {r['blocked_failing_now_passing']} of {repair['blocked_failing']}"),
-        ("3.3", "one-sided sign test", "p = 0.004", "0.004", f"{repair['tests_vs_review']['sign_test_p']:.3f}"),
-        ("3.3", "Lite repair with the tests shown, stable grades", "repaired 1 of 30", "1 of 30",
+        ("3.3", "held-out repair: tests shown, second look, of held-back failing", "repairs 14 of the 26 held-back failing",
+         "14, 7 of 26", f"{t['blocked_failing_now_passing']}, {r['blocked_failing_now_passing']} of {repair['blocked_failing']}"),
+        ("3.3", "Lite repair with the tests shown, stable grades", "fixed 1 of 30", "1 of 30",
          f"{lt['blocked_failing_now_passing_stable']} of {lite['blocked_failing']}"),
         ("3.3", "Table 3, held-back failing patches", "| Held-back failing patches | 26 | 26 | 30 | 30 |", "26, 30",
          f"{repair['blocked_failing']}, {lite['blocked_failing']}"),
         ("3.3", "Table 3, held-back failing that break a listed test", "| Of these, break an existing test | 22 | | 15 | |",
          "22 of 26, 15 of 30", f"{ft['held_out_held_back_failing']['break_other_test']} of {ft['held_out_held_back_failing']['with_log']}, "
                                f"{ft['lite_held_back_failing']['break_other_test']} of {ft['lite_held_back_failing']['with_log']}"),
-        ("3.3", "Table 3, repaired", "| Repaired | 14 | 6 | 1 | 0 |", "14, 6, 1, 0",
+        ("3.3", "Table 3, repaired", "| Repaired | 14 | 7 | 1 | 0 |", "14, 7, 1, 0",
          f"{t['blocked_failing_now_passing']}, {r['blocked_failing_now_passing']}, "
          f"{lt['blocked_failing_now_passing_stable']}, {lr['blocked_failing_now_passing_stable']}"),
         ("3.3", "Table 3, held-back correct patches", "| Held-back correct patches | 9 | 9 | 14 | 14 |", "9, 14",
@@ -337,18 +340,29 @@ def claims():
         ("3.3", "Table 3, broken by the repair", "| Broken by the repair | 4 | 1 | 12 | 2 |", "4, 1, 12, 2",
          f"{t['blocked_passing_now_failing']}, {r['blocked_passing_now_failing']}, "
          f"{lt['blocked_passing_now_failing']}, {lr['blocked_passing_now_failing']}"),
-        ("3.3", "Table 3, net change", "| Net change in passing patches | +10 | +5 | −11 | −2 |", "+10, +5, −11, −2",
+        ("3.3", "Table 3, net change", "| Net change in passing patches | +10 | +6 | −11 | −2 |", "+10, +6, −11, −2",
          ", ".join(net(a["blocked_failing_now_passing" + s] - a["blocked_passing_now_failing"])
                    for a, s in ((t, ""), (r, ""), (lt, "_stable"), (lr, "_stable")))),
         ("3.3", "Lite: reference patch also held back, of held-back correct", "For all 14 correct Lite patches", "14 of 14",
          f"{lite['held_back_passing_reference_also_held_back']} of {lite['blocked_passing']}"),
-        ("3.3", "Lite: correct patches broken, tests shown and second look", "broke 12 of these 14 patches, against 2",
+        ("3.3", "Lite: correct patches broken, tests shown and second look", "broke 12 of these 14 patches when shown",
          "12, 2 of 14", f"{lt['blocked_passing_now_failing']}, {lr['blocked_passing_now_failing']} of {lite['blocked_passing']}"),
-        ("3.3", "held-out resolved after the repair, before, of patches", "105 of Gemma's 180 patches pass after it, against 95",
-         "105, 95 of 180", f"{t['resolved_after']}, {repair['resolved_before']} of {repair['gemma_patches']}"),
-        ("3.3", "outdated-test rule: broken correct Lite patches, held-out repairs kept", "from 12 to 6 and kept",
-         "12 to 6, 12 of 14", f"{out['lite']['tests']['broken']} to {out['lite']['rule']['broken']}, "
-                              f"{out['held_out']['rule']['repaired']} of {out['held_out']['tests']['repaired']}"),
+        ("3.3", "held-out resolved after the repair, before, of patches", "108 of Gemma's 180 patches pass after it, against 98",
+         "108, 98 of 180", f"{t['resolved_after']}, {repair['resolved_before']} of {repair['gemma_patches']}"),
+        ("3.3", "check holds back: own failing that break a listed test, wrong fixes",
+         "holds back 22 of Gemma's 30 failing held-out patches that break a listed test, and only 4 of its 52 wrong fixes",
+         "22 of 30, 4 of 52",
+         f"{C['regression | block'] + C['both | block']} of {E['regression']['n'] + E['both']['n']}, "
+         f"{C['wrong fix | block']} of {E['wrong fix']['n']}"),
+        ("3.3", "labelled repair: other writers' held-back patches", "on 172 held-back patches from the other five writers",
+         "172", str(labelled["patches"])),
+        ("3.3", "labelled repair against tests shown: correct broken, fewer repaired",
+         "Correct patches broken fell from 20 to 7, but 5 fewer failing patches were repaired",
+         "20 to 7, 5 fewer", f"{L_t['correct_broken']} to {L_l['correct_broken']}, "
+                             f"{L_t['failing_repaired'] - L_l['failing_repaired']} fewer"),
+        ("3.3", "labelled repair: net gain in passing patches, interval reaches zero", "The net gain of 8 passing patches is within noise",
+         "+8, reaches zero", f"{net(labelled['labelled_minus_tests']['diff'])}, "
+                             + ("reaches zero" if includes_zero(labelled["labelled_minus_tests"]["ci95"]) else "excludes zero")),
         ("5", "correct patches the repair's harm rests on", "rests on 23 correct patches", "23",
          str(repair["blocked_passing"] + lite["blocked_passing"])),
     ]

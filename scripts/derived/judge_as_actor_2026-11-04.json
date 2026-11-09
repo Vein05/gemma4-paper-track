@@ -15,32 +15,32 @@
   "n_others_pass": 0,
   "approval_100": {
    "own_fail": {
-    "value": 0.804,
+    "value": 0.792,
     "ci": [
-     0.686,
-     0.902
+     0.667,
+     0.896
     ]
    },
    "own_pass": {
-    "value": 0.951,
+    "value": 0.952,
     "ci": [
-     0.901,
+     0.905,
      0.988
     ]
    }
   },
   "approval_90": {
    "own_fail": {
-    "value": 0.824,
+    "value": 0.812,
     "ci": [
-     0.706,
-     0.922
+     0.708,
+     0.917
     ]
    },
    "own_pass": {
-    "value": 0.951,
+    "value": 0.952,
     "ci": [
-     0.901,
+     0.905,
      0.988
     ]
    }
@@ -71,10 +71,10 @@
    ]
   },
   "auroc_actor_own": {
-   "value": 0.576,
+   "value": 0.583,
    "ci": [
-    0.518,
-    0.639
+    0.521,
+    0.647
    ]
   },
   "auroc_reader_own_same_patches": {
@@ -85,32 +85,32 @@
    ]
   },
   "auroc_gain_actor_minus_reader": {
-   "value": 0.076,
+   "value": 0.083,
    "ci": [
-    0.018,
-    0.14
+    0.023,
+    0.15
    ]
   },
   "n_stamped": 132,
   "auroc_actor_within_stamped": {
-   "value": 0.576,
+   "value": 0.583,
    "ci": [
-    0.519,
-    0.637
+    0.523,
+    0.646
    ]
   },
   "approval_100_stamped": {
    "fail": {
-    "value": 0.804,
+    "value": 0.792,
     "ci": [
-     0.686,
-     0.902
+     0.667,
+     0.896
     ]
    },
    "pass": {
-    "value": 0.951,
+    "value": 0.952,
     "ci": [
-     0.901,
+     0.905,
      0.988
     ]
    }
@@ -118,11 +118,11 @@
   "test": {
    "n_with_test_cmd": 132,
    "flag_share_all": 0.707,
-   "flag_share_own_pass": 0.778,
-   "flag_share_own_fail": 0.608,
+   "flag_share_own_pass": 0.75,
+   "flag_share_own_fail": 0.646,
    "own_pass_rate_flagged": 0.67,
-   "own_pass_rate_unflagged": 0.474,
-   "stamped_fail_caught_by_flag": 20,
+   "own_pass_rate_unflagged": 0.553,
+   "stamped_fail_caught_by_flag": 17,
    "assert_share": 0.765,
    "reverted_pass_applied_pass": 19,
    "reverted_fail_applied_fail": 17,
@@ -158,26 +158,26 @@
     ]
    },
    "own_pass": {
-    "value": 0.123,
+    "value": 0.119,
     "ci": [
-     0.035,
-     0.211
+     0.034,
+     0.203
     ]
    }
   },
   "approval_90": {
    "own_fail": {
-    "value": 0.657,
+    "value": 0.667,
     "ci": [
-     0.486,
-     0.8
+     0.485,
+     0.818
     ]
    },
    "own_pass": {
-    "value": 0.93,
+    "value": 0.915,
     "ci": [
-     0.86,
-     0.982
+     0.831,
+     0.983
     ]
    }
   },
@@ -207,10 +207,10 @@
    ]
   },
   "auroc_actor_own": {
-   "value": 0.729,
+   "value": 0.711,
    "ci": [
-    0.63,
-    0.817
+    0.612,
+    0.804
    ]
   },
   "auroc_reader_own_same_patches": {
@@ -221,18 +221,18 @@
    ]
   },
   "auroc_gain_actor_minus_reader": {
-   "value": 0.229,
+   "value": 0.211,
    "ci": [
-    0.133,
-    0.324
+    0.106,
+    0.309
    ]
   },
   "n_stamped": 92,
   "auroc_actor_within_stamped": {
-   "value": 0.729,
+   "value": 0.711,
    "ci": [
-    0.626,
-    0.818
+    0.603,
+    0.806
    ]
   },
   "approval_100_stamped": {
@@ -244,21 +244,21 @@
     ]
    },
    "pass": {
-    "value": 0.123,
+    "value": 0.119,
     "ci": [
-     0.035,
-     0.211
+     0.051,
+     0.203
     ]
    }
   },
   "test": {
    "n_with_test_cmd": 92,
    "flag_share_all": 0.406,
-   "flag_share_own_pass": 0.596,
-   "flag_share_own_fail": 0.571,
+   "flag_share_own_pass": 0.576,
+   "flag_share_own_fail": 0.606,
    "own_pass_rate_flagged": 0.63,
-   "own_pass_rate_unflagged": 0.605,
-   "stamped_fail_caught_by_flag": 15,
+   "own_pass_rate_unflagged": 0.658,
+   "stamped_fail_caught_by_flag": 13,
    "assert_share": 0.717,
    "reverted_pass_applied_pass": 20,
    "reverted_fail_applied_fail": 17,

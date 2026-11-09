@@ -23,10 +23,10 @@
  "per_writer": {
   "gemma-4-31b": {
    "patches": 180,
-   "solved": 0.528,
-   "failing": 85,
-   "gemma_100": 0.612,
-   "above_outside": 14.1
+   "solved": 0.544,
+   "failing": 82,
+   "gemma_100": 0.598,
+   "above_outside": 13.7
   },
   "glm-4.5": {
    "patches": 160,
@@ -65,9 +65,9 @@
   }
  },
  "failing_all_writers": {
-  "n": 478,
-  "gemma_100": 0.393,
-  "gemma_below_50": 0.523,
+  "n": 475,
+  "gemma_100": 0.389,
+  "gemma_below_50": 0.526,
   "gemma_100_or_below_50": 0.916
  }
 }

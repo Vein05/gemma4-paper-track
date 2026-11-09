@@ -1,0 +1,52 @@
+{
+ "patches": 194,
+ "unparsed": 4,
+ "all": {
+  "outdated_only": 37,
+  "flagged": 20,
+  "flag_rate": 0.541,
+  "flag_ci": [
+   0.384,
+   0.69
+  ],
+  "real_regression": 157,
+  "wrongly_flagged": 5,
+  "wrong_flag_rate": 0.032,
+  "wrong_flag_ci": [
+   0.014,
+   0.072
+  ]
+ },
+ "secondary_123": {
+  "outdated_only": 13,
+  "flagged": 4,
+  "flag_rate": 0.308,
+  "flag_ci": [
+   0.127,
+   0.576
+  ],
+  "real_regression": 110,
+  "wrongly_flagged": 3,
+  "wrong_flag_rate": 0.027,
+  "wrong_flag_ci": [
+   0.009,
+   0.077
+  ]
+ },
+ "per_test_agreement": {
+  "agree": 1766,
+  "matched": 1835
+ },
+ "stop_rule_1": "part 2 as written",
+ "keep_branch": {
+  "correct_patches": 46,
+  "correct_kept_from_repair": 13,
+  "correct_outdated_only": 24,
+  "correct_outdated_only_kept": 13,
+  "failing_real_regression": 135,
+  "failing_real_regression_kept_unrepaired": 5,
+  "failing_outdated_only": 13,
+  "failing_outdated_only_kept": 7
+ },
+ "cost_usd": 0.0948
+}

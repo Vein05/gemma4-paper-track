@@ -92,8 +92,8 @@ def read(name):
 def agree():
     pids, _, n = cases()
     C = {c: read(c) for c in ("a", "b")}
-    for c, r in C.items():
-        assert sorted(r) == sorted(pids), f"coder {c} codes {len(r)} cases, rule gives {len(pids)}"
+    for c, r in C.items():  # coded before 2026-11-09, when 2 of the 31 coded patches were regraded as passing
+        assert set(pids) <= set(r), f"coder {c} misses {sorted(set(pids) - set(r))}"
     rng = np.random.default_rng(0)
     out = dict(rule=f"own failing held-out patch, Gemma 100, at least two outside judges <= {LOW}",
                own_failing_scored_100=n, cases=len(pids))

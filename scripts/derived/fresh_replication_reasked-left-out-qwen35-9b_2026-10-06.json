@@ -1,62 +1,62 @@
 {
  "gemma4-31b": {
-  "gemma_auroc_own": 0.631,
+  "gemma_auroc_own": 0.642,
   "gemma_auroc_control": 0.754,
-  "self_drop": 0.123,
-  "baseline_drop": 0.06,
-  "gap": 0.063,
-  "drop_gpt-oss-20b": 0.048,
-  "drop_qwen35-9b": 0.054,
-  "drop_glm47-flash": 0.096,
-  "drop_qwen3-coder": 0.04,
-  "drop_gpt-oss-120b": 0.081,
+  "self_drop": 0.112,
+  "baseline_drop": 0.059,
+  "gap": 0.053,
+  "drop_gpt-oss-20b": 0.03,
+  "drop_qwen35-9b": 0.058,
+  "drop_glm47-flash": 0.102,
+  "drop_qwen3-coder": 0.046,
+  "drop_gpt-oss-120b": 0.069,
   "drop_glm-4.5": 0.045,
-  "drop_kimi-k2": 0.058,
-  "drop_llama-4-maverick": 0.06,
-  "lenient_raw_failing_own": 11.533,
+  "drop_kimi-k2": 0.059,
+  "drop_llama-4-maverick": 0.062,
+  "lenient_raw_failing_own": 11.017,
   "lenient_raw_failing_control": -2.89,
-  "lenient_raw_failing_difference": 14.423,
-  "lenient_raw_passing_own": 10.103,
+  "lenient_raw_failing_difference": 13.907,
+  "lenient_raw_passing_own": 10.545,
   "lenient_raw_passing_control": 6.424,
-  "lenient_raw_passing_difference": 3.679,
-  "lenient_rank_failing_own": 0.067,
+  "lenient_raw_passing_difference": 4.121,
+  "lenient_rank_failing_own": 0.063,
   "lenient_rank_failing_control": -0.008,
-  "lenient_rank_failing_difference": 0.075,
-  "lenient_rank_passing_own": 0.017,
+  "lenient_rank_failing_difference": 0.071,
+  "lenient_rank_passing_own": 0.022,
   "lenient_rank_passing_control": -0.009,
-  "lenient_rank_passing_difference": 0.026,
+  "lenient_rank_passing_difference": 0.031,
   "self_drop_ci95": [
-   0.052,
-   0.187
+   0.04,
+   0.175
   ],
   "baseline_drop_ci95": [
-   0.013,
-   0.108
+   0.012,
+   0.107
   ],
   "gap_ci95": [
-   0.012,
-   0.115
+   0.001,
+   0.103
   ],
   "lenient_raw_failing_difference_ci95": [
-   7.308,
-   21.002
+   6.924,
+   20.577
   ],
   "lenient_raw_passing_difference_ci95": [
-   -1.817,
-   8.469
+   -1.235,
+   8.767
   ],
   "lenient_rank_failing_difference_ci95": [
-   0.036,
-   0.111
+   0.031,
+   0.106
   ],
   "lenient_rank_passing_difference_ci95": [
-   -0.006,
-   0.058
+   -0.0,
+   0.063
   ],
-  "gemma4-31b_scored100_own_failing": 0.592,
+  "gemma4-31b_scored100_own_failing": 0.575,
   "gemma4-31b_scored100_control_failing": 0.339,
   "gemma4-31b_auroc_by_writer": {
-   "gemma-4-31b": 0.631,
+   "gemma-4-31b": 0.642,
    "glm-4.5": 0.64,
    "gpt-oss-120b": 0.81,
    "kimi-k2": 0.623,
@@ -66,27 +66,27 @@
   "gpt-oss-20b_scored100_own_failing": 0.0,
   "gpt-oss-20b_scored100_control_failing": 0.0,
   "gpt-oss-20b_auroc_by_writer": {
-   "gemma-4-31b": 0.664,
+   "gemma-4-31b": 0.682,
    "glm-4.5": 0.603,
    "gpt-oss-120b": 0.764,
    "kimi-k2": 0.671,
    "llama-4-maverick": 0.803,
    "qwen3-coder": 0.576
   },
-  "qwen35-9b_scored100_own_failing": 0.224,
+  "qwen35-9b_scored100_own_failing": 0.233,
   "qwen35-9b_scored100_control_failing": 0.248,
   "qwen35-9b_auroc_by_writer": {
-   "gemma-4-31b": 0.681,
+   "gemma-4-31b": 0.678,
    "glm-4.5": 0.633,
    "gpt-oss-120b": 0.798,
    "kimi-k2": 0.686,
    "llama-4-maverick": 0.837,
    "qwen3-coder": 0.633
   },
-  "glm47-flash_scored100_own_failing": 0.368,
+  "glm47-flash_scored100_own_failing": 0.37,
   "glm47-flash_scored100_control_failing": 0.248,
   "glm47-flash_auroc_by_writer": {
-   "gemma-4-31b": 0.633,
+   "gemma-4-31b": 0.627,
    "glm-4.5": 0.651,
    "gpt-oss-120b": 0.805,
    "kimi-k2": 0.704,
@@ -96,7 +96,7 @@
   "qwen3-coder_scored100_own_failing": 0.0,
   "qwen3-coder_scored100_control_failing": 0.0,
   "qwen3-coder_auroc_by_writer": {
-   "gemma-4-31b": 0.713,
+   "gemma-4-31b": 0.707,
    "glm-4.5": 0.629,
    "gpt-oss-120b": 0.757,
    "kimi-k2": 0.624,
@@ -106,14 +106,14 @@
   "gpt-oss-120b_scored100_own_failing": 0.0,
   "gpt-oss-120b_scored100_control_failing": 0.0,
   "gpt-oss-120b_auroc_by_writer": {
-   "gemma-4-31b": 0.658,
+   "gemma-4-31b": 0.67,
    "glm-4.5": 0.612,
    "gpt-oss-120b": 0.778,
    "kimi-k2": 0.732,
    "llama-4-maverick": 0.825,
    "qwen3-coder": 0.647
   },
-  "glm-4.5_scored100_own_failing": 0.092,
+  "glm-4.5_scored100_own_failing": 0.096,
   "glm-4.5_scored100_control_failing": 0.096,
   "glm-4.5_auroc_by_writer": {
    "gemma-4-31b": 0.788,
@@ -123,20 +123,20 @@
    "llama-4-maverick": 0.887,
    "qwen3-coder": 0.698
   },
-  "kimi-k2_scored100_own_failing": 0.013,
+  "kimi-k2_scored100_own_failing": 0.014,
   "kimi-k2_scored100_control_failing": 0.019,
   "kimi-k2_auroc_by_writer": {
-   "gemma-4-31b": 0.761,
+   "gemma-4-31b": 0.759,
    "glm-4.5": 0.75,
    "gpt-oss-120b": 0.805,
    "kimi-k2": 0.701,
    "llama-4-maverick": 0.892,
    "qwen3-coder": 0.654
   },
-  "llama-4-maverick_scored100_own_failing": 0.461,
+  "llama-4-maverick_scored100_own_failing": 0.466,
   "llama-4-maverick_scored100_control_failing": 0.383,
   "llama-4-maverick_auroc_by_writer": {
-   "gemma-4-31b": 0.614,
+   "gemma-4-31b": 0.612,
    "glm-4.5": 0.617,
    "gpt-oss-120b": 0.728,
    "kimi-k2": 0.672,
@@ -173,8 +173,8 @@
   "patches_rated_by_all": 897,
   "patches_left_out": 85,
   "n": {
-   "own_failing": 76,
-   "own_passing": 92,
+   "own_failing": 73,
+   "own_passing": 95,
    "control_failing": 363,
    "control_passing": 366
   }

@@ -115,6 +115,11 @@ def analyze():
 
     gate = os.path.join(DATA, "lab-runs", "existing-test-gate")
     out["held_out_held_back_failing"] = tally("held-out", held_back(gate, lambda m: m["y"] == 0))
+    # Gemma's failing held-out patches by type and the check's decision (added 2026-11-09).
+    runs = {r["pid"]: r for r in L(os.path.join(gate, "runs.jsonl")) if r["kind"] == "patch"}
+    cross = collections.Counter((kind(by.get(("held-out", pids[i]), {})) or "no log", runs.get(pids[i], {}).get("decision") or "no check")
+                                for i in own)
+    out["held_out_own_failing_by_check"] = {f"{k} | {d}": n for (k, d), n in sorted(cross.items())}
     # Lite: failing by our own grade of the start patch, among issues whose reference patch passes our grader
     # (the set lite_repair.py analyzes).
     run = os.path.join(DATA, "lab-runs", "lite-repair")

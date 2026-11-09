@@ -3,11 +3,11 @@
   "items": 957,
   "per_writer": {
    "gemma-4-31b": {
-    "failing": 85,
-    "pass_rate": 0.528,
-    "gemma_leniency_failing": 14.1,
-    "gemma_scored100_failing": 52,
-    "gemma_scored100_failing_share": 0.612
+    "failing": 82,
+    "pass_rate": 0.544,
+    "gemma_leniency_failing": 13.7,
+    "gemma_scored100_failing": 49,
+    "gemma_scored100_failing_share": 0.598
    },
    "glm-4.5": {
     "failing": 61,
@@ -15,10 +15,10 @@
     "gemma_leniency_failing": 4.1,
     "gemma_scored100_failing": 34,
     "gemma_scored100_failing_share": 0.557,
-    "own_minus_this_writer": 10.0,
+    "own_minus_this_writer": 9.6,
     "own_minus_this_writer_ci95": [
-     0.9,
-     19.0
+     0.6,
+     18.5
     ]
    },
    "gpt-oss-120b": {
@@ -27,10 +27,10 @@
     "gemma_leniency_failing": -8.1,
     "gemma_scored100_failing": 27,
     "gemma_scored100_failing_share": 0.248,
-    "own_minus_this_writer": 22.2,
+    "own_minus_this_writer": 21.8,
     "own_minus_this_writer_ci95": [
-     13.8,
-     30.6
+     13.2,
+     30.4
     ]
    },
    "kimi-k2": {
@@ -39,10 +39,10 @@
     "gemma_leniency_failing": 8.4,
     "gemma_scored100_failing": 33,
     "gemma_scored100_failing_share": 0.611,
-    "own_minus_this_writer": 5.6,
+    "own_minus_this_writer": 5.3,
     "own_minus_this_writer_ci95": [
-     -5.1,
-     16.3
+     -5.4,
+     15.9
     ]
    },
    "llama-4-maverick": {
@@ -51,10 +51,10 @@
     "gemma_leniency_failing": -6.9,
     "gemma_scored100_failing": 20,
     "gemma_scored100_failing_share": 0.163,
-    "own_minus_this_writer": 21.0,
+    "own_minus_this_writer": 20.6,
     "own_minus_this_writer_ci95": [
-     13.5,
-     28.0
+     13.2,
+     27.7
     ]
    },
    "qwen3-coder": {
@@ -63,100 +63,100 @@
     "gemma_leniency_failing": 0.4,
     "gemma_scored100_failing": 22,
     "gemma_scored100_failing_share": 0.478,
-    "own_minus_this_writer": 13.7,
+    "own_minus_this_writer": 13.3,
     "own_minus_this_writer_ci95": [
-     3.5,
-     24.9
+     3.0,
+     24.5
     ]
    }
   },
   "placebo": {
    "gemma4-31b": {
-    "value": 16.6,
+    "value": 16.3,
     "ci95": [
-     10.3,
-     23.1
+     9.9,
+     22.7
     ],
-    "scored100_gemma_failing": 0.612,
+    "scored100_gemma_failing": 0.598,
     "scored100_other_failing": 0.346
    },
    "gpt-oss-20b": {
-    "value": -5.5,
+    "value": -6.6,
     "ci95": [
-     -13.8,
-     3.0
+     -14.8,
+     2.0
     ],
     "scored100_gemma_failing": 0.0,
     "scored100_other_failing": 0.0
    },
    "qwen35-9b": {
-    "value": -2.3,
+    "value": -2.1,
     "ci95": [
-     -10.2,
-     4.9
+     -10.0,
+     5.1
     ],
-    "scored100_gemma_failing": 0.212,
+    "scored100_gemma_failing": 0.22,
     "scored100_other_failing": 0.234
    },
    "glm47-flash": {
-    "value": 7.4,
+    "value": 8.6,
     "ci95": [
-     -1.3,
-     15.7
+     0.2,
+     16.7
     ],
-    "scored100_gemma_failing": 0.365,
+    "scored100_gemma_failing": 0.366,
     "scored100_other_failing": 0.249
    },
    "qwen3-coder": {
-    "value": -13.1,
+    "value": -12.1,
     "ci95": [
-     -19.5,
-     -6.4
+     -18.6,
+     -5.5
     ],
     "scored100_gemma_failing": 0.0,
     "scored100_other_failing": 0.0
    },
    "gpt-oss-120b": {
-    "value": -1.1,
+    "value": -1.7,
     "ci95": [
-     -6.6,
-     4.8
+     -7.3,
+     4.4
     ],
     "scored100_gemma_failing": 0.0,
     "scored100_other_failing": 0.0
    },
    "glm-4.5": {
-    "value": 5.5,
+    "value": 4.7,
     "ci95": [
-     -2.6,
-     13.0
+     -3.6,
+     12.5
     ],
-    "scored100_gemma_failing": 0.106,
+    "scored100_gemma_failing": 0.11,
     "scored100_other_failing": 0.092
    },
    "kimi-k2": {
-    "value": 10.0,
+    "value": 9.9,
     "ci95": [
-     5.0,
+     4.9,
      14.9
     ],
     "scored100_gemma_failing": 0.012,
     "scored100_other_failing": 0.018
    },
    "llama-4-maverick": {
-    "value": -1.7,
+    "value": -1.5,
     "ci95": [
      -7.8,
-     4.6
+     4.8
     ],
-    "scored100_gemma_failing": 0.459,
+    "scored100_gemma_failing": 0.463,
     "scored100_other_failing": 0.387
    }
   },
-  "gemma_minus_max_other": 6.7,
+  "gemma_minus_max_other": 6.4,
   "gemma_minus_max_other_ci95": [
-   -2.7,
-   12.2
+   -3.9,
+   11.7
   ]
  },
  "swe-bench-lite": {

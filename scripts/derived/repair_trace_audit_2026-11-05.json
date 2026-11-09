@@ -4,7 +4,7 @@
   "populations": {
     "all": 180,
     "stamped": 133,
-    "stamped_failing": 52,
+    "stamped_failing": 49,
     "blocked": 35,
     "blocked_failing": 26
   },
@@ -12,13 +12,13 @@
     "tests": {
       "repairs": 14,
       "harms": 4,
-      "resolved": 105,
+      "resolved": 108,
       "net_resolved_gain": 10,
       "stamped_repairs": 9,
-      "stamped_repair_rate": 0.17307692307692307,
+      "stamped_repair_rate": 0.1836734693877551,
       "stamped_harms": 4,
-      "stamped_passes_after": 86,
-      "stamped_failures_after": 47,
+      "stamped_passes_after": 89,
+      "stamped_failures_after": 44,
       "total_calls": 549,
       "format_errors": 44,
       "runs_with_format_errors": 23,
@@ -54,15 +54,15 @@
       }
     },
     "review": {
-      "repairs": 6,
+      "repairs": 7,
       "harms": 1,
-      "resolved": 100,
-      "net_resolved_gain": 5,
+      "resolved": 104,
+      "net_resolved_gain": 6,
       "stamped_repairs": 3,
-      "stamped_repair_rate": 0.057692307692307696,
+      "stamped_repair_rate": 0.061224489795918366,
       "stamped_harms": 0,
-      "stamped_passes_after": 84,
-      "stamped_failures_after": 49,
+      "stamped_passes_after": 87,
+      "stamped_failures_after": 46,
       "total_calls": 544,
       "format_errors": 38,
       "runs_with_format_errors": 17,
@@ -72,16 +72,16 @@
       },
       "calls_by_transition": {
         "0->0": {
-          "n": 20,
-          "median": 14.0,
+          "n": 19,
+          "median": 12,
           "minimum": 6,
           "maximum": 50
         },
         "0->1": {
-          "n": 6,
-          "median": 14.0,
+          "n": 7,
+          "median": 15,
           "minimum": 7,
-          "maximum": 26
+          "maximum": 43
         },
         "1->0": {
           "n": 1,
@@ -101,15 +101,15 @@
   "comparisons": {
     "prespecified_blocked_failing": {
       "left_only": 8,
-      "right_only": 0,
-      "one_sided_p": 0.00390625,
-      "two_sided_p": 0.0078125
+      "right_only": 1,
+      "one_sided_p": 0.01953125,
+      "two_sided_p": 0.0390625
     },
     "exploratory_all_outcomes": {
       "left_only": 9,
-      "right_only": 4,
-      "one_sided_p": 0.1334228515625,
-      "two_sided_p": 0.266845703125
+      "right_only": 5,
+      "one_sided_p": 0.21197509765625,
+      "two_sided_p": 0.4239501953125
     },
     "exploratory_stamped_outcomes": {
       "left_only": 6,
@@ -127,7 +127,7 @@
     "step_limit_exits": 0
   },
   "stamped_failure_gate_decisions": {
-    "pass": 36,
+    "pass": 33,
     "block": 15,
     "no_check": 1
   },
@@ -917,7 +917,7 @@
       "instance_id": "sphinx-doc__sphinx-8593",
       "pid": "sphinx-doc__sphinx-8593|gemma-4-31b|1e94fa7b",
       "original_grade": 0,
-      "final_grade": 0,
+      "final_grade": 1,
       "stamped": false,
       "n_calls": 43,
       "exit_status": "Submitted",
@@ -1044,10 +1044,10 @@
     }
   ],
   "source_sha256": {
-    "data/lab-runs/existing-test-gate/meta.jsonl": "f033809cec99cbafa1c6ceead908db7e65e586407c19e713f82156c5a477562b",
-    "data/lab-runs/existing-test-gate/runs.jsonl": "39818216ae47491262e160174aa7c4ba123ad751b2bb3c8dfe1838f9262d530f",
+    "data/lab-runs/existing-test-gate/meta.jsonl": "6567c1b2a5936c0b1cf42198fd057751669954afb035d5aea6344289fd743003",
+    "data/lab-runs/existing-test-gate/runs.jsonl": "58764a911aab8f25114a4ed321d73f192b6b1aded3a285f31ffbe2cba22f20e8",
     "data/lab-runs/test-repair/jobs.jsonl": "8c3636c22d4d2390de165f338d3117880c9b364cac79758db00cc8b8636de49e",
-    "data/lab-runs/test-repair/review/labels.jsonl": "08998ecde294089d8f6ee0fde39250f2ec21a645d4ca757fedbe2ff03c294749",
+    "data/lab-runs/test-repair/review/labels.jsonl": "d145b2147cc30c9a176b6db1bb6ce6f0075707520fb2231321da26a411320d44",
     "data/lab-runs/test-repair/review/preds.jsonl": "60de6bce7ebf0481692391ff1282d1d8c60a25b1887eaed33bc93bb9db0b5502",
     "data/lab-runs/test-repair/review/trajs/astropy__astropy-14508.json": "70a6958f45c5aa4669dde92caf653774cc9f3641acab74e3ce7e290c58846e5a",
     "data/lab-runs/test-repair/review/trajs/django__django-11206.json": "8b41a6c5cd841d0c52f6e643be3c9294366f4b543dcbcd0adda4c13d4a2e6416",
@@ -1121,6 +1121,6 @@
     "data/lab-runs/test-repair/tests/trajs/sympy__sympy-21379.json": "b424d17d430185e221d439d9823b9e7f384c0f1f32efdafbdf9a83a75b70f36e",
     "data/lab-runs/test-repair/tests/trajs/sympy__sympy-22456.json": "c090263523ec5abfc707378423d2e68854176ef623944f0cf2e1e9a7ccbd1e29",
     "data/lab-runs/test-repair/tests/trajs/sympy__sympy-24066.json": "f9d534afd069d153ad12f17b8474cb1ef59ed4f50a845cbb387b9326d3275c71",
-    "scripts/derived/test_repair_2026-11-05.json": "634e4b9cb7f98a0ee803b2375c37f04435e4fbfcde48c80f5e9729ea865fac46"
+    "scripts/derived/test_repair_2026-11-05.json": "7fdd3e3ef415a6a57de30c7ada8361eb558b28c25fbfa8ffe4aa6c3889548fb9"
   }
 }

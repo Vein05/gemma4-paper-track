@@ -26,7 +26,8 @@ LOG_DIR = None  # set in main(): <dir of --out>/eval_logs
 BUCKET = "https://swe-bench-submissions.s3.amazonaws.com"
 BUILD_TIMEOUT = int(os.environ.get("BUILD_TIMEOUT", 3600))  # matplotlib sandboxes take about 20 min on MCSR's Lustre
 APPLY = ["git apply --verbose /patch.diff", "git apply --verbose --reject /patch.diff",
-         "patch --batch --fuzz=5 -p1 -i /patch.diff"]  # same fallbacks as the SWE-bench harness
+         "patch --batch --fuzz=5 -p1 -i /patch.diff"]  # SWE-bench's fallbacks; only judge_actor.py and own_script_gate.py still use them
+CONFIG_FILES = {"tox.ini", "setup.py", "pyproject.toml"}  # SWE-bench edits these when it builds an image
 
 
 def image(iid):
@@ -71,6 +72,39 @@ def run(cmd, timeout):
     return subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, errors="replace", timeout=timeout)
 
 
+def apply_patch(patch, host_path, diff, sh):
+    """Apply a patch in /testbed and return how, or None (spec/existing-test-gate.md, addendum 2). host_path is the diff
+    file on this machine, diff the same file in the sandbox, sh(command) runs in /testbed and returns the exit code.
+    SWE-bench's `git apply --reject` step is left out: it applied the source hunks of a patch whose config hunks fail, and
+    `patch --batch` then took those hunks as already applied and reversed them, which removed the fix."""
+    def is_binary(b):
+        return "GIT binary patch" in b or re.search(r"(?m)^Binary files .* differ$", b)
+
+    def is_config(b):
+        m = re.match(r"diff --git a/(\S+) b/", b)
+        return m and m.group(1) in CONFIG_FILES
+
+    blocks = re.split(r"(?m)^(?=diff --git )", patch)
+    no_binary = "".join(b for b in blocks if not is_binary(b))
+    no_config = "".join(b for b in blocks if not is_binary(b) and not is_config(b))
+    variants = list(dict.fromkeys(t for t in (patch, no_binary, no_config) if t.strip()))
+
+    def write(text):
+        with open(host_path, "w") as f:
+            f.write(text if text.endswith("\n") else text + "\n")
+
+    for text in variants:  # git apply changes nothing unless the whole text applies
+        write(text)
+        if sh(f"git apply --verbose {diff}") == 0:
+            return "git apply --verbose" + ("" if text == patch else " (binary or config files dropped)")
+    for text in variants:
+        write(text)
+        cmd = f"patch --batch --forward --fuzz=5 -p1 -i {diff}"
+        if sh(cmd.replace("--batch", "--dry-run --batch")) == 0 and sh(cmd) == 0:
+            return "patch --batch --forward --fuzz=5 -p1 -i" + ("" if text == patch else " (binary or config files dropped)")
+    return None
+
+
 def grade(inst, patch, tag, timeout=1800):
     """Return dict(instance_id, resolved, status) for one patch."""
     iid = inst["instance_id"]
@@ -91,19 +125,17 @@ def grade(inst, patch, tag, timeout=1800):
             return dict(instance_id=iid, resolved=None, status="build_error", detail=b.stdout[-500:], secs=secs)
         for m in MOUNT_DIRS:
             os.makedirs(os.path.join(sbx, m.lstrip("/")), exist_ok=True)
-        if not patch.endswith("\n"):
-            patch += "\n"  # git apply rejects a last line without newline ("corrupt patch")
-        open(os.path.join(sbx, "patch.diff"), "w").write(patch)  # not /tmp: --contain hides it
         open(os.path.join(sbx, "eval.sh"), "w").write(spec.eval_script)
         ex = [APPTAINER, "exec", *EXEC_FLAGS, "--contain", "--cleanenv", "--writable", sbx]
-        applied, tries = None, []
-        step, t0 = "apply", time.time()
-        for c in APPLY:
+        tries = []
+
+        def sh(c):
             r = run(ex + ["bash", "-c", f"cd /testbed && {c}"], 300)
             tries.append(r.stdout[-400:])
-            if r.returncode == 0:
-                applied = c.split(" /")[0]
-                break
+            return r.returncode
+
+        step, t0 = "apply", time.time()
+        applied = apply_patch(patch, os.path.join(sbx, "patch.diff"), "/patch.diff", sh)  # not /tmp: --contain hides it
         secs["apply"] = round(time.time() - t0)
         if not applied:
             return dict(instance_id=iid, resolved=False, status="patch_apply_failed", detail=tries, secs=secs)
@@ -174,6 +206,7 @@ def main():
     sub = ap.add_subparsers(dest="cmd", required=True)
     v = sub.add_parser("validate"); v.add_argument("--entry", required=True); v.add_argument("--n", type=int, default=30)
     e = sub.add_parser("eval"); e.add_argument("--preds", required=True)
+    e.add_argument("--retry-ungraded", action="store_true", help="grade timeouts and build errors again")
     for p in (v, e):
         p.add_argument("--out", required=True); p.add_argument("--workers", type=int, default=6)
         p.add_argument("--dataset", default="princeton-nlp/SWE-bench_Verified", help="Hugging Face name or local parquet")
@@ -181,6 +214,9 @@ def main():
     a = ap.parse_args()
     global LOG_DIR
     LOG_DIR = os.path.join(os.path.dirname(os.path.abspath(a.out)), "eval_logs")
+    stem = os.path.basename(a.out).rsplit(".jsonl", 1)[0]
+    if stem.startswith("labels."):  # one labels file per writer (test_repair.py, 2026-11-07): logs must not collide
+        LOG_DIR = os.path.join(LOG_DIR, stem[len("labels."):])
     os.makedirs(WORK, exist_ok=True)
     ds = (load_dataset("parquet", data_files=a.dataset, split="train") if a.dataset.endswith(".parquet")
           else load_dataset(a.dataset, split="test"))
@@ -189,7 +225,11 @@ def main():
         validate(a, insts)
     else:
         preds = [json.loads(l) for l in open(a.preds)]
-        done = {json.loads(l)["instance_id"] for l in open(a.out)} if os.path.exists(a.out) else set()
+        last = {}
+        for l in (open(a.out) if os.path.exists(a.out) else []):
+            r = json.loads(l); last[r["instance_id"]] = r.get("status")
+        # --retry-ungraded (2026-11-07): a timeout or build error is graded again; readers take the last row per issue
+        done = {i for i, s in last.items() if not (a.retry_ungraded and s in ("timeout", "build_error"))}
         preds = [p for p in preds if p["instance_id"] not in done]  # resume: append, skip graded issues
         print(f"{len(preds)} to grade ({len(done)} already graded)", flush=True)
         with cf.ThreadPoolExecutor(a.workers) as pool, open(a.out, "a") as f:

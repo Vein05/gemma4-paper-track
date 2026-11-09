@@ -397,7 +397,7 @@ def analyze(a):
         R = [json.loads(l) for l in open(os.path.join(d, "runs.jsonl"))]
         for r in R:
             j = jobs[r["pid"]]
-            r.update(reader=j["reader"], n_calls=j["n_calls"], stamped=j["stamped"])
+            r.update(reader=j["reader"], n_calls=j["n_calls"], stamped=j["stamped"], y=j["y"])  # labels corrected 2026-11-09 live in jobs.jsonl
             r["flag"] = bool(r.get("test_reverted", {}).get("passes") is False and r.get("test_applied", {}).get("passes") is True)
         readable = [r for r in R if r.get("score") is not None]
         own = [r for r in readable if r["set"] == "own"]

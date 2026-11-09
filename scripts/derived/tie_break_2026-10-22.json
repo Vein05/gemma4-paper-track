@@ -1,95 +1,95 @@
 {
  "heldout": {
   "patches": 180,
-  "passing": 95,
+  "passing": 98,
   "gemma_100": 133,
-  "passing_at_100": 81
+  "passing_at_100": 84
  },
  "tie_breaks": {
   "concern_words": {
    "mini_tied_patches": 142,
    "mini_auroc_inside_tie": 0.527,
-   "heldout_auroc_inside_tie": 0.533,
+   "heldout_auroc_inside_tie": 0.555,
    "heldout_auroc_inside_tie_ci95": [
-    0.438,
-    0.63
+    0.462,
+    0.653
    ],
    "heldout_mean_passing_failing_at_100": [
-    2.7,
-    2.8
+    2.6,
+    2.9
    ],
    "accept_25": {
-    "precision": 0.67,
-    "precision_minus_gemma": 0.061,
+    "precision": 0.715,
+    "precision_minus_gemma": 0.083,
     "ci95": [
-     -0.042,
-     0.168
+     -0.02,
+     0.188
     ]
    },
    "accept_50": {
-    "precision": 0.609,
-    "precision_minus_gemma": -0.0,
+    "precision": 0.642,
+    "precision_minus_gemma": 0.01,
     "ci95": [
-     -0.05,
-     0.055
+     -0.039,
+     0.064
     ]
    }
   },
   "answer_words": {
    "mini_tied_patches": 142,
    "mini_auroc_inside_tie": 0.621,
-   "heldout_auroc_inside_tie": 0.626,
+   "heldout_auroc_inside_tie": 0.617,
    "heldout_auroc_inside_tie_ci95": [
-    0.529,
-    0.717
+    0.52,
+    0.712
    ],
    "heldout_mean_passing_failing_at_100": [
-    178.9,
-    192.9
+    179.5,
+    192.8
    ],
    "accept_25": {
-    "precision": 0.719,
+    "precision": 0.741,
     "precision_minus_gemma": 0.109,
     "ci95": [
-     0.003,
-     0.217
+     -0.003,
+     0.215
     ]
    },
    "accept_50": {
-    "precision": 0.65,
-    "precision_minus_gemma": 0.041,
+    "precision": 0.667,
+    "precision_minus_gemma": 0.035,
     "ci95": [
-     -0.014,
-     0.105
+     -0.019,
+     0.098
     ]
    }
   },
   "model_calls": {
    "mini_tied_patches": 32,
    "mini_auroc_inside_tie": 0.731,
-   "heldout_auroc_inside_tie": 0.679,
+   "heldout_auroc_inside_tie": 0.657,
    "heldout_auroc_inside_tie_ci95": [
-    0.578,
-    0.769
+    0.553,
+    0.752
    ],
    "heldout_mean_passing_failing_at_100": [
-    13.3,
-    17.9
+    13.6,
+    17.6
    ],
    "accept_25": {
     "precision": 0.778,
-    "precision_minus_gemma": 0.169,
+    "precision_minus_gemma": 0.146,
     "ci95": [
-     0.057,
-     0.268
+     0.033,
+     0.245
     ]
    },
    "accept_50": {
-    "precision": 0.717,
-    "precision_minus_gemma": 0.108,
+    "precision": 0.726,
+    "precision_minus_gemma": 0.094,
     "ci95": [
-     0.042,
-     0.165
+     0.031,
+     0.149
     ]
    }
   }
@@ -126,260 +126,260 @@
    ]
   },
   "glm-4.5_accept_50": {
-   "difference": 0.019,
+   "difference": 0.025,
    "ci95": [
-    -0.052,
+    -0.046,
     0.104
    ]
   },
   "kimi-k2_accept_25": {
-   "difference": -0.008,
+   "difference": -0.0,
    "ci95": [
-    -0.107,
-    0.107
+    -0.097,
+    0.112
    ]
   },
   "kimi-k2_accept_50": {
    "difference": 0.007,
    "ci95": [
-    -0.066,
-    0.091
+    -0.064,
+    0.088
    ]
   }
  },
  "all_checks": {
   "accept_25": {
-   "median_gain": 0.117,
+   "median_gain": 0.115,
    "checks_with_lower_bound_above_zero": 11,
    "checks": {
     "gpt-oss-20b": {
-     "gain": 0.096,
+     "gain": 0.105,
      "ci95": [
-      0.016,
-      0.175
+      0.028,
+      0.184
      ]
     },
     "qwen35-9b": {
-     "gain": 0.137,
+     "gain": 0.115,
      "ci95": [
-      0.057,
-      0.222
+      0.035,
+      0.203
      ]
     },
     "glm47-flash": {
-     "gain": 0.058,
+     "gain": 0.046,
      "ci95": [
-      -0.013,
-      0.13
+      -0.024,
+      0.114
      ]
     },
     "qwen3-coder": {
-     "gain": 0.126,
+     "gain": 0.115,
      "ci95": [
-      0.055,
-      0.2
+      0.041,
+      0.185
      ]
     },
     "gpt-oss-120b": {
-     "gain": 0.081,
+     "gain": 0.075,
      "ci95": [
-      -0.016,
-      0.173
+      -0.02,
+      0.169
      ]
     },
     "glm-4.5": {
-     "gain": 0.227,
+     "gain": 0.205,
      "ci95": [
-      0.127,
-      0.32
+      0.104,
+      0.298
      ]
     },
     "kimi-k2": {
-     "gain": 0.161,
+     "gain": 0.146,
      "ci95": [
-      0.096,
-      0.225
+      0.08,
+      0.207
      ]
     },
     "llama-4-maverick": {
-     "gain": 0.001,
+     "gain": -0.012,
      "ci95": [
-      -0.062,
-      0.066
+      -0.075,
+      0.051
      ]
     },
     "gemma_plus_gpt-oss-20b": {
-     "gain": 0.108,
+     "gain": 0.122,
      "ci95": [
-      0.03,
-      0.183
+      0.05,
+      0.198
      ]
     },
     "gemma_plus_qwen35-9b": {
-     "gain": 0.149,
+     "gain": 0.126,
      "ci95": [
-      0.067,
-      0.233
+      0.047,
+      0.216
      ]
     },
     "gemma_plus_glm47-flash": {
-     "gain": 0.09,
+     "gain": 0.079,
      "ci95": [
-      0.029,
-      0.16
+      0.017,
+      0.147
      ]
     },
     "gemma_plus_qwen3-coder": {
-     "gain": 0.133,
+     "gain": 0.123,
      "ci95": [
-      0.064,
-      0.206
+      0.054,
+      0.193
      ]
     },
     "gemma_plus_gpt-oss-120b": {
-     "gain": 0.075,
+     "gain": 0.07,
      "ci95": [
-      -0.022,
-      0.17
+      -0.024,
+      0.167
      ]
     },
     "gemma_plus_glm-4.5": {
-     "gain": 0.251,
+     "gain": 0.228,
      "ci95": [
-      0.148,
-      0.338
+      0.131,
+      0.313
      ]
     },
     "gemma_plus_kimi-k2": {
-     "gain": 0.167,
+     "gain": 0.152,
      "ci95": [
-      0.107,
-      0.229
+      0.09,
+      0.212
      ]
     },
     "gemma_plus_llama-4-maverick": {
-     "gain": 0.035,
+     "gain": 0.024,
      "ci95": [
-      -0.024,
-      0.096
+      -0.037,
+      0.081
      ]
     }
    }
   },
   "accept_50": {
-   "median_gain": 0.062,
+   "median_gain": 0.058,
    "checks_with_lower_bound_above_zero": 8,
    "checks": {
     "gpt-oss-20b": {
-     "gain": 0.043,
+     "gain": 0.054,
      "ci95": [
-      -0.025,
-      0.114
+      -0.016,
+      0.125
      ]
     },
     "qwen35-9b": {
-     "gain": 0.073,
+     "gain": 0.067,
      "ci95": [
-      0.016,
-      0.135
+      0.009,
+      0.128
      ]
     },
     "glm47-flash": {
-     "gain": 0.058,
+     "gain": 0.046,
      "ci95": [
-      -0.02,
-      0.121
+      -0.035,
+      0.108
      ]
     },
     "qwen3-coder": {
-     "gain": 0.111,
+     "gain": 0.099,
      "ci95": [
-      0.041,
-      0.17
+      0.027,
+      0.158
      ]
     },
     "gpt-oss-120b": {
      "gain": 0.035,
      "ci95": [
-      -0.021,
-      0.108
+      -0.017,
+      0.109
      ]
     },
     "glm-4.5": {
-     "gain": 0.126,
+     "gain": 0.119,
      "ci95": [
-      0.068,
-      0.183
-     ]
-    },
-    "kimi-k2": {
-     "gain": 0.115,
-     "ci95": [
-      0.059,
+      0.062,
       0.176
      ]
     },
-    "llama-4-maverick": {
-     "gain": 0.001,
+    "kimi-k2": {
+     "gain": 0.102,
      "ci95": [
-      -0.062,
-      0.066
+      0.046,
+      0.16
+     ]
+    },
+    "llama-4-maverick": {
+     "gain": -0.012,
+     "ci95": [
+      -0.075,
+      0.051
      ]
     },
     "gemma_plus_gpt-oss-20b": {
-     "gain": 0.039,
+     "gain": 0.05,
      "ci95": [
-      -0.023,
-      0.097
+      -0.012,
+      0.11
      ]
     },
     "gemma_plus_qwen35-9b": {
-     "gain": 0.066,
+     "gain": 0.062,
      "ci95": [
-      0.015,
-      0.12
+      0.013,
+      0.115
      ]
     },
     "gemma_plus_glm47-flash": {
-     "gain": 0.047,
+     "gain": 0.035,
      "ci95": [
-      -0.007,
-      0.12
+      -0.019,
+      0.112
      ]
     },
     "gemma_plus_qwen3-coder": {
-     "gain": 0.099,
+     "gain": 0.088,
      "ci95": [
-      0.042,
-      0.156
+      0.03,
+      0.147
      ]
     },
     "gemma_plus_gpt-oss-120b": {
-     "gain": 0.035,
+     "gain": 0.042,
      "ci95": [
-      -0.021,
-      0.098
+      -0.014,
+      0.101
      ]
     },
     "gemma_plus_glm-4.5": {
-     "gain": 0.116,
+     "gain": 0.113,
      "ci95": [
-      0.06,
-      0.166
+      0.055,
+      0.164
      ]
     },
     "gemma_plus_kimi-k2": {
-     "gain": 0.122,
+     "gain": 0.11,
      "ci95": [
-      0.069,
-      0.177
+      0.057,
+      0.163
      ]
     },
     "gemma_plus_llama-4-maverick": {
-     "gain": 0.03,
+     "gain": 0.019,
      "ci95": [
-      -0.027,
-      0.085
+      -0.036,
+      0.072
      ]
     }
    }

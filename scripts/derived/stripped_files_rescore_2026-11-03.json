@@ -3,30 +3,30 @@
  "patches_scored_by_all": 875,
  "changed": 413,
  "gemma_changed": 122,
- "gemma_failing_changed": 58,
+ "gemma_failing_changed": 55,
  "leniency_stripped": {
-  "value": 16.1,
+  "value": 16.8,
   "ci95": [
-   8.9,
-   23.2
+   9.6,
+   24.0
   ],
-  "own_failing": 71,
+  "own_failing": 68,
   "other_failing": 350
  },
  "leniency_original_same_patches": {
-  "value": 18.3,
+  "value": 17.9,
   "ci95": [
-   10.8,
-   25.1
+   10.3,
+   24.9
   ],
-  "own_failing": 71,
+  "own_failing": 68,
   "other_failing": 350
  },
  "original_minus_stripped": {
-  "value": 2.2,
+  "value": 1.1,
   "ci95": [
-   -4.6,
-   8.7
+   -5.4,
+   7.3
   ]
  },
  "run_to_run_mean_abs_diff_unchanged": {

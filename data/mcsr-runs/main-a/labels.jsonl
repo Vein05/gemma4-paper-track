@@ -11,7 +11,7 @@
 {"instance_id": "sympy__sympy-17655", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}
 {"instance_id": "scikit-learn__scikit-learn-13124", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
 {"instance_id": "django__django-15315", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
-{"instance_id": "matplotlib__matplotlib-26291", "resolved": false, "status": "graded", "applied_with": "patch --batch --fuzz=5 -p1 -i"}
+{"instance_id": "matplotlib__matplotlib-26291", "resolved": true, "status": "graded", "applied_with": "git apply --verbose (binary or config files dropped)", "secs": {"build": 10, "apply": 0, "tests": 57}, "regraded": "2026-11-09, spec/existing-test-gate.md addendum 2"}
 {"instance_id": "django__django-11211", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
 {"instance_id": "django__django-14140", "resolved": true, "status": "graded", "applied_with": "git apply --verbose"}
 {"instance_id": "django__django-13344", "resolved": false, "status": "graded", "applied_with": "git apply --verbose"}

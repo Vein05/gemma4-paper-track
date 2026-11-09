@@ -3,17 +3,17 @@
  "blocked": 35,
  "blocked_failing": 26,
  "blocked_passing": 9,
- "resolved_before": 95,
+ "resolved_before": 98,
  "tests": {
   "exit_status": {
    "Submitted": 33,
    "RetryError": 2
   },
   "stamped_failing_now_passing": 9,
-  "of_stamped_failing": 52,
+  "of_stamped_failing": 49,
   "blocked_failing_now_passing": 14,
   "blocked_passing_now_failing": 4,
-  "resolved_after": 105
+  "resolved_after": 108
  },
  "review": {
   "exit_status": {
@@ -21,15 +21,15 @@
    "LimitsExceeded": 1
   },
   "stamped_failing_now_passing": 3,
-  "of_stamped_failing": 52,
-  "blocked_failing_now_passing": 6,
+  "of_stamped_failing": 49,
+  "blocked_failing_now_passing": 7,
   "blocked_passing_now_failing": 1,
-  "resolved_after": 100
+  "resolved_after": 104
  },
  "tests_vs_review": {
   "tests_only": 8,
-  "review_only": 0,
-  "sign_test_p": 0.0039
+  "review_only": 1,
+  "sign_test_p": 0.0195
  },
  "reading": "the failing tests help repair"
 }

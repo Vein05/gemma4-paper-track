@@ -1,0 +1,154 @@
+{
+ "patches": 172,
+ "finished_in_both_arms": 172,
+ "arm_b_kind": {
+  "labelled": 20,
+  "same_as_tests": 127,
+  "keep": 25
+ },
+ "exit_status": {
+  "tests": {
+   "Submitted": 169,
+   "LimitsExceeded": 1,
+   "ContextWindowExceededError": 2
+  },
+  "labelled": {
+   "Submitted": 20
+  }
+ },
+ "outcomes": {
+  "tests": {
+   "graded": 165,
+   "reverted": 4,
+   "no_patch": 3
+  },
+  "labelled": {
+   "graded": 20
+  }
+ },
+ "all": {
+  "patches": 172,
+  "correct": 32,
+  "failing": 140,
+  "tests": {
+   "passing": 62,
+   "correct_broken": 20,
+   "failing_repaired": 50
+  },
+  "skip": {
+   "passing": 64,
+   "correct_broken": 13,
+   "failing_repaired": 45
+  },
+  "labelled": {
+   "passing": 70,
+   "correct_broken": 7,
+   "failing_repaired": 45
+  },
+  "no_repair": {
+   "passing": 32
+  }
+ },
+ "secondary_123": {
+  "patches": 98,
+  "correct": 12,
+  "failing": 86,
+  "tests": {
+   "passing": 38,
+   "correct_broken": 6,
+   "failing_repaired": 32
+  },
+  "skip": {
+   "passing": 39,
+   "correct_broken": 3,
+   "failing_repaired": 30
+  },
+  "labelled": {
+   "passing": 40,
+   "correct_broken": 3,
+   "failing_repaired": 31
+  },
+  "no_repair": {
+   "passing": 12
+  }
+ },
+ "outdated_only": {
+  "patches": 37,
+  "correct": 24,
+  "failing": 13,
+  "tests": {
+   "passing": 12,
+   "correct_broken": 16,
+   "failing_repaired": 4
+  },
+  "skip": {
+   "passing": 18,
+   "correct_broken": 9,
+   "failing_repaired": 3
+  },
+  "labelled": {
+   "passing": 24,
+   "correct_broken": 3,
+   "failing_repaired": 3
+  },
+  "no_repair": {
+   "passing": 24
+  }
+ },
+ "real_regression": {
+  "patches": 135,
+  "correct": 8,
+  "failing": 127,
+  "tests": {
+   "passing": 50,
+   "correct_broken": 4,
+   "failing_repaired": 46
+  },
+  "skip": {
+   "passing": 46,
+   "correct_broken": 4,
+   "failing_repaired": 42
+  },
+  "labelled": {
+   "passing": 46,
+   "correct_broken": 4,
+   "failing_repaired": 42
+  },
+  "no_repair": {
+   "passing": 8
+  }
+ },
+ "labelled_minus_tests": {
+  "diff": 8,
+  "ci95": [
+   -4.0,
+   21.0
+  ],
+  "issues": 99
+ },
+ "labelled_minus_no_repair": {
+  "diff": 38,
+  "ci95": [
+   23.0,
+   51.0
+  ],
+  "issues": 99
+ },
+ "skip_minus_tests": {
+  "diff": 2,
+  "ci95": [
+   -6.0,
+   12.0
+  ],
+  "issues": 99
+ },
+ "labelled_minus_skip": {
+  "diff": 6,
+  "ci95": [
+   -1.0,
+   16.0
+  ],
+  "issues": 99
+ },
+ "method_claim": false
+}

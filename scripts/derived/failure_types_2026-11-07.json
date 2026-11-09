@@ -1,6 +1,6 @@
 {
  "held_out_own_failing": {
-  "n": 85,
+  "n": 82,
   "types": {
    "both": {
     "n": 17,
@@ -13,9 +13,9 @@
     "outside_mean": 60.1
    },
    "wrong fix": {
-    "n": 55,
-    "gemma_minus_outside": 14.5,
-    "outside_mean": 59.4
+    "n": 52,
+    "gemma_minus_outside": 13.9,
+    "outside_mean": 58.4
    }
   }
  },
@@ -28,6 +28,16 @@
    "wrong fix": 4,
    "regression": 10
   }
+ },
+ "held_out_own_failing_by_check": {
+  "both | block": 12,
+  "both | no check": 1,
+  "both | pass": 4,
+  "regression | block": 10,
+  "regression | pass": 3,
+  "wrong fix | block": 4,
+  "wrong fix | no check": 11,
+  "wrong fix | pass": 37
  },
  "lite_held_back_failing": {
   "n": 30,

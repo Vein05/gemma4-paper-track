@@ -21,6 +21,7 @@ into this folder, as eval_apptainer.py does), SERVED_MODEL and MODEL_ID (the vLL
 recorded in run.json; defaults are the 31B competition checkpoint; other sizes: spec/gemma-sizes-writers.md).
 """
 import argparse, concurrent.futures as cf, json, os, shutil, subprocess, threading, time, uuid
+import shlex
 from dataclasses import dataclass, field
 
 import yaml
@@ -35,6 +36,7 @@ APPTAINER = os.environ.get("APPTAINER", "apptainer")
 WORK = os.environ.get("WORK", os.path.abspath("work"))
 EXEC_FLAGS = os.environ.get("APPTAINER_EXEC_FLAGS", "--fakeroot --ignore-subuid").split()
 MOUNT_DIRS = [d for d in os.environ.get("APPTAINER_MOUNT_DIRS", "").split(",") if d]
+SANDBOX_MEM_KB = os.environ.get("SANDBOX_MEM_KB", "")  # per-process memory cap for agent commands; unset: no cap
 HERE = os.path.dirname(os.path.abspath(__file__))
 SAMPLE = os.path.join(HERE, "..", "data", "public", "swe-bench-verified-control-fresh", "sample.json")
 LOCK = threading.Lock()
@@ -67,6 +69,9 @@ class ApptainerSandbox:
             os.makedirs(os.path.join(self.dir, m.lstrip("/")), exist_ok=True)
 
     def execute(self, command: str, cwd: str = "") -> dict:
+        if SANDBOX_MEM_KB:  # the timeout below kills only Apptainer, so `timeout` inside kills what the command started
+            command = (f"ulimit -v {SANDBOX_MEM_KB}; exec timeout -s KILL {self.config.timeout + 5} "
+                       f"bash -c {shlex.quote(command)}")
         cmd = [APPTAINER, "exec", *EXEC_FLAGS, "--contain", "--cleanenv", "--writable",
                "--pwd", cwd or self.config.cwd]
         for k, v in self.config.env.items():

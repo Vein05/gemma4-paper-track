@@ -51,14 +51,22 @@ def norm(s):
 
 def main():
     papers, software = rows()
-    ids = {}
+    ids, other = {}, []
     for key, title, authors, venue, link, _ in papers:
         m = re.search(r"arxiv\.org/abs/([\d.]+)", link)
-        if not m:
-            sys.exit(f"{key}: no arXiv link; add it by hand from its primary source")
+        if not m:  # no arXiv version: the row itself was copied from the primary source (its Verified cell says which)
+            other.append((key, title, authors, venue, link))
+            continue
         ids[m.group(1)] = (key, title, authors, venue)
     feed = fetch(list(ids))
     entries, bad = {}, []
+    for key, title, authors, venue, link in other:
+        year = re.search(r"\b(20\d\d)\b", venue)
+        if not year:
+            sys.exit(f"{key}: no arXiv link and no year in its venue cell")
+        f = [f"  title = {{{{{norm(title)}}}}}", f"  author = {{{' and '.join(norm(a) for a in authors.split(';'))}}}",
+             f"  year = {{{year.group(1)}}}", f"  url = {{{link}}}", f"  note = {{{venue}}}"]
+        entries[key] = "@misc{" + key + ",\n" + ",\n".join(f) + "\n}"
     for e in feed.findall("a:entry", NS):
         aid = re.sub(r"v\d+$", "", e.find("a:id", NS).text.rsplit("/", 1)[-1])
         key, t_tab, a_tab, venue = ids[aid]

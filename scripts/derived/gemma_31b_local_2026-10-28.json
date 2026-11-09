@@ -1,84 +1,84 @@
 {
- "gemma4-31b_lenient_failing_own": 14.065,
+ "gemma4-31b_lenient_failing_own": 13.698,
  "gemma4-31b_lenient_failing_control": -2.579,
- "gemma4-31b_lenient_failing_difference": 16.643,
- "gemma4-31b_lenient_passing_own": 10.355,
+ "gemma4-31b_lenient_failing_difference": 16.277,
+ "gemma4-31b_lenient_passing_own": 10.776,
  "gemma4-31b_lenient_passing_control": 6.991,
- "gemma4-31b_lenient_passing_difference": 3.365,
- "gemma4-31b_auroc_own": 0.622,
+ "gemma4-31b_lenient_passing_difference": 3.785,
+ "gemma4-31b_auroc_own": 0.631,
  "gemma4-31b_auroc_control": 0.751,
- "gemma4-31b-local_lenient_failing_own": 10.359,
+ "gemma4-31b-local_lenient_failing_own": 9.857,
  "gemma4-31b-local_lenient_failing_control": -3.087,
- "gemma4-31b-local_lenient_failing_difference": 13.446,
- "gemma4-31b-local_lenient_passing_own": 11.566,
+ "gemma4-31b-local_lenient_failing_difference": 12.944,
+ "gemma4-31b-local_lenient_passing_own": 11.949,
  "gemma4-31b-local_lenient_passing_control": 6.6,
- "gemma4-31b-local_lenient_passing_difference": 4.966,
- "gemma4-31b-local_auroc_own": 0.658,
+ "gemma4-31b-local_lenient_passing_difference": 5.349,
+ "gemma4-31b-local_auroc_own": 0.669,
  "gemma4-31b-local_auroc_control": 0.762,
- "31b_minus_gemma4-31b-local_lenient_failing_difference": 3.197,
+ "31b_minus_gemma4-31b-local_lenient_failing_difference": 3.333,
  "gemma4-31b_lenient_failing_difference_ci95": [
-  10.343,
-  23.065
+  9.868,
+  22.709
  ],
  "gemma4-31b_lenient_passing_difference_ci95": [
-  -1.978,
-  7.971
+  -1.466,
+  8.383
  ],
  "gemma4-31b_auroc_own_ci95": [
-  0.558,
-  0.687
+  0.567,
+  0.7
  ],
  "gemma4-31b_auroc_control_ci95": [
   0.714,
   0.784
  ],
  "gemma4-31b-local_lenient_failing_difference_ci95": [
-  6.859,
-  20.012
+  6.217,
+  19.727
  ],
  "gemma4-31b-local_lenient_passing_difference_ci95": [
-  0.796,
-  9.043
+  1.343,
+  9.307
  ],
  "gemma4-31b-local_auroc_own_ci95": [
-  0.59,
-  0.726
+  0.6,
+  0.737
  ],
  "gemma4-31b-local_auroc_control_ci95": [
   0.722,
   0.798
  ],
  "31b_minus_gemma4-31b-local_lenient_failing_difference_ci95": [
-  -0.548,
-  7.228
+  -0.52,
+  7.521
  ],
  "gemma4-31b_scored100_own_failing": [
-  52,
-  85
+  49,
+  82
  ],
  "gemma4-31b_scored100_control_failing": [
   136,
   393
  ],
  "gemma4-31b_scored100_own_passing": [
-  81,
-  95
+  84,
+  98
  ],
  "gemma4-31b_scored100_control_passing": [
   304,
   384
  ],
  "gemma4-31b-local_scored100_own_failing": [
-  46,
-  85
+  43,
+  82
  ],
  "gemma4-31b-local_scored100_control_failing": [
   126,
   393
  ],
  "gemma4-31b-local_scored100_own_passing": [
-  81,
-  95
+  84,
+  98
  ],
  "gemma4-31b-local_scored100_control_passing": [
   299,

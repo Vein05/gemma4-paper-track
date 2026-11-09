@@ -1,62 +1,62 @@
 {
  "gemma4-31b": {
-  "gemma_auroc_own": 0.622,
+  "gemma_auroc_own": 0.631,
   "gemma_auroc_control": 0.751,
-  "self_drop": 0.129,
-  "baseline_drop": 0.055,
-  "gap": 0.074,
-  "drop_gpt-oss-20b": 0.038,
-  "drop_qwen35-9b": 0.05,
-  "drop_glm47-flash": 0.091,
-  "drop_qwen3-coder": 0.022,
-  "drop_gpt-oss-120b": 0.074,
+  "self_drop": 0.12,
+  "baseline_drop": 0.054,
+  "gap": 0.065,
+  "drop_gpt-oss-20b": 0.021,
+  "drop_qwen35-9b": 0.054,
+  "drop_glm47-flash": 0.096,
+  "drop_qwen3-coder": 0.028,
+  "drop_gpt-oss-120b": 0.063,
   "drop_glm-4.5": 0.053,
-  "drop_kimi-k2": 0.055,
-  "drop_llama-4-maverick": 0.059,
-  "lenient_raw_failing_own": 14.065,
+  "drop_kimi-k2": 0.057,
+  "drop_llama-4-maverick": 0.061,
+  "lenient_raw_failing_own": 13.698,
   "lenient_raw_failing_control": -2.579,
-  "lenient_raw_failing_difference": 16.643,
-  "lenient_raw_passing_own": 10.355,
+  "lenient_raw_failing_difference": 16.277,
+  "lenient_raw_passing_own": 10.776,
   "lenient_raw_passing_control": 6.991,
-  "lenient_raw_passing_difference": 3.365,
-  "lenient_rank_failing_own": 0.075,
+  "lenient_raw_passing_difference": 3.785,
+  "lenient_rank_failing_own": 0.072,
   "lenient_rank_failing_control": -0.01,
-  "lenient_rank_failing_difference": 0.085,
-  "lenient_rank_passing_own": 0.015,
+  "lenient_rank_failing_difference": 0.082,
+  "lenient_rank_passing_own": 0.019,
   "lenient_rank_passing_control": -0.009,
-  "lenient_rank_passing_difference": 0.024,
+  "lenient_rank_passing_difference": 0.028,
   "self_drop_ci95": [
-   0.063,
-   0.19
+   0.052,
+   0.18
   ],
   "baseline_drop_ci95": [
-   0.011,
-   0.101
+   0.01,
+   0.1
   ],
   "gap_ci95": [
-   0.022,
-   0.126
+   0.015,
+   0.116
   ],
   "lenient_raw_failing_difference_ci95": [
-   10.343,
-   23.065
+   9.868,
+   22.709
   ],
   "lenient_raw_passing_difference_ci95": [
-   -1.978,
-   7.971
+   -1.466,
+   8.383
   ],
   "lenient_rank_failing_difference_ci95": [
-   0.048,
-   0.122
+   0.045,
+   0.119
   ],
   "lenient_rank_passing_difference_ci95": [
-   -0.007,
-   0.055
+   -0.002,
+   0.06
   ],
-  "gemma4-31b_scored100_own_failing": 0.612,
+  "gemma4-31b_scored100_own_failing": 0.598,
   "gemma4-31b_scored100_control_failing": 0.346,
   "gemma4-31b_auroc_by_writer": {
-   "gemma-4-31b": 0.622,
+   "gemma-4-31b": 0.631,
    "glm-4.5": 0.634,
    "gpt-oss-120b": 0.807,
    "kimi-k2": 0.626,
@@ -66,27 +66,27 @@
   "gpt-oss-20b_scored100_own_failing": 0.0,
   "gpt-oss-20b_scored100_control_failing": 0.0,
   "gpt-oss-20b_auroc_by_writer": {
-   "gemma-4-31b": 0.665,
+   "gemma-4-31b": 0.682,
    "glm-4.5": 0.605,
    "gpt-oss-120b": 0.762,
    "kimi-k2": 0.664,
    "llama-4-maverick": 0.78,
    "qwen3-coder": 0.59
   },
-  "qwen35-9b_scored100_own_failing": 0.212,
+  "qwen35-9b_scored100_own_failing": 0.22,
   "qwen35-9b_scored100_control_failing": 0.234,
   "qwen35-9b_auroc_by_writer": {
-   "gemma-4-31b": 0.685,
+   "gemma-4-31b": 0.681,
    "glm-4.5": 0.646,
    "gpt-oss-120b": 0.8,
    "kimi-k2": 0.671,
    "llama-4-maverick": 0.841,
    "qwen3-coder": 0.64
   },
-  "glm47-flash_scored100_own_failing": 0.365,
+  "glm47-flash_scored100_own_failing": 0.366,
   "glm47-flash_scored100_control_failing": 0.249,
   "glm47-flash_auroc_by_writer": {
-   "gemma-4-31b": 0.636,
+   "gemma-4-31b": 0.63,
    "glm-4.5": 0.674,
    "gpt-oss-120b": 0.798,
    "kimi-k2": 0.701,
@@ -96,7 +96,7 @@
   "qwen3-coder_scored100_own_failing": 0.0,
   "qwen3-coder_scored100_control_failing": 0.0,
   "qwen3-coder_auroc_by_writer": {
-   "gemma-4-31b": 0.717,
+   "gemma-4-31b": 0.711,
    "glm-4.5": 0.628,
    "gpt-oss-120b": 0.748,
    "kimi-k2": 0.602,
@@ -106,14 +106,14 @@
   "gpt-oss-120b_scored100_own_failing": 0.0,
   "gpt-oss-120b_scored100_control_failing": 0.0,
   "gpt-oss-120b_auroc_by_writer": {
-   "gemma-4-31b": 0.656,
+   "gemma-4-31b": 0.667,
    "glm-4.5": 0.614,
    "gpt-oss-120b": 0.778,
    "kimi-k2": 0.722,
    "llama-4-maverick": 0.804,
    "qwen3-coder": 0.66
   },
-  "glm-4.5_scored100_own_failing": 0.106,
+  "glm-4.5_scored100_own_failing": 0.11,
   "glm-4.5_scored100_control_failing": 0.092,
   "glm-4.5_auroc_by_writer": {
    "gemma-4-31b": 0.778,
@@ -126,17 +126,17 @@
   "kimi-k2_scored100_own_failing": 0.012,
   "kimi-k2_scored100_control_failing": 0.018,
   "kimi-k2_auroc_by_writer": {
-   "gemma-4-31b": 0.766,
+   "gemma-4-31b": 0.764,
    "glm-4.5": 0.751,
    "gpt-oss-120b": 0.808,
    "kimi-k2": 0.713,
    "llama-4-maverick": 0.884,
    "qwen3-coder": 0.674
   },
-  "llama-4-maverick_scored100_own_failing": 0.459,
+  "llama-4-maverick_scored100_own_failing": 0.463,
   "llama-4-maverick_scored100_control_failing": 0.387,
   "llama-4-maverick_auroc_by_writer": {
-   "gemma-4-31b": 0.611,
+   "gemma-4-31b": 0.609,
    "glm-4.5": 0.614,
    "gpt-oss-120b": 0.731,
    "kimi-k2": 0.666,
@@ -168,101 +168,15 @@
    "main-a",
    "main-b"
   ],
+  "left_out_reasked": null,
   "issues": 193,
   "patches_rated_by_all": 957,
   "patches_left_out": 25,
   "n": {
-   "own_failing": 85,
-   "own_passing": 95,
+   "own_failing": 82,
+   "own_passing": 98,
    "control_failing": 393,
    "control_passing": 384
   }
- },
- "sensitivity_reask": {
-  "note": "exploratory, computed after the result: gap when patches whose answer needed any re-ask are left out (close to the frozen 3,000-token rule; that rule's own re-ask could have recovered some)",
-  "reask_8000_primary": {
-   "gap": 0.074,
-   "ci95": [
-    0.022,
-    0.126
-   ],
-   "patches": 957,
-   "own_failing": 85,
-   "own_passing": 95
-  },
-  "reasked_left_out": {
-   "gap": 0.03,
-   "ci95": [
-    -0.024,
-    0.083
-   ],
-   "patches": 763,
-   "own_failing": 64,
-   "own_passing": 79
-  },
-  "kimi_reasked_left_out": {
-   "gap": 0.055,
-   "ci95": [
-    0.001,
-    0.106
-   ],
-   "patches": 848
-  },
-  "qwen35_reasked_left_out": {
-   "gap": 0.063,
-   "ci95": [
-    0.012,
-    0.115
-   ],
-   "patches": 897
-  }
- },
- "reask_accounting": {
-  "gemma4-31b": [
-   1,
-   0,
-   1
-  ],
-  "gpt-oss-20b": [
-   14,
-   14,
-   0
-  ],
-  "qwen35-9b": [
-   74,
-   73,
-   1
-  ],
-  "glm47-flash": [
-   52,
-   42,
-   10
-  ],
-  "qwen3-coder": [
-   0,
-   0,
-   0
-  ],
-  "gpt-oss-120b": [
-   5,
-   0,
-   5
-  ],
-  "glm-4.5": [
-   1,
-   1,
-   0
-  ],
-  "kimi-k2": [
-   129,
-   117,
-   12
-  ],
-  "llama-4-maverick": [
-   0,
-   0,
-   0
-  ],
-  "_fields": "re-asked, recovered, left out"
  }
 }
