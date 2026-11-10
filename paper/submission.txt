@@ -16,7 +16,7 @@ Gemma 4 gives full marks to failing patches from equally strong agents as often 
 Overall Best Paper
 
 == Cover image (upload) ==
-paper/figures/fig-results.png
+paper/figures/fig-writers.png
 
 == Project Links ==
 Paper (PDF): https://github.com/Vein05/gemma4-paper-track/blob/main/paper/rubber-stamp.pdf

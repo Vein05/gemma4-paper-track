@@ -59,7 +59,7 @@ it), check that both figures show in the Writeup preview, and press Submit (a sa
 Overall Best Paper
 
 == Cover image (upload) ==
-paper/figures/fig-results.png
+paper/figures/fig-writers.png
 
 == Project Links ==
 Paper (PDF): {REPO}/blob/main/paper/rubber-stamp.pdf
