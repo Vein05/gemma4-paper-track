@@ -232,6 +232,7 @@ def claims():
     lite = load("lite_repair_2026-11-07_empty-as-failing.json")
     labelled = load("labelled_repair_2026-11-09.json")
     census = load("failure_census_2026-11-10.json")
+    split = load("matched_writers_split_2026-11-09.json")
     outd = load("outdated_test_issues_2026-11-10.json")
     code = ft["held_out_own_failing_that_change_code"]
     lite13 = outd["lite_correct_patches_held_back"]
@@ -317,6 +318,10 @@ def claims():
          "100 to 59% of its own failing patches and to 57% of theirs, a difference within noise", "59%, 57%, includes zero",
          f"{pct(top('gemma-4-31b'))}, {pct(theirs)}, "
          + ("includes zero" if includes_zero(m["share_100_own_minus_matched_family_balanced"]["ci95"]) else "excludes zero")),
+        ("3.1", "Gemma's own mean score: own failing, equally strong writers' failing; outside judges lower on Gemma's",
+         "Gemma's own mean score is 69 for both groups", "69, 69, outside lower",
+         f"{split['gemma_score']['own']:.0f}, {split['gemma_score']['equally_strong_family_balanced']:.0f}, "
+         + ("outside lower" if split["outside_score"]["ci95"][1] < 0 else "outside not lower")),
         ("3.1", "OpenAI writers among the seven; model families", "Most of the seven are OpenAI models", "4 of 7, 4 families",
          f"{sum(M[w]['family'] == 'gpt-oss' for w in m['band_writers'])} of {len(m['band_writers'])}, {len(fams)} families"),
         ("3.1", "above outside judges: Gemini 2.5 Pro's failing patches, Gemma's own", "as far above the outside judges as its own",

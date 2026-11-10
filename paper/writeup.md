@@ -1,4 +1,4 @@
-# Gemma 4 Is Less Self-Biased Than It Looks
+# Neither Gemma 4 nor the Existing Tests Catch Wrong Fixes
 
 <!-- kaggle-subtitle: Gemma 4 gives full marks to failing patches from equally strong agents as often as to its own.
 Seven in ten failing patches from 32 public models pass every existing test, and on one issue in ten the correct fix
@@ -33,7 +33,7 @@ other model families than it scores the other writers' failing patches. Against 
 patches the top score of 100 as often as its own, and the weakest writer's a quarter as often.
 
 About half of what looks like self-preference is thus trust in any equally strong writer's failing patch. Most of Gemma's own failing patches are
-wrong fixes: the issue's tests fail while every other existing test passes. Other agents fail the same way. Across 32 public models in the same agent, 71% of the failing patches that change code pass every existing test that SWE-bench runs, and the share rises with the model's strength. So neither Gemma's score nor the existing tests catch most failures. The existing tests can also mislead. On about one issue in ten, the correct fix itself breaks an existing test that asserts the old behavior. When Gemma is shown such a test, it obeys the test and undoes a correct fix.
+wrong fixes: the issue's tests fail while every other existing test passes. Across 32 public models in the same agent, 71% of the failing patches that change code pass every existing test that SWE-bench runs, and the share rises with the model's strength. So neither Gemma's score nor the existing tests catch most failures. On about one issue in ten, the correct fix itself breaks an existing test that asserts the old behavior. When Gemma is shown such a test, it obeys the test and undoes a correct fix.
 
 We make the following contributions:
 
@@ -57,7 +57,7 @@ Ruby and PHP issues from SWE-bench Multilingual (SWE-bench) in mini-SWE-agent 2.
 models, GLM-5, Kimi-K2.5, DeepSeek-V3.2 and MiniMax-M2.5.
 
 **Judges.** Nine models scored every held-out patch: Gemma 4 31B, gpt-oss-20b, Qwen3.5-9B, GLM-4.7-Flash and the
-five mixed-strength writers. For the five writers that are only in the second group, they scored the failing patches. Each judge saw the issue and one patch, without its writer, and scored the chance that the patch
+five mixed-strength writers. For the five writers only in the second group, they scored the failing patches. Each judge saw the issue and one patch, without its writer, and scored the chance that the patch
 passes the hidden tests from 0 to 100. Calls went through OpenRouter at temperature 0 with reasoning off (gpt-oss at low effort). Fewer judges scored the Lite and Go, Ruby and PHP patches,
 chosen before any score was read.
 
@@ -80,9 +80,9 @@ every other test passes, and a regression when it breaks one of the other tests.
 Against the mixed-strength writers, Gemma's extra trust in its own failing patches is 16.3 points, and about the same on Lite (Figure 1b). Weak writers supply much of this gap. Gemma gives 100 to most of its own failing patches and to a quarter or less of the two weakest writers', and these two supply most of the group's
 failing patches (Figure 1a).
 
-Against the equally strong writers, Gemma gives 100 to 59% of its own failing patches and to 57% of theirs, a difference within noise (Figure 1a; Supplement, Section C). Its extra trust in its own failing patches is 8.7 points, about half of the gap above, with a 95% interval above zero. Most of the seven are OpenAI models, so we average within each model family first.
+Against the equally strong writers, Gemma gives 100 to 59% of its own failing patches and to 57% of theirs, a difference within noise (Figure 1a). Its extra trust in its own failing patches is 8.7 points, about half of the gap above, with a 95% interval above zero. Gemma's own mean score is 69 for both groups, so the gap comes from the outside judges, who score Gemma's failing patches lower (exploratory; Supplement, Section C). Most of the seven are OpenAI models, so we average within each model family first.
 
-The size of the remaining gap depends on which writers are compared. Gemma scores Gemini 2.5 Pro's failing patches as far above the outside judges as its own, and the four OpenAI writers' near or below them. Without Gemini the gap is larger, and without the OpenAI writers its interval includes zero. We also could not tell whether the remaining gap follows the content of Gemma's patches or Gemma recognizing them (Supplement, Section D).
+The remaining gap depends on which writers are compared. Gemma scores Gemini 2.5 Pro's failing patches as far above the outside judges as its own, and the four OpenAI writers' near or below them. Without Gemini the gap is larger, and without the OpenAI writers its interval includes zero. We also could not tell whether the remaining gap follows the content of Gemma's patches or Gemma recognizing them (Supplement, Section D).
 
 Gemma trusts stronger writers' failing patches in Go, Ruby and PHP too. There every other writer solves more issues than Gemma, and Gemma gives their failing patches 100 nearly as often as its own.
 

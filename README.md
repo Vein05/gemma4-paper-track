@@ -1,4 +1,4 @@
-<h1 align="center">Gemma 4 Is Less Self-Biased Than It Looks</h1>
+<h1 align="center">Neither Gemma 4 nor the Existing Tests Catch Wrong Fixes</h1>
 
 <p align="center">
   Gemma 4 gives full marks to failing patches from equally strong agents as often as to its own.
