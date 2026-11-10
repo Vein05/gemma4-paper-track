@@ -35,6 +35,15 @@ whose source is listed below.
   mini-SWE-agent control entries (first five in the list below) on SWE-bench Verified issues outside the Mini issues,
   from the same S3 bucket, downloaded 2026-10-05 by `scripts/fresh_issues.py`; `sample.json`, the fixed random order of
   the held-out issues (seed 0) and the pilot issues; `mini50_ids.json`, the Mini issue ids.
+- `public/swe-bench-verified-failure-census/` (added 2026-11-10): `rows.jsonl`, one row per public mini-SWE-agent
+  entry and SWE-bench Verified issue (34 entries, 500 issues), read from SWE-bench's own test reports in the same S3
+  bucket by `scripts/failure_census.py fetch`: whether the patch applied and resolved the issue, how many of the
+  issue's tests and of the other listed tests pass and fail, and what a failing patch changes (code, nothing, only new
+  files, tests or docs). No patch text is stored. `source.json` gives the entries and the field meanings.
+- `outdated-test-issues/` (added 2026-11-10): `reference_fix_breaks.jsonl`, the 48 issues (18 held-out, 30 Lite) whose
+  reference fix the existing-test check held back, with each broken test and what the reference pull request does to it.
+  `outdated_test` is true for the 45 issues where the pull request edits or deletes a broken test. Built by
+  `scripts/outdated_test_issues.py build`.
 - `public/swe-bench-verified-more-writers/` (added 2026-11-09): `attempts.jsonl`, patches (`patch.diff`) and official
   labels (`per_instance_details.json`) of public mini-SWE-agent entries on the 200 held-out issues, from the same S3
   bucket and `SWE-bench/experiments` revision `40f164d5`, downloaded by `scripts/matched_writers.py fetch`;

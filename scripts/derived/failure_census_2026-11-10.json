@@ -1,0 +1,286 @@
+{
+ "entries_fetched": 34,
+ "entries_used": 32,
+ "entries_left_out": {
+  "20250720_mini-v0.0.0-claude-3-7-sonnet-20250219": 98,
+  "20260901_mini-v2.4.2_gemini-3-5-flash": 0
+ },
+ "issues": 500,
+ "reports": 15979,
+ "all_failing_patches": {
+  "wrong_fixes": 4414,
+  "failing": 5869,
+  "share": 0.752
+ },
+ "failing_patches_without_a_fix": {
+  "n": 908,
+  "kinds": {
+   "empty": 505,
+   "not a diff": 319,
+   "only tests": 28,
+   "only new files": 27,
+   "only new files, tests": 23,
+   "only docs, new files, tests": 3,
+   "only docs": 2,
+   "only docs, new files": 1
+  }
+ },
+ "failing_patches_that_change_code": {
+  "wrong_fixes": 3534,
+  "failing": 4961,
+  "share": 0.712
+ },
+ "with_at_least_5_listed_tests": {
+  "wrong_fixes": 3138,
+  "failing": 4535,
+  "share": 0.692
+ },
+ "with_at_least_20_listed_tests": {
+  "wrong_fixes": 2543,
+  "failing": 3764,
+  "share": 0.676
+ },
+ "rank_correlation_with_share_solved": {
+  "entries": 30,
+  "min_share_solved": 0.4,
+  "value": 0.8,
+  "ci95_resampling_issues": [
+   0.63,
+   0.84
+  ],
+  "ci95_resampling_entries": [
+   0.6,
+   0.9
+  ]
+ },
+ "entries_solving_40_to_60_percent": {
+  "entries": 8,
+  "wrong_fixes": 1005,
+  "failing": 1563,
+  "share": 0.643,
+  "lowest": 0.452,
+  "highest": 0.75
+ },
+ "entries_solving_60_to_70_percent": {
+  "entries": 9,
+  "wrong_fixes": 1038,
+  "failing": 1410,
+  "share": 0.736,
+  "lowest": 0.669,
+  "highest": 0.836
+ },
+ "entries_solving_70_percent_or_more": {
+  "entries": 13,
+  "wrong_fixes": 1318,
+  "failing": 1634,
+  "share": 0.807,
+  "lowest": 0.755,
+  "highest": 0.837
+ },
+ "same_issues_failed_by_both_groups": {
+  "issues": 224,
+  "entries_40_to_60_percent": 0.683,
+  "entries_70_percent_or_more": 0.807
+ },
+ "held_out_issues_entries_solving_40_to_60_percent": {
+  "issues": 200,
+  "entries": 5,
+  "wrong_fixes": 239,
+  "failing": 401,
+  "share": 0.596
+ },
+ "per_entry": {
+  "20250803_mini-v1.0.0_qwen2-5-coder-32b-instruct": {
+   "solved": 0.09,
+   "wrong_fixes": 43,
+   "failing": 116,
+   "share": 0.371
+  },
+  "20250807_mini-v1.7.0_gpt-5-nano": {
+   "solved": 0.348,
+   "wrong_fixes": 130,
+   "failing": 238,
+   "share": 0.546
+  },
+  "20250726_mini-v1.0.0_o4-mini-2025-04-16": {
+   "solved": 0.45,
+   "wrong_fixes": 118,
+   "failing": 261,
+   "share": 0.452
+  },
+  "20250726_mini-v1.0.0_gemini-2.5-pro": {
+   "solved": 0.536,
+   "wrong_fixes": 129,
+   "failing": 220,
+   "share": 0.586
+  },
+  "20251209_mini-v1.17.2_devstral-2512": {
+   "solved": 0.538,
+   "wrong_fixes": 111,
+   "failing": 148,
+   "share": 0.75
+  },
+  "20251201_mini-v1.17.1_glm-4.6": {
+   "solved": 0.554,
+   "wrong_fixes": 125,
+   "failing": 191,
+   "share": 0.654
+  },
+  "20260217_mini-v2.0.0_gpt-5-mini": {
+   "solved": 0.562,
+   "wrong_fixes": 137,
+   "failing": 195,
+   "share": 0.703
+  },
+  "20251209_mini-v1.17.2_devstral-small-2512": {
+   "solved": 0.564,
+   "wrong_fixes": 122,
+   "failing": 164,
+   "share": 0.744
+  },
+  "20250726_mini-v1.0.0_o3-2025-04-16": {
+   "solved": 0.584,
+   "wrong_fixes": 136,
+   "failing": 198,
+   "share": 0.687
+  },
+  "20250807_mini-v1.7.0_gpt-5-mini": {
+   "solved": 0.598,
+   "wrong_fixes": 127,
+   "failing": 186,
+   "share": 0.683
+  },
+  "20251201_mini-v1.17.1_deepseek-v3.2-reasoner": {
+   "solved": 0.6,
+   "wrong_fixes": 108,
+   "failing": 155,
+   "share": 0.697
+  },
+  "20251124_mini-v1.17.0_minimax-m2": {
+   "solved": 0.61,
+   "wrong_fixes": 111,
+   "failing": 166,
+   "share": 0.669
+  },
+  "20250726_mini-v1.0.0_claude-sonnet-4-20250514": {
+   "solved": 0.648,
+   "wrong_fixes": 120,
+   "failing": 172,
+   "share": 0.698
+  },
+  "20250807_mini-v1.7.0_gpt-5": {
+   "solved": 0.65,
+   "wrong_fixes": 116,
+   "failing": 172,
+   "share": 0.674
+  },
+  "20251120_mini-v1.15.0_gpt-5.1-2025-11-13": {
+   "solved": 0.66,
+   "wrong_fixes": 138,
+   "failing": 165,
+   "share": 0.836
+  },
+  "20251124_mini-v1.16.0_gpt-5.1-codex": {
+   "solved": 0.66,
+   "wrong_fixes": 110,
+   "failing": 141,
+   "share": 0.78
+  },
+  "20260217_mini-v2.0.0_claude-4-5-haiku-high": {
+   "solved": 0.67,
+   "wrong_fixes": 132,
+   "failing": 164,
+   "share": 0.805
+  },
+  "20250802_mini-v1.0.0_claude-4-opus-20250514": {
+   "solved": 0.676,
+   "wrong_fixes": 100,
+   "failing": 140,
+   "share": 0.714
+  },
+  "20251211_mini-v1.17.2_gpt-5.2-2025-12-11": {
+   "solved": 0.69,
+   "wrong_fixes": 103,
+   "failing": 135,
+   "share": 0.763
+  },
+  "20260217_mini-v2.0.0_deepseek-3-2-high": {
+   "solved": 0.7,
+   "wrong_fixes": 111,
+   "failing": 147,
+   "share": 0.755
+  },
+  "20250929_mini-v1.13.3_sonnet-4-5-20250929": {
+   "solved": 0.706,
+   "wrong_fixes": 109,
+   "failing": 136,
+   "share": 0.801
+  },
+  "20260226_mini-v2.0.0_gemini-3-pro-high": {
+   "solved": 0.706,
+   "wrong_fixes": 97,
+   "failing": 121,
+   "share": 0.802
+  },
+  "20260217_mini-v2.0.0_claude-4-5-sonnet-high": {
+   "solved": 0.712,
+   "wrong_fixes": 115,
+   "failing": 141,
+   "share": 0.816
+  },
+  "20251211_mini-v1.17.2_gpt-5.2-2025-12-11-high": {
+   "solved": 0.718,
+   "wrong_fixes": 108,
+   "failing": 129,
+   "share": 0.837
+  },
+  "20260217_mini-v2.0.0_glm-5-high": {
+   "solved": 0.728,
+   "wrong_fixes": 103,
+   "failing": 124,
+   "share": 0.831
+  },
+  "20260217_mini-v2.0.0_gpt-5-2-high": {
+   "solved": 0.728,
+   "wrong_fixes": 106,
+   "failing": 135,
+   "share": 0.785
+  },
+  "20251118_mini-v1.15.0_gemini-3-pro-preview-20251118": {
+   "solved": 0.742,
+   "wrong_fixes": 104,
+   "failing": 128,
+   "share": 0.812
+  },
+  "20251124_mini-v1.16.0_claude-opus-4-5-20251101": {
+   "solved": 0.744,
+   "wrong_fixes": 97,
+   "failing": 120,
+   "share": 0.808
+  },
+  "20260217_mini-v2.0.0_claude-4-6-opus": {
+   "solved": 0.756,
+   "wrong_fixes": 94,
+   "failing": 114,
+   "share": 0.825
+  },
+  "20260217_mini-v2.0.0_gemini-3-flash-high": {
+   "solved": 0.758,
+   "wrong_fixes": 97,
+   "failing": 117,
+   "share": 0.829
+  },
+  "20260217_mini-v2.0.0_minimax-2-5-high": {
+   "solved": 0.758,
+   "wrong_fixes": 89,
+   "failing": 114,
+   "share": 0.781
+  },
+  "20260217_mini-v2.0.0_claude-4-5-opus-high": {
+   "solved": 0.768,
+   "wrong_fixes": 88,
+   "failing": 108,
+   "share": 0.815
+  }
+ }
+}

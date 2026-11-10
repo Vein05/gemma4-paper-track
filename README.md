@@ -1,8 +1,9 @@
 <h1 align="center">Gemma 4 Is Less Self-Biased Than It Looks</h1>
 
 <p align="center">
-  Gemma 4 scores 100 on 59% of its own failing patches, and on 57% of the failing patches of seven
-  equally strong agents. About half of its apparent self-bias comes from comparing it with weaker agents.
+  Gemma 4 gives full marks to failing patches from equally strong agents as often as to its own.
+  Seven in ten failing patches from 32 public models pass every existing test, and on one issue in ten the correct fix
+  breaks one.
 </p>
 
 <p align="center">

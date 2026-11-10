@@ -1,0 +1,49 @@
+{
+ "held-out": {
+  "issues_checked": 184,
+  "reference_fix_held_back": 18,
+  "with_an_outdated_test": 18,
+  "share": 0.098,
+  "held_back_for_another_reason": {}
+ },
+ "lite": {
+  "issues_checked": 242,
+  "reference_fix_held_back": 30,
+  "with_an_outdated_test": 27,
+  "share": 0.112,
+  "held_back_for_another_reason": {
+   "matplotlib__matplotlib-23987": "a warning about the version string of the patched tree, in a test file that the pull request does not touch",
+   "psf__requests-1963": "network errors in a test that the pull request leaves unchanged",
+   "sympy__sympy-13031": "a recursion error in a test file that the pull request does not touch"
+  }
+ },
+ "both": {
+  "issues_checked": 426,
+  "with_an_outdated_test": 45,
+  "share": 0.106
+ },
+ "broken_tests_of_those_issues": {
+  "edits the test": 77,
+  "edits the file but not the test": 4,
+  "deletes the test": 1
+ },
+ "held_out_patches_on_those_issues": {
+  "breaks_every_outdated_test": {
+   "correct": 28,
+   "failing": 27
+  },
+  "keeps_one_passing": {
+   "correct": 0,
+   "failing": 25
+  }
+ },
+ "lite_correct_patches_held_back": {
+  "n": 14,
+  "on_an_issue_with_an_outdated_test": 13,
+  "other": [
+   "matplotlib__matplotlib-23987"
+  ],
+  "broken_with_the_tests_shown": 12,
+  "broken_with_a_second_look": 2
+ }
+}

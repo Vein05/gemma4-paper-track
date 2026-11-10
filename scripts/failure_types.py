@@ -120,6 +120,28 @@ def analyze():
     cross = collections.Counter((kind(by.get(("held-out", pids[i]), {})) or "no log", runs.get(pids[i], {}).get("decision") or "no check")
                                 for i in own)
     out["held_out_own_failing_by_check"] = {f"{k} | {d}": n for (k, d), n in sorted(cross.items())}
+    # The same patches without those that hold no fix (added 2026-11-10, exploratory): a patch changes code when it
+    # edits an existing file that is not a test or doc file (failure_census.patch_class, on the patch the judges saw).
+    from api_quickcheck import strip_tests
+    from failure_census import patch_class
+    from fresh_judging import RUNS, pid_of
+    text = {}
+    for run in ("main-a", "main-b"):
+        for p in L(os.path.join(RUNS, run, "preds.jsonl")):
+            q = strip_tests(p["model_patch"] or "")
+            text[pid_of(p["instance_id"], GW, q)] = q
+    code = [i for i in own if patch_class(text[pids[i]]) == "code"]
+    no_fix = [i for i in own if i not in code]
+    g100 = lambda idx: int(sum(X["gemma4-31b"][i] == 100 for i in idx))
+    held = lambda idx: sum(runs.get(pids[i], {}).get("decision") == "block" for i in idx)
+    wrong = [i for i in code if kind(by.get(("held-out", pids[i]), {})) == "wrong fix"]
+    breaks = [i for i in code if i not in wrong]
+    out["held_out_own_failing_that_change_code"] = dict(
+        n=len(code),
+        without_a_fix=dict(n=len(no_fix), kinds=dict(collections.Counter(patch_class(text[pids[i]]) for i in no_fix)),
+                           highest_gemma_score=max((float(X["gemma4-31b"][i]) for i in no_fix), default=None)),
+        wrong_fixes=dict(n=len(wrong), scored_100_by_gemma=g100(wrong), held_back_by_the_check=held(wrong)),
+        break_a_listed_test=dict(n=len(breaks), scored_100_by_gemma=g100(breaks), held_back_by_the_check=held(breaks)))
     # Lite: failing by our own grade of the start patch, among issues whose reference patch passes our grader
     # (the set lite_repair.py analyzes).
     run = os.path.join(DATA, "lab-runs", "lite-repair")

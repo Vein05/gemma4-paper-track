@@ -534,6 +534,85 @@ Both & 17 & $+10.7$ & 47.9 \\
 \end{tabular}
 \end{table}
 
+\paragraph{Failing patches that hold no fix (exploratory).} Eight of the 52 wrong fixes in Table~\ref{tab:types}
+change no existing source file. Each only adds new files, in most cases a reproduction script, and Gemma scores all
+eight 0. A patch changes code when it edits a line of an existing file that is not a test or doc file
+(\texttt{patch\_class} in \path{scripts/failure_census.py}). Of the 74 failing patches that change code, 44 are wrong
+fixes and 30 break a listed test. Gemma gives the top score to 32 of the 44 and to 17 of the 30
+(\path{derived/failure_types_2026-11-07.json}).
+
+The planned comparisons of the paper's Section 3.1 use every failing patch, and the paper reports those.
+Table~\ref{tab:codeonly} repeats them on the failing patches that change code
+(\path{scripts/code_changing_patches.py}, \path{derived/code_changing_patches_2026-11-10.json}). Gemma has 8 patches
+without a fix among its 86 in the equally-strong-writers test, and the seven writers have 5 among 526, so leaving
+them out raises Gemma's numbers more. Both gaps grow by about 2 points. The gap against equally strong writers is
+then 60\% of the gap against mixed-strength writers, against 53\% with every patch.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Gemma's extra trust in its own failing held-out patches, on every failing patch (the planned analyses) and
+on the failing patches that change code (exploratory). Points, with 95\% intervals.}
+\label{tab:codeonly}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Comparison & Every failing patch & Patches that change code \\
+\midrule
+Mixed-strength writers & $+16.3$ [9.9, 22.7] & $+18.1$ [11.1, 25.0] \\
+Equally strong writers & $+8.7$ [1.7, 15.8] & $+10.8$ [3.5, 18.3] \\
+\quad without Gemini 2.5 Pro & $+11.4$ [4.1, 18.8] & $+13.6$ [5.9, 21.5] \\
+\quad without the OpenAI writers & $+5.7$ [$-1.6$, 13.3] & $+7.7$ [0.0, 15.8] \\
+Scored 100, own minus equally strong writers & $+2.3$ [$-8.9$, 12.7] & $+7.7$ [$-3.2$, 18.4] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Wrong fixes across public models (exploratory)}
+
+We counted wrong fixes for every public mini-SWE-agent entry on SWE-bench Verified. No plan was written before this
+count. The source is SWE-bench's own test report for each entry and issue, from the public
+\texttt{swe-bench-submissions} bucket (\path{scripts/failure_census.py},
+\path{data/public/swe-bench-verified-failure-census/rows.jsonl}). Of the 34 entries, two have reports for fewer than
+490 of the 500 issues and are left out. The other 32 have 15,979 reports and 5,869 failing patches.
+
+A failing patch counts as a wrong fix when every listed other test passes. Of the 5,869 failing patches, 908 hold no
+fix: 505 are empty, 319 are an error message saved as the patch, and 84 only add tests, new files or docs. Almost all
+of these pass every listed test, so counting them would raise the share. Among the 4,961 failing patches that change
+code, 3,534 (71\%) are wrong fixes. The share is 69\% on issues with at least 5 listed other tests and 68\% with at
+least 20.
+
+The share rises with the share of issues a model solves (Table~\ref{tab:census}). Among the 30 entries that solve at
+least 40\% of the issues, the rank correlation between the two is 0.80. Its 95\% interval is 0.63 to 0.84 when issues
+are resampled and 0.60 to 0.90 when entries are resampled. Part of the rise could come from the issues that remain
+unsolved for strong models. On the 224 issues that an entry of each group fails, the share is 68\% for the entries
+that solve 40\% to 60\% and 81\% for those that solve at least 70\%, so the rise holds on the same issues.
+
+Gemma's share of 59\% (44 of 74) is close to that of public entries of its strength. On the 200 held-out issues, the
+five public entries that solve 40\% to 60\% of them have a share of 60\% (239 of 401).
+
+\begin{table}[H]
+\centering
+\small
+\caption{Failing patches that change code and pass every existing test that SWE-bench runs for the issue, for 32
+public mini-SWE-agent entries on SWE-bench Verified, grouped by the share of issues the entry solves.}
+\label{tab:census}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Issues solved & Entries & Failing patches & Wrong fixes & Lowest and highest entry \\
+\midrule
+40\% to 60\% & 8 & 1,563 & 64\% & 45\% to 75\% \\
+60\% to 70\% & 9 & 1,410 & 74\% & 67\% to 84\% \\
+70\% or more & 13 & 1,634 & 81\% & 76\% to 84\% \\
+\midrule
+All 32 entries & 32 & 4,961 & 71\% & 37\% to 84\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The two entries below 40\% are Qwen2.5-Coder-32B (9\% solved, share 37\%) and GPT-5 nano (35\% solved, share 55\%).
+SWE-bench's list holds tests from the test files that the reference pull request touches, so these counts say what
+that list can catch and leave open what a run of the whole test suite would catch.
+
 \subsection*{Five large models judging their own patches}
 
 On the Mini issues, five of the other writers judged their own mini-SWE-agent patches, so the harness is matched for
@@ -1215,6 +1294,21 @@ the 26 held-back failing held-out patches break one of SWE-bench's listed other 
 an issue test. The other 4 are wrong fixes. In several, the patch had crashed the module, and fixing the crash also made
 the issue's tests pass. Among all 82 of Gemma's failing held-out patches, the check holds back 22 of the 30 that break a listed other test and 4 of the 52 wrong fixes, and 11 of the wrong fixes have no check. On the Lite patches below, 15 of the 30 held-back failing patches break a listed other test
 and 15 are wrong fixes (\path{derived/failure_types_2026-11-07.json}).
+Of the 44 wrong fixes that change code, the check holds back 4 and has no result for 3.
+
+\paragraph{Outdated tests (exploratory).} The check also ran on the reference fix of each issue, with the
+repository's tests as they were before the fix. It held back the reference fix on 18 of 184 checked held-out issues
+and on 30 of 242 checked Lite issues. For each test that a reference fix breaks, we looked up the test in the
+reference pull request (\path{scripts/outdated_test_issues.py},
+\path{data/outdated-test-issues/reference_fix_breaks.jsonl}). We call the test outdated when the pull request edits
+or deletes it. All 18 held-out issues and 27 of the 30 Lite issues have an outdated test, 45 of 426 issues in all
+(\path{derived/outdated_test_issues_2026-11-10.json}). On the other three Lite issues the reference fix was held
+back for another reason: network errors (requests 1963), a warning about the version string of the patched tree
+(matplotlib 23987) and a recursion error in an untouched test file (sympy 13031). The check runs at most four test
+files near the changed code, so 45 is a lower bound. No plan was written before this count.
+
+On the 18 held-out issues, the check ran an outdated test for 80 patches of the six writers. Of the 55 patches that
+break every outdated test it ran, 28 are correct. Of the 25 that keep one passing, none is correct.
 
 \subsection*{The same check and repair on another team's Lite patches}
 
@@ -1231,8 +1325,9 @@ grader are left out. An empty submission counts as failing, and a run that does 
 had no matching test and 5 had no stable test. It held back 47 patches. Three issues whose reference patch fails our
 grader leave 44: 30 failing and 14 passing. Our start grades agree with the other team's labels on 43 of the 44. The
 check also holds back 30 reference patches, and it holds back the reference patch of every one of the 14 correct
-patches it holds back. So each test those correct patches break also fails with the reference fix: it asserts the old
-behavior.
+patches it holds back. For 13 of the 14, the reference fix breaks an outdated test, one that the reference pull
+request edits or deletes. On the fourteenth, matplotlib 23987, the reference fix was held back by a warning about the
+version string of the patched tree, and Gemma's patch survived the repair.
 
 \paragraph{Result.} The reading fixed in the plan is ``no repair'' when fewer than 3 held-back failing patches pass
 with the broken tests shown. Two pass, so the reading is no repair (Table~\ref{tab:literepair},

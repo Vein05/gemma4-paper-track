@@ -1,0 +1,106 @@
+{
+ "mixed_strength_writers": {
+  "all_failing_patches": {
+   "own": 82,
+   "others": 393,
+   "value": 16.3,
+   "ci95": [
+    9.9,
+    22.7
+   ],
+   "own_scored_100": 0.598
+  },
+  "failing_patches_that_change_code": {
+   "own": 74,
+   "others": 370,
+   "value": 18.1,
+   "ci95": [
+    11.1,
+    25.0
+   ],
+   "own_scored_100": 0.662
+  },
+  "left_out_by_writer": {
+   "gpt-oss-120b": 13,
+   "llama-4-maverick": 10,
+   "gemma-4-31b": 8
+  }
+ },
+ "equally_strong_writers": {
+  "all_failing_patches": {
+   "patches": 612,
+   "extra_trust": {
+    "value": 8.7,
+    "ci95": [
+     1.7,
+     15.8
+    ]
+   },
+   "extra_trust_without_google": {
+    "value": 11.4,
+    "ci95": [
+     4.1,
+     18.8
+    ]
+   },
+   "extra_trust_without_openai": {
+    "value": 5.7,
+    "ci95": [
+     -1.6,
+     13.3
+    ]
+   },
+   "scored_100": {
+    "value": 2.3,
+    "ci95": [
+     -8.9,
+     12.7
+    ]
+   },
+   "own_scored_100": 59.3,
+   "own_failing": 86
+  },
+  "failing_patches_that_change_code": {
+   "patches": 599,
+   "extra_trust": {
+    "value": 10.8,
+    "ci95": [
+     3.5,
+     18.3
+    ]
+   },
+   "extra_trust_without_google": {
+    "value": 13.6,
+    "ci95": [
+     5.9,
+     21.5
+    ]
+   },
+   "extra_trust_without_openai": {
+    "value": 7.7,
+    "ci95": [
+     -0.0,
+     15.8
+    ]
+   },
+   "scored_100": {
+    "value": 7.7,
+    "ci95": [
+     -3.2,
+     18.4
+    ]
+   },
+   "own_scored_100": 65.4,
+   "own_failing": 78
+  },
+  "left_out_by_writer": {
+   "gemma-4-31b": 8,
+   "20250726_mini-v1.0.0_gemini-2.5-pro": 3,
+   "20250807_mini-v1.7.0_gpt-5-nano": 2
+  }
+ },
+ "share_of_the_mixed_strength_gap_that_remains": {
+  "all_failing_patches": 0.53,
+  "failing_patches_that_change_code": 0.6
+ }
+}

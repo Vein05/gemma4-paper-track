@@ -39,6 +39,26 @@
   "wrong fix | no check": 11,
   "wrong fix | pass": 37
  },
+ "held_out_own_failing_that_change_code": {
+  "n": 74,
+  "without_a_fix": {
+   "n": 8,
+   "kinds": {
+    "only new files": 8
+   },
+   "highest_gemma_score": 0.0
+  },
+  "wrong_fixes": {
+   "n": 44,
+   "scored_100_by_gemma": 32,
+   "held_back_by_the_check": 4
+  },
+  "break_a_listed_test": {
+   "n": 30,
+   "scored_100_by_gemma": 17,
+   "held_back_by_the_check": 22
+  }
+ },
  "lite_held_back_failing": {
   "n": 30,
   "with_log": 30,
