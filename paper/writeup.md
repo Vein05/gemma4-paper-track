@@ -80,12 +80,11 @@ every other test passes, and a regression when it breaks one of the other tests.
 Against the mixed-strength writers, Gemma's extra trust in its own failing patches is 16.3 points, and about the same on Lite (Figure 1b). Weak writers supply much of this gap. Gemma gives 100 to most of its own failing patches and to a quarter or less of the two weakest writers', and these two supply most of the group's
 failing patches (Figure 1a).
 
-Against the equally strong writers, Gemma gives 100 to 59% of its own failing patches and to 57% of theirs, a difference within noise (Figure 1a; Supplement, Section C). Its extra trust in its own failing patches is 8.7 points, about half of the gap above, with a 95% interval above zero. Four of the seven are OpenAI models, so we average within each of the four model families first.
+Against the equally strong writers, Gemma gives 100 to 59% of its own failing patches and to 57% of theirs, a difference within noise (Figure 1a; Supplement, Section C). Its extra trust in its own failing patches is 8.7 points, about half of the gap above, with a 95% interval above zero. Most of the seven are OpenAI models, so we average within each model family first.
 
 The size of the remaining gap depends on which writers are compared. Gemma scores Gemini 2.5 Pro's failing patches as far above the outside judges as its own, and the four OpenAI writers' near or below them. Without Gemini the gap is larger, and without the OpenAI writers its interval includes zero. We also could not tell whether the remaining gap follows the content of Gemma's patches or Gemma recognizing them (Supplement, Section D).
 
-Gemma trusts stronger writers' failing patches in Go, Ruby and PHP too. There every other writer solves more issues than Gemma, and Gemma gives 100 to 76% of
-its own failing patches and to 68% of theirs.
+Gemma trusts stronger writers' failing patches in Go, Ruby and PHP too. There every other writer solves more issues than Gemma, and Gemma gives their failing patches 100 nearly as often as its own.
 
 ![Gemma's trust in each writer's failing patches, and its extra trust in its own against all and equally strong writers](figures/fig-writers.png)
 
@@ -94,12 +93,12 @@ band holds the equally strong writers, and dot area shows the number of failing 
 
 ### 3.2 Most failing patches pass every existing test, and more of them as agents get stronger
 
-Most of Gemma's own failing patches are wrong fixes. We sorted its 82 failing held-out patches by failure type (Supplement, Section C). Eight hold no fix: they only add a reproduction script, and Gemma scores each of them 0. Of the 74 that change code, 44 are wrong fixes and the other 30 break an existing test. Gemma gives 32 of the 44 wrong fixes the top score.
+Most of Gemma's own failing patches are wrong fixes. We sorted its failing held-out patches by failure type (Supplement, Section C). A few hold no fix: they only add a reproduction script, and Gemma scores each of them 0. Of the 74 that change code, 44 are wrong fixes and the rest break an existing test. Gemma gives about three quarters of the wrong fixes the top score.
 
 Checks that Gemma runs itself miss most of the same failures. We tried thinking before scoring, Gemma's own reproduction script, a shell in which it must write a failing test, and fine-tuning on labeled patches (Supplement, Section E). Gemma's thinking mode did not help, although Chen et al. (2025) found that long chains of thought before evaluation reduce harmful
 self-preference.
 
-Other agents' failing patches are mostly wrong fixes too. Across the 32 public models, 71% of the failing patches that change code are wrong fixes (Figure 2). The share rises with the model's strength, from 64% among models that solve about half of the issues to 81% among models that solve at least 70%. A check built on these tests can therefore catch at most 3 in 10 failures, and fewer for stronger models.
+Other agents' failing patches are mostly wrong fixes too. Across the 32 public models, 71% of the failing patches that change code are wrong fixes (Figure 2). The share rises with the model's strength, from 64% among models that solve about half of the issues to 81% among the strongest. A check built on these tests can therefore catch at most 3 in 10 failures, and fewer for stronger models.
 
 ![Share of failing patches that pass every existing test for 32 public models, and the correct patches that the repair breaks](figures/fig-tests.png)
 
@@ -110,7 +109,7 @@ Other agents' failing patches are mostly wrong fixes too. Across the 32 public m
 Existing tests can still catch regressions. Our check runs the existing tests near the changed code, on SWE-bench's list or not, and holds back a patch that breaks one. A held-back patch gets one more Gemma agent run, the repair. In one condition Gemma sees the
 broken tests and must make them pass and keep the issue solved without editing test files. In the other, the second look, it is only told that the patch may have mistakes (Supplement, Section F).
 
-The check holds back 22 of Gemma's 30 failing held-out patches that break a listed test, and only 4 of its 44 wrong fixes. When Gemma is shown the broken tests, it repairs about half of the held-back failing patches, twice as many as with a second look (Table 1). On Gemma's Lite patches the same repair fixed almost none. Half of those patches are wrong fixes: the tests they break are outside SWE-bench's list, and making them pass does not fix the issue.
+The check holds back most of Gemma's failing held-out patches that break a listed test, and only 4 of its 44 wrong fixes. When Gemma is shown the broken tests, it repairs about half of the held-back failing patches, twice as many as with a second look (Table 1). On Gemma's Lite patches the same repair fixed almost none. Half of those patches are wrong fixes: the tests they break are outside SWE-bench's list, and making them pass does not fix the issue.
 
 **Table 1.** The repair on two sets of Gemma's patches. Repaired
 counts leave out one Lite issue whose test fails at random.
@@ -123,9 +122,9 @@ counts leave out one Lite issue whose test fails at random.
 | Broken by the repair | 4 | 1 | 12 | 2 |
 | Net change in passing patches | +10 | +6 | −11 | −2 |
 
-The larger cost falls on correct patches, because some existing tests are outdated. We call a test outdated when the reference fix breaks it and the reference pull request edits or deletes it. Our check also ran on the reference fix of each issue, and an outdated test held it back on 45 of 426 issues, about one in ten (Figure 2b). This is a lower bound, because the check runs few test files per issue. On the held-out issues among the 45, none of the 25 patches that keep an outdated test passing is correct.
+The larger cost falls on correct patches, because some existing tests are outdated. We call a test outdated when the reference fix breaks it and the reference pull request edits or deletes it. Our check also ran on the reference fix of each issue, and an outdated test held it back on 45 of 426 issues, about one in ten (Figure 2b). This is a lower bound, because the check runs few test files per issue. On the held-out issues among them, no patch that keeps an outdated test passing is correct.
 
-An agent told to keep existing tests passing therefore undoes correct work. On Lite, an outdated test held back 13 of the 14 correct patches in Table 1. Gemma broke 12 of the 13 when shown the test, against 2 with a second look. On xarray issue 5131 it wrote
+An agent told to keep existing tests passing therefore undoes correct work. On Lite, an outdated test held back 13 of the 14 correct patches in Table 1. Gemma broke all but one of them when shown the test, against 2 with a second look. On xarray issue 5131 it wrote
 that "the constraints of the task (making tests pass without
 editing them) force me to restore it".
 
