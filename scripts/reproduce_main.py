@@ -395,7 +395,7 @@ def claims():
          "an outdated test held back 13 of the 14 correct patches in Table 1", "13 of 14",
          f"{lite13['on_an_issue_with_an_outdated_test']} of {lite13['n']}"),
         ("3.3", "Lite: of those, broken with the tests shown and with a second look",
-         "Gemma broke all but one of them when shown the test, against 2 with a second look", "12, 2 of 13",
+         "Gemma broke all but one when shown the test, against 2 with a second look", "12, 2 of 13",
          f"{lite13['broken_with_the_tests_shown']}, {lite13['broken_with_a_second_look']} of "
          f"{lite13['on_an_issue_with_an_outdated_test']}"),
         ("3.3", "check holds back: own failing that break a listed test, wrong fixes",

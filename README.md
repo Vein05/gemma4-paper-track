@@ -38,7 +38,8 @@ hidden tests. Gemma's extra trust in a patch is its score minus the mean score o
   test that its own pull request edits or deletes (`data/outdated-test-issues/`). Shown the existing tests its patch
   breaks, Gemma repairs 14 of 26 held-back failing patches on the held-out issues, against 7 after a second look. But
   on SWE-bench Lite, an outdated test held back 13 correct patches, and Gemma broke 12 of them when shown the test,
-  against 2 after a second look. Having Gemma label these tests first spares most of the correct patches.
+  against 2 after a second look. Having Gemma label these tests first spares most of the correct patches,
+  but the net gain in passing patches is within noise.
 
 ## Reproduce
 
@@ -77,4 +78,4 @@ The code is under the [Apache License 2.0](LICENSE). Third-party data in `data/p
 
 ## AI disclosure
 
-Claude Opus 5.5 was used in this project.
+Claude Opus 5.5 and Claude Fable 5.2 were used in this project.

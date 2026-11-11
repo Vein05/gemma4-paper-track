@@ -40,7 +40,7 @@ We make the following contributions:
 - **Gemma 4 gives equally strong writers' failing patches the top score as often as its own.** About half of its extra trust in its own failing patches
   remains against these seven writers (Section 3.1).
 - **Most failing patches pass every existing test, and more of them as agents get stronger.** Across 32 public models the share is 71%. Gemma gives most of its own wrong fixes the top score (Section 3.2).
-- **On one issue in ten, the correct fix breaks an existing test.** When Gemma is shown such a test, it undoes the correct patch, 12 times in 13 on Lite. Having Gemma label these tests first spares most of the correct patches. We release the 45 issues (Section 3.3).
+- **On one issue in ten, the correct fix breaks an existing test.** When Gemma is shown such a test, it undoes the correct patch, 12 times in 13 on Lite. Having Gemma label these tests first spares most of the correct patches, but the net gain in passing patches is within noise. We release the 45 issues (Section 3.3).
 
 ## 2. Setup
 
@@ -52,7 +52,7 @@ submissions (SWE-bench experiments) with their official labels. Five writers of 
 
 Two more data sets vary the run and the language. Another team ran Gemma 4 31B on the
 300 SWE-bench Lite issues, in mini-SWE-agent 2.2.1 at full precision with thinking on. We ran Gemma on 120 Go,
-Ruby and PHP issues from SWE-bench Multilingual (SWE-bench) in mini-SWE-agent 2.0.0 with thinking on. There the other writers are four recent
+Ruby and PHP issues from SWE-bench Multilingual (SWE-bench) in mini-SWE-agent 2.0.0 with thinking on. There the other writers are four
 models, GLM-5, Kimi-K2.5, DeepSeek-V3.2 and MiniMax-M2.5.
 
 **Judges.** Nine models scored every held-out patch: Gemma 4 31B, gpt-oss-20b, Qwen3.5-9B, GLM-4.7-Flash and the
@@ -95,7 +95,7 @@ Most of Gemma's own failing patches are wrong fixes. We sorted its failing held-
 Checks that Gemma runs itself miss most of the same failures. We tried thinking before scoring, Gemma's own reproduction script, a shell in which it must write a failing test, and fine-tuning on labeled patches (Supplement, Section E). Gemma's thinking mode did not help, although Chen et al. (2025) found that long chains of thought before evaluation reduce harmful
 self-preference.
 
-Other agents' failing patches are mostly wrong fixes too. Across the 32 public models, 71% of the failing patches that change code are wrong fixes (Figure 2). The share rises with the model's strength, from 64% among models that solve about half of the issues to 81% among the strongest. On the same issue the rise is 10 points. A check built on these tests can catch at most 3 in 10 failures, and fewer for stronger models.
+Other agents' failing patches are mostly wrong fixes too. Across 32 public models, 71% of the failing patches that change code are wrong fixes (Figure 2). The share rises with the model's strength, from 64% among models that solve about half of the issues to 81% among the strongest. On the same issue the rise is 10 points. A check built on these tests can catch at most 3 in 10 failures, and fewer for stronger models.
 
 ![Share of failing patches that pass every existing test for 32 public models, and the correct patches that the repair breaks](figures/fig-tests.png)
 
@@ -119,8 +119,8 @@ counts leave out one Lite issue whose test fails at random.
 | Broken by the repair | 4 | 1 | 12 | 2 |
 | Net change in passing patches | +10 | +6 | −11 | −2 |
 
-The larger cost falls on correct patches, because some existing tests are outdated. We call a test outdated when the reference fix breaks it and the reference pull request edits or deletes it. Our check also ran on the reference fix of 426 held-out and Lite issues, and an outdated test held it back on 45, about one in ten (Figure 2b). This is a lower bound, because the check runs few test files per issue.
-An agent told to keep existing tests passing undoes correct work. On Lite, an outdated test held back 13 of the 14 correct patches in Table 1. Gemma broke all but one of them when shown the test, against 2 with a second look. On xarray issue 5131 it wrote
+The larger cost falls on correct patches, because some existing tests are outdated. We call a test outdated when the reference fix breaks it and the reference pull request edits or deletes it. Our check ran on the reference fix of 426 held-out and Lite issues, and an outdated test held it back on 45, about one in ten (Figure 2b). This is a lower bound, because the check runs few test files per issue.
+An agent told to keep existing tests passing undoes correct work. On Lite, an outdated test held back 13 of the 14 correct patches in Table 1. Gemma broke all but one when shown the test, against 2 with a second look. On xarray issue 5131 it wrote
 that "the constraints of the task (making tests pass without
 editing them) force me to restore it".
 
@@ -162,7 +162,7 @@ writers, and Gemma gives their failing patches the top score as often as its own
 ## 7. Data, code and compute
 
 The GitHub repository holds the paper, supplement, code, plans and judge answers, and the Hugging Face dataset holds the agent runs and prompts. Running `./reproduce.sh main` regenerates every
-table in this paper from the released data, without a GPU. Two parts are meant for reuse: the 45 issues whose reference fix breaks an outdated test, and the equally strong writers' failing patches with nine judges' scores, which cost $5.29 to score.
+table in this paper from the released data, without a GPU. Two parts are meant for reuse: the 45 issues whose reference fix breaks an outdated test, and the equally strong writers' failing patches with nine judges' scores, which cost $5.29.
 The project used about 113 GPU-hours, about $191 at RunPod on-demand prices.
 
 ## References
