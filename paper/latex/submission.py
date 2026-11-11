@@ -55,11 +55,17 @@ it), check that both figures show in the Writeup preview, and press Submit (a sa
 == Subtitle ==
 {subtitle}
 
+== Subtitle as entered (the Kaggle field holds 140 characters; this is its first sentence) ==
+{subtitle.split(". ")[0]}.
+
 == Track (if the form asks) ==
 Overall Best Paper
 
-== Cover image (upload) ==
-paper/figures/fig-writers.png
+== Card and thumbnail image (upload) ==
+paper/figures/card-kaggle-upload.png
+(square, with the 2:1 card paper/figures/card-kaggle.png in its middle band: Kaggle cuts a 2:1 cover and a square
+thumbnail from one upload, and its default crops then give the card and the whole scene. Built by `make card` in
+figures/gemma4-rubber-stamp/ of the research folder.)
 
 == Project Links ==
 Paper (PDF): {REPO}/blob/main/paper/rubber-stamp.pdf

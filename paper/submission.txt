@@ -12,11 +12,17 @@ Neither Gemma 4 nor the Existing Tests Catch Wrong Fixes
 == Subtitle ==
 Gemma 4 gives full marks to failing patches from equally strong agents as often as to its own. Seven in ten failing patches from 32 public models pass every existing test, and on one issue in ten the correct fix breaks one.
 
+== Subtitle as entered (the Kaggle field holds 140 characters; this is its first sentence) ==
+Gemma 4 gives full marks to failing patches from equally strong agents as often as to its own.
+
 == Track (if the form asks) ==
 Overall Best Paper
 
-== Cover image (upload) ==
-paper/figures/fig-writers.png
+== Card and thumbnail image (upload) ==
+paper/figures/card-kaggle-upload.png
+(square, with the 2:1 card paper/figures/card-kaggle.png in its middle band: Kaggle cuts a 2:1 cover and a square
+thumbnail from one upload, and its default crops then give the card and the whole scene. Built by `make card` in
+figures/gemma4-rubber-stamp/ of the research folder.)
 
 == Project Links ==
 Paper (PDF): https://github.com/Vein05/gemma4-paper-track/blob/main/paper/rubber-stamp.pdf

@@ -15,7 +15,7 @@
 
 <p align="center">
   <br>
-  <img src="paper/figures/fig-writers.png" alt="Gemma 4 31B trusts failing patches more when their writer is stronger, and its extra trust in its own failing patches halves against equally strong writers" width="88%">
+  <img src="paper/figures/card-kaggle.png" alt="Neither Gemma 4 nor the Existing Tests Catch Wrong Fixes" width="88%">
   <br><br>
 </p>
 
