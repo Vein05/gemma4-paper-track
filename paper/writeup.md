@@ -6,10 +6,10 @@ breaks one. -->
 
 ## Abstract
 
-Coding agents often decide whether a patch is finished by asking a model, often the one that wrote it. Studies of self-preference compare a judge's scores on its own outputs
+Coding agents decide whether a patch is finished by asking a model, often the one that wrote it, or by running the project's existing tests. Studies of self-preference compare a judge's scores on its own outputs
 with its scores on other models' outputs, and the closest study reports that the preference shrinks but remains against writers as strong as the judge. We ask Gemma 4 31B and eight other models to score SWE-bench patches, and we grade every patch with the hidden tests.
 By the usual measure, Gemma trusts its own failing patches far more than other writers' failing patches. Against seven writers as strong as Gemma, about half of that gap remains, and Gemma
-gives their failing patches the top score as often as its own. The larger problem is the patches. Most of Gemma's failing patches are wrong fixes that pass every existing test SWE-bench runs, and so are seven in ten failing patches from 32 public models in the same agent. The share is higher for stronger models. On about one issue in ten, the correct fix breaks an existing test. When Gemma is shown such a test, it obeys the test and undoes the correct patch. When Gemma first labels such tests as outdated, most of the correct patches survive. We release every agent and judge trace on [GitHub](https://github.com/Vein05/gemma4-paper-track) and
+gives their failing patches the top score as often as its own. The existing tests do not catch most of these failures either. Most of Gemma's failing patches are wrong fixes that pass every existing test SWE-bench runs, and so are seven in ten failing patches from 32 public models in the same agent. The share is higher for stronger models. On one issue in ten, the correct fix breaks an existing test. When Gemma is shown such a test, it obeys the test and undoes the correct patch. When Gemma first labels such tests as outdated, most of the correct patches survive. We release every agent and judge trace on [GitHub](https://github.com/Vein05/gemma4-paper-track) and
 [Hugging Face](https://huggingface.co/datasets/vein05/gemma4-paper-track-data).
 
 ## 1. Introduction
@@ -30,17 +30,16 @@ matched writers on ability and found that the preference "attenuates in places b
 
 We ran this test on Gemma 4 31B with SWE-bench patches, against two groups of public agents. Against five writers of mixed strength, Gemma scores its own failing patches 16.3 points further above judges from
 other model families than it scores the other writers' failing patches. Against the seven writers that solve about as many issues as Gemma, the gap is 8.7 points. Gemma gives these seven writers' failing
-patches the top score of 100 as often as its own, and the weakest writer's a quarter as often.
+patches the top score of 100 as often as its own, and a quarter or less of the two weakest writers'. About half of what looks like self-preference is trust in any equally strong writer's failing patch.
 
-About half of what looks like self-preference is thus trust in any equally strong writer's failing patch. Most of Gemma's own failing patches are
-wrong fixes: the issue's tests fail while every other existing test passes. Across 32 public models in the same agent, 71% of the failing patches that change code pass every existing test that SWE-bench runs, and the share rises with the model's strength. So neither Gemma's score nor the existing tests catch most failures. On about one issue in ten, the correct fix itself breaks an existing test that asserts the old behavior. When Gemma is shown such a test, it obeys the test and undoes a correct fix.
+Agents also run the project's existing tests. Most of Gemma's own failing patches are
+wrong fixes: the issue's tests fail while every other existing test passes. Across 32 public models in the same agent, 71% of the failing patches that change code pass every existing test that SWE-bench runs, and the share rises with the model's strength. So neither Gemma's score nor the existing tests catch most failures. On one issue in ten, the correct fix itself breaks an existing test that asserts the old behavior. When Gemma is shown such a test, it obeys the test and undoes a correct fix.
 
 We make the following contributions:
 
-- **Gemma 4's self-preference halves against equally strong writers.** Its extra trust in its own failing patches
-  falls from 16.3 points against five writers of mixed strength to 8.7 against seven of its own strength, and it gives the
-  seven's failing patches the top score as often as its own (Section 3.1).
-- **Most failing patches pass every existing test, and more of them as agents get stronger.** Across 32 public models the share is 71%. Gemma gives most of its own wrong fixes the top score, and the existing tests stop few of them (Section 3.2).
+- **Gemma 4 gives equally strong writers' failing patches the top score as often as its own.** About half of its extra trust in its own failing patches
+  remains against these seven writers (Section 3.1).
+- **Most failing patches pass every existing test, and more of them as agents get stronger.** Across 32 public models the share is 71%. Gemma gives most of its own wrong fixes the top score (Section 3.2).
 - **On one issue in ten, the correct fix breaks an existing test.** When Gemma is shown such a test, it undoes the correct patch, 12 times in 13 on Lite. Having Gemma label these tests first spares most of the correct patches. We release the 45 issues (Section 3.3).
 
 ## 2. Setup
@@ -62,7 +61,7 @@ passes the hidden tests from 0 to 100. Calls went through OpenRouter at temperat
 chosen before any score was read.
 
 **Measures.** A judge's score on a failing patch says little alone, because some failing patches look right to
-everyone. We therefore measure how far a judge scores each patch above the mean of the outside judges, every judge
+everyone. We measure how far a judge scores each patch above the mean of the outside judges, every judge
 from outside its own model family and the writer's. Extra trust is how much further above them a judge scores one group of failing patches
 than another group. We
 report 95% intervals from 2,000 bootstrap resamples of issues.
@@ -75,15 +74,13 @@ every other test passes, and a regression when it breaks one of the other tests.
 
 ## 3. Results
 
-### 3.1 Gemma's self-preference halves against equally strong writers
+### 3.1 Gemma gives equally strong writers' failing patches the top score as often as its own
 
-Against the mixed-strength writers, Gemma's extra trust in its own failing patches is 16.3 points, and about the same on Lite (Figure 1b). Weak writers supply much of this gap. Gemma gives 100 to most of its own failing patches and to a quarter or less of the two weakest writers', and these two supply most of the group's
-failing patches (Figure 1a).
+Gemma gives the top score to most failing patches from writers of its own strength: 59% of its own and 57% of the equally strong writers' on average, a difference within noise (Figure 1a). It gives 100 to a quarter or less of the two weakest writers' failing patches.
 
-Against the equally strong writers, Gemma gives 100 to 59% of its own failing patches and to 57% of theirs, a difference within noise (Figure 1a). Its extra trust in its own failing patches is 8.7 points, about half of the gap above, with a 95% interval above zero. Gemma's own mean score is 69 for both groups, so the gap comes from the outside judges, who score Gemma's failing patches lower (exploratory; Supplement, Section C). Most of the seven are OpenAI models, so we average within each model family first.
+Weak writers supply much of the usual self-preference gap. Against the mixed-strength writers, Gemma's extra trust in its own failing patches is 16.3 points, and about the same on Lite (Figure 1b). The two weakest writers supply most of the mixed-strength group's failing patches. Against the equally strong writers, its extra trust is 8.7 points, about half of that gap, with a 95% interval above zero. Gemma's mean score is 69 on its own failing patches and on theirs, so the gap comes from the outside judges, who score Gemma's failing patches lower (exploratory; Supplement, Section C). Most of the seven are OpenAI models, so we average within each model family first.
 
-The remaining gap depends on which writers are compared. Gemma scores Gemini 2.5 Pro's failing patches as far above the outside judges as its own, and the four OpenAI writers' near or below them. Without Gemini the gap is larger, and without the OpenAI writers its interval includes zero. We also could not tell whether the remaining gap follows the content of Gemma's patches or Gemma recognizing them (Supplement, Section D).
-
+The remaining gap depends on which writers are compared. Gemma scores Gemini 2.5 Pro's failing patches as far above the outside judges as its own, and the four OpenAI writers' near or below them. Without Gemini the gap is larger, and without the OpenAI writers its interval includes zero.
 Gemma trusts stronger writers' failing patches in Go, Ruby and PHP too. There every other writer solves more issues than Gemma, and Gemma gives their failing patches 100 nearly as often as its own.
 
 ![Gemma's trust in each writer's failing patches, and its extra trust in its own against all and equally strong writers](figures/fig-writers.png)
@@ -98,7 +95,7 @@ Most of Gemma's own failing patches are wrong fixes. We sorted its failing held-
 Checks that Gemma runs itself miss most of the same failures. We tried thinking before scoring, Gemma's own reproduction script, a shell in which it must write a failing test, and fine-tuning on labeled patches (Supplement, Section E). Gemma's thinking mode did not help, although Chen et al. (2025) found that long chains of thought before evaluation reduce harmful
 self-preference.
 
-Other agents' failing patches are mostly wrong fixes too. Across the 32 public models, 71% of the failing patches that change code are wrong fixes (Figure 2). The share rises with the model's strength, from 64% among models that solve about half of the issues to 81% among the strongest. A check built on these tests can therefore catch at most 3 in 10 failures, and fewer for stronger models.
+Other agents' failing patches are mostly wrong fixes too. Across the 32 public models, 71% of the failing patches that change code are wrong fixes (Figure 2). The share rises with the model's strength, from 64% among models that solve about half of the issues to 81% among the strongest. On the same issue the rise is 10 points. A check built on these tests can catch at most 3 in 10 failures, and fewer for stronger models.
 
 ![Share of failing patches that pass every existing test for 32 public models, and the correct patches that the repair breaks](figures/fig-tests.png)
 
@@ -122,20 +119,19 @@ counts leave out one Lite issue whose test fails at random.
 | Broken by the repair | 4 | 1 | 12 | 2 |
 | Net change in passing patches | +10 | +6 | −11 | −2 |
 
-The larger cost falls on correct patches, because some existing tests are outdated. We call a test outdated when the reference fix breaks it and the reference pull request edits or deletes it. Our check also ran on the reference fix of each issue, and an outdated test held it back on 45 of 426 issues, about one in ten (Figure 2b). This is a lower bound, because the check runs few test files per issue. On the held-out issues among them, no patch that keeps an outdated test passing is correct.
-
-An agent told to keep existing tests passing therefore undoes correct work. On Lite, an outdated test held back 13 of the 14 correct patches in Table 1. Gemma broke all but one of them when shown the test, against 2 with a second look. On xarray issue 5131 it wrote
+The larger cost falls on correct patches, because some existing tests are outdated. We call a test outdated when the reference fix breaks it and the reference pull request edits or deletes it. Our check also ran on the reference fix of 426 held-out and Lite issues, and an outdated test held it back on 45, about one in ten (Figure 2b). This is a lower bound, because the check runs few test files per issue.
+An agent told to keep existing tests passing undoes correct work. On Lite, an outdated test held back 13 of the 14 correct patches in Table 1. Gemma broke all but one of them when shown the test, against 2 with a second look. On xarray issue 5131 it wrote
 that "the constraints of the task (making tests pass without
 editing them) force me to restore it".
 
-The repair lacks a rule for which tests may change, which Agentless (Xia et al., 2024) leaves to the model. We tested one rule on the mixed-strength writers' held-back patches. Gemma first labels each broken test as outdated or a real regression, and the repair ignores the outdated ones. Correct patches broken fell from 20 to 7, but fewer failing patches were repaired, and the net gain is within noise, which our plan counts as failure.
+The repair lacks a rule for which tests may change, which Agentless (Xia et al., 2024) leaves to the model. We tested one rule on the mixed-strength writers' held-back patches. Gemma first labels each broken test as outdated or a real regression, and the repair ignores the outdated ones. Correct patches broken fell from 20 of 32 to 7. But fewer failing patches were repaired, and the net gain in passing patches is within noise, which our plan counts as failure.
 
 ## 4. Related work
 
 **Measuring self-preference.** Panickssery et al. (2024) link a judge's preference for its own summaries to how well
 it recognizes them. Roytburg et al. (2026) compare a judge's own wrong answers with other models' wrong answers to the same question, and
-much of the measured self-preference goes away. Pombal et al. (2026) match the other writers on ability, and the preference shrinks but remains.
-Kozman et al. (2026) report that a model approves its own errors more often and that stronger generators' errors are harder to catch. We apply the same match to Gemma 4 and
+much of the measured self-preference goes away. Kozman et al. (2026) report that a model approves its own errors more often and that stronger generators' errors are harder to catch.
+Pombal et al. (2026) match the other writers on ability, and the preference shrinks but remains. We apply the same match to Gemma 4 and
 repository patches and find the same.
 
 **Verifying strong writers.** Zhou et al. (2025) find that weak generators' errors are easier to detect
@@ -150,15 +146,18 @@ tests with an F1 below 50%. ImpossibleBench (Zhong et al., 2025) edits SWE-bench
 
 ## 5. Limitations
 
-The count across public models covers one agent. SWE-bench's list holds only tests from the files the reference pull request touches, so a wider test run could catch more wrong fixes, though our wider check stopped only 4 of Gemma's 44. In Gemma's held-out agent runs, the repository's Python environment was not active, so Gemma often
+The count across public models covers one agent. SWE-bench's list holds only tests from the files the reference pull request touches, so a wider test run could catch more wrong fixes, though our wider check stopped only 4 of Gemma's 44. SWE-bench's hidden tests may reject valid fixes on the hardest issues. Without the 48 issues that no model solves, the share of wrong fixes is 67%. In Gemma's held-out agent runs, the repository's Python environment was not active, so Gemma often
 could not import the code. This lowers its resolve rate and may produce more crash patches, which the repair fixes
-most easily. The repair's harm rests on 23 correct patches, and each Lite repair condition ran once.
+most easily. The repair's harm rests on 55 correct patches, and the repairs of Lite and other writers' patches ran once.
 
 ## 6. Conclusion
 
-A judge that seems to favor its own patches may partly be favoring strong writers. For Gemma 4 31B, about half of the measured preference remains against equally strong
-writers, and Gemma gives their failing patches the top score as often as its own. For an agent, the risk is Gemma's trust in wrong fixes, which neither its own checks nor the existing tests catch. Most failing patches of public agents pass the existing tests too, more so for stronger agents. An agent built on Gemma should not let Gemma's score decide that a patch is
-finished. When it adds the existing tests, it also needs a rule for which tests the issue may change, because on about one issue in ten the correct fix breaks one.
+A judge that seems to favor its own patches is partly favoring strong writers. For Gemma 4 31B, about half of the measured preference remains against equally strong
+writers, and Gemma gives their failing patches the top score as often as its own. For an agent, the risk is Gemma's trust in wrong fixes, which neither its own checks nor the existing tests catch. For an agent builder:
+
+1. Do not let Gemma's score decide that a patch is finished.
+2. Do not read passing existing tests as a fix. Most failing patches pass them, more so for stronger agents.
+3. Give the agent a rule for which tests the issue may change, because on one issue in ten the correct fix breaks one.
 
 ## 7. Data, code and compute
 

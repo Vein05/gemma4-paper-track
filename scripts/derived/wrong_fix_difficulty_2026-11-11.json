@@ -1,0 +1,330 @@
+{
+ "exploratory": true,
+ "spec": "spec/hidden-test-and-failure-type-checks.md",
+ "entries": 32,
+ "entries_40_to_60": 8,
+ "entries_70_or_more": 13,
+ "entries_in_rank_correlation": 30,
+ "reproduced": {
+  "issues": 500,
+  "failing": 4961,
+  "wrong_fixes": 3534,
+  "share_all_32": 0.712,
+  "entries_40_to_60": {
+   "failing": 1563,
+   "share": 0.643
+  },
+  "entries_70_or_more": {
+   "failing": 1634,
+   "share": 0.807
+  },
+  "difference_70_minus_40_to_60": 0.164,
+  "rank_correlation": {
+   "value": 0.8,
+   "entries": 30
+  }
+ },
+ "issues_by_entries_solving": {
+  "0": 48,
+  "1": 16,
+  "2": 15,
+  "3": 2,
+  "4": 6,
+  "5": 7,
+  "6": 4,
+  "7": 4,
+  "8": 4,
+  "9": 7,
+  "10": 5,
+  "11": 11,
+  "12": 9,
+  "13": 7,
+  "14": 9,
+  "15": 5,
+  "16": 2,
+  "17": 6,
+  "18": 5,
+  "19": 8,
+  "20": 6,
+  "21": 10,
+  "22": 13,
+  "23": 12,
+  "24": 5,
+  "25": 19,
+  "26": 25,
+  "27": 30,
+  "28": 37,
+  "29": 47,
+  "30": 60,
+  "31": 37,
+  "32": 19
+ },
+ "without_issues_no_entry_solves": {
+  "issues": 452,
+  "failing": 3556,
+  "wrong_fixes": 2379,
+  "share_all_32": 0.669,
+  "entries_40_to_60": {
+   "failing": 1204,
+   "share": 0.611
+  },
+  "entries_70_or_more": {
+   "failing": 1038,
+   "share": 0.769
+  },
+  "difference_70_minus_40_to_60": 0.158,
+  "rank_correlation": {
+   "value": 0.76,
+   "entries": 30,
+   "ci95": [
+    0.53,
+    0.82
+   ]
+  },
+  "share_all_32_ci95": [
+   0.616,
+   0.715
+  ],
+  "difference_ci95": [
+   0.11,
+   0.202
+  ]
+ },
+ "without_issues_3_or_fewer_entries_solve": {
+  "issues": 419,
+  "failing": 2618,
+  "wrong_fixes": 1683,
+  "share_all_32": 0.643,
+  "entries_40_to_60": {
+   "failing": 961,
+   "share": 0.601
+  },
+  "entries_70_or_more": {
+   "failing": 654,
+   "share": 0.757
+  },
+  "difference_70_minus_40_to_60": 0.156,
+  "rank_correlation": {
+   "value": 0.75,
+   "entries": 30,
+   "ci95": [
+    0.42,
+    0.79
+   ]
+  },
+  "share_all_32_ci95": [
+   0.592,
+   0.694
+  ],
+  "difference_ci95": [
+   0.099,
+   0.209
+  ]
+ },
+ "only_issues_no_entry_solves": {
+  "issues": 48,
+  "failing": 1405,
+  "wrong_fixes": 1155,
+  "share_all_32": 0.822,
+  "entries_40_to_60": {
+   "failing": 359,
+   "share": 0.749
+  },
+  "entries_70_or_more": {
+   "failing": 596,
+   "share": 0.872
+  },
+  "difference_70_minus_40_to_60": 0.123,
+  "rank_correlation": {
+   "value": 0.58,
+   "entries": 30
+  }
+ },
+ "bands": {
+  "0 to 0 entries solve": {
+   "issues": 48,
+   "failing": 1405,
+   "wrong_fixes": 1155,
+   "share_all_32": 0.822,
+   "entries_40_to_60": {
+    "failing": 359,
+    "share": 0.749
+   },
+   "entries_70_or_more": {
+    "failing": 596,
+    "share": 0.872
+   },
+   "difference_70_minus_40_to_60": 0.123,
+   "rank_correlation": {
+    "value": 0.58,
+    "entries": 30,
+    "ci95": [
+     0.31,
+     0.68
+    ]
+   },
+   "share_all_32_ci95": [
+    0.738,
+    0.894
+   ],
+   "difference_ci95": [
+    0.072,
+    0.179
+   ]
+  },
+  "1 to 7 entries solve": {
+   "issues": 54,
+   "failing": 1449,
+   "wrong_fixes": 1124,
+   "share_all_32": 0.776,
+   "entries_40_to_60": {
+    "failing": 388,
+    "share": 0.706
+   },
+   "entries_70_or_more": {
+    "failing": 578,
+    "share": 0.815
+   },
+   "difference_70_minus_40_to_60": 0.109,
+   "rank_correlation": {
+    "value": 0.58,
+    "entries": 30,
+    "ci95": [
+     0.25,
+     0.65
+    ]
+   },
+   "share_all_32_ci95": [
+    0.689,
+    0.855
+   ],
+   "difference_ci95": [
+    0.053,
+    0.166
+   ]
+  },
+  "8 to 15 entries solve": {
+   "issues": 57,
+   "failing": 1004,
+   "wrong_fixes": 626,
+   "share_all_32": 0.624,
+   "entries_40_to_60": {
+    "failing": 317,
+    "share": 0.606
+   },
+   "entries_70_or_more": {
+    "failing": 312,
+    "share": 0.705
+   },
+   "difference_70_minus_40_to_60": 0.099,
+   "rank_correlation": {
+    "value": 0.61,
+    "entries": 30,
+    "ci95": [
+     0.14,
+     0.7
+    ]
+   },
+   "share_all_32_ci95": [
+    0.519,
+    0.719
+   ],
+   "difference_ci95": [
+    0.023,
+    0.18
+   ]
+  },
+  "16 to 23 entries solve": {
+   "issues": 62,
+   "failing": 586,
+   "wrong_fixes": 374,
+   "share_all_32": 0.638,
+   "entries_40_to_60": {
+    "failing": 250,
+    "share": 0.58
+   },
+   "entries_70_or_more": {
+    "failing": 109,
+    "share": 0.761
+   },
+   "difference_70_minus_40_to_60": 0.181,
+   "rank_correlation": {
+    "value": 0.43,
+    "entries": 30,
+    "ci95": [
+     0.04,
+     0.74
+    ]
+   },
+   "share_all_32_ci95": [
+    0.551,
+    0.724
+   ],
+   "difference_ci95": [
+    0.038,
+    0.323
+   ]
+  },
+  "24 to 32 entries solve": {
+   "issues": 279,
+   "failing": 517,
+   "wrong_fixes": 255,
+   "share_all_32": 0.493,
+   "entries_40_to_60": {
+    "failing": 249,
+    "share": 0.502
+   },
+   "entries_70_or_more": {
+    "failing": 39,
+    "share": 0.615
+   },
+   "difference_70_minus_40_to_60": 0.113,
+   "rank_correlation": {
+    "value": -0.03,
+    "entries": 17,
+    "ci95": [
+     -0.22,
+     0.55
+    ]
+   },
+   "share_all_32_ci95": [
+    0.436,
+    0.551
+   ],
+   "difference_ci95": [
+    -0.087,
+    0.305
+   ]
+  }
+ },
+ "within_issue_difference": {
+  "issues": 224,
+  "mean": 0.101,
+  "ci95": [
+   0.065,
+   0.134
+  ],
+  "issues_higher_for_stronger": 92,
+  "issues_lower_for_stronger": 30,
+  "issues_equal": 102
+ },
+ "slope_per_10_points_solved": {
+  "patches": 4607,
+  "issues": 382,
+  "without_issue_effects": {
+   "value": 0.096,
+   "ci95": [
+    0.077,
+    0.115
+   ]
+  },
+  "with_issue_effects": {
+   "value": 0.06,
+   "ci95": [
+    0.045,
+    0.076
+   ]
+  },
+  "ratio": 0.62
+ }
+}

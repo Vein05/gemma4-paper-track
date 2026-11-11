@@ -57,6 +57,7 @@ STEPS = [
     ("matched_writers_2026-11-09.json", "matched_writers.py analyze"),
     ("matched_writers_split_2026-11-09.json", "matched_writers_split.py"),
     ("failure_census_2026-11-10.json", "failure_census.py analyze"),
+    ("wrong_fix_difficulty_2026-11-11.json", "wrong_fix_difficulty.py"),
     ("outdated_test_issues_2026-11-10.json", "outdated_test_issues.py analyze"),
     ("code_changing_patches_2026-11-10.json", "code_changing_patches.py"),
 ]
@@ -232,6 +233,7 @@ def claims():
     lite = load("lite_repair_2026-11-07_empty-as-failing.json")
     labelled = load("labelled_repair_2026-11-09.json")
     census = load("failure_census_2026-11-10.json")
+    difficulty = load("wrong_fix_difficulty_2026-11-11.json")
     split = load("matched_writers_split_2026-11-09.json")
     outd = load("outdated_test_issues_2026-11-10.json")
     code = ft["held_out_own_failing_that_change_code"]
@@ -278,16 +280,16 @@ def claims():
          "7", str(len(sel["band_writers"]))),
         ("Abs", "public models counted; share of their failing patches that pass every existing test",
          "so are seven in ten failing patches from 32 public models", "32, 71%", f"{census['entries_used']}, {pct(cshare)}"),
-        ("Abs", "issues whose reference fix breaks an outdated test, of checked issues", "On about one issue in ten",
+        ("Abs", "issues whose reference fix breaks an outdated test, of checked issues", "On one issue in ten, the correct fix breaks an existing test",
          "45 of 426 (11%)", f"{outd['both']['with_an_outdated_test']} of {outd['both']['issues_checked']} ({pct(outd['both']['share'])})"),
         ("1", "matplotlib 24570: Gemma scores it 100, GLM-4.5 scores it 20", "scored the same patch 20", "100 and 20",
          f"{answer['gemma4-31b']} and {answer['glm-4.5']}"),
         ("1", "extra trust in own failing patches, all other writers", "16.3 points further above", "+16.3",
          sgn(fresh["lenient_raw_failing_difference"])),
-        ("1", "scored 100: Llama-4-Maverick's failing patches, Gemma's own", "the weakest writer's a quarter as often",
-         "16%, 60%", f"{pct(W['llama-4-maverick']['gemma_100'])}, {pct(W['gemma-4-31b']['gemma_100'])}"),
+        ("1", "scored 100, two weakest writers", "as often as its own, and a quarter or less of the two weakest writers'",
+         "25%, 16%", ", ".join(pct(W[w]["gemma_100"]) for w in weak)),
         ("1", "extra trust: mixed-strength writers, equally strong writers",
-         "falls from 16.3 points against five writers of mixed strength to 8.7 against seven", "+16.3, +8.7",
+         "its own failing patches 16.3 points further above judges", "+16.3, +8.7",
          f"{grab(held, 'own_minus_others').split()[0]}, {sgn(eq('family_balanced')['value'])}"),
         ("1", "equally strong writers, in the introduction", "the gap is 8.7 points", "+8.7 [1.7, 15.8]",
          ci_(eq("family_balanced")["value"], eq("family_balanced")["ci95"])),
@@ -300,9 +302,9 @@ def claims():
          + ("interval above zero" if min(census['rank_correlation_with_share_solved']['ci95_resampling_issues'][0],
                                          census['rank_correlation_with_share_solved']['ci95_resampling_entries'][0]) > 0
             else "interval reaches zero")),
-        ("1", "Gemma's wrong fixes scored 100; held back by the existing-test check",
-         "Gemma gives most of its own wrong fixes the top score, and the existing tests stop few of them", "32 of 44, 4",
-         f"{code['wrong_fixes']['scored_100_by_gemma']} of {code['wrong_fixes']['n']}, {code['wrong_fixes']['held_back_by_the_check']}"),
+        ("1", "Gemma's wrong fixes scored 100",
+         "Gemma gives most of its own wrong fixes the top score", "32 of 44",
+         f"{code['wrong_fixes']['scored_100_by_gemma']} of {code['wrong_fixes']['n']}"),
         ("1", "correct Lite patches held back by an outdated test, broken with the tests shown", "12 times in 13 on Lite",
          "12 of 13", f"{lite13['broken_with_the_tests_shown']} of {lite13['on_an_issue_with_an_outdated_test']}"),
         ("1", "issues released with an outdated test", "We release the 45 issues", "45",
@@ -310,16 +312,16 @@ def claims():
         ("2", "held-out issues", "193 held-out issues", "193", str(gate["issues"])),
         ("2", "Go, Ruby and PHP issues run", "Gemma on 120 Go", "120", str(npy["issues_run"])),
         ("3.1", "equally strong writers: extra trust, share of the mixed-strength gap, interval",
-         "is 8.7 points, about half of the gap above, with a 95% interval above zero", "+8.7, 53%, above zero",
+         "is 8.7 points, about half of that gap, with a 95% interval above zero", "+8.7, 53%, above zero",
          f"{sgn(eq('family_balanced')['value'])}, "
          f"{pct(eq('family_balanced')['value'] / float(grab(held, 'own_minus_others').split()[0]))}, "
          + ("above zero" if eq("family_balanced")["ci95"][0] > 0 else "reaches zero")),
         ("3.1", "scored 100: own failing, equally strong writers' failing (families weighted equally)",
-         "100 to 59% of its own failing patches and to 57% of theirs, a difference within noise", "59%, 57%, includes zero",
+         "59% of its own and 57% of the equally strong writers' on average, a difference within noise", "59%, 57%, includes zero",
          f"{pct(top('gemma-4-31b'))}, {pct(theirs)}, "
          + ("includes zero" if includes_zero(m["share_100_own_minus_matched_family_balanced"]["ci95"]) else "excludes zero")),
         ("3.1", "Gemma's own mean score: own failing, equally strong writers' failing; outside judges lower on Gemma's",
-         "Gemma's own mean score is 69 for both groups", "69, 69, outside lower",
+         "Gemma's mean score is 69 on its own failing patches and on theirs", "69, 69, outside lower",
          f"{split['gemma_score']['own']:.0f}, {split['gemma_score']['equally_strong_family_balanced']:.0f}, "
          + ("outside lower" if split["outside_score"]["ci95"][1] < 0 else "outside not lower")),
         ("3.1", "OpenAI writers among the seven; model families", "Most of the seven are OpenAI models", "4 of 7, 4 families",
@@ -329,7 +331,7 @@ def claims():
         ("3.1", "without Gemini; without the OpenAI writers", "without the OpenAI writers its interval includes zero",
          "+11.4, +5.7 includes zero", f"{sgn(eq('without_google')['value'])}, {sgn(eq('without_gpt-oss')['value'])} "
          + ("includes zero" if includes_zero(eq("without_gpt-oss")["ci95"]) else "excludes zero")),
-        ("3.1", "two weakest writers' share of other writers' failing patches", "these two supply most of the group's",
+        ("3.1", "two weakest writers' share of other writers' failing patches", "The two weakest writers supply most of the mixed-strength group's failing patches",
          "59%", pct(sum(W[w]["failing"] for w in weak) / sum(W[w]["failing"] for w in others))),
         ("3.1", "scored 100, two weakest writers", "a quarter or less of the two weakest writers'", "25%, 16%",
          ", ".join(pct(W[w]["gemma_100"]) for w in weak)),
@@ -358,7 +360,15 @@ def claims():
         ("3.2", "wrong-fix share: entries solving 40% to 60%, entries solving at least 70%",
          "from 64% among models that solve about half of the issues to 81% among the strongest", "64%, 81%",
          f"{pct(census['entries_solving_40_to_60_percent']['share'])}, {pct(census['entries_solving_70_percent_or_more']['share'])}"),
-        ("3.2", "failures a check on the listed tests can catch at most", "can therefore catch at most 3 in 10 failures",
+        ("3.2", "rise in the wrong-fix share within an issue, entries solving at least 70% minus 40% to 60%",
+         "On the same issue the rise is 10 points", "10 points, above zero",
+         f"{round(difficulty['within_issue_difference']['mean'] * 100)} points, "
+         + ("above zero" if difficulty["within_issue_difference"]["ci95"][0] > 0 else "reaches zero")),
+        ("5", "issues no entry solves, and the wrong-fix share without them",
+         "Without the 48 issues that no model solves, the share of wrong fixes is 67%", "48, 67%",
+         f"{difficulty['only_issues_no_entry_solves']['issues']}, "
+         f"{pct(difficulty['without_issues_no_entry_solves']['share_all_32'])}"),
+        ("3.2", "failures a check on the listed tests can catch at most", "can catch at most 3 in 10 failures",
          "29%", pct(1 - cshare)),
         ("3.3", "held-out repair: tests shown, second look, of held-back failing",
          "it repairs about half of the held-back failing patches, twice as many as with a second look",
@@ -379,12 +389,8 @@ def claims():
          ", ".join(net(a["blocked_failing_now_passing" + s] - a["blocked_passing_now_failing"])
                    for a, s in ((t, ""), (r, ""), (lt, "_stable"), (lr, "_stable")))),
         ("3.3", "issues whose reference fix breaks an outdated test, of issues checked",
-         "an outdated test held it back on 45 of 426 issues", "45 of 426",
+         "426 held-out and Lite issues, and an outdated test held it back on 45", "45 of 426",
          f"{outd['both']['with_an_outdated_test']} of {outd['both']['issues_checked']}"),
-        ("3.3", "held-out patches that keep an outdated test passing: correct, of all",
-         "no patch that keeps an outdated test passing is correct", "0 of 25",
-         f"{outd['held_out_patches_on_those_issues']['keeps_one_passing']['correct']} of "
-         f"{sum(outd['held_out_patches_on_those_issues']['keeps_one_passing'].values())}"),
         ("3.3", "Lite: correct held-back patches on an issue with an outdated test",
          "an outdated test held back 13 of the 14 correct patches in Table 1", "13 of 14",
          f"{lite13['on_an_issue_with_an_outdated_test']} of {lite13['n']}"),
@@ -398,14 +404,15 @@ def claims():
          f"{code['break_a_listed_test']['held_back_by_the_check']} of {code['break_a_listed_test']['n']}, "
          f"{code['wrong_fixes']['held_back_by_the_check']} of {code['wrong_fixes']['n']}"),
         ("3.3", "labelled repair against tests shown: correct broken, fewer repaired",
-         "Correct patches broken fell from 20 to 7, but fewer failing patches were repaired",
-         "20 to 7, 5 fewer", f"{L_t['correct_broken']} to {L_l['correct_broken']}, "
-                             f"{L_t['failing_repaired'] - L_l['failing_repaired']} fewer"),
-        ("3.3", "labelled repair: net gain in passing patches, interval reaches zero", "the net gain is within noise",
+         "Correct patches broken fell from 20 of 32 to 7. But fewer failing patches were repaired",
+         "20 of 32 to 7, 5 fewer", f"{L_t['correct_broken']} of {labelled['all']['correct']} to {L_l['correct_broken']}, "
+                                   f"{L_t['failing_repaired'] - L_l['failing_repaired']} fewer"),
+        ("3.3", "labelled repair: net gain in passing patches, interval reaches zero",
+         "the net gain in passing patches is within noise",
          "+8, reaches zero", f"{net(labelled['labelled_minus_tests']['diff'])}, "
                              + ("reaches zero" if includes_zero(labelled["labelled_minus_tests"]["ci95"]) else "excludes zero")),
-        ("5", "correct patches the repair's harm rests on", "rests on 23 correct patches", "23",
-         str(repair["blocked_passing"] + lite["blocked_passing"])),
+        ("5", "correct patches the repair's harm rests on", "rests on 55 correct patches", "55",
+         str(repair["blocked_passing"] + lite["blocked_passing"] + labelled["all"]["correct"])),
         ("7", "cost of scoring the equally strong writers' failing patches with nine judges", "cost $5.29", "$5.29",
          f"${m['cost_usd']:.2f}"),
     ]

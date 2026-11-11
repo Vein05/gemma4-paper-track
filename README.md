@@ -25,18 +25,20 @@ Coding agents often decide whether a patch is finished by asking a model, often 
 31B and eight other models to score SWE-bench patches without naming their writer, and graded every patch with the
 hidden tests. Gemma's extra trust in a patch is its score minus the mean score of judges from other model families.
 
-- **Gemma 4's self-preference halves against equally strong writers.** By the usual measure, against five public
+- **Gemma 4 gives equally strong writers' failing patches the top score as often as its own.** By the usual measure, against five public
   agents of mixed strength, Gemma's extra trust in its own failing patches is 16.3 points. Against the seven public
   agents that solve about as many held-out SWE-bench Verified issues as Gemma, chosen by a rule fixed before scoring,
-  it is 8.7 points. Gemma gives these seven agents' failing patches the top score as often as its own.
-- **Gemma gives the top score to most strong writers' failing patches.** On Go, Ruby and PHP issues it scores 100 on
-  76% of its own failing patches and on 68% of four stronger agents' failing patches. Most of its own failing patches
-  are wrong fixes that pass every existing test. Thinking before scoring, testing the patch in a shell and LoRA
-  fine-tuning each left most of them approved.
-- **Gemma obeys outdated tests when it repairs a patch.** Shown the existing tests its patch breaks, Gemma repairs 14
-  of 26 held-back failing patches on the held-out issues, against 7 after a second look. On SWE-bench Lite, the
-  reference fix fails the same tests for every held-back correct patch. There Gemma breaks 12 of 14 correct patches,
-  against 2 after a second look.
+  it is 8.7 points. On Go, Ruby and PHP issues it scores 100 on 76% of its own failing patches and on 68% of four
+  stronger agents' failing patches.
+- **Most failing patches pass every existing test, and more of them as agents get stronger.** Across 32 public models
+  in the same agent, 71% of the failing patches that change code pass every existing test that SWE-bench runs. Most of
+  Gemma's own failing patches are such wrong fixes, and Gemma gives about three quarters of them the top score.
+  Thinking before scoring, testing the patch in a shell and LoRA fine-tuning each left most of them approved.
+- **On one issue in ten, the correct fix breaks an existing test.** On 45 of 426 issues, the reference fix breaks a
+  test that its own pull request edits or deletes (`data/outdated-test-issues/`). Shown the existing tests its patch
+  breaks, Gemma repairs 14 of 26 held-back failing patches on the held-out issues, against 7 after a second look. But
+  on SWE-bench Lite, an outdated test held back 13 correct patches, and Gemma broke 12 of them when shown the test,
+  against 2 after a second look. Having Gemma label these tests first spares most of the correct patches.
 
 ## Reproduce
 

@@ -26,10 +26,10 @@ for block in re.split(r"\n\s*\n", body.strip()):
     lines = block.split("\n")
     if all(l.startswith("|") for l in lines):
         blocks.append(block)
-    elif lines[0].startswith("- "):
+    elif re.match(r"(- |\d+\. )", lines[0]):
         items = []
         for l in lines:
-            if l.startswith("- "):
+            if re.match(r"(- |\d+\. )", l):
                 items.append(l)
             else:
                 items[-1] += " " + l.strip()

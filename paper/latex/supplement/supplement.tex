@@ -5,7 +5,7 @@
 % Not sources: paper/latex/build/ (scratch, rebuilt every make), release/paper/... (copied by make_release.sh),
 % notes/*/supplement.tex and paper/drafts/supplement/ (old snapshots). Do not run pdflatex here: it leaves an unstyled
 % supplement.pdf beside this file.
-% Sections: A and B back Section 2; C backs Section 3.1 and the first part of 3.2; D the end of 3.1; E Table 2 in 3.2;
+% Sections: A and B back Section 2; C backs Section 3.1 and the first part of 3.2; D what the remaining gap of 3.1 follows; E the checks of 3.2;
 % F Section 3.3; G Section 7. The paper (writeup.md) names these sections by letter; change both together.
 \usepackage{rubberstamp}
 \renewcommand{\thesection}{\Alph{section}}
@@ -16,8 +16,8 @@
 \rstitle{Supplement}{Neither Gemma 4 nor the Existing Tests Catch Wrong Fixes}{Paper: \href{https://github.com/Vein05/gemma4-paper-track/blob/main/paper/rubber-stamp.pdf}{\texttt{rubber-stamp.pdf}}}
 \noindent This supplement accompanies \emph{Neither Gemma~4 nor the Existing Tests Catch Wrong Fixes} (\texttt{rubber-stamp.pdf}). Its sections follow the paper.
 Sections~\ref{app:prompt} and~\ref{app:grading} give the setup of the paper's Section~2. Section~\ref{app:stamp} backs
-Section 3.1 and the first part of Section 3.2, Section~\ref{app:edit} the end of Section 3.1, Section~\ref{app:checks}
-the checks in Table 2, Section~\ref{app:repair} Section 3.3, and Section~\ref{app:cost} the cost. Terms, patch sets and measures are those of the paper. Every number traces to
+Section 3.1 and the first part of Section 3.2, Section~\ref{app:edit} asks what the remaining gap of Section 3.1 follows, Section~\ref{app:checks}
+backs the checks of Section 3.2, Section~\ref{app:repair} Section 3.3, and Section~\ref{app:cost} the cost. Terms, patch sets and measures are those of the paper. Every number traces to
 a file in \texttt{scripts/derived/} of the repository, \url{https://github.com/Vein05/gemma4-paper-track}, and every
 test names its written plan in \texttt{spec/}. The raw runs behind them, including every agent and judge trace, are in
 the Hugging Face dataset \url{https://huggingface.co/datasets/vein05/gemma4-paper-track-data}. Analyses chosen after a result was seen are marked exploratory.
@@ -567,6 +567,40 @@ Scored 100, own minus equally strong writers & $+2.3$ [$-8.9$, 12.7] & $+7.7$ [$
 \end{tabular}
 \end{table}
 
+\paragraph{Top score by failure type on other writers' patches (exploratory).} Gemma's 44 wrong fixes are few, so we
+repeated the split on the equally strong writers' failing held-out patches that change code and that all nine judges
+scored. SWE-bench's public test reports cover five of the seven writers. Gemma gives 100 to 64\% of their 230 wrong
+fixes and to 37\% of their 153 patches that break a listed test (Table~\ref{tab:typewriters}). Gemma's top-score rate
+differs by writer, so we take the difference within each writer. It is positive for all five and averages 20.9 points
+[8.7, 32.9]. The outside judges score wrong fixes higher too. Their mean score is 16.4 points higher [9.1, 24.0] and
+Gemma's is 26.2 points higher [13.5, 38.8], both averaged within model family first. Gemma therefore scores wrong
+fixes 9.8 points [1.1, 18.3] further above the outside judges than patches that break a listed test. Averaged over
+writers and not families, that number is 6.6 [$-0.7$, 14.3]. Gemma's low scores are not only for crashes: of the 85
+patches that break a listed test and that Gemma scores below 50, 37 fail every issue test and at least half of the
+other listed tests (\path{scripts/failure_type_top_score.py}, \path{derived/failure_type_top_score_2026-11-11.json}).
+
+\begin{table}[H]
+\centering
+\small
+\caption{Gemma's top score by failure type, on failing held-out patches that change code. Gemma's own row repeats the
+counts above.}
+\label{tab:typewriters}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Writer & Wrong fixes & Scored 100 & Break a listed test & Scored 100 \\
+\midrule
+Gemini 2.5 Pro & 50 & 78\% & 22 & 45\% \\
+o3 & 42 & 60\% & 27 & 48\% \\
+o4-mini & 42 & 64\% & 50 & 22\% \\
+GPT-5 mini & 53 & 81\% & 20 & 75\% \\
+GPT-5 nano & 43 & 33\% & 34 & 21\% \\
+\midrule
+The five writers & 230 & 64\% & 153 & 37\% \\
+Gemma 4 31B & 44 & 73\% & 30 & 57\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsection*{Wrong fixes across public models (exploratory)}
 
 We counted wrong fixes for every public mini-SWE-agent entry on SWE-bench Verified. No plan was written before this
@@ -585,7 +619,40 @@ The share rises with the share of issues a model solves (Table~\ref{tab:census})
 least 40\% of the issues, the rank correlation between the two is 0.80. Its 95\% interval is 0.63 to 0.84 when issues
 are resampled and 0.60 to 0.90 when entries are resampled. Part of the rise could come from the issues that remain
 unsolved for strong models. On the 224 issues that an entry of each group fails, the share is 68\% for the entries
-that solve 40\% to 60\% and 81\% for those that solve at least 70\%, so the rise holds on the same issues.
+that solve 40\% to 60\% and 81\% for those that solve at least 70\%. That comparison still pools patches, and the
+strong entries' failing patches sit on the harder issues. When we take the difference within each issue and average it
+over the 224 issues, it is 10.1 points [6.5, 13.4], against 16.4 pooled over all issues
+(\path{scripts/wrong_fix_difficulty.py}, \path{derived/wrong_fix_difficulty_2026-11-11.json}). So about 60\% of the
+rise remains on the same issue.
+
+\paragraph{Issue difficulty and the hidden tests (exploratory).} A patch is failing by SWE-bench's hidden tests. If
+an issue's tests reject a valid fix, that patch counts as a wrong fix, and few models would solve such an issue.
+Table~\ref{tab:difficulty} splits the count by how many of the 32 entries solve the issue. The share is 82\% on the
+48 issues that no entry solves and 49\% on the 279 issues that at least 24 entries solve. Without the 48 issues it is
+67\% [62, 72]. These data cannot tell how many patches on the hardest issues are valid fixes that the tests reject.
+The stronger entries have the higher share in every band. Its interval includes zero only in the easiest band, where
+they have 39 failing patches. The plan for this check and the next paragraph's is
+\path{spec/hidden-test-and-failure-type-checks.md}, written after the paper's results were seen.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Wrong fixes among failing patches that change code, by how many of the 32 public entries solve the issue.
+Difference: entries that solve at least 70\% of all issues minus entries that solve 40\% to 60\%, in points, with
+95\% intervals.}
+\label{tab:difficulty}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Entries solving the issue & Issues & Failing patches & Wrong fixes & 40\% to 60\% & 70\% or more & Difference \\
+\midrule
+None & 48 & 1,405 & 82\% & 75\% & 87\% & $+12$ [7, 18] \\
+1 to 7 & 54 & 1,449 & 78\% & 71\% & 82\% & $+11$ [5, 17] \\
+8 to 15 & 57 & 1,004 & 62\% & 61\% & 71\% & $+10$ [2, 18] \\
+16 to 23 & 62 & 586 & 64\% & 58\% & 76\% & $+18$ [4, 32] \\
+24 to 32 & 279 & 517 & 49\% & 50\% & 62\% & $+11$ [$-9$, 31] \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Gemma's share of 59\% (44 of 74) is close to that of public entries of its strength. On the 200 held-out issues, the
 five public entries that solve 40\% to 60\% of them have a share of 60\% (239 of 401).
@@ -803,7 +870,7 @@ gpt-oss-120b & 46.2\% & 134 & $+3.9$ [$-1.7$, 9.7] & 45.3 / 21.2 & 49.9 / 29.7 &
 \section{Where the extra trust goes}
 \label{app:edit}
 
-This section backs the end of Section 3.1 of the paper. Gemma could trust its patches because it recognizes them as its own, or
+This section asks what the remaining gap of the paper's Section 3.1 follows. Gemma could trust its patches because it recognizes them as its own, or
 because it believes in the edit they make. The tests below point to the edit. None of them varies the writer with the
 patch held fixed, so none rules out recognition.
 
@@ -1008,7 +1075,7 @@ does not fit.
 \section{Checks that Gemma runs itself}
 \label{app:checks}
 
-This section backs the checks in Table 2 of the paper (Section 3.2). If the trust is a belief about the fix, a check that Gemma runs should
+This section backs the checks named in Section 3.2 of the paper. If the trust is a belief about the fix, a check that Gemma runs should
 inherit it. We tested four such checks: thinking before scoring, the reproduction scripts Gemma writes while fixing an
 issue, a shell in which Gemma must test the patch, and LoRA fine-tuning on labeled patches.
 
@@ -1410,7 +1477,7 @@ the interval is above zero and the labeled repair also passes more patches than 
 99 issues: 32 correct and 140 failing. The labeled repair passes 8 more patches than the repair with the tests shown, with an
 interval of $-4$ to 21, so the claim for the method fails (Table~\ref{tab:labeled}). It passes 38 more than no repair
 [23, 51]. It breaks 13 fewer correct patches than the repair with the tests shown [3, 25] and repairs 5 fewer failing
-patches [0, 10]. Skipping the repair when all tests are labeled outdated, and otherwise showing the tests, passes 2 more
+patches [0, 10] (\path{scripts/labelled_repair_interval.py}). Skipping the repair when all tests are labeled outdated, and otherwise showing the tests, passes 2 more
 than the tests shown [$-6$, 12].
 
 \begin{table}[H]

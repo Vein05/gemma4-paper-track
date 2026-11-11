@@ -1,0 +1,643 @@
+{
+ "exploratory": true,
+ "spec": "spec/hidden-test-and-failure-type-checks.md",
+ "left_out": {
+  "glm-4.5: no census report": 60,
+  "kimi-k2: no census report": 56,
+  "gemma-4-31b: holds no fix": 8,
+  "gemma, November scores: no test outcome": 4,
+  "20250726_mini-v1.0.0_gemini-2.5-pro: holds no fix": 3,
+  "20250807_mini-v1.7.0_gpt-5-nano: holds no fix": 2,
+  "20250807_mini-v1.7.0_gpt-5-nano: no census report": 1
+ },
+ "per_writer": {
+  "20250726_mini-v1.0.0_gemini-2.5-pro": {
+   "family": "google",
+   "wrong fix": {
+    "n": 50,
+    "gemma_share_100": 78.0,
+    "gemma_mean": 91.3,
+    "outside_mean": 73.5,
+    "outside_share_100": 23.2,
+    "extra_trust": 17.8
+   },
+   "breaks a listed test": {
+    "n": 22,
+    "gemma_share_100": 45.5,
+    "gemma_mean": 55.5,
+    "outside_mean": 52.7,
+    "outside_share_100": 14.8,
+    "extra_trust": 2.7
+   }
+  },
+  "20250726_mini-v1.0.0_o3-2025-04-16": {
+   "family": "gpt-oss",
+   "wrong fix": {
+    "n": 42,
+    "gemma_share_100": 59.5,
+    "gemma_mean": 71.5,
+    "outside_mean": 75.6,
+    "outside_share_100": 30.2,
+    "extra_trust": -4.0
+   },
+   "breaks a listed test": {
+    "n": 27,
+    "gemma_share_100": 48.1,
+    "gemma_mean": 65.7,
+    "outside_mean": 63.8,
+    "outside_share_100": 22.2,
+    "extra_trust": 1.9
+   }
+  },
+  "20250726_mini-v1.0.0_o4-mini-2025-04-16": {
+   "family": "gpt-oss",
+   "wrong fix": {
+    "n": 42,
+    "gemma_share_100": 64.3,
+    "gemma_mean": 71.7,
+    "outside_mean": 67.8,
+    "outside_share_100": 26.6,
+    "extra_trust": 3.9
+   },
+   "breaks a listed test": {
+    "n": 50,
+    "gemma_share_100": 22.0,
+    "gemma_mean": 28.6,
+    "outside_mean": 45.5,
+    "outside_share_100": 16.0,
+    "extra_trust": -16.9
+   }
+  },
+  "20250807_mini-v1.7.0_gpt-5-nano": {
+   "family": "gpt-oss",
+   "wrong fix": {
+    "n": 43,
+    "gemma_share_100": 32.6,
+    "gemma_mean": 46.7,
+    "outside_mean": 57.0,
+    "outside_share_100": 21.7,
+    "extra_trust": -10.2
+   },
+   "breaks a listed test": {
+    "n": 34,
+    "gemma_share_100": 20.6,
+    "gemma_mean": 30.9,
+    "outside_mean": 47.1,
+    "outside_share_100": 17.2,
+    "extra_trust": -16.2
+   }
+  },
+  "20260217_mini-v2.0.0_gpt-5-mini": {
+   "family": "gpt-oss",
+   "wrong fix": {
+    "n": 53,
+    "gemma_share_100": 81.1,
+    "gemma_mean": 83.9,
+    "outside_mean": 81.7,
+    "outside_share_100": 35.2,
+    "extra_trust": 2.2
+   },
+   "breaks a listed test": {
+    "n": 20,
+    "gemma_share_100": 75.0,
+    "gemma_mean": 82.8,
+    "outside_mean": 77.7,
+    "outside_share_100": 29.2,
+    "extra_trust": 5.1
+   }
+  }
+ },
+ "other_writers_pooled": {
+  "wrong fix": {
+   "n": 230,
+   "gemma_share_100": 64.3,
+   "gemma_mean": 74.1,
+   "outside_mean": 71.6,
+   "outside_share_100": 27.6,
+   "extra_trust": 2.4
+  },
+  "breaks a listed test": {
+   "n": 153,
+   "gemma_share_100": 36.6,
+   "gemma_mean": 46.6,
+   "outside_mean": 54.3,
+   "outside_share_100": 18.9,
+   "extra_trust": -7.7
+  }
+ },
+ "gemma_own_october_scores_failure_types_split": {
+  "wrong fix": {
+   "n": 44,
+   "gemma_share_100": 72.7,
+   "gemma_mean": 85.5,
+   "outside_mean": 68.3,
+   "outside_share_100": 18.2,
+   "extra_trust": 17.1
+  },
+  "breaks a listed test": {
+   "n": 30,
+   "gemma_share_100": 56.7,
+   "gemma_mean": 66.5,
+   "outside_mean": 53.2,
+   "outside_share_100": 13.3,
+   "extra_trust": 13.3
+  }
+ },
+ "gemma_own_november_scores": {
+  "wrong fix": {
+   "n": 44,
+   "gemma_share_100": 77.3,
+   "gemma_mean": 85.0,
+   "outside_mean": 67.2,
+   "outside_share_100": 16.5,
+   "extra_trust": 17.8
+  },
+  "breaks a listed test": {
+   "n": 30,
+   "gemma_share_100": 50.0,
+   "gemma_mean": 63.2,
+   "outside_mean": 52.1,
+   "outside_share_100": 13.8,
+   "extra_trust": 11.1
+  }
+ },
+ "differences_wrong_fix_minus_breaks_a_listed_test": {
+  "other_writers": {
+   "gemma_share_100 | pooled": {
+    "value": 27.7,
+    "ci95": [
+     16.0,
+     39.5
+    ]
+   },
+   "gemma_share_100 | writer_average": {
+    "value": 20.9,
+    "ci95": [
+     8.7,
+     32.9
+    ]
+   },
+   "gemma_share_100 | family_balanced": {
+    "value": 25.2,
+    "ci95": [
+     10.3,
+     40.2
+    ]
+   },
+   "gemma_share_100 | writer 20250726_mini-v1.0.0_gemini-2.5-pro": {
+    "value": 32.5,
+    "ci95": [
+     9.1,
+     55.4
+    ]
+   },
+   "gemma_share_100 | writer 20250726_mini-v1.0.0_o3-2025-04-16": {
+    "value": 11.4,
+    "ci95": [
+     -12.7,
+     35.6
+    ]
+   },
+   "gemma_share_100 | writer 20250726_mini-v1.0.0_o4-mini-2025-04-16": {
+    "value": 42.3,
+    "ci95": [
+     22.6,
+     60.9
+    ]
+   },
+   "gemma_share_100 | writer 20250807_mini-v1.7.0_gpt-5-nano": {
+    "value": 12.0,
+    "ci95": [
+     -7.6,
+     31.3
+    ]
+   },
+   "gemma_share_100 | writer 20260217_mini-v2.0.0_gpt-5-mini": {
+    "value": 6.1,
+    "ci95": [
+     -15.0,
+     28.9
+    ]
+   },
+   "gemma_mean | pooled": {
+    "value": 27.5,
+    "ci95": [
+     17.4,
+     37.9
+    ]
+   },
+   "gemma_mean | writer_average": {
+    "value": 20.3,
+    "ci95": [
+     10.4,
+     30.5
+    ]
+   },
+   "gemma_mean | family_balanced": {
+    "value": 26.2,
+    "ci95": [
+     13.5,
+     38.8
+    ]
+   },
+   "gemma_mean | writer 20250726_mini-v1.0.0_gemini-2.5-pro": {
+    "value": 35.8,
+    "ci95": [
+     15.3,
+     56.9
+    ]
+   },
+   "gemma_mean | writer 20250726_mini-v1.0.0_o3-2025-04-16": {
+    "value": 5.8,
+    "ci95": [
+     -14.6,
+     27.3
+    ]
+   },
+   "gemma_mean | writer 20250726_mini-v1.0.0_o4-mini-2025-04-16": {
+    "value": 43.1,
+    "ci95": [
+     25.2,
+     59.2
+    ]
+   },
+   "gemma_mean | writer 20250807_mini-v1.7.0_gpt-5-nano": {
+    "value": 15.9,
+    "ci95": [
+     -3.9,
+     35.2
+    ]
+   },
+   "gemma_mean | writer 20260217_mini-v2.0.0_gpt-5-mini": {
+    "value": 1.1,
+    "ci95": [
+     -15.6,
+     20.3
+    ]
+   },
+   "outside_mean | pooled": {
+    "value": 17.3,
+    "ci95": [
+     11.0,
+     23.7
+    ]
+   },
+   "outside_mean | writer_average": {
+    "value": 13.7,
+    "ci95": [
+     7.9,
+     19.8
+    ]
+   },
+   "outside_mean | family_balanced": {
+    "value": 16.4,
+    "ci95": [
+     9.1,
+     24.0
+    ]
+   },
+   "outside_mean | writer 20250726_mini-v1.0.0_gemini-2.5-pro": {
+    "value": 20.8,
+    "ci95": [
+     9.0,
+     32.6
+    ]
+   },
+   "outside_mean | writer 20250726_mini-v1.0.0_o3-2025-04-16": {
+    "value": 11.8,
+    "ci95": [
+     0.6,
+     22.9
+    ]
+   },
+   "outside_mean | writer 20250726_mini-v1.0.0_o4-mini-2025-04-16": {
+    "value": 22.3,
+    "ci95": [
+     12.6,
+     32.5
+    ]
+   },
+   "outside_mean | writer 20250807_mini-v1.7.0_gpt-5-nano": {
+    "value": 9.8,
+    "ci95": [
+     -2.5,
+     21.5
+    ]
+   },
+   "outside_mean | writer 20260217_mini-v2.0.0_gpt-5-mini": {
+    "value": 4.0,
+    "ci95": [
+     -5.8,
+     13.7
+    ]
+   },
+   "outside_share_100 | pooled": {
+    "value": 8.7,
+    "ci95": [
+     3.6,
+     13.9
+    ]
+   },
+   "outside_share_100 | writer_average": {
+    "value": 7.5,
+    "ci95": [
+     2.4,
+     12.7
+    ]
+   },
+   "outside_share_100 | family_balanced": {
+    "value": 7.9,
+    "ci95": [
+     2.4,
+     13.4
+    ]
+   },
+   "outside_share_100 | writer 20250726_mini-v1.0.0_gemini-2.5-pro": {
+    "value": 8.5,
+    "ci95": [
+     0.9,
+     16.0
+    ]
+   },
+   "outside_share_100 | writer 20250726_mini-v1.0.0_o3-2025-04-16": {
+    "value": 7.9,
+    "ci95": [
+     -1.1,
+     16.9
+    ]
+   },
+   "outside_share_100 | writer 20250726_mini-v1.0.0_o4-mini-2025-04-16": {
+    "value": 10.6,
+    "ci95": [
+     2.0,
+     19.1
+    ]
+   },
+   "outside_share_100 | writer 20250807_mini-v1.7.0_gpt-5-nano": {
+    "value": 4.5,
+    "ci95": [
+     -3.3,
+     12.4
+    ]
+   },
+   "outside_share_100 | writer 20260217_mini-v2.0.0_gpt-5-mini": {
+    "value": 6.1,
+    "ci95": [
+     -3.8,
+     15.5
+    ]
+   },
+   "extra_trust | pooled": {
+    "value": 10.2,
+    "ci95": [
+     3.1,
+     17.9
+    ]
+   },
+   "extra_trust | writer_average": {
+    "value": 6.6,
+    "ci95": [
+     -0.7,
+     14.3
+    ]
+   },
+   "extra_trust | family_balanced": {
+    "value": 9.8,
+    "ci95": [
+     1.1,
+     18.3
+    ]
+   },
+   "extra_trust | writer 20250726_mini-v1.0.0_gemini-2.5-pro": {
+    "value": 15.1,
+    "ci95": [
+     0.7,
+     29.1
+    ]
+   },
+   "extra_trust | writer 20250726_mini-v1.0.0_o3-2025-04-16": {
+    "value": -6.0,
+    "ci95": [
+     -22.1,
+     10.5
+    ]
+   },
+   "extra_trust | writer 20250726_mini-v1.0.0_o4-mini-2025-04-16": {
+    "value": 20.7,
+    "ci95": [
+     6.9,
+     33.9
+    ]
+   },
+   "extra_trust | writer 20250807_mini-v1.7.0_gpt-5-nano": {
+    "value": 6.0,
+    "ci95": [
+     -7.2,
+     19.7
+    ]
+   },
+   "extra_trust | writer 20260217_mini-v2.0.0_gpt-5-mini": {
+    "value": -2.9,
+    "ci95": [
+     -21.1,
+     17.0
+    ]
+   }
+  },
+  "gemma_own_october_scores": {
+   "gemma_share_100": {
+    "value": 16.1,
+    "ci95": [
+     -4.8,
+     37.4
+    ]
+   },
+   "gemma_mean": {
+    "value": 19.0,
+    "ci95": [
+     1.3,
+     38.1
+    ]
+   },
+   "outside_mean": {
+    "value": 15.2,
+    "ci95": [
+     5.2,
+     25.3
+    ]
+   },
+   "outside_share_100": {
+    "value": 4.8,
+    "ci95": [
+     -1.7,
+     11.7
+    ]
+   },
+   "extra_trust": {
+    "value": 3.8,
+    "ci95": [
+     -9.4,
+     16.9
+    ]
+   }
+  },
+  "gemma_own_november_scores": {
+   "gemma_share_100": {
+    "value": 27.3,
+    "ci95": [
+     6.7,
+     48.7
+    ]
+   },
+   "gemma_mean": {
+    "value": 21.8,
+    "ci95": [
+     3.5,
+     40.9
+    ]
+   },
+   "outside_mean": {
+    "value": 15.2,
+    "ci95": [
+     5.7,
+     24.9
+    ]
+   },
+   "outside_share_100": {
+    "value": 2.7,
+    "ci95": [
+     -3.7,
+     9.2
+    ]
+   },
+   "extra_trust": {
+    "value": 6.7,
+    "ci95": [
+     -7.4,
+     20.7
+    ]
+   }
+  }
+ },
+ "obvious_crashes": {
+  "other_writers": {
+   "gemma_below_50": {
+    "n": 85,
+    "with_tests": 85,
+    "every_issue_test_fails_and_half_or_more_other_tests_fail": 37,
+    "every_issue_test_fails": 54,
+    "some_issue_test_passes": 31
+   },
+   "gemma_100": {
+    "n": 56,
+    "with_tests": 56,
+    "every_issue_test_fails_and_half_or_more_other_tests_fail": 10,
+    "every_issue_test_fails": 32,
+    "some_issue_test_passes": 24
+   }
+  },
+  "gemma_own_october_scores": {
+   "gemma_below_50": {
+    "n": 10,
+    "with_tests": 10,
+    "every_issue_test_fails_and_half_or_more_other_tests_fail": 5,
+    "every_issue_test_fails": 6,
+    "some_issue_test_passes": 4
+   },
+   "gemma_100": {
+    "n": 17,
+    "with_tests": 17,
+    "every_issue_test_fails_and_half_or_more_other_tests_fail": 1,
+    "every_issue_test_fails": 6,
+    "some_issue_test_passes": 11
+   }
+  },
+  "per_writer": {
+   "20250726_mini-v1.0.0_gemini-2.5-pro": {
+    "gemma_below_50": {
+     "n": 10,
+     "with_tests": 10,
+     "every_issue_test_fails_and_half_or_more_other_tests_fail": 5,
+     "every_issue_test_fails": 7,
+     "some_issue_test_passes": 3
+    },
+    "gemma_100": {
+     "n": 10,
+     "with_tests": 10,
+     "every_issue_test_fails_and_half_or_more_other_tests_fail": 2,
+     "every_issue_test_fails": 4,
+     "some_issue_test_passes": 6
+    }
+   },
+   "20250726_mini-v1.0.0_o3-2025-04-16": {
+    "gemma_below_50": {
+     "n": 10,
+     "with_tests": 10,
+     "every_issue_test_fails_and_half_or_more_other_tests_fail": 1,
+     "every_issue_test_fails": 2,
+     "some_issue_test_passes": 8
+    },
+    "gemma_100": {
+     "n": 13,
+     "with_tests": 13,
+     "every_issue_test_fails_and_half_or_more_other_tests_fail": 3,
+     "every_issue_test_fails": 8,
+     "some_issue_test_passes": 5
+    }
+   },
+   "20250726_mini-v1.0.0_o4-mini-2025-04-16": {
+    "gemma_below_50": {
+     "n": 37,
+     "with_tests": 37,
+     "every_issue_test_fails_and_half_or_more_other_tests_fail": 23,
+     "every_issue_test_fails": 30,
+     "some_issue_test_passes": 7
+    },
+    "gemma_100": {
+     "n": 11,
+     "with_tests": 11,
+     "every_issue_test_fails_and_half_or_more_other_tests_fail": 2,
+     "every_issue_test_fails": 7,
+     "some_issue_test_passes": 4
+    }
+   },
+   "20250807_mini-v1.7.0_gpt-5-nano": {
+    "gemma_below_50": {
+     "n": 24,
+     "with_tests": 24,
+     "every_issue_test_fails_and_half_or_more_other_tests_fail": 8,
+     "every_issue_test_fails": 14,
+     "some_issue_test_passes": 10
+    },
+    "gemma_100": {
+     "n": 7,
+     "with_tests": 7,
+     "every_issue_test_fails_and_half_or_more_other_tests_fail": 1,
+     "every_issue_test_fails": 4,
+     "some_issue_test_passes": 3
+    }
+   },
+   "20260217_mini-v2.0.0_gpt-5-mini": {
+    "gemma_below_50": {
+     "n": 4,
+     "with_tests": 4,
+     "every_issue_test_fails_and_half_or_more_other_tests_fail": 0,
+     "every_issue_test_fails": 1,
+     "some_issue_test_passes": 3
+    },
+    "gemma_100": {
+     "n": 15,
+     "with_tests": 15,
+     "every_issue_test_fails_and_half_or_more_other_tests_fail": 2,
+     "every_issue_test_fails": 9,
+     "some_issue_test_passes": 6
+    }
+   }
+  }
+ },
+ "families": [
+  "google",
+  "gpt-oss"
+ ],
+ "issues_other_writers": 140
+}

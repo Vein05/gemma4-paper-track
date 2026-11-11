@@ -1,0 +1,44 @@
+{
+ "exploratory": true,
+ "spec": "spec/hidden-test-and-failure-type-checks.md",
+ "patches": 172,
+ "correct": 32,
+ "correct_broken": {
+  "tests_shown": 20,
+  "labelled": 7
+ },
+ "fewer_correct_broken_tests_minus_labelled": {
+  "diff": 13,
+  "ci95": [
+   3.0,
+   25.0
+  ],
+  "issues": 99
+ },
+ "fewer_failing_repaired_tests_minus_labelled": {
+  "diff": 5,
+  "ci95": [
+   0.0,
+   10.0
+  ],
+  "issues": 99
+ },
+ "supplement_states": {
+  "fewer_correct_broken": "13 [3, 25]",
+  "fewer_failing_repaired": "5 [0, 10]"
+ },
+ "variant_resampling_only_issues_with_a_correct_patch": {
+  "diff": 13,
+  "ci95": [
+   4.0,
+   24.0
+  ],
+  "issues": 16
+ },
+ "correct_patches_paired": {
+  "broken by both": 7,
+  "broken with tests shown only": 13,
+  "broken with labels only": 0,
+  "broken by neither": 12
+ }
+}
